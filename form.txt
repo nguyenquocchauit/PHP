@@ -1,0 +1,7 @@
+Registration information
+Full Name : 
+Gender : 
+Birthday : 01/01/1970
+Hobby : ...
+Username : 
+Password : 

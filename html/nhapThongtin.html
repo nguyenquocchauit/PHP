@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập thông tin</title>
+</head>
+
+<body>
+    
+    <form action="../PHP/xulyThongtin.php" method="post">
+        <fieldset style="width: 440px;">
+            <legend><h3>Enter your information</h3></legend>
+        <table  style="padding:1px ;">
+            <tr>
+                <td >
+                    Họ tên :
+                </td>
+                <td>
+                    <input style="width: 290px;" type="text"  name="name" id="" placeholder=""
+                        pattern="^(?:((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-.\s])){1,}(['’,\-\.]){0,1}){2,}(([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-. ]))*(([ ]+){0,1}(((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){1,})(['’\-,\.]){0,1}){2,}((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){2,})?)*)$"
+                        title="Vui lòng nhập đúng tên thật!" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Địa chỉ :
+                </td>
+                <td>
+                    <input style="width: 290px;" type="text" name="address" id="" placeholder="">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Số điện thoại :
+                </td>
+                <td>
+                    <input  type="tel" name="numberphone" id="" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                        title="Vui lòng nhập đúng định dạng số điện thoại!" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Giới tính :
+                </td>
+                <td>
+                    <input type="radio" name="gender" id="" value="Nam" checked>Nam<input type="radio" name="gender"
+                        id="" value="Nữ">Nữ
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Quốc tịch :
+                </td>
+                <td>
+                    <select name="nationality" id="nationality">
+                        <option value="">-- Quốc gia --</option>
+                        <option value="Việt Nam">Việt Nam</option>
+                        <option value="Hàn Quốc">Hàn Quốc</option>
+                        <option value="Nhật Bản">Nhật Bản</option>
+                        <option value="Mỹ">Mỹ</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Các môn đã học :
+                </td>
+                <td>
+                    <input type="checkbox" name="subjects[]" value="PHP" id=""> PHP & MySQL
+                    <input type="checkbox" name="subjects[]" value="C" id=""> C#
+                    <input type="checkbox" name="subjects[]" value="XML" id=""> XML
+                    <input type="checkbox" name="subjects[]" value="Python" id=""> Python
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ghi chú :
+                </td>
+                <td>
+                    <textarea style="width: 290px;" rows="5" name="comment">
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td >
+                    <input type="submit" name="btnsubmit" id="" value="Gửi">
+                    <input type="reset" name="btnreset" value="Hủy">
+                </td>
+            </tr>
+
+        </table>
+    </fieldset>
+    </form>
+</body>
+
+</html>
