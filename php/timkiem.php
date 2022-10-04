@@ -34,25 +34,22 @@
         }
 
         .inp_2 {
-            background-color: #ff00005e;
             width: 482px;
             height: 27px;
         }
 
         .inp_3 {
-            background-color: #ff00005e;
             width: 350px;
             height: 27px;
         }
 
         .inp_4 {
-            background-color: #ff00005e;
             width: 350px;
             height: 27px;
         }
 
         .inp_5 {
-            background-color: #ff00005e;
+            color: red;
             width: 350px;
             height: 27px;
         }
@@ -83,34 +80,69 @@
 </head>
 
 <body>
-    <?php ?>
+    <?php
+    if (isset($_POST['inp']))
+        $inp = $_POST['inp'];
+    else
+        $inp = '';
+    if (isset($_POST['findX']))
+        $findX = $_POST['findX'];
+    else
+        $findX = '';
+    if (isset($_POST['mang']))
+        $mang = $_POST['mang'];
+    else
+        $mang = '';
+    if (isset($_POST['ketqua']))
+        $ketqua = $_POST['ketqua'];
+    else
+        $ketqua = '';
+    $arr = array();
+    if (isset($_POST['Exec'])) {
+        if (is_numeric($findX)) {
+            $arr = explode(",",$inp);
+            $mang = $inp;
+            $ketqua .="Tìm thấy số $findX tại vị trí thứ ".Find_X($arr,$findX)." của mảng";
+        }
+    }
+    function Find_X($array, $x)
+    {
+        $vitri = null;
+        for ($i = 0; $i < count($array); $i++) {
+            if ($x == $array[$i]) {
+                $vitri = $i + 1;
+            }
+        }
+        return $vitri;
+    }
+    ?>
     <form action="" method="post">
         <table>
-            <tr border='1'>
+            <tr>
                 <td id="title" colspan="2" align="center">TÌM KIẾM</td>
             </tr>
-            <tr class="bgtr" border='1'>
+            <tr class="bgtr">
                 <td>Nhập mảng: </td>
-                <td><input class="inp_1" type="text" value="<?php echo $inp ?>" pattern="[1-9]{}" name="inp" required></td>
+                <td><input class="inp_1" type="text" value="<?php echo $inp ?>" name="inp" required></td>
             </tr>
             <tr>
                 <td>Nhập số cần tìm: </td>
-                <td><input class="inp_2" type="text" value="<?php echo $mang ?>" name="mang" disabled></td>
+                <td><input class="inp_2" type="text" value="<?php echo $findX ?>" name="findX" pattern="[0-9]{}" required></td>
             </tr>
-            <tr class="bgtr" border='1'>
+            <tr class="bgtr">
                 <td></td>
                 <td><button name="Exec" type="submit" class="btn-exec">Tìm kiếm</button></td>
             </tr>
             <tr>
                 <td>Mảng: </td>
-                <td><input class="inp_3" type="text" value="<?php echo $max ?>" name="max" disabled></td>
+                <td><input class="inp_3" type="text" value="<?php echo $mang ?>" name="mang" disabled></td>
             </tr>
             <tr>
                 <td>Kết quả tìm kiếm: </td>
-                <td><input class="inp_5" type="text" value="<?php echo $sum ?>" name="sum" disabled></td>
+                <td><input class="inp_5" type="text" value="<?php echo $ketqua ?>" name="ketqua" disabled></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><b>(Ghi chú: </b>Các phần tử trong mảng sẽ có giá trị từ 0 đến 20)</td>
+                <td colspan="2" align="center">(Các phần tử trong mảng sẽ cách nhau bằng dấu ",")</td>
             </tr>
         </table>
     </form>
