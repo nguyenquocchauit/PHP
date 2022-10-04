@@ -99,7 +99,7 @@
             </tr>
             <tr class="bgtr" border='1'>
                 <td></td>
-                <td><button name="Exec" type="submit" class="btn-exec">Tổng dãy số</button></td>
+                <td><button name="Exec" type="submit" class="btn-exec">Tìm kiếm</button></td>
             </tr>
             <tr>
                 <td>Mảng: </td>
