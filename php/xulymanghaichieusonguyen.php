@@ -22,11 +22,59 @@
         $soCot = $_POST["SoCot"];
     else
         $soCot = "";
+    $array = [];
     if (isset($_POST["Send"])) {
-        if( ($soDong <=5 and $soDong >=2) and ($soCot <=5 and $soCot >=2) )
-            echo "ok";
-        else
-            echo "Nhập sai số cột hoặc số dòng >=2 và <=5";
+        if (($soDong <= 5 and $soDong >= 2) and ($soCot <= 5 and $soCot >= 2)) {
+            for ($i = 0; $i < $soDong; $i++)
+                for ($j = 0; $j < $soCot; $j++) {
+                    $array[$i][$j] = rand(-1000, 1000);
+                }
+            for ($i = 0; $i < $soDong; $i++) {
+                for ($j = 0; $j < $soCot; $j++) {
+                    if ($array[$i][$j] < 0)
+                        $KetQua .= "&nbsp;&nbsp;&nbsp;(" . $array[$i][$j] . ")&nbsp;&nbsp;&nbsp;&nbsp;";
+                    else
+                        $KetQua .= "&nbsp;&nbsp;&nbsp;&nbsp;" . $array[$i][$j] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+                $KetQua .= "&#10;";
+            }
+            $KetQua .= "&#10;Các phần tử thuộc dòng chẵn cột lẻ (dòng,cột):&#10;" . Num_EvenRow_OddCol($array, $soDong, $soCot);
+            $Get = (TongPT_Boi10($array, $soDong, $soCot));
+            if ($Get == 0)
+                $KetQua .= "&#10;Tổng các phần tử là bội số của 10: không có";
+            else
+                $KetQua .= "&#10;Tổng các phần tử là bội số của 10: " . $Get;
+        } else {
+            $KetQua .= "Số dòng hoặc số cột >=2 và <=5";
+        }
+    }
+    function Num_EvenRow_OddCol($arr, $soDong, $soCot)
+    {
+        $KetQuaFunc = "";
+        for ($i = 0; $i < $soDong; $i++) {
+            for ($j = 0; $j < $soCot; $j++) {
+                if (($j % 2 == 0) && ($i % 2 != 0)) {
+                    $VTi = $i + 1;
+                    $VTj = $j + 1;
+                    $KetQuaFunc .= $arr[$i][$j] . " tại vị trí ($VTi,$VTj)&#10;";
+                }
+            }
+        }
+        return $KetQuaFunc;
+    }
+    function TongPT_Boi10($arr, $soDong, $soCot)
+    {
+        $KetQuaFun = "";
+        $sum = 0;
+        for ($i = 0; $i < $soDong; $i++) {
+            for ($j = 0; $j < $soCot; $j++) {
+                if ($arr[$i][$j] % 10 == 0) {
+                    $sum += $arr[$i][$j];
+                }
+            }
+        }
+        $KetQuaFun = number_format($sum);
+        return $KetQuaFun;
     }
     ?>
     <form accept="xulymanghaichieusonguyen.php" method="post">
@@ -40,7 +88,7 @@
         </div>
         <button type="submit" class="btn btn-success" name="Send" style="margin-left: 8px;">Thực hiện</button>
         <div class="mb-3 pt-3 p-2">
-            <textarea class="form-control" name="KetQua" placeholder="Kết quả" rows="10"><?php echo $KetQua ?></textarea>
+            <textarea class="form-control" name="KetQua" placeholder="Kết quả" rows="100"><?php echo $KetQua ?></textarea>
         </div>
     </form>
 </body>
