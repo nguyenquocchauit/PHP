@@ -87,6 +87,7 @@
     }
 
     if (isset($_POST['ExecLevel'])) {
+        $KetQua = $KetQua;
     }
     ?>
     <form action="" method="post">
