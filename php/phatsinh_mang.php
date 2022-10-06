@@ -16,6 +16,7 @@
         }
 
         form {
+            padding: 200px 560px;
             display: inline-block;
         }
 
@@ -35,7 +36,7 @@
 
         .inp_2 {
             background-color: #ff00005e;
-            width: 482px;
+            width: 402px;
             height: 27px;
         }
 

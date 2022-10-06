@@ -15,6 +15,7 @@
         }
 
         body {
+
             text-align: center;
         }
 
@@ -23,6 +24,7 @@
         }
 
         form {
+            padding: 200px 560px;
             display: inline-block;
         }
 
@@ -79,7 +81,7 @@
     );
     $hinh_anh = null;
     if (isset($_POST['Exec'])) {
-        if (isset($_POST['duonglich']) && $_POST['duonglich'] >=10) {
+        if (isset($_POST['duonglich']) && $_POST['duonglich'] >= 10) {
             $nam = $_POST['duonglich'];
             if (is_numeric($nam)) {
                 $nam = $nam - 3;
@@ -116,7 +118,7 @@
                     <button type="submit" name="Exec"><img src="../images/next.png" alt="submit" srcset=""></i></button>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="form-control input" name="nam_al" value="<?php echo $nam_al ?>" id=""  >
+                    <input type="text" class="form-control input" name="nam_al" value="<?php echo $nam_al ?>" id="">
                 </div>
             </div>
             <div class="row">

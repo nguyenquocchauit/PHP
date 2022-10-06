@@ -5,6 +5,9 @@
         body {
             background-color: whitesmoke;
         }
+        form{
+            padding: 200px 700px;
+        }
         table {
             background: #ffd94d;
             border: 0 solid yellow;

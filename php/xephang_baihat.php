@@ -26,6 +26,7 @@
         }
 
         form {
+            padding: 200px 370px;
             display: inline-block;
         }
 

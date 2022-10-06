@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>tinh dien tich HCN</title>
@@ -6,17 +7,21 @@
         body {
             background-color: whitesmoke;
         }
+
         table {
             background: #ffd94d;
             border: 0 solid yellow;
         }
+
         thead {
 
             background: #fff14d;
         }
+
         td {
             color: blue;
         }
+
         h3 {
             font-family: verdana;
             text-align: center;
@@ -26,6 +31,7 @@
         }
     </style>
 </head>
+
 <body>
     <?php
     if (isset($_POST['chieudai']))
@@ -42,7 +48,7 @@
             $dientich = "";
         }
     else $dientich = 0;
-?>
+    ?>
     <form align='center' action="dientichhcn.php" method="post">
         <table>
             <thead>
@@ -68,4 +74,5 @@
         </table>
     </form>
 </body>
+
 </html>

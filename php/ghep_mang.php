@@ -16,6 +16,7 @@
         }
 
         form {
+            padding: 150px 560px;
             display: inline-block;
         }
 

@@ -8,7 +8,7 @@
     <title>Tìm kiếm trong mảng</title>
     <style>
         body {
-            font-size: 30px;
+            font-size: 20px;
         }
 
         td {
@@ -16,6 +16,7 @@
         }
 
         form {
+            padding: 200px 570px;
             display: inline-block;
         }
 

@@ -10,11 +10,13 @@
         body {
             font-size: 30px;
         }
+
         td {
             padding: 3px;
         }
 
         form {
+            padding: 200px 650px;
             display: inline-block;
         }
 
@@ -90,7 +92,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td ><button name="Exec" type="submit" class="btn-exec">Tổng dãy số</button></td>
+                <td><button name="Exec" type="submit" class="btn-exec">Tổng dãy số</button></td>
             </tr>
             <tr>
                 <td>Tổng dãy số: </td>
