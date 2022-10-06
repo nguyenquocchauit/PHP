@@ -79,11 +79,9 @@
         $KetQua = $_POST['KetQua'];
     else
         $KetQua = '';
-        $array = array();
+    $array = array();
     if (isset($_POST['ExecSong'])) {
-        $KetQua ="Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua. "\n" ;
-        
-
+        $KetQua = "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua . "\n";
     }
 
     if (isset($_POST['ExecLevel'])) {
