@@ -165,13 +165,21 @@
         private  $absent;
         const absentNorms = 5;
         const punishPrice = 100000;
+        public function setAbsent($absent)
+        {
+            $this->absent = $absent;
+        }
+        public function getAbsent()
+        {
+            return  $this->absent;
+        }
         public function punishCal()
         {
-            if ($this->absent == null) {
+            if ($this->getAbsent() == null) {
                 $this->absent = 0;
             } else
-            if ($this->absent > self::absentNorms) {
-                return $this->absent * self::punishPrice;
+            if ($this->getAbsent() > self::absentNorms) {
+                return $this->getAbsent() * self::punishPrice;
             } else
                 return 0;
         }
@@ -197,20 +205,28 @@
         private $product;
         const productNorms = 100;
         const productPrice = 200000;
+        public function setProduct($product)
+        {
+            $this->product = $product;
+        }
+        public function getProduct()
+        {
+            return  $this->product;
+        }
         public function subsidizeCal($numChildren)
         {
             return $numChildren * 120000;
         }
         public function bonuseCal()
         {
-            if ($this->product > self::productNorms) {
-                return ($this->getDateWork() * 1000000) + (($this->product >= -self::productNorms) * self::productPrice * 0.03);
+            if ($this->getProduct() > self::productNorms) {
+                return ($this->getDateWork() * 1000000) + (($this->getProduct() >= -self::productNorms) * self::productPrice * 0.03);
             } else
                 return 0;
         }
         public function salaryCal($coefficientsSalary)
         {
-            return $this->product * self::productPrice + $this->bonuseCal();
+            return $this->getProduct() * self::productPrice + $this->bonuseCal();
         }
     }
     // initialize sticky form
@@ -281,15 +297,16 @@
             $vp->setDateWork($dateWork);
             $vp->setCoefficientsSalary($coefficientsSalary);
             $vp->setNumChildren($numChildren);
+            $vp->setAbsent($absent);
             $salaryCal = ($vp->salaryCal($coefficientsSalary));
             $subsidizeCal = ($vp->subsidizeCal($numChildren));
             $bonuseCal = ($vp->bonuseCal());
             $punishCal = ($vp->punishCal());
-            $salary = number_format($salaryCal);
-            $subsidize = number_format($subsidizeCal);
-            $bonus = number_format($bonuseCal);
-            $punish = number_format($punishCal);
-            $receiveSalary = number_format(($salaryCal + $bonuseCal + $subsidizeCal) - $punishCal);
+            $salary = number_format($salaryCal) . " VNĐ";
+            $subsidize = number_format($subsidizeCal) . " VNĐ";
+            $bonus = number_format($bonuseCal) . " VNĐ";
+            $punish = number_format($punishCal) . " VNĐ";
+            $receiveSalary = number_format(($salaryCal + $bonuseCal + $subsidizeCal) - $punishCal) . " VNĐ";
         } else {
             if (isset($_POST['staff']) && $_POST['staff'] == 'Sản xuất') {
                 $sx = new SanXuat();
@@ -298,14 +315,15 @@
                 $sx->setDateWork($dateWork);
                 $sx->setCoefficientsSalary($coefficientsSalary);
                 $sx->setNumChildren($numChildren);
+                $sx->setProduct($product);
                 $salaryCal = $sx->salaryCal($coefficientsSalary);
                 $subsidizeCal = $sx->subsidizeCal($numChildren);
                 $bonuseCal = $sx->bonuseCal();
-                $salary = number_format($salaryCal);
-                $subsidize = number_format($subsidizeCal);
-                $bonus = number_format($bonuseCal);
-                $bonus =$product;
-                $receiveSalary = number_format($salaryCal + $bonuseCal + $subsidizeCal);
+                $salary = number_format($salaryCal) . " VNĐ";
+                $subsidize = number_format($subsidizeCal) . " VNĐ";
+                $bonus = number_format($bonuseCal) . " VNĐ";
+                $punish =  "0 VNĐ";
+                $receiveSalary = number_format($salaryCal + $bonuseCal + $subsidizeCal) . " VNĐ";
             }
         }
     }
