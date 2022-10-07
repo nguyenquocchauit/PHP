@@ -12,8 +12,12 @@
             if ($('#radion_info_1').is(':checked')) {
                 $('#info_1').removeClass('disableinfo');
                 $('#info_2').addClass('disableinfo');
-                var y = document.getElementById("Nganh");
+                var x = document.getElementById("TrinhDo");
+                var y = document.getElementById("class");
+                var z = document.getElementById("Nganh");
                 y.required = false;
+                z.required = false;
+                x.required = true;
                 y.selectedIndex = -1;
                 document.getElementById("class").required = false;
                 document.getElementById("title_gv").style.color = "#bbe3b9";
@@ -21,10 +25,14 @@
             if ($('#radion_info_2').is(':checked')) {
                 $('#info_2').removeClass('disableinfo');
                 $('#info_1').addClass('disableinfo');
-                var x = document.getElementById("TrinhDo");
+                var x = document.getElementById("class");
+                var y = document.getElementById("Nganh");
+                var z = document.getElementById("TrinhDo");
                 document.getElementById("title_sv").style.color = "#bbe3b9";
-                x.selectedIndex = -1;
-                x.required = false;
+                y.required = true;
+                x.required = true;
+                z.required = false;
+                z.selectedIndex = -1;
             }
         }
         $(document).ready(function() {
@@ -33,8 +41,12 @@
                 if ($('#radion_info_1').is(':checked')) {
                     $('#info_1').removeClass('disableinfo');
                     $('#info_2').addClass('disableinfo');
-                    var y = document.getElementById("Nganh");
+                    var x = document.getElementById("TrinhDo");
+                    var y = document.getElementById("class");
+                    var z = document.getElementById("Nganh");
                     y.required = false;
+                    z.required = false;
+                    x.required = true;
                     y.selectedIndex = -1;
                     document.getElementById("class").required = false;
                     document.getElementById("title_gv").style.color = "#bbe3b9";
@@ -42,10 +54,14 @@
                 if ($('#radion_info_2').is(':checked')) {
                     $('#info_2').removeClass('disableinfo');
                     $('#info_1').addClass('disableinfo');
-                    var x = document.getElementById("TrinhDo");
+                    var x = document.getElementById("class");
+                    var y = document.getElementById("Nganh");
+                    var z = document.getElementById("TrinhDo");
                     document.getElementById("title_sv").style.color = "#bbe3b9";
-                    x.required = false;
-                    x.selectedIndex = -1;
+                    y.required = true;
+                    x.required = true;
+                    z.required = false;
+                    z.selectedIndex = -1;
                 }
 
             });
@@ -122,7 +138,7 @@
 
 <body onload="loadFunc()">
     <?php
-    define("luongcb", 1500000);
+
     abstract class Peoples
     {
         protected $name, $address, $gender;
@@ -150,8 +166,6 @@
         {
             return  $this->gender;
         }
-        abstract public function Luong($trinhdo);
-        abstract public function DiemThuong($nganh);
     }
     class SinhVien extends Peoples
     {
@@ -168,28 +182,20 @@
                 }
             }
         }
-        public function Luong($trinhdo)
-        {
-            return 0;
-        }
     }
     class GiaoVien extends Peoples
     {
-
-        public function DiemThuong($nganh)
-        {
-            return 0;
-        }
+        const luongcb = 1500000;
         public function Luong($trinhdo)
         {
             if ($trinhdo == "Cử nhân") {
-                return number_format(luongcb * 2.34);
+                return number_format(self::luongcb * 2.34);
             } else {
                 if ($trinhdo == "Thạc sĩ") {
-                    return number_format(luongcb * 3.67);
+                    return number_format(self::luongcb * 3.67);
                 } else {
                     if ($trinhdo == "Tiến sĩ") {
-                        return number_format(luongcb * 5.66);
+                        return number_format(self::luongcb * 5.66);
                     }
                 }
             }
