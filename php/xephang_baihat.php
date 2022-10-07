@@ -26,7 +26,7 @@
         }
 
         form {
-            padding: 200px 370px;
+            padding: 100px 170px;
             display: inline-block;
         }
 
@@ -67,7 +67,7 @@
 
 <body>
     <?php
-    session_start();
+
     if (isset($_POST['nameSong']))
         $nameSong = $_POST['nameSong'];
     else
@@ -82,25 +82,12 @@
         $KetQua = '';
     $array = array();
     if (isset($_POST['ExecSong'])) {
-        if (!isset($_SESSION['list'])) {
-            $_SESSION['list'] = array();
-        }
-        $b = array("$level" => "$nameSong");
-        array_push($_SESSION['list'], $b); // Items added to cart
-
-        //var_export($_SESSION);
-        $string = print_r($_SESSION, true);
-        echo $string;
-        echo implode(', , ',$_SESSION['list']);
-
-        $KetQua =  "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua . "\n";
+        $KetQua = "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua  . "\n";
     }
 
     if (isset($_POST['ExecLevel'])) {
-        $KetQua = $KetQua;
-
-        session_unset();
-        session_destroy();
+        $KetQua = $_POST['KetQua'];
+        print_r($KetQua);
     }
     ?>
     <form action="" method="post">
