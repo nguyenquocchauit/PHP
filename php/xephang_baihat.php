@@ -67,7 +67,7 @@
 
 <body>
     <?php
-
+    session_start();
     if (isset($_POST['nameSong']))
         $nameSong = $_POST['nameSong'];
     else
