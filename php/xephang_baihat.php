@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +27,7 @@
         }
 
         form {
-            padding: 200px 370px;
+            padding: 100px 170px;
             display: inline-block;
         }
 
@@ -66,8 +67,7 @@
 </head>
 
 <body>
-    <?php
-
+    <?php session_start();
     if (isset($_POST['nameSong']))
         $nameSong = $_POST['nameSong'];
     else
@@ -82,11 +82,12 @@
         $KetQua = '';
     $array = array();
     if (isset($_POST['ExecSong'])) {
-        $KetQua = "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua . "\n";
+        $KetQua = "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua  . "\n";
     }
 
     if (isset($_POST['ExecLevel'])) {
-        $KetQua = $KetQua;
+        $KetQua = $_POST['KetQua'];
+        print_r($KetQua);
     }
     ?>
     <form action="" method="post">

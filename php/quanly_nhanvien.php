@@ -49,7 +49,7 @@
         }
 
         form {
-            padding: 250px 600px;
+            padding:50px 200px;
             display: inline-block;
         }
 
@@ -113,7 +113,7 @@
     abstract class NhanVien
     {
         protected $name, $gender, $dateWork, $coefficientsSalary, $numChildren;
-        const basicSalary = 1500000;
+        const basicSalary = 5000000;
         public function setName($name)
         {
             $this->name = $name;
@@ -164,8 +164,8 @@
     class VanPhong extends NhanVien
     {
         private  $absent;
-        const absentNorms = 5;
-        const punishPrice = 100000;
+        const absentNorms = 4;
+        const punishPrice = 50000;
         public function setAbsent($absent)
         {
             $this->absent = $absent;
@@ -204,8 +204,8 @@
     class SanXuat extends NhanVien
     {
         private $product;
-        const productNorms = 100;
-        const productPrice = 200000;
+        const productNorms = 50;
+        const productPrice = 20000;
         public function setProduct($product)
         {
             $this->product = $product;
