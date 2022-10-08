@@ -55,11 +55,16 @@
                     $daySo .= "(" . $Array[$i] . ") ";
                 else
                     $daySo .= $Array[$i] . " ";
-            if ($Array[$i] == 0)
-                $viTri .= $i + 1 . " ";
+            // tìm vị trí chữ số kề cuối là số 0. VD: 105,205,906
+            $getV = (string) $Array[$i];
+            $rest = substr($getV,-2,1);
+            if ($rest == "0")
+                $viTri .= $i + 1 . ",";
         }
+        // xóa ký tự cuối của chuỗi. do bên trên thiết lập dư dấu ","
+        $getViTri = rtrim($viTri, ",");
         $KetQua .= $daySo . "&#13;&#10;";
-        $KetQua .= "Vị trí $viTri có số =0 trong mảng" . "&#13;&#10;";
+        $KetQua .= "Vị trí $getViTri có chữ số kề cuối là 0 trong mảng" . "&#13;&#10;";
         sort($Array);
         for ($i = 0; $i < $n; $i++) {
             
