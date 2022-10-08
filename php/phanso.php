@@ -95,11 +95,41 @@
         }
         public function congPS(PhanSo $a, PhanSo $b)
         {
+            
             $c = new PhanSo();
-            $c->setNumerator(($a->getNumerator()*$b->getDenominator())+ ($a->getDenominator()*$b->getNumerator()));
-            $c->setDenominator($a->getDenominator()*$b->getDenominator());
-            return $c;
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()) + ($a->getDenominator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
         }
+        public function truPS(PhanSo $a, PhanSo $b)
+        {
+            
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()) - ($a->getDenominator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+        public function nhanPS(PhanSo $a, PhanSo $b)
+        {
+            
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+        public function chiaPS(PhanSo $a, PhanSo $b)
+        {
+            
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()));
+            $c->setDenominator($a->getDenominator() * $b->getNumerator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+        
     }
 
     // initialize sticky form
@@ -127,10 +157,11 @@
         $ps1->setNumerator($numeratorA);
         $ps1->setDenominator($denominatorA);
         $ps2 = new PhanSo();
-        $ps2->setNumerator($numeratorA);
-        $ps2->setDenominator($denominatorA);
+        $ps2->setNumerator($numeratorB);
+        $ps2->setDenominator($denominatorB);
         $ps3 = new PhanSo();
-        $ps3->congPS($ps1,$ps2);    
+        $cong = $ps3->congPS($ps1, $ps2);
+        $ketQua = number_format($cong,2);
     }
     ?>
     <form action="" method="post">
@@ -167,7 +198,7 @@
                 <td colspan="3" align="center"><button name="Exec" type="submit" class="btn-exec">Thực hiện</button></td>
             </tr>
             <tr class="bgtr">
-                <td colspan="3" align="center"><?php $ketQua ?></td>
+                <td colspan="3" align="center"><?php echo $ketQua ?></td>
             </tr>
         </table>
     </form>
