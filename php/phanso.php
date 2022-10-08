@@ -130,7 +130,7 @@
         $ps2->setNumerator($numeratorA);
         $ps2->setDenominator($denominatorA);
         $ps3 = new PhanSo();
-        $ps3->congPS($ps1,$ps2);=
+        $ps3->congPS($ps1,$ps2);    
     }
     ?>
     <form action="" method="post">
