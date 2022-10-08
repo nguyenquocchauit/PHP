@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,14 +79,29 @@
         $KetQua = $_POST['KetQua'];
     else
         $KetQua = '';
-    $array = array();
+
     if (isset($_POST['ExecSong'])) {
+        $array = array(
+            $level => $nameSong
+        );
+        $_SESSION['List'][] = $array;
+        foreach ($_SESSION as $k => $v) {
+            foreach ($v as $k1 => $v1) {
+                foreach ($v as $k2 => $v2) {
+                    echo "{$k2}<br/>";
+                    echo "--{$v2['title']}<br/>";
+                    echo "--{$v2['fee']}<br/>";
+                }
+            }
+        }
+        print_r($_SESSION);
         $KetQua = "Bài hát:" . $nameSong . " - Hạng: " . $level . "\n" . $KetQua  . "\n";
     }
 
     if (isset($_POST['ExecLevel'])) {
         $KetQua = $_POST['KetQua'];
-        print_r($KetQua);
+        session_unset();
+        session_destroy();
     }
     ?>
     <form action="" method="post">

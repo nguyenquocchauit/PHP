@@ -156,8 +156,8 @@
         {
             return $this->numChildren;
         }
-        abstract public function salaryCal($coefficientsSalary);
-        abstract public function subsidizeCal($numChildren);
+        abstract public function salaryCal();
+        abstract public function subsidizeCal();
         abstract public function bonuseCal();
     }
     // initiate inheritance of office staff
@@ -184,16 +184,16 @@
             } else
                 return 0;
         }
-        public function salaryCal($coefficientsSalary)
+        public function salaryCal()
         {
-            return self::basicSalary * $this->coefficientsSalary - $this->punishCal();
+            return self::basicSalary * $this->getCoefficientsSalary() - $this->punishCal();
         }
-        public function subsidizeCal($numChildren)
+        public function subsidizeCal()
         {
             if ($this->gender == "Nữ") {
-                return 200000 * $numChildren * 1.5;
+                return 200000 * $this->getNumChildren() * 1.5;
             } else
-                return 200000 * $numChildren;
+                return 200000 * $this->getNumChildren();
         }
         public function bonuseCal()
         {
@@ -214,9 +214,9 @@
         {
             return  $this->product;
         }
-        public function subsidizeCal($numChildren)
+        public function subsidizeCal()
         {
-            return $numChildren * 120000;
+            return $this->getNumChildren() * 120000;
         }
         public function bonuseCal()
         {
@@ -225,7 +225,7 @@
             } else
                 return 0;
         }
-        public function salaryCal($coefficientsSalary)
+        public function salaryCal()
         {
             return $this->getProduct() * self::productPrice + $this->bonuseCal();
         }
