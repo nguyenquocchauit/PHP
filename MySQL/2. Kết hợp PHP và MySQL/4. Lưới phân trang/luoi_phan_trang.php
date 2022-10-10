@@ -104,6 +104,9 @@
             </li>
         </ul>
     </nav>';
+    // 5. Xoa ket qua khoi vung nho va Dong ket noi
+    mysqli_free_result($result);
+    mysqli_close($conn);
     ?>
 </body>
 
