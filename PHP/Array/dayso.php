@@ -75,7 +75,7 @@
         for ($i = 0; $i < count($arr); $i++) {
             $sum += $arr[$i];
         }
-        $fp = fopen('../dulieu_bai2.txt', "w+");
+        $fp = fopen('../../dulieu_bai2.txt', "w+");
         $data = $inp . "\n" . "Tổng dãy số: $sum";
         fwrite($fp, $data);
         fclose($fp);

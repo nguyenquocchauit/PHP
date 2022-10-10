@@ -99,7 +99,7 @@
         fwrite($fp, $data);
         fclose($fp);
 
-        $readFile = fopen('../dulieu_bai6.txt', "r") or die("File $fp not found !!");
+        $readFile = fopen('../../dulieu_bai6.txt', "r") or die("File $fp not found !!");
         $temp = fgets($readFile);
         $tangDan = fgets($readFile);
         $giamDan = fgets($readFile);
