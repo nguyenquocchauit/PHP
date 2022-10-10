@@ -38,6 +38,9 @@
             <a href="5. List đơn giản/list_don_gian.php">
                 <li>List đơn giản</li>
             </a>
+            <a href="6. List dạng cột/list_dang_cot.php">
+                <li>List dạng cột</li>
+            </a>
         </ol>
         <div>
 

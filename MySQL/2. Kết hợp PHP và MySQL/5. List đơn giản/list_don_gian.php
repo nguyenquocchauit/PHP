@@ -82,18 +82,17 @@
             <th scope='col' colspan='2' id='title'>THÔNG TIN CÁC SẢN PHẨM</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>";
+    <tbody>";
     if (mysqli_num_rows($result) != 0)
         while ($row = mysqli_fetch_array($result)) {
-            echo "<tbody><tr >";
+            echo "<tr>";
             $pathImg = $row['Hinh'];
             $tenSua =  $row['Ten_sua'];
             $tenHangSua = $row['Ten_hang_sua'];
             $tenLoai = $row['Ten_loai'];
             $trongLuong = $row['Trong_luong'];
             $donGia = number_format($row['Don_gia']);
-            echo "<td class='imgavt'><img src='Hinh_sua/$pathImg' alt='hinhsua'> </td>";
+            echo "<td class='imgavt'><img src='../../../images/Hinh_sua/$pathImg' alt='hinhsua'> </td>";
             echo "
             <td>
                 <table class='table'>
@@ -105,7 +104,7 @@
                             <td>Nhà sản xuất: $tenHangSua  </td>
                         </tr>
                         <tr>
-                            <td>$tenLoai - $trongLuong gram - $donGia VNĐ </td>
+                            <td>$tenLoai - $trongLuong gr - $donGia VNĐ </td>
                         </tr>
                     </tbody>
                 </table>
