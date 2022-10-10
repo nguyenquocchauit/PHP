@@ -67,6 +67,15 @@
             width: 100%;
             border: 1px solid;
         }
+
+        .inpRadio {
+            width: 35px;
+        }
+
+        input {
+            font-size: 20px;
+            height: 22px;
+        }
     </style>
 </head>
 
@@ -95,11 +104,61 @@
         }
         public function congPS(PhanSo $a, PhanSo $b)
         {
+
             $c = new PhanSo();
-            $c->setNumerator(($a->getNumerator()*$b->getDenominator())+ ($a->getDenominator()*$b->getNumerator()));
-            $c->setDenominator($a->getDenominator()*$b->getDenominator());
-            return $c;
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()) + ($a->getDenominator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
         }
+        public function truPS(PhanSo $a, PhanSo $b)
+        {
+
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()) - ($a->getDenominator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+        public function nhanPS(PhanSo $a, PhanSo $b)
+        {
+
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getNumerator()));
+            $c->setDenominator($a->getDenominator() * $b->getDenominator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+        public function chiaPS(PhanSo $a, PhanSo $b)
+        {
+
+            $c = new PhanSo();
+            $c->setNumerator(($a->getNumerator() * $b->getDenominator()));
+            $c->setDenominator($a->getDenominator() * $b->getNumerator());
+            $kQ = $c->getNumerator() / $c->getDenominator();
+            return $kQ;
+        }
+    }
+    function float2rat($n, $tolerance = 1.e-6)
+    {
+        $h1 = 1;
+        $h2 = 0;
+        $k1 = 0;
+        $k2 = 1;
+        $b = 1 / $n;
+        do {
+            $b = 1 / $b;
+            $a = floor($b);
+            $aux = $h1;
+            $h1 = $a * $h1 + $h2;
+            $h2 = $aux;
+            $aux = $k1;
+            $k1 = $a * $k1 + $k2;
+            $k2 = $aux;
+            $b = $b - $a;
+        } while (abs($n - $h1 / $k1) > $n * $tolerance);
+
+        return "$h1/$k1";
     }
 
     // initialize sticky form
@@ -120,17 +179,68 @@
     else
         $denominatorB = null;
     $ketQua = null;
-
+    $checkNegativeA = 0;
+    $checkNegativeB = 0;
     // execute form
     if (isset($_POST['Exec'])) {
-        $ps1 = new PhanSo();
-        $ps1->setNumerator($numeratorA);
-        $ps1->setDenominator($denominatorA);
-        $ps2 = new PhanSo();
-        $ps2->setNumerator($numeratorA);
-        $ps2->setDenominator($denominatorA);
-        $ps3 = new PhanSo();
-        $ps3->congPS($ps1,$ps2);    
+        if (!is_numeric($numeratorA))
+            $ketQua = "Tử số phân số thứ nhất phải là số nguyên";
+        else
+        if (!is_numeric($numeratorB))
+            $ketQua = "Tử số phân số thứ hai phải là số nguyên";
+        else
+        if (!is_numeric($denominatorA))
+            $ketQua = "Mẫu số phân số thứ nhất phải là số nguyên";
+        else
+        if (!is_numeric($denominatorB))
+            $ketQua = "Mẫu số phân số thứ hai phải là số nguyên";
+        else
+        if ($denominatorA == 0)
+            $ketQua = "Mẫu số phân số thứ nhất không được bằng 0";
+        else {
+            if ($denominatorB == 0)
+                $ketQua = "Mẫu số phân số thứ hai không được bằng 0";
+            else {
+                if ($numeratorA < 0 || $denominatorA < 0) {
+                    $checkNegativeA = 1;
+                    abs($numeratorA);
+                    abs($denominatorA);
+                }
+                if ($numeratorB < 0 || $denominatorB < 0) {
+                    $checkNegativeB = 1;
+                    abs($numeratorB);
+                    abs($denominatorB);
+                }
+                $ps1 = new PhanSo();
+                $ps1->setNumerator($numeratorA);
+                $ps1->setDenominator($denominatorA);
+                $ps2 = new PhanSo();
+                $ps2->setNumerator($numeratorB);
+                $ps2->setDenominator($denominatorB);
+                $ps3 = new PhanSo();
+                switch ($_POST['operator']) {
+                    case 'Cộng':
+                        $kQOperator = $ps3->congPS($ps1, $ps2);
+                        break;
+                    case 'Trừ':
+                        $kQOperator = $ps3->truPS($ps1, $ps2);
+                        break;
+                    case 'Chia':
+                        $kQOperator = $ps3->chiaPS($ps1, $ps2);
+                        break;
+                    case 'Nhân':
+                        $kQOperator = $ps3->nhanPS($ps1, $ps2);
+                        break;
+                }
+                if ($checkNegativeB + $checkNegativeA == 2) {
+                    $ketQua = float2rat(abs($kQOperator));
+                } else
+            if ($kQOperator < 0)
+                    $ketQua = "-" . float2rat(abs($kQOperator));
+                else
+                    $ketQua = float2rat($kQOperator);
+            }
+        }
     }
     ?>
     <form action="" method="post">
@@ -154,10 +264,10 @@
                         <legend id="title_gv">Chọn phép tính</legend>
                         <table>
                             <tr>
-                                <td><input type="radio" name="operator" id="" value="Cộng">Cộng </td>
-                                <td><input type="radio" name="operator" id="" value="Trừ">Trừ </td>
-                                <td><input type="radio" name="operator" id="" value="Nhân">Nhân </td>
-                                <td><input type="radio" name="operator" id="" value="Chia">Chia </td>
+                                <td><input class="inpRadio" type="radio" name="operator" id="" value="Cộng" <?php if (isset($_POST['operator']) && ($_POST['operator']) == "Cộng") echo 'checked="checked"' ?>required>Cộng </td>
+                                <td><input class="inpRadio" type="radio" name="operator" id="" value="Trừ" <?php if (isset($_POST['operator']) && ($_POST['operator']) == "Trừ") echo 'checked="checked"' ?>required>Trừ </td>
+                                <td><input class="inpRadio" type="radio" name="operator" id="" value="Nhân" <?php if (isset($_POST['operator']) && ($_POST['operator']) == "Nhân") echo 'checked="checked"' ?>required>Nhân </td>
+                                <td><input class="inpRadio" type="radio" name="operator" id="" value="Chia" <?php if (isset($_POST['operator']) && ($_POST['operator']) == "Chia") echo 'checked="checked"' ?>required>Chia </td>
                             </tr>
                         </table>
                     </fieldset>
@@ -167,7 +277,7 @@
                 <td colspan="3" align="center"><button name="Exec" type="submit" class="btn-exec">Thực hiện</button></td>
             </tr>
             <tr class="bgtr">
-                <td colspan="3" align="center"><?php $ketQua ?></td>
+                <td colspan="3" align="center"><?php echo $ketQua ?></td>
             </tr>
         </table>
     </form>
