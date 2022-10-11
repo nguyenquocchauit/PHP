@@ -92,47 +92,8 @@
         echo "</tr></tbody>";
     }
     echo " </table>";
-    //hiển thị liên kết của các trang trong URL
-    // addActivePage lưu trữ class active trang hiện tại
-    $addActivePage = null;
-    // kiểm tra nếu click prev đến trang 1 thì dừng hành động prev tại page=0, vì xác định page_first_result = page - 1 => page_first_result =-1, load page sẽ lỗi ngược lại thì click next tương tự
-    if ($page == 1)
-        $prevPage = 1;
-    else
-        $prevPage = $page - 1;
-    if ($page == $number_of_page)
-        $nexPage = $number_of_page;
-    else
-        $nexPage = $page + 1;
-    echo '
-    <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="list_phan_trang.php?page=' . ($prevPage) . '" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only"></span>
-            </a>
-        </li>';
-    for ($page = 1; $page <= $number_of_page; $page++) {
-        if ($parameterUrl == null) {
-            $addActivePage = null;
-        } else
-        if ($page == $_GET['page']) {
-            $addActivePage = 'active';
-        } else {
-            $addActivePage = null;
-        }
-        echo "<li class='page-item " . ($addActivePage) . "'><a class='page-link' href = 'Luoi_phan_trang.php?page=" . ($page) . "'>" . ($page) . "</a></li>";
-    }
-    echo '
-        <li class="page-item">
-            <a class="page-link" href="list_phan_trang.php?page=' . ($nexPage) . '" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only"></span>
-            </a>
-            </li>
-        </ul>
-    </nav>';
+    // include file pagination
+    include '../../pagination.php';
     // 5. Xoa ket qua khoi vung nho va Dong ket noi
     mysqli_free_result($result);
     mysqli_close($conn);

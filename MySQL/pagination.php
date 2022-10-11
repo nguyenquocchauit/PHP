@@ -31,10 +31,22 @@
 
 <body>
     <?php
+    // get file name 
+    $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
     // của bài tìm kiếm đơn giản, kiểm tra inp_MilkName rỗng thì gán bằng null. Tránh xung đột biến khi include cho các bài khác
-    if (!isset($inp_MilkName))
+    $addPagination = null;
+    if (isset($inp_MilkName)) {
+        $findMilkName = null;
+    } else {
         $inp_MilkName = null;
-    $findMilkName = '&inp_MilkName=' . ($inp_MilkName) . '';
+        $findMilkName = '&inp_MilkName=' . ($inp_MilkName) . '';
+    }
+    // kiểm tra đúng file cần dùng sẽ thêm addPagination, các file khác sẽ không cần dùng đến biến trên URL 
+    switch($curPageName){
+        case 'tim_kiem_don_gian.php':
+            $addPagination = '&inp_MilkName=' . ($inp_MilkName) . '';
+            break;
+    }
     //xác định xem khách truy cập số trang nào hiện đang truy cập
     if (!isset($_GET['page'])) {
         // Giải quyết trường hợp ngoại lệ $_GET['page'] ở url không thấy biến page ở lần tải trang đầu tiên. 
@@ -45,8 +57,6 @@
         $parameterUrl = " ";
         $page = $_GET['page'];
     }
-    // get file name 
-    $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
     // addActivePage lưu trữ class active trang hiện tại
     $addActivePage = null;
     //hiển thị liên kết của các trang trong URL
@@ -63,7 +73,7 @@
     <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item prev">
-            <a class="page-link" href="' . ($curPageName) . '?page=' . ($prevPage) . ($findMilkName) . ' " aria-label="Previous">
+            <a class="page-link" href="' . ($curPageName) . '?page=' . ($prevPage) . ($addPagination) . ' " aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only"></span>
             </a>
@@ -77,11 +87,11 @@
         } else {
             $addActivePage = null;
         }
-        echo "<li class='page-item " . ($addActivePage) . "'><a class='page-link' href = '" . ($curPageName) . "?page=" . ($page) . ($findMilkName) . "'>" . ($page) . "</a></li>";
+        echo "<li class='page-item " . ($addActivePage) . "'><a class='page-link' href = '" . ($curPageName) . "?page=" . ($page) . ($addPagination) . "'>" . ($page) . "</a></li>";
     }
     echo '
         <li class="page-item next">
-            <a class="page-link" href="' . ($curPageName) . '?page=' . ($nexPage) . ($findMilkName) . '" aria-label="Next">
+            <a class="page-link" href="' . ($curPageName) . '?page=' . ($nexPage) . ($addPagination) . '" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only"></span>
             </a>
