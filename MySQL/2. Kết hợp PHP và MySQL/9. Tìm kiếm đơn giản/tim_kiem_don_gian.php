@@ -77,27 +77,57 @@
             width: 90%;
         }
 
-        #title_h2 {
+        hr.new4 {
+            margin: auto;
+            width: 90%;
+            border: 1px solid red;
+        }
+
+        #div_parent {
             text-align: center;
+        }
+
+        #title_h2 {
             font-family: "Comic Sans MS", "Comic Sans", cursive;
             color: #fb8fa2;
+        }
+
+        #div_search {
+            padding-top: 5px;
+            width: 50%;
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-    <h2 id="title_h2">THÔNG TIN CHI TIẾT CÁC LOẠI SỮA</h2>
     <?php
+
     // 1. Ket noi CSDL
     require '../../connectDB.php';
+    if (isset($_GET['searchResults']))
+        $searchResults = $_GET['searchResults'];
+    else
+        $searchResults  = null;
+    if (isset($_GET['inp_MilkName']))
+        $inp_MilkName = $_GET['inp_MilkName'];
+    else
+        $inp_MilkName  = null;
     //xác định tổng số kết quả bạn muốn trên mỗi trang
     $results_per_page = 2;
+    if ($inp_MilkName == null)
+        $querySearch = null;
+    else
+        $querySearch = "WHERE a.Ten_sua like '%$inp_MilkName%'";
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
     //tìm tổng số kết quả được lưu trữ trong cơ sở dữ liệu
     $query = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
-    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua";
+    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua $querySearch  ";
     $result = mysqli_query($conn, $query);
     $number_of_result = mysqli_num_rows($result);
+    if ($number_of_result > 0 && $inp_MilkName != null) {
+        $searchResults = "Có $number_of_result được tìm thấy!";
+    }
     //xác định tổng số trang có sẵn
     $number_of_page = ceil($number_of_result / $results_per_page);
     //xác định xem khách truy cập số trang nào hiện đang truy cập
@@ -110,14 +140,34 @@
         $parameterUrl = " ";
         $page = $_GET['page'];
     }
+    // Sử dụng phương thức GET để tìm kiếm thông tin. GET biến inp_MilkName làm stickyForm và dùng phân trang
+    if (!isset($_GET['inp_MilkName'])) {
+        $inp_MilkName = null;
+    } else {
+        $inp_MilkName = $_GET['inp_MilkName'];
+    }
     //xác định số bắt đầu sql LIMIT cho các kết quả trên trang hiển thị
     $page_first_result = ($page - 1) * $results_per_page;
     //lấy các kết quả đã chọn từ cơ sở dữ liệu
     $query = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
-    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua LIMIT "
+    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua $querySearch LIMIT "
         . $page_first_result . ',' . $results_per_page;
     $result = mysqli_query($conn, $query);
     // 4.Xu ly du lieu tra ve
+    // create form 
+    echo '
+        <form action="" method="get">
+        <div id="div_parent">
+            <h2 id="title_h2">TÌM KIẾM THÔNG TIN SỮA</h2>
+            <hr class="new4">
+            <div class="input-group mb-3" id="div_search">
+                <input type="text" class="form-control" name="inp_MilkName" value="' . ($inp_MilkName) . '" placeholder="Tìm kiếm tên sữa" aria-label="Tìm kiếm tên sữa" aria-describedby="button-addon2">
+                <button class="btn btn btn-outline-success" type="submit" id="button-addon2">Tìm kiếm</button>
+            </div>
+            <b>' . ($searchResults) . '</b>
+        </div>
+    </form>
+    ';
     if (mysqli_num_rows($result) != 0)
         while ($row = mysqli_fetch_array($result)) {
             $pathImg = $row['Hinh'];

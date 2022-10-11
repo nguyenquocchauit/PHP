@@ -47,6 +47,9 @@
             <a href="8. List chi tiết có phân trang/list_phan_trang.php">
                 <li>List chi tiết có phân trang</li>
             </a>
+            <a href="9. Tìm kiếm đơn giản/tim_kiem_don_gian.php">
+                <li>Tìm kiếm đơn giản</li>
+            </a>
         </ol>
         <div>
 

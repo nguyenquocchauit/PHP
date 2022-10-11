@@ -31,6 +31,10 @@
 
 <body>
     <?php
+    // của bài tìm kiếm đơn giản, kiểm tra inp_MilkName rỗng thì gán bằng null. Tránh xung đột biến khi include cho các bài khác
+    if (!isset($inp_MilkName))
+        $inp_MilkName = null;
+    $findMilkName = '&inp_MilkName=' . ($inp_MilkName) . '';
     //xác định xem khách truy cập số trang nào hiện đang truy cập
     if (!isset($_GET['page'])) {
         // Giải quyết trường hợp ngoại lệ $_GET['page'] ở url không thấy biến page ở lần tải trang đầu tiên. 
@@ -59,7 +63,7 @@
     <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item prev">
-            <a class="page-link" href="' . ($curPageName) . '?page=' . ($prevPage) . '" aria-label="Previous">
+            <a class="page-link" href="' . ($curPageName) . '?page=' . ($prevPage) . ($findMilkName) . ' " aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only"></span>
             </a>
@@ -73,11 +77,11 @@
         } else {
             $addActivePage = null;
         }
-        echo "<li class='page-item " . ($addActivePage) . "'><a class='page-link' href = '" . ($curPageName) . "?page=" . ($page) . "'>" . ($page) . "</a></li>";
+        echo "<li class='page-item " . ($addActivePage) . "'><a class='page-link' href = '" . ($curPageName) . "?page=" . ($page) . ($findMilkName) . "'>" . ($page) . "</a></li>";
     }
     echo '
         <li class="page-item next">
-            <a class="page-link" href="' . ($curPageName) . '?page=' . ($nexPage) . '" aria-label="Next">
+            <a class="page-link" href="' . ($curPageName) . '?page=' . ($nexPage) . ($findMilkName) . '" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only"></span>
             </a>
