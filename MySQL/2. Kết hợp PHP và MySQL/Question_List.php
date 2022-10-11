@@ -53,6 +53,10 @@
             <a href="10. Tìm kiếm nâng cao/tim_kiem_nang_cao.php">
                 <li>Tìm kiếm nâng cao</li>
             </a>
+            <a href="11. Thêm mới/them_moi_sua.php">
+                <li>Thêm mới</li>
+            </a>
+            
         </ol>
         <div>
 

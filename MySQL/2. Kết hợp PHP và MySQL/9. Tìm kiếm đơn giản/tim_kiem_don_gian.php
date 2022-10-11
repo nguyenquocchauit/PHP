@@ -96,11 +96,11 @@
     if ($inp_MilkName == null)
         $querySearch = null;
     else
-        $querySearch = "WHERE a.Ten_sua like '%$inp_MilkName%'";
+        $querySearch = " and a.Ten_sua like '%$inp_MilkName%'";
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
     //tìm tổng số kết quả được lưu trữ trong cơ sở dữ liệu
     $query = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
-    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua $querySearch  ";
+    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua WHERE 1  $querySearch  ";
 
     // $sql = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua, c.Ten_loai 
     // FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua inner join loai_sua c on a.Ma_loai_sua = c.Ma_loai_sua 
@@ -108,7 +108,7 @@
 
     $result = mysqli_query($conn, $query);
     $number_of_result = mysqli_num_rows($result);
-    if ($number_of_result > 0 && $inp_MilkName != null) {
+    if ($number_of_result > 0) {
         $searchResults = "Có $number_of_result được tìm thấy!";
     } else
         $searchResults = "Không tìm thấy sản phẩm này!";
@@ -134,9 +134,10 @@
     $page_first_result = ($page - 1) * $results_per_page;
     //lấy các kết quả đã chọn từ cơ sở dữ liệu
     $query = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
-    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua $querySearch LIMIT "
+    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua WHERE 1 $querySearch LIMIT "
         . $page_first_result . ',' . $results_per_page;
     $result = mysqli_query($conn, $query);
+    $searchs = $GLOBALS;
     // 4.Xu ly du lieu tra ve
     // create form 
     echo '
