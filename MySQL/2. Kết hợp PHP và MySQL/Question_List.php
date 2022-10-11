@@ -44,6 +44,9 @@
             <a href="7. List dạng cột có link/list_dang_cot_co_link.php">
                 <li>List dạng cột có link</li>
             </a>
+            <a href="8. List chi tiết có phân trang/list_phan_trang.php">
+                <li>List chi tiết có phân trang</li>
+            </a>
         </ol>
         <div>
 

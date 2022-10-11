@@ -19,12 +19,13 @@
             font-size: 30px;
             font-family: "Comic Sans MS", "Comic Sans", cursive;
         }
+
         #title_col {
             text-align: center;
             color: red;
         }
-        #td_center
-        {
+
+        #td_center {
             text-align: center;
         }
     </style>
@@ -53,18 +54,23 @@
     if (mysqli_num_rows($result) != 0)
         while ($row = mysqli_fetch_array($result)) {
             if ($checkColor % 2 != 0)
-            $color = "style='background-color:#ffb70021;'";
+                $color = "style='background-color:#ffb70021;'";
             else
-            $color = "style='background-color:none;'";
-                
+                $color = "style='background-color:none;'";
             $checkColor++;
+            $customerID = $row['Ma_khach_hang'];
+            $customerName = $row['Ten_khach_hang'];
+            $gender = $row['Phai'];
+            $address = $row['Dia_chi'];
+            $phoneNumber = $row['Dien_thoai'];
+            $email = $row['Email'];
             echo "<tbody><tr $color>";
-            echo "<td>" . $row['Ma_khach_hang'] . "</td>";
-            echo "<td>" . $row['Ten_khach_hang'] . "</td>";
-            echo "<td id='td_center'>" . $row['Phai'] . "</td>";
-            echo "<td>" . $row['Dia_chi'] . "</td>";
-            echo "<td>" . $row['Dien_thoai'] . " gram</td>";
-            echo "<td>" . $row['Email'] . " VNĐ</td>";
+            echo "<td>" . $customerID . "</td>";
+            echo "<td>" . $customerName . "</td>";
+            echo "<td id='td_center'>" . $gender . "</td>";
+            echo "<td>" . $address . "</td>";
+            echo "<td>" . $phoneNumber . " gram</td>";
+            echo "<td>" . $email . " VNĐ</td>";
             echo "</tr></tbody>";
         }
     echo " </table>";

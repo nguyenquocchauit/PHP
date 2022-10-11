@@ -14,10 +14,11 @@
         table {
             text-align: center;
             margin: 210px auto;
-           /* background-color: #ffe2e2; */
+            /* background-color: #ffe2e2; */
         }
-        caption{
-            color:  #0095ffc2;
+
+        caption {
+            color: #0095ffc2;
             font-size: 30px;
             font-family: "Comic Sans MS", "Comic Sans", cursive;
         }
@@ -44,18 +45,17 @@
     echo "</tr>";
     if (mysqli_num_rows($result) != 0)
         while ($row = mysqli_fetch_array($result)) {
-            // if ($checkColor % 2 != 0)
-            //     $color = "style='background-color:#1eff1e3b';";
-            // else
-            //     $color = "style='background-color:#ff00007a';";
-            // $checkColor++;
-            // echo "<tr $color>";
+            $milkBrandID = $row['Ma_hang_sua'];
+            $milkBrandName = $row['Ten_hang_sua'];
+            $address = $row['Dia_chi'];
+            $phoneNumber = $row['Dien_thoai'];
+            $email = $row['Email'];
             echo "<tr>";
-            echo "<td>" . $row['Ma_hang_sua'] . "</td>";
-            echo "<td>" . $row['Ten_hang_sua'] . "</td>";
-            echo "<td>" . $row['Dia_chi'] . "</td>";
-            echo "<td>" . $row['Dien_thoai'] . "</td>";
-            echo "<td>" . $row['Email'] . "</td>";
+            echo "<td>" . $milkBrandID . "</td>";
+            echo "<td>" . $milkBrandName . "</td>";
+            echo "<td>" . $address . "</td>";
+            echo "<td>" . $phoneNumber . "</td>";
+            echo "<td>" . $email . "</td>";
             echo "</tr>";
         }
     echo " </table>";

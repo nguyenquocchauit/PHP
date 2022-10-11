@@ -21,7 +21,7 @@
 
         #title {
             background-color: #ffa50029;
-            color : orange;
+            color: orange;
             text-align: center;
             font-size: 30px;
             font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -63,8 +63,12 @@
     $number_of_page = ceil($number_of_result / $results_per_page);
     //xác định xem khách truy cập số trang nào hiện đang truy cập
     if (!isset($_GET['page'])) {
+        // Giải quyết trường hợp ngoại lệ $_GET['page'] ở url không thấy biến page ở lần tải trang đầu tiên. 
+        // Giải quyết trường hợp câu điều kiện phía dưới kiểm tra $_GET['page']  để active số trang đang ở hiện tại
+        $parameterUrl = null;
         $page = 1;
     } else {
+        $parameterUrl = " ";
         $page = $_GET['page'];
     }
     //xác định số bắt đầu sql LIMIT cho các kết quả trên trang hiển thị
@@ -113,28 +117,8 @@
     echo "</tr>
         </tbody>
     </table>";
-    //hiển thị liên kết của các trang trong URL
-    echo '
-    <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only"></span>
-            </a>
-        </li>';
-    for ($page = 1; $page <= $number_of_page; $page++) {
-        echo '<li class="page-item "><a class="page-link" href = "list_don_gian.php?page= ' . $page . '"> ' . $page . ' </a></li>';
-    }
-    echo '
-        <li class="page-item ">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only"></span>
-            </a>
-            </li>
-        </ul>
-    </nav>';
+    // include file pagination
+    include '../../pagination.php';
     // 5. Xoa ket qua khoi vung nho va Dong ket noi
     mysqli_free_result($result);
     mysqli_close($conn);

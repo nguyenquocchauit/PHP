@@ -28,6 +28,7 @@
             display: flex;
             justify-content: center;
         }
+
         #title {
             text-align: center;
             font-size: 30px;
@@ -65,17 +66,23 @@
             else
                 $color = "style='background-color:#ffb70021;'";
             $checkColor++;
+            $customerID = $row['Ma_khach_hang'];
+            $customerName = $row['Ten_khach_hang'];
+            $gender = $row['Phai'];
+            $address = $row['Dia_chi'];
+            $phoneNumber = $row['Dien_thoai'];
+            $email = $row['Email'];
             echo "<tbody><tr $color>";
-            echo "<td>" . $row['Ma_khach_hang'] . "</td>";
-            echo "<td>" . $row['Ten_khach_hang'] . "</td>";
-            if ($row['Phai'] == 0)
+            echo "<td>" . $customerID . "</td>";
+            echo "<td>" . $customerName . "</td>";
+            if ($gender == 0)
                 echo "<td class='imgavt'><img src='male.png'  alt='female'></td>";
             else
-                if ($row['Phai'] == 1)
+                if ($gender == 1)
                 echo "<td class='imgavt'><img src='female.png'  alt='female'></td>";
-            echo "<td>" . $row['Dia_chi'] . "</td>";
-            echo "<td>" . $row['Dien_thoai'] . " gram</td>";
-            echo "<td>" . $row['Email'] . " VNĐ</td>";
+            echo "<td>" . $address . "</td>";
+            echo "<td>" . $phoneNumber . " gram</td>";
+            echo "<td>" . $email . " VNĐ</td>";
             echo "</tr></tbody>";
         }
     echo " </table>";
