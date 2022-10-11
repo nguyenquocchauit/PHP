@@ -9,28 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Quản lý bán sữa</title>
-    <script>
-        $(document).ready(function() {
-            var pageItem = $(".pagination li").not(".prev,.next");
-            var prev = $(".pagination li.prev");
-            var next = $(".pagination li.next");
-
-            pageItem.click(function() {
-                pageItem.removeClass("active");
-                $(this).not(".prev,.next").addClass("active");
-            });
-
-            next.click(function() {
-                $('li.active').removeClass('active').next().addClass('active');
-            });
-
-            prev.click(function() {
-                $('li.active').removeClass('active').prev().addClass('active');
-            });
-
-
-        });
-    </script>
     <style>
         * {
             font-size: 21px;
@@ -123,11 +101,17 @@
     //tìm tổng số kết quả được lưu trữ trong cơ sở dữ liệu
     $query = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
     FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua $querySearch  ";
+
+    // $sql = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua, c.Ten_loai 
+    // FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua inner join loai_sua c on a.Ma_loai_sua = c.Ma_loai_sua 
+    // WHERE a.Ten_sua like \'Daisy%\' and b.Ten_hang_sua = \'Daisy\' and c.Ten_loai = \'Sữa bột\'";
+
     $result = mysqli_query($conn, $query);
     $number_of_result = mysqli_num_rows($result);
     if ($number_of_result > 0 && $inp_MilkName != null) {
         $searchResults = "Có $number_of_result được tìm thấy!";
-    }
+    } else
+        $searchResults = "Không tìm thấy sản phẩm này!";
     //xác định tổng số trang có sẵn
     $number_of_page = ceil($number_of_result / $results_per_page);
     //xác định xem khách truy cập số trang nào hiện đang truy cập

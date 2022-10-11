@@ -5,28 +5,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var pageItem = $(".pagination li").not(".prev,.next");
-            var prev = $(".pagination li.prev");
-            var next = $(".pagination li.next");
-
-            pageItem.click(function() {
-                pageItem.removeClass("active");
-                $(this).not(".prev,.next").addClass("active");
-            });
-
-            next.click(function() {
-                $('li.active').removeClass('active').next().addClass('active');
-            });
-
-            prev.click(function() {
-                $('li.active').removeClass('active').prev().addClass('active');
-            });
-
-
-        });
-    </script>
 </head>
 
 <body>
@@ -36,15 +14,31 @@
     // của bài tìm kiếm đơn giản, kiểm tra inp_MilkName rỗng thì gán bằng null. Tránh xung đột biến khi include cho các bài khác
     $addPagination = null;
     if (isset($inp_MilkName)) {
-        $findMilkName = null;
+        $findMilkName = '&inp_MilkName=' . ($inp_MilkName) . '';
     } else {
         $inp_MilkName = null;
-        $findMilkName = '&inp_MilkName=' . ($inp_MilkName) . '';
+        $findMilkName = null;
+    }
+    // của bài tìm kiếm nâng cao
+    if (isset($milkType)) {
+        $findMilkType = '&milkType=' . ($milkType) . '';
+    } else {
+        $milkType = null;
+        $findMilkType = null;
+    }
+    if (isset($milkBrand)) {
+        $findMilkBrand = '&milkBrand=' . ($milkBrand) . '';
+    } else {
+        $milkBrand = null;
+        $findMilkBrand = null;
     }
     // kiểm tra đúng file cần dùng sẽ thêm addPagination, các file khác sẽ không cần dùng đến biến trên URL 
-    switch($curPageName){
+    switch ($curPageName) {
         case 'tim_kiem_don_gian.php':
             $addPagination = '&inp_MilkName=' . ($inp_MilkName) . '';
+            break;
+        case 'tim_kiem_nang_cao.php':
+            $addPagination = ''.($findMilkType).''.($findMilkBrand).''.($findMilkName).'';
             break;
     }
     //xác định xem khách truy cập số trang nào hiện đang truy cập
@@ -59,7 +53,6 @@
     }
     // addActivePage lưu trữ class active trang hiện tại
     $addActivePage = null;
-    //hiển thị liên kết của các trang trong URL
     // kiểm tra nếu click prev đến trang 1 thì dừng hành động prev tại page=0, vì xác định page_first_result = page - 1 => page_first_result =-1, load page sẽ lỗi ngược lại thì click next tương tự
     if ($page == 1)
         $prevPage = 1;
@@ -78,6 +71,7 @@
                 <span class="sr-only"></span>
             </a>
         </li>';
+    //hiển thị liên kết của các trang trong URL
     for ($page = 1; $page <= $number_of_page; $page++) {
         if ($parameterUrl == null) {
             $addActivePage = null;

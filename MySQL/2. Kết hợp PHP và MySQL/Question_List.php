@@ -50,6 +50,9 @@
             <a href="9. Tìm kiếm đơn giản/tim_kiem_don_gian.php">
                 <li>Tìm kiếm đơn giản</li>
             </a>
+            <a href="10. Tìm kiếm nâng cao/tim_kiem_nang_cao.php">
+                <li>Tìm kiếm nâng cao</li>
+            </a>
         </ol>
         <div>
 
