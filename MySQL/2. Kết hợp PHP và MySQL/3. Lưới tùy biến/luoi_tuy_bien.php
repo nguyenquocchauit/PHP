@@ -12,7 +12,7 @@
     <style>
         * {
             font-size: 21px;
-        }
+        }   
 
         #title_col {
             text-align: center;

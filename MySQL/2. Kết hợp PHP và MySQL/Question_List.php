@@ -56,6 +56,9 @@
             <a href="11. Thêm mới/them_moi_sua.php">
                 <li>Thêm mới</li>
             </a>
+            <a href="12. Xóa – Sửa/thong_tin_khach_hang.php">
+                <li>Xóa – Sửa</li>
+            </a>
             
         </ol>
         <div>

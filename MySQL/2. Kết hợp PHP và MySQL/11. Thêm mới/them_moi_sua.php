@@ -126,12 +126,9 @@
         $Weight = $_POST['Weight'];
     else
         $Weight = null;
-    if (isset($_POST['Price']))
-    {
+    if (isset($_POST['Price'])) {
         $Price = str_replace('.', '', $_POST['Price']);
-    }
-        
-    else
+    } else
         $Price = null;
     if (isset($_POST['ContentIngredients']))
         $ContentIngredients = $_POST['ContentIngredients'];
@@ -158,7 +155,7 @@
             <div id="div_form">
                 <div class="mb-3 row">
                     <label for="inputMilkID" class="col-sm-2 col-form-label label ">Mã sữa</label>
-                    <div class="col-sm-10 inp inp">
+                    <div class="col-sm-10 inp">
                         <input type="text" name="MilkID" value="<?php echo $MilkID ?>" class="form-control" id="inputMilkID" pattern="[A-Z0-9]{1,6}" required>
                     </div>
                 </div>

@@ -36,21 +36,26 @@
         #td_center {
             text-align: center;
         }
+
         img {
             width: 150px;
             height: 175px;
         }
+
         .imgavt {
             display: flex;
             justify-content: center;
         }
+
         #table_child {
             width: 20%;
             box-shadow: 9px 9px 10px #fef1dc;
         }
+
         a:link {
             text-decoration: none;
         }
+
         a:hover {
             color: red;
         }
@@ -65,6 +70,8 @@
     $query = "SELECT A.Ma_sua, A.Hinh,A.Ten_sua,B.Ten_hang_sua,C.Ten_loai,A.Trong_luong,A.Don_gia 
     FROM sua A inner join hang_sua B on A.Ma_hang_sua = B.Ma_hang_sua inner join loai_sua C on C.Ma_loai_sua = A.Ma_loai_sua;";
     $result = mysqli_query($conn, $query);
+    // get file name local
+    $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
     // 4.Xu ly du lieu tra ve
     echo "
     <table class='table table-bordered' id='table'>
@@ -79,7 +86,7 @@
     $addCloseTag = null;
     if (mysqli_num_rows($result) != 0)
         while ($row = mysqli_fetch_array($result)) {
-            
+
             if ($countCol % 5 == 0)
                 $addTag = '<tr style="width: 100%;">';
             else
@@ -95,7 +102,7 @@
                 <table class='table' >
                     <tbody>
                         <tr>
-                            <td><a class='' href ='trang_list_chi_tiet.php?Ma_sua=" . $milkCode . "'><b>$milkName</b></a></td>
+                            <td><a class='' href ='$curPageName?Ma_sua=" . $milkCode . "'><b>$milkName</b></a></td>
                         </tr>
                         <tr>
                             <td>$weight gr - $price VNĐ </td>
