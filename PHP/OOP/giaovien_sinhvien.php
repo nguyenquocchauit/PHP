@@ -74,7 +74,7 @@
         }
 
         form {
-            padding: 250px 600px;
+            /* padding: 250px 600px; */
             display: inline-block;
         }
 

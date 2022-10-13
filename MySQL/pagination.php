@@ -77,7 +77,7 @@
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only"></span>
             </a>
-        </li>';
+        </li>';     
     //hiển thị liên kết của các trang trong URL
     for ($page = 1; $page <= $number_of_page; $page++) {
         if ($parameterUrl == null) {
