@@ -12,7 +12,7 @@
     <style>
         * {
             font-size: 21px;
-        }   
+        }
 
         #title_col {
             text-align: center;
@@ -81,8 +81,8 @@
                 if ($gender == 1)
                 echo "<td class='imgavt'><img src='female.png'  alt='female'></td>";
             echo "<td>" . $address . "</td>";
-            echo "<td>" . $phoneNumber . " gram</td>";
-            echo "<td>" . $email . " VNĐ</td>";
+            echo "<td>" . $phoneNumber . "</td>";
+            echo "<td>" . $email . "</td>";
             echo "</tr></tbody>";
         }
     echo " </table>";
