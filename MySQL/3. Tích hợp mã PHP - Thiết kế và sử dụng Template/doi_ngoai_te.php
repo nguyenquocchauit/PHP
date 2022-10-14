@@ -1,35 +1,35 @@
 <?php
-function doi_tien($type, $money)
+function doi_tien($type, $money,$rateVND)
 {
     $moneyVND = 0;
     switch ($type) {
         case 'USD':
-            $moneyVND = $money * 16177;
+            $moneyVND = $money * $rateVND;
             break;
         case 'AUD':
-            $moneyVND = $money * 14057;
+            $moneyVND = $money * $rateVND;
             break;
         case 'YPJ':
-            $moneyVND = $money * 136;
+            $moneyVND = $money * $rateVND;
             break;
         case 'EUR':
-            $moneyVND = $money * 22486;
+            $moneyVND = $money * $rateVND;
             break;
     }
     return $moneyVND;
 }
-function doi_vang($type, $quantum)
+function doi_vang($type, $quantum,$rateGold)
 {
     $goldVND = 0;
     switch ($type) {
         case 'SJC':
-            $goldVND = $quantum * 1306000;
+            $goldVND = $quantum * $rateGold;
             break;
         case 'AAA':
-            $goldVND = $quantum * 1305000;
+            $goldVND = $quantum * $rateGold;
             break;
         case 'PNJ':
-            $goldVND = $quantum * 1302000;
+            $goldVND = $quantum * $rateGold;
             break;
     }
     return $goldVND;

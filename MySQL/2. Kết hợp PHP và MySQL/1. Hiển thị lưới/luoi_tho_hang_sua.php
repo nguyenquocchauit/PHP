@@ -29,9 +29,18 @@
     <?php
     // 1. Ket noi CSDL
     require '../../connectDB.php';
+    //include 'xl_hang_sua.php';
+    include '../../xl_hang_sua.php';
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
-    $sql = "SELECT * FROM hang_sua";
-    $result = mysqli_query($conn, $sql);
+    // $sql = "SELECT * FROM hang_sua";
+    // $result = mysqli_query($conn, $sql);
+    $exec = new HangSua();
+    $exec->setConnect($conn);
+    // funtion all get all data in table
+    $result = $exec->all();
+    // queryByID get data by ID
+    //queryByID ($milkBrandID, $milkBrandName, $address, $phoneNumber, $email)
+    //$result = $exec->queryByID('NoParameter','NoParameter','NoParameter','NoParameter','NoParameter');
     // 4.Xu ly du lieu tra ve
     $checkColor = 1;
     echo "<table border='1'>";
