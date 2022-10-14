@@ -30,7 +30,7 @@
     // 1. Ket noi CSDL
     require '../../connectDB.php';
     //include 'xl_hang_sua.php';
-    include '../../xl_hang_sua.php';
+    include '../../4. Xây dựng các lớp xử lý/Xây dựng lớp xử lý hãng sữa_xl_hang_sua/xl_hang_sua.php';
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
     // $sql = "SELECT * FROM hang_sua";
     // $result = mysqli_query($conn, $sql);
