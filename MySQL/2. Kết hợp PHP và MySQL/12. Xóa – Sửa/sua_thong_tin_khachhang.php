@@ -74,11 +74,18 @@
     <?php
     // 1. Ket noi CSDL
     require '../../connectDB.php';
+    // thêm file class khách hàng
+    include "../../4. Xây dựng các lớp xử lý/4. Xây dựng lớp xử lý khách hàng_xl_khach_hang/xl_khach_hang.php";
     // get milkcode data from url
     $id = $_GET['CustomerID'];
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
     $query = "SELECT * FROM khach_hang WHERE Ma_khach_hang='$id'";
     $result = mysqli_query($conn, $query);
+    // truy vấn dùng class khách hàng
+    // $khachhang = new KhachHang();
+    // $khachhang->setConnect($conn);
+    // $khachhang->setParameter($id, 'NoParameter', 'NoParameter', 'NoParameter', 'NoParameter', 'NoParameter');
+    // $result = $khachhang->queryByID();
     $row = mysqli_fetch_array($result);
     if (!($row > 0)) {
         header('Location: thong_tin_khach_hang.php');
@@ -170,10 +177,14 @@
         $updateAddress = $_POST['address'];
         $updatePhoneNumber = $_POST['phoneNumber'];
         $updateEmail = $_POST['email'];
-        $query = "UPDATE Khach_hang SET Ma_khach_hang='".($updateCustomerID)."',Ten_khach_hang='".($updateCustomerName)."',Phai=".($updateGender).", 
-        Dia_chi='".($updateAddress)."', Dien_thoai='".($updatePhoneNumber)."', Email='".($updateEmail)."'
+        $query = "UPDATE Khach_hang SET Ma_khach_hang='" . ($updateCustomerID) . "',Ten_khach_hang='" . ($updateCustomerName) . "',Phai=" . ($updateGender) . ", 
+        Dia_chi='" . ($updateAddress) . "', Dien_thoai='" . ($updatePhoneNumber) . "', Email='" . ($updateEmail) . "'
         WHERE Ma_khach_hang='" . $customerID . "'";
         $result = mysqli_query($conn, $query);
+        // $khachhang = new KhachHang();
+        // $khachhang->setConnect($conn);
+        // //update($customerID, $customerName, $gender, $address, $phoneNumber, $email)
+        // $result = $khachhang->update($updateCustomerID, $updateCustomerName, $updateGender, $updateAddress, $updatePhoneNumber, $updateEmail);
         if ($result == true) {
             echo '
             <script type="text/JavaScript"> 

@@ -91,7 +91,7 @@
                 $addTag = '<tr style="width: 100%;">';
             else
                 $addTag = null;
-            $milkCode = $row['Ma_sua'];
+            $milkID = $row['Ma_sua'];
             $pathImg = $row['Hinh'];
             $milkName =  $row['Ten_sua'];
             $weight = $row['Trong_luong'];
@@ -102,7 +102,7 @@
                 <table class='table' >
                     <tbody>
                         <tr>
-                            <td><a class='' href ='$curPageName?Ma_sua=" . $milkCode . "'><b>$milkName</b></a></td>
+                            <td><a class='' href ='$curPageName?Ma_sua=" . $milkID . "'><b>$milkName</b></a></td>
                         </tr>
                         <tr>
                             <td>$weight gr - $price VNĐ </td>
