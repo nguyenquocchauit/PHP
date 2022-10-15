@@ -67,4 +67,16 @@ class Sua
         $result = mysqli_query($this->getConnect(), $query);
         return $result;
     }
+    function bestSellMilk($getTop)
+    {
+        if (is_numeric($getTop))
+            $getTop = $getTop;
+        else
+            $getTop = null;
+        $query = "SELECT a.Ten_sua, b.number_of_oders FROM sua a INNER JOIN 
+        (SELECT b.Ma_sua, sum(So_luong) as 'number_of_oders' FROM ct_hoadon a inner JOIN sua b on a.Ma_sua = b.Ma_sua GROUP BY a.Ma_sua)b 
+        ON a.Ma_sua=b.Ma_sua GROUP BY b.number_of_oders DESC LIMIT $getTop";
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
+    }
 }
