@@ -34,14 +34,16 @@
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
     $sql = "SELECT * FROM hang_sua";
     $result = mysqli_query($conn, $sql);
+
     // $exec = new HangSua();
     // $exec->setConnect($conn);
-    // funtion all get all data in table
-    //$result = $exec->all();
-    // queryByID get data by ID
-    //setParameter ($milkBrandID, $milkBrandName, $address, $phoneNumber, $email)
+    // // funtion all get all data in table
+    // $result = $exec->all();
+    // // queryByID get data by ID
+    // // setParameter ($milkBrandID, $milkBrandName, $address, $phoneNumber, $email)
     // $exec->setParameter('NoParameter','Vinamilk','NoParameter','NoParameter','NoParameter');
     // $result = $exec->queryByID();
+    
     // 4.Xu ly du lieu tra ve
     $checkColor = 1;
     echo "<table border='1'>";

@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <table class="table table-bordered">
+    <table class="table table-bordered" border="1">
         <thead>
             <tr>
                 <th scope="col" colspan="6" id="title">THÔNG TIN SỮA</th>
@@ -77,7 +77,7 @@
                     $price = number_format($row['Don_gia']);
                     echo '
                     <tr>
-                        <td><img src="../../../images/Hinh_sua/' . ($pathImg) . '" alt=""></td>
+                        <td><img  src="../../../images/Hinh_sua/' . ($pathImg) . '" alt=""></td>
                         <td>' . ($milkName) . '</td>
                         <td>' . ($weight) . '</td>
                         <td>' . ($price) . '</td>

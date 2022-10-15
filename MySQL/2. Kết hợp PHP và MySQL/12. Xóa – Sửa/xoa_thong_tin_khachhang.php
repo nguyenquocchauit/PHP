@@ -180,10 +180,10 @@
             $result = mysqli_query($conn, $query);
             if ($result == true) {
                 echo '
-            <script type="text/JavaScript"> 
-                alert("Đã xóa khách hàng ' . ($getName) . ' thành công!!");
-                location.href ="thong_tin_khach_hang.php?delete=success";
-            </script>';
+                <script type="text/JavaScript"> 
+                    alert("Đã xóa khách hàng ' . ($getName) . ' thành công!!");
+                    location.href ="thong_tin_khach_hang.php?delete=success";
+                </script>';
             }
         }
     }

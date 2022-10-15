@@ -1,7 +1,7 @@
 <?php
 class LoaiSua
 {
-    protected $conn, $result, $milkTypeID, $milkTypeName;
+    protected $conn, $milkTypeID, $milkTypeName;
 
     function setConnect($conn)
     {
@@ -28,21 +28,21 @@ class LoaiSua
     function all()
     {
         $query = "SELECT * FROM loai_sua WHERE 1";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function queryByID()
     {
         $addQuery = $this->getParameter();
         $query = "SELECT * FROM loai_sua WHERE 1 $addQuery ";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function update($milkTypeID, $milkTypeName)
     {
         $query = "UPDATE loai_sua SET Ma_loai_sua='" . ($milkTypeID) . "',Ten_loai='" . ($milkTypeName) . "'
         WHERE Ma_loai_sua='" . $milkTypeID . "'";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
 }

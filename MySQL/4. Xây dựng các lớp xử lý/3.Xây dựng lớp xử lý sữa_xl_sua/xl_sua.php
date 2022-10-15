@@ -1,7 +1,7 @@
 <?php
 class Sua
 {
-    protected $conn, $result, $milkID, $milkName, $milkBrandID, $milkTypeID, $weight, $price, $contentIngredients, $contentBenefit, $pathImg;
+    protected $conn, $milkID, $milkName, $milkBrandID, $milkTypeID, $weight, $price, $contentIngredients, $contentBenefit, $pathImg;
 
     function setConnect($conn)
     {
@@ -49,22 +49,22 @@ class Sua
     function all()
     {
         $query = "SELECT * FROM sua WHERE 1";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function queryByID()
     {
         $addQuery = $this->getParameter();
         $query = "SELECT * FROM sua WHERE 1 $addQuery ";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function update($milkID, $milkName, $milkBrandID, $milkTypeID, $weight, $price, $contentIngredients, $contentBenefit, $pathImg)
     {
         $query = "UPDATE sua SET Ma_sua='" . ($milkID) . "',Ten_sua='" . ($milkName) . "',Ma_hang_sua='" . ($milkBrandID) . "',Ma_loai_sua='" . ($milkTypeID) . "'
         ,Trong_luong='" . ($weight) . "',Don_gia='" . ($price) . "',TP_Dinh_Duong='" . ($contentIngredients) . "',Loi_ich='" . ($contentBenefit) . "',Hinh='" . ($pathImg) . "'
         WHERE Ma_sua='" . $milkID . "'";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
 }

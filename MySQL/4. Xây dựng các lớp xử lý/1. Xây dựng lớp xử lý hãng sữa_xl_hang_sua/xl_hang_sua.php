@@ -1,7 +1,7 @@
 <?php
 class HangSua
 {
-    protected $conn, $result, $milkBrandID, $milkBrandName, $address, $phoneNumber, $email;
+    protected $conn, $milkBrandID, $milkBrandName, $address, $phoneNumber, $email;
 
     function setConnect($conn)
     {
@@ -37,22 +37,22 @@ class HangSua
     function all()
     {
         $query = "SELECT * FROM hang_sua WHERE 1";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function queryByID()
     {
         $addQuery = $this->getParameter();
         $query = "SELECT * FROM hang_sua WHERE 1 $addQuery ";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
     function update($milkBrandID, $milkBrandName, $address, $phoneNumber, $email)
     {
         $query = "UPDATE hang_sua SET Ma_hang_sua='" . ($milkBrandID) . "',Ten_hang_sua='" . ($milkBrandName) . "',address=" . ($address) . ", 
         Dien_thoai='" . ($phoneNumber) . "', Email='" . ($email) . "'
         WHERE Ma_hang_sua='" . $milkBrandID . "'";
-        $this->result = mysqli_query($this->getConnect(), $query);
-        return $this->result;
+        $result = mysqli_query($this->getConnect(), $query);
+        return $result;
     }
 }

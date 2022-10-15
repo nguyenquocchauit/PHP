@@ -10,8 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <title>Thêm sữa mới</title>
     <script>
+        // loại khoảng trắng của ô input mã sữa
         $(function() {
             $('#inputMilkID').on('keypress', function(e) {
                 if (e.which == 32) {
@@ -19,6 +21,7 @@
                 }
             });
         });
+        // định dạng số tiền nhập vào 1.000.000 cho dễ nhìn so với 1000000
         $(document).ready(function() {
             $('#inputPrice').mask('000.000.000', {
                 reverse: true
@@ -239,14 +242,14 @@
                 </div>
                 <div class="mb-3 row pb-3">
                     <div class="col-12 d-flex justify-content-center">
-                        <button type="submit" name="insert" class="btn btn-success">Thêm</button>
+                        <button type="submit" name="insert" class="btn btn-success">Thêm <i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>
             <?php
             $query = "SELECT * FROM Sua WHERE Ma_sua ='" . ($MilkID) . "'";
-            $checkExist = mysqli_query($conn, $query);
             // kiểm tra mã sữa đã có thì in message 
+            $checkExist = mysqli_query($conn, $query);
             if (mysqli_num_rows($checkExist) != 0) {
                 echo '
                     <div id="div_result">
