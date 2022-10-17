@@ -33,7 +33,7 @@
     //kết nối cơ sở dữ liệu
     require '../../connectDB.php';
     //xác định tổng số kết quả bạn muốn trên mỗi trang
-    $results_per_page = 2;
+    $results_per_page = 5;
     //tìm tổng số kết quả được lưu trữ trong cơ sở dữ liệu
     $query = "SELECT A.Ten_sua,C.Ten_hang_sua,B.Ten_loai, A.Trong_luong, A.Don_gia 
         FROM sua A inner join loai_sua B on A.Ma_loai_sua = B.Ma_loai_sua inner join hang_sua C on C.Ma_hang_sua = A.Ma_hang_sua";

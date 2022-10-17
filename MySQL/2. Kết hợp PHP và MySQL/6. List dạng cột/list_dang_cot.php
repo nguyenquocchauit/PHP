@@ -17,7 +17,7 @@
         #table {
             text-align: center;
             margin: 0 auto;
-            width: 1800px;
+            /* width: 1800px; */
         }
 
         #title {
