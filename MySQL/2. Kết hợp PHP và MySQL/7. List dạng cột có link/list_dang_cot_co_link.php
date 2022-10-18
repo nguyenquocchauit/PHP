@@ -102,7 +102,7 @@
                 <table class='table' >
                     <tbody>
                         <tr>
-                            <td><a class='' href ='$curPageName?Ma_sua=" . $milkID . "'><b>$milkName</b></a></td>
+                            <td><a class='' href ='trang_list_chi_tiet.php?Ma_sua=" . $milkID . "'><b>$milkName</b></a></td>
                         </tr>
                         <tr>
                             <td>$weight gr - $price VNĐ </td>

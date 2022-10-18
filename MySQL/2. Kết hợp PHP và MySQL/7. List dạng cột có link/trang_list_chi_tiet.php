@@ -76,6 +76,9 @@
     FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua WHERE a.Ma_sua='$id' ";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result);
+    if (!($row > 0)) {
+        header('Location: list_dang_cot_co_link.php');
+    }
     // 4.Xu ly du lieu tra ve
     $pathImg = $row['Hinh'];
     $contentIngredients = $row['TP_Dinh_Duong'];

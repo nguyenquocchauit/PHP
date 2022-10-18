@@ -152,7 +152,7 @@
     $sqlMilkBrand = "SELECT ten_hang_sua,ma_hang_sua FROM hang_sua";
     $resultMilkBrand = mysqli_query($conn, $sqlMilkBrand);
     ?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div id="div_parent">
             <h2 id="title_h2">THÊM SỮA MỚI</h2>
             <div id="div_form">
@@ -246,6 +246,7 @@
                     </div>
                 </div>
             </div>
+
             <?php
             $query = "SELECT * FROM Sua WHERE Ma_sua ='" . ($MilkID) . "'";
             // kiểm tra mã sữa đã có thì in message 
@@ -260,64 +261,91 @@
                     ';
             } else
             if (isset($_POST['insert'])) {
-                $query = "INSERT INTO Sua (Ma_sua, Ten_sua, Ma_hang_sua,Ma_loai_sua,Trong_luong,Don_gia,TP_Dinh_Duong,Loi_ich,Hinh)
-                VALUES ('" . ($MilkID) . "', '" . ($MilkName) . "', '" . ($MilkBrand) . "','" . ($MilkType) . "','" . ($Weight) . "', '" . ($Price) . "', '" . ($ContentIngredients) . "','" . ($ContentBenefit) . "','" . ($PathImg) . "')";
-                $result = mysqli_query($conn, $query);
-                if ($result) {
-                    $sql = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
-                    FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua WHERE a.Ma_sua='" . ($MilkID) . "' ";
-                    $result = mysqli_query($conn, $sql);
-                    $row = mysqli_fetch_array($result);
-                    // xử lý xử liệu trả về
-                    $pathImg = $row['Hinh'];
-                    $contentIngredients = $row['TP_Dinh_Duong'];
-                    $contentBenefit = $row['Loi_ich'];
-                    $weight = $row['Trong_luong'];
-                    $price = number_format($row['Don_gia']);
-                    echo '
-                    <div id="div_result">
-                        <div id="div_msg">
-                            <h4>Kết quả sau khi thêm mới thành công</h4>
-                            <h6>Thêm sữa thành công</h6>
+                // kiểm tra ảnh đưa vào
+                if (isset($_FILES['PathImg']) != null) {
+                    $errors = [];
+                    $file_name = $_FILES['PathImg']['name'];
+                    $file_size = $_FILES['PathImg']['size'];
+                    $file_tmp = $_FILES['PathImg']['tmp_name'];
+                    $file_type = $_FILES['PathImg']['type'];
+                    $str = explode('.', $_FILES['PathImg']['name']);
+                    $file_ext = strtolower(end($str));
+                    $expension = array("jpg", "png", "jpeg");
+
+                    if (in_array($file_ext, $expension) == false)
+                        $errors[] = "Không chấp nhận file ảnh có phần mở rộng này, vui lòng nhập JPEG, PNG hoặc PJG";
+                    if ($file_size > 2097150)
+                        $errors[] = "Kích thước file phải < 2MB";
+                    if (empty($errors) != true) {
+                        echo '
+                        <div id="div_result">
+                            <div id="div_msg">
+                                <h4>' . implode(" ", $errors) . '</h4>
+                            </div>
                         </div>
-                        <table class="table table-bordered" id="table" style="margin-top: 50px;">
-                            <thead>
-                                <tr>
-                                    <th scope="col" colspan="5" id="title"> ' . $row['Ten_sua'] .  '-'  . $row['Ten_hang_sua'] . ' </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="tr_show">
-                                    <td id="td_img"><img src="../../../images/Hinh_sua/' . ($pathImg) . '" alt=""></td>
-                                    <td id="td_content">
-                                        <table class="">
-                                            <tbody>
-                                                <tr>
-                                                    <td><b>Thành phần dinh dưỡng:</b></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>' . ($contentIngredients) . '</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>Lợi ích:</b></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>' . ($contentBenefit) . '</td>
-                                                </tr>
-                                                <tr>
-                                                    <td id="td_weight_price">
-                                                        <b>Trọng lượng: </b>' . ($weight) . ' gr -
-                                                        <b>Đơn giá: </b>' . ($price) . ' VNĐ
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    ';
+                        ';
+                    } else {
+                        move_uploaded_file($file_tmp, "D:\\PHP\\images\\Hinh_sua\\" . $file_name);
+                        $query = "INSERT INTO Sua (Ma_sua, Ten_sua, Ma_hang_sua,Ma_loai_sua,Trong_luong,Don_gia,TP_Dinh_Duong,Loi_ich,Hinh)
+                        VALUES ('" . ($MilkID) . "', '" . ($MilkName) . "', '" . ($MilkBrand) . "','" . ($MilkType) . "','" . ($Weight) . "', '" . ($Price) . "', '" . ($ContentIngredients) . "','" . ($ContentBenefit) . "','" . ($file_name) . "')";
+                        $result = mysqli_query($conn, $query);
+                        if ($result) {
+                            $sql = "SELECT a.Ten_sua,a.Hinh, a.TP_Dinh_Duong,a.Loi_ich,a.Trong_luong,a.Don_gia,b.Ten_hang_sua 
+                            FROM sua A inner join hang_sua B on a.Ma_hang_sua = b.Ma_hang_sua WHERE a.Ma_sua='" . ($MilkID) . "' ";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            // xử lý xử liệu trả về
+                            $pathImg = $row['Hinh'];
+                            $contentIngredients = $row['TP_Dinh_Duong'];
+                            $contentBenefit = $row['Loi_ich'];
+                            $weight = $row['Trong_luong'];
+                            $price = number_format($row['Don_gia']);
+                            echo '
+                            <div id="div_result">
+                                <div id="div_msg">
+                                    <h4>Kết quả sau khi thêm mới thành công</h4>
+                                    <h6>Thêm sữa thành công</h6>
+                                </div>
+                                <table class="table table-bordered" id="table" style="margin-top: 50px;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" colspan="5" id="title"> ' . $row['Ten_sua'] .  '-'  . $row['Ten_hang_sua'] . ' </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="tr_show">
+                                            <td id="td_img"><img src="../../../images/Hinh_sua/' . ($pathImg) . '" alt=""></td>
+                                            <td id="td_content">
+                                                <table class="">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>Thành phần dinh dưỡng:</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>' . ($contentIngredients) . '</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Lợi ích:</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>' . ($contentBenefit) . '</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="td_weight_price">
+                                                                <b>Trọng lượng: </b>' . ($weight) . ' gr -
+                                                                <b>Đơn giá: </b>' . ($price) . ' VNĐ
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            ';
+                        }
+                    }
                 }
             }
             mysqli_close($conn);
