@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2022 at 06:22 AM
+-- Generation Time: Oct 21, 2022 at 02:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,7 +34,7 @@ CREATE TABLE `administration` (
   `Email` varchar(30) NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(20) NOT NULL,
-  `Create_At` datetime NOT NULL,
+  `Create_At` datetime NOT NULL COMMENT 'the time the account was created',
   `ID_Role` varchar(10) NOT NULL COMMENT 'Foreign key querying the role . table'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,8 +85,8 @@ CREATE TABLE `customers` (
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(20) NOT NULL,
   `Address` text NOT NULL,
-  `Create_At` datetime NOT NULL,
-  `ID_Role` varchar(10) NOT NULL
+  `Create_At` datetime NOT NULL COMMENT 'the time the account was created',
+  `ID_Role` varchar(10) NOT NULL COMMENT 'foreign key table roles'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -156,8 +156,8 @@ INSERT INTO `method` (`ID_Method`, `Name`) VALUES
 CREATE TABLE `orders` (
   `ID_Order` varchar(30) NOT NULL,
   `ID_Customer` varchar(30) NOT NULL COMMENT 'foreign key table customer',
-  `Create_At` datetime NOT NULL,
-  `Total` decimal(10,0) NOT NULL
+  `Create_At` datetime NOT NULL COMMENT 'time the order was created',
+  `Total` decimal(10,0) NOT NULL COMMENT 'total amount of the order'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -169,8 +169,9 @@ CREATE TABLE `orders` (
 CREATE TABLE `order_details` (
   `ID_Detail` varchar(30) NOT NULL COMMENT 'foreign key table order	',
   `ID_Product` varchar(30) NOT NULL COMMENT 'foreign key table product',
-  `Quantity` tinyint(4) NOT NULL,
-  `Price` decimal(10,0) NOT NULL
+  `Quantity` tinyint(4) NOT NULL COMMENT 'The number of products selected to buy',
+  `Price` decimal(10,0) NOT NULL COMMENT 'product price',
+  `Total` decimal(10,0) NOT NULL COMMENT 'total product cost'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -181,13 +182,13 @@ CREATE TABLE `order_details` (
 
 CREATE TABLE `products` (
   `ID_Product` varchar(30) NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Slug` varchar(70) NOT NULL,
+  `Name` varchar(45) NOT NULL COMMENT 'Product''s name',
+  `Slug` varchar(70) NOT NULL COMMENT 'URL name table product',
   `Description` text NOT NULL COMMENT 'Product Description',
   `Image` text NOT NULL COMMENT 'store image file names',
-  `Quantity` int(4) NOT NULL,
-  `Price` int(12) NOT NULL,
-  `Discount` float NOT NULL,
+  `Quantity` int(4) NOT NULL COMMENT 'number of products available',
+  `Price` int(12) NOT NULL COMMENT 'The price of the product is listed',
+  `Discount` float NOT NULL COMMENT '% discount of the product',
   `Create_At` datetime NOT NULL COMMENT 'time the product was first created',
   `Update_At` datetime NOT NULL COMMENT 'when the product was first updated',
   `ID_Brand` varchar(12) NOT NULL COMMENT 'foreign key table brand',
@@ -214,7 +215,29 @@ INSERT INTO `products` (`ID_Product`, `Name`, `Slug`, `Description`, `Image`, `Q
 ('Product0013', 'CITIZEN ECO DRIVE-BM7480', 'citizen-eco-drive-bm7480', 'Đồng hồ Citizen BM7480-81L chính hãng, một thiết kế mới nhất của Citizen Japan năm 2022. Với chất liệu thép không gỉ 316L cao cấp, thiết kế măt số học trò to rõ đễ quan sát cùng bộ kim dạ quang sáng rõ cả trong bóng tối, mặt xanh lam dâyd sang trong. Bộ máy Eco-Drive bền bỉ có thể hoạt động với tuổi thọ trên 10 năm.', 'citizen-eco-drive-bm7480-1.png,citizen-eco-drive-bm7480-2.png,citizen-eco-drive-bm7480-3.png,citizen-eco-drive-bm7480-4.png,citizen-eco-drive-bm7480-5.png', 500, 5000000, 0.1, '2022-10-21 05:26:06', '2022-10-21 05:26:06', 'Citizen', 'IDM'),
 ('Product0014', 'CITIZEN AG835186E', 'citizen-ag835186e', 'Đồng hồ nam Citizen AG8351-86E nổi bật đồng hồ 6 kim và các chức năng lịch ngày với thiết kế độc đáo phân ra 3 ô riêng biệt mang đậm nét cá tính trên nền mặt số tone đen mạnh mẽ.', 'citizen-ag835186e-1.png,citizen-ag835186e-2.png,citizen-ag835186e-3.png,citizen-ag835186e-4.png,citizen-ag835186e-5.png', 500, 18500000, 0.1, '2022-10-21 05:29:38', '2022-10-21 05:29:38', 'Citizen', 'IDM'),
 ('Product0015', 'CITIZEN EM0710-54Y', 'citizen-em0710-54y', 'Đồng Hồ Nữ Citizen EM0710-54Y Chính Hãng. Đồng Hồ CitizenEco-Drive Women\'s Jolie Diamond EM0710-54Y có mặt số tròn, kim chỉ thanh mãnh,các nút chỉ giờ đính kim cương nổi bật trên nền số xà cừ màu hồng hiếm có, dây đeo stainless steel đem đến phong cách sang trọng và đẳng cấp cho phái nữ.', 'citizen-em0710-54y-1.png,citizen-em0710-54y-2.png,citizen-em0710-54y-3.png,citizen-em0710-54y-4.png,citizen-em0710-54y-5.png', 660, 2200000, 0.1, '2022-10-21 05:35:37', '2022-10-21 05:35:37', 'Citizen', 'IDWM'),
-('Product0016', 'CITIZEN ER0212-50D', 'citizen-er0212-50d', 'Citizen Quartz ER0212-50D có đường kính 30 mm và độ dày 6.7 mm. Mặt kính được làm bằng chất liệu kính khoáng. Khung vỏ được làm bằng chất liệu thép không gỉ 316L. Bên trong khung vỏ là bộ máy quartz có độ chính xác cao. Dây đeo được làm bằng thép không gỉ và được mạ màu vàng gold (yellow gold) bằng công nghệ PVD.', 'citizen-er0212-50d-1.png,citizen-er0212-50d-2.png,citizen-er0212-50d-3.png,citizen-er0212-50d-4.png,citizen-er0212-50d-5.png', 420, 1230000, 0.35, '2022-10-21 05:40:29', '2022-10-21 05:40:29', 'Citizen', 'IDWM');
+('Product0016', 'CITIZEN ER0212-50D', 'citizen-er0212-50d', 'Citizen Quartz ER0212-50D có đường kính 30 mm và độ dày 6.7 mm. Mặt kính được làm bằng chất liệu kính khoáng. Khung vỏ được làm bằng chất liệu thép không gỉ 316L. Bên trong khung vỏ là bộ máy quartz có độ chính xác cao. Dây đeo được làm bằng thép không gỉ và được mạ màu vàng gold (yellow gold) bằng công nghệ PVD.', 'citizen-er0212-50d-1.png,citizen-er0212-50d-2.png,citizen-er0212-50d-3.png,citizen-er0212-50d-4.png,citizen-er0212-50d-5.png', 420, 1230000, 0.35, '2022-10-21 05:40:29', '2022-10-21 05:40:29', 'Citizen', 'IDWM'),
+('Product0017', 'OLYM PIANUS OP99141-71AGK-T', 'olym-pianus-op99141-71agk-t', 'Đồng hồ Olym Pianus OP99141-71AGK-GL-T là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99141-71AGK-GL-T kính cong vòm huyền thoại là một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế hiện đại cũng như chất lượng sản phẩm mang tới cho khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op99141-71agk-t-1.png,olym-pianus-op99141-71agk-t-2.png,olym-pianus-op99141-71agk-t-3.png,olym-pianus-op99141-71agk-t-4.png,olym-pianus-op99141-71agk-t-5.png,olym-pianus-op99141-71agk-t-6.png', 900, 10190000, 0.15, '2022-10-21 11:57:54', '2022-10-21 11:57:54', 'Olym', 'IDM'),
+('Product0018', 'OLYM PIANUS OP9946.1AGK-T', 'olym-pianus-op9946-1agk-t', 'Đồng hồ Olym Pianus được ra đời từ những thập niên 50, trải qua suốt quá trình phát triển trên thị trường đồng hồ OP đã dần khẳng định là một trong những thương hiệu tầm trung có tiếng và được nhiều người yêu thích sử dụng. Mỗi thiết kế trong dòng OP luôn được cải tiến đổi mới cho phù hợp với lứa tuổi và thời gian hiện đại. Trong những năm trở lại đây đồng hồ OP được đưa vào thị trường Việt Nam, đã làm hài lòng đại đa số những người sử dụng về chất lượng cũng như mẫu mã sản phẩm.', 'olym-pianus-op9946-1agk-t-1.png,olym-pianus-op9946-1agk-t-2.png,olym-pianus-op9946-1agk-t-3.png,olym-pianus-op9946-1agk-t-4.png,olym-pianus-op9946-1agk-t-5.png', 510, 7410000, 0.35, '2022-10-21 12:03:21', '2022-10-21 12:03:21', 'Olym', 'IDM'),
+('Product0019', 'OLYM PIANUS OP990-143AGR-GL-XL', 'olym-pianus-op990-143agr-gl-xl', 'Olym Pianus OP990-45ADGS-GL-T  là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội, mang một diện mạo phong thái phóng khoáng và vô cùng sang trọng giúp nó nổi bật ở bất cứ nơi đâu, đây là một trong những sản phẩm nổi bật của thương hiệu Olym Pianus, có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op990-143agr-gl-xl-1.png,olym-pianus-op990-143agr-gl-xl-2.png,olym-pianus-op990-143agr-gl-xl-3.png,olym-pianus-op990-143agr-gl-xl-4.png,olym-pianus-op990-143agr-gl-xl-5.png', 1000, 5125000, 0.3, '2022-10-21 12:09:02', '2022-10-21 12:09:02', 'Olym', 'IDM'),
+('Product0020', 'OLYM PIANUS OP9941-84AGK-GL-V', 'olym-pianus-op9941-84agk-gl-v', 'Đồng hồ Olym Pianus OP99411-84AGK-GL-T là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGK-GL-T là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op9941-84agk-gl-v-1.png,olym-pianus-op9941-84agk-gl-v-2.png,olym-pianus-op9941-84agk-gl-v-3.png,olym-pianus-op9941-84agk-gl-v-4.png', 888, 9500000, 0.22, '2022-10-21 12:14:32', '2022-10-21 12:14:32', 'Olym', 'IDM'),
+('Product0021', 'OLYM PIANUS OP9908-88AGSK-XL', 'op9908-88agsk-xl', 'Mẫu đồng hồ Automatic khẳng định giá trị của mình ở ngay thiết kế lộ máy, được biết đến như “trái tym” của OP9908-88AGSK-GL-T. Đối với anh em thích khám phá chắc hẳn rất thích nhìn chuyển động của bộ máy dưới lớp kính.Tuyệt vời hơn khi nhà sản xuất chế tác thang đo dự trữ với chiếc kim xăng hiển thị thời gian trữ cót đặt ngay giờ thứ 12. Niềm khao khát của nhiều quý ông khi hầu như thiết kế này chỉ thấy ở phân khúc đắt tiền. Ở vị trí 6h lộ diện chiếc đồng hồ 60 giây và chiếc kim nhỏ. Một tính năng được hoàn thiện thêm nhưng càng giúp OP9908-88AGSK-GL-T đánh bóng thêm đẳng cấp của mình.', 'op9908-88agsk-xl-1.png,op9908-88agsk-xl-2.png,op9908-88agsk-xl-3.png,op9908-88agsk-xl-4.png,op9908-88agsk-xl-5.png', 756, 7530000, 0.37, '2022-10-21 12:16:51', '2022-10-21 12:16:51', 'Olym', 'IDM'),
+('Product0022', 'OLYM PIANUS OP990-15AMSK-T', 'olym-pianus-op990-15amsk-t', 'Đồng hồ Olym Pianuss Skeleton OP990-15AMSK-T chính hãng, chất liệu thép không gỉ mạ đờmi, thiết kế thời trang cao cấp, thấy máy hoạt động cùng kính chống trầy, máy auotmmatic', 'olym-pianus-op990-15amsk-t-1.png,olym-pianus-op990-15amsk-t-2.png,olym-pianus-op990-15amsk-t-3.png,olym-pianus-op990-15amsk-t-4.png,olym-pianus-op990-15amsk-t-5.png', 1500, 4300000, 0.08, '2022-10-21 12:28:16', '2022-10-21 12:28:16', 'Olym', 'IDM'),
+('Product0023', 'OLYM PIANUS OP99411-84AGSK-V', 'olym-pianus-op99411-84agsk-v', 'Đồng hồ Olym Pianus OP99411-84AGSK-V là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGSK-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op99411-84agsk-v-1.png,olym-pianus-op99411-84agsk-v-2.png,olym-pianus-op99411-84agsk-v-3.png', 100, 3500000, 0.45, '2022-10-21 12:32:40', '2022-10-21 12:32:40', 'Olym', 'IDM'),
+('Product0024', 'OLYM PIANUS OP99411-84AGS-X', 'olym-pianus-op99411-84ags-x', 'Đồng hồ Olym Pianus OP99411-84AGS-X là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op99411-84ags-x-1.png,olym-pianus-op99411-84ags-x-2.png,olym-pianus-op99411-84ags-x-3.png,olym-pianus-op99411-84ags-x-4.png,olym-pianus-op99411-84ags-x-5.png,olym-pianus-op99411-84ags-x-6.png', 795, 6000000, 0.25, '2022-10-21 12:38:37', '2022-10-21 12:38:37', 'Olym', 'IDM'),
+('Product0025', 'OLYM PIANUS OP99411-84AGS-D', 'olym-pianus-op99411-84ags-d', 'Đồng hồ Olym Pianus OP99411-84AGS-D là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op99411-84ags-d-1.png,olym-pianus-op99411-84ags-d-2.png,olym-pianus-op99411-84ags-d-3.png,olym-pianus-op99411-84ags-d-4.png', 154, 4586000, 0.13, '2022-10-21 12:41:14', '2022-10-21 12:41:14', 'Olym', 'IDM'),
+('Product0026', 'OLYM PIANUS LA BÀN OP9943AGS-GL-D-KD', 'olym-pianus-la-ban-op9943ags-gl-d-kd', 'Đồng hồ Olym Pianus La Bàn OP9943AGS-GL-D-KD là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-la-ban-op9943ags-gl-d-kd-1.png,olym-pianus-la-ban-op9943ags-gl-d-kd-2.png,olym-pianus-la-ban-op9943ags-gl-d-kd-3.png,olym-pianus-la-ban-op9943ags-gl-d-kd-4.png,olym-pianus-la-ban-op9943ags-gl-d-kd-5.png', 426, 12500000, 0.35, '2022-10-21 12:46:25', '2022-10-21 12:46:25', 'Olym', 'IDM'),
+('Product0027', 'Olym Pianus Fusion OP990-45ADDGR-X', 'olym-pianus-fusion-op990-45addgr-x-op990-45', 'Olym Pianus Fusion OP990-45ADDGR-X. Sở hữu Case size 42mm, bezel size 40mm cực vừa vặn, tay nhỏ cũng đeo được. Có 2 phiên bản dây thép (SS) và dây cao su rất phù hợp cho mùa hè nóng bức và hay dùng nước, độ bền cực cao. Kính sapphire nguyên khối + bezel đính đá cực chắc chắn và sáng giúp tổng thể thiết kế trở lên Sang trọng - Đẳng cấp. Bộ máy Automatic quen thuộc của nhà OP - độ trữ cót 40H, chạy chính xác + bền bỉ.', 'olym-pianus-fusion-op990-45addgr-x-op990-45-1.png,olym-pianus-fusion-op990-45addgr-x-op990-45-2.png,olym-pianus-fusion-op990-45addgr-x-op990-45-3.png,olym-pianus-fusion-op990-45addgr-x-op990-45-4.png', 956, 11510000, 0.13, '2022-10-21 12:49:17', '2022-10-21 12:49:17', 'Olym', 'IDM'),
+('Product0028', 'OLYM PIANUS OP99411-84AGK-GL-XL', 'olym-pianus-op99411-84agk-gl-xl', 'Đồng hồ Olym Pianus OP99411-84AGK-GL-XL là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGK-GL-T là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op99411-84agk-gl-xl-1.png', 426, 9900000, 0.05, '2022-10-21 12:53:09', '2022-10-21 12:53:09', 'Olym', 'IDM'),
+('Product0029', 'OLYM PIANUS OP990-45ADGS-GL-T', 'olym-pianus-op990-45adgs-gl-t', 'Olym Pianus OP990-45ADGS-GL-T  là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội, mang một diện mạo phong thái phóng khoáng và vô cùng sang trọng giúp nó nổi bật ở bất cứ nơi đâu, đây là một trong những sản phẩm nổi bật của thương hiệu Olym Pianus, có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op990-45adgs-gl-t-1.png,olym-pianus-op990-45adgs-gl-t-2.png,olym-pianus-op990-45adgs-gl-t-3.png,olym-pianus-op990-45adgs-gl-t-4.png,olym-pianus-op990-45adgs-gl-t-5.png', 642, 99500000, 0.33, '2022-10-21 13:01:05', '2022-10-21 13:01:05', 'Olym', 'IDM'),
+('Product0030', 'OLYM PIANUS OP990-45ADGR-GL-D', 'olym-pianus-op990-45adgr-gl-d', 'Đồng hồ Olym Pianus OP990-45ADGR-GL-D là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-op990-45adgr-gl-d-1.png,olym-pianus-op990-45adgr-gl-d-2.png,olym-pianus-op990-45adgr-gl-d-3.png,olym-pianus-op990-45adgr-gl-d-4.png,olym-pianus-op990-45adgr-gl-d-5.png', 36, 2200000, 0.13, '2022-10-21 13:07:11', '2022-10-21 13:07:11', 'Olym', 'IDM'),
+('Product0031', 'OLYM PIANUS 9946.1AGS', 'olym-pianus-9946-1ags', 'Đồng hồ Olym Pianus 9946.1AGS là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-9946-1ags-1.png,olym-pianus-9946-1ags-2.png,olym-pianus-9946-1ags-3.png,olym-pianus-9946-1ags-4.png', 100, 99142000, 0.35, '2022-10-21 13:09:53', '2022-10-21 13:09:53', 'Olym', 'IDM'),
+('Product0032', 'OLYM PIANUS 899833G1B', 'olym-pianus-899833g1b', 'Đồng hồ Olym Pianus 899833G1B là một thương hiệu đồng hồ Nhật Bản nổi tiếng bền bỉ với chất lượng vượt trội. Đồng hồ Olym Pianus OP99411-84AGS-X là mẫu đồng hồ cơ mới nhất 2019 với độ hoàn thiện hoàn hảo, một trong những thương hiệu đồng hồ hiếm hoi có giá thành vừa phải mà vẫn đáp ứng đầy đủ các tiêu chí về thiết kế cũng như chất lượng sản phẩm mang tới khách hàng có những trải nghiệm tuyệt vời nhất.', 'olym-pianus-899833g1b-1.png,olym-pianus-899833g1b-2.png,olym-pianus-899833g1b-3.png,olym-pianus-899833g1b-4.png', 55, 2200000, 0.35, '2022-10-21 13:14:06', '2022-10-21 13:14:06', 'Olym', 'IDM'),
+('Product0033', 'OLYM PIANUS OP2467LK-T', 'op2467lk-t', 'Thiết kế nhẹ nhàng nhưng đầy nét quý phái. Chắc chắn là điểm thu hút trên cổ tay của người phụ nữ sở hữu chiếc đồng hồ này.Tựa như một thứ trang sức lộng lẫy trên cổ tay người đẹp, OP2467LK-T là sự hòa điệu của sắc vàng quý phái, 4 viên đá quý lấp lánh trên mặt số cùng kiểu thiết kế lắc tay điệu đàng, độc lạ. Từng nấc từng nấc để lộ làn da quyến rũ của chị em trong những khoảng hổng đầy ngụ ý.', 'op2467lk-t-1.png,op2467lk-t-2.png,op2467lk-t-3.png,op2467lk-t-4.png,op2467lk-t-5.png', 451, 244000, 0.35, '2022-10-21 13:25:31', '2022-10-21 13:25:31', 'Olym', 'IDWM'),
+('Product0034', 'OLYM PIANUS OP130-06LS-GL-T', 'op130-06ls-gl-t', 'Thiết kế nhẹ nhàng nhưng đầy nét quý phái. Chắc chắn là điểm thu hút trên cổ tay của người phụ nữ sở hữu chiếc đồng hồ này.Tựa như một thứ trang sức lộng lẫy trên cổ tay người đẹp, OP130-06LS-GL-T là sự hòa điệu của sắc vàng quý phái, 4 viên đá quý lấp lánh trên mặt số cùng kiểu thiết kế lắc tay điệu đàng, độc lạ. Từng nấc từng nấc để lộ làn da quyến rũ của chị em trong những khoảng hổng đầy ngụ ý.', 'op130-06ls-gl-t-1.png,op130-06ls-gl-t-2.png,op130-06ls-gl-t-3.png,op130-06ls-gl-t-4.png', 333, 1250000, 0, '2022-10-21 13:31:37', '2022-10-21 13:31:37', 'Olym', 'IDWM'),
+('Product0035', 'G-SHOCK GM-S5600GB-1', 'g-shock-gm-s5600gb-1', 'Chiếc đồng hồ G-SHOCK màu vàng kim trên nền đen phủ kim loại sở hữu thiết kế nhỏ và gọn hơn. Đường gờ kim loại phủ lớp ion màu vàng kim làm tôn lên vẻ ngoài trang nhã, sang trọng. Nút bấm và chốt cũng được phủ ion màu vàng kim tương phản với phần nền đen tạo nên lớp kim loại thực sự tỏa sáng. Sự kết hợp giữa màu vàng kim sang trọng và màu đen mạnh mẽ làm tôn lên vẻ đẹp lung linh độc đáo của riêng bạn.', 'g-shock-gm-s5600gb-1-1.png,g-shock-gm-s5600gb-1-2.png,g-shock-gm-s5600gb-3.png,g-shock-gm-s5600gb-1-4.png,g-shock-gm-s5600gb-1-5.png', 1000, 6810000, 0.01, '2022-10-21 13:35:39', '2022-10-21 13:35:39', 'Shock', 'IDM'),
+('Product0036', 'G-SHOCK GMA-S2100SK-2A', 'g-shock-gma-s2100sk-2a', 'Hãy đeo lên tay chiếc đồng hồ GA-2100 kết hợp kim-số, phủ kim loại trong suốt, vốn được ưa chuộng nay càng trở nên thu hút với thiết kế thanh mảnh và nhỏ gọn hơn. Chiếc đồng hồ sở hữu thiết kế kim loại trong suốt với nhiều màu cho bạn lựa chọn là phụ kiện linh hoạt, phù hợp với mọi loại trang phục trong suốt cả năm. Các vạch chỉ giờ được xử lý bằng phương pháp lắng đọng hơi bán mờ tạo nên vẻ ngoài bằng kim loại trong suốt sống động như thật.', 'g-shock-gma-s2100sk-2a-1.png,g-shock-gma-s2100sk-2a-2.png,g-shock-gma-s2100sk-2a-3.png,g-shock-gma-s2100sk-2a-4.png,g-shock-gma-s2100sk-2a-5.png', 858, 4242000, 0.09, '2022-10-21 13:40:32', '2022-10-21 13:40:32', 'Shock', 'IDM'),
+('Product0037', 'G-SHOCK GMA-S120SR-7A', 'g-shock-gma-s120sr-7a', 'Xin trân trọng giới thiệu mẫu G-SHOCK . Xuất hiện từ những năm 1990, phong cách trong suốt từng rất phổ biến và trở thành một phần không thể thiếu trong lịch sử của G-SHOCK .\r\nPhần mặt được dát lớp vỏ kim loại màu vàng hồng kết hợp cùng thiết kế chắc chắn đã tạo nên một mẫu đồng hồ đeo tay phù hợp với mọi hoàn cảnh, từ thời trang hiện đại cho đến thời trang đường phố và thường nhật.', 'g-shock-gma-s120sr-7a-1.png', 444, 5010000, 0.11, '2022-10-21 13:47:11', '2022-10-21 13:47:11', 'Shock', 'IDWM'),
+('Product0038', 'G-SHOCK GMA-S110CW-7A2', 'gma-s110cw-7a2', 'Xin trân trọng giới thiệu mẫu G-SHOCK . Xuất hiện từ những năm 1990, phong cách trong suốt từng rất phổ biến và trở thành một phần không thể thiếu trong lịch sử của G-SHOCK .\r\nPhần mặt được dát lớp vỏ kim loại màu vàng hồng kết hợp cùng thiết kế chắc chắn đã tạo nên một mẫu đồng hồ đeo tay phù hợp với mọi hoàn cảnh, từ thời trang hiện đại cho đến thời trang đường phố và thường nhật.', 'gma-s110cw-7a2-1.png,gma-s110cw-7a2-2.png,gma-s110cw-7a2-3.png,gma-s110cw-7a2-4.png,gma-s110cw-7a2-5.png', 222, 4984000, 0.31, '2022-10-21 13:47:11', '2022-10-21 13:47:11', 'Shock', 'IDWM');
 
 -- --------------------------------------------------------
 
@@ -246,10 +269,10 @@ CREATE TABLE `transaction` (
   `transaction` varchar(20) NOT NULL,
   `ID_Order` varchar(30) NOT NULL COMMENT 'foreign key table order',
   `ID_Customer` varchar(30) NOT NULL COMMENT 'foreign key table customer',
-  `Create_At` datetime NOT NULL,
-  `Status` varchar(15) NOT NULL,
-  `Update_At` datetime NOT NULL,
-  `Description` text NOT NULL,
+  `Create_At` datetime NOT NULL COMMENT 'the time the order is paid',
+  `Status` varchar(15) NOT NULL COMMENT 'Is the order status paid?',
+  `Update_At` datetime NOT NULL COMMENT 'payment status update',
+  `Description` text NOT NULL COMMENT 'payment status description',
   `ID_Method` varchar(20) NOT NULL COMMENT 'foreign key table payment methods'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

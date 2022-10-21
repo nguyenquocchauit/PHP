@@ -18,18 +18,18 @@ function doi_tien($type, $money,$rateVND)
     }
     return $moneyVND;
 }
-function doi_vang($type, $quantum,$rateGold)
+function doi_vang($type, $quantity,$rateGold)
 {
     $goldVND = 0;
     switch ($type) {
         case 'SJC':
-            $goldVND = $quantum * $rateGold;
+            $goldVND = $quantity * $rateGold;
             break;
         case 'AAA':
-            $goldVND = $quantum * $rateGold;
+            $goldVND = $quantity * $rateGold;
             break;
         case 'PNJ':
-            $goldVND = $quantum * $rateGold;
+            $goldVND = $quantity * $rateGold;
             break;
     }
     return $goldVND;
