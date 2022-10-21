@@ -96,6 +96,9 @@
             $tenLoai = $row['Ten_loai'];
             $trongLuong = $row['Trong_luong'];
             $donGia = number_format($row['Don_gia']);
+            $file = "../../../images/Hinh_sua/$pathImg";
+            if (!(file_exists($file)))
+                $pathImg = "mewmew.gif";
             echo "<td class='imgavt'><img src='../../../images/Hinh_sua/$pathImg' alt='hinhsua'> </td>";
             echo "
             <td>
