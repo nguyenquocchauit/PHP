@@ -6,7 +6,6 @@ $queryMen = "SELECT DISTINCT b.Name FROM products a inner join brands b on a.ID_
 $resultMen = mysqli_query($conn, $queryMen);
 $queryWomen = "SELECT DISTINCT b.Name FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDWM'";
 $resultWomen = mysqli_query($conn, $queryWomen);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +19,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
     <style>
         .dWSearchResult {
-            background-color: #bebaba;
+            border-radius: 10px;
+            background-color: #f1f1f1;
             display: none;
             position: absolute;
         }
@@ -48,9 +48,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 xmlhttp.send();
                 // hiển thị ô kết quả tìm kiếm khi bắt được sự kiện
                 document.getElementById("searchResult").classList.toggle("showSearchResult");
-
             }
-
         };
     </script>
 

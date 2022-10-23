@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="footer">
+    <div class="footer ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 mt-5">

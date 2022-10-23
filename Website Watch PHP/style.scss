@@ -3,6 +3,8 @@ $color1: #ffff;
 $color2: #dd3333;
 $color3: #555555;
 $color4: black;
+$color5 : #fdff8f;
+$color6 : #2faad51c;
 
 .slick-prev,
 .slick-next {
@@ -33,58 +35,70 @@ $color4: black;
 .thanh {
     position: absolute;
     left: 700px;
+
     .ngang {
         width: 80px;
         height: 7px;
         background-color: #dddddd;
     }
+
     #ngang1 {
         position: relative;
         left: 70px;
         top: 1px;
     }
+
     #ngang2 {
         position: relative;
         bottom: 42px;
         right: 83px;
     }
+
     .clock {
         position: relative;
         top: -20px;
         left: 20px;
         font-size: 24px;
         color: $color1;
-        
+
     }
 }
+
 /////////////////////////
 .header {
     &-contact {
         font-size: 15px;
         background-color: $color4;
         color: $color1;
+
         .left {
             padding-top: 20px;
+
             .header-icon {
                 position: relative;
                 left: 25px;
+
                 a {
                     text-decoration: none;
                     color: $color1;
                 }
             }
+
             .header-add {
                 #iconhouse {
                     color: $color2;
                 }
             }
         }
+
         .right {
             padding-top: 20px;
+
             #iconphone {
                 color: $color2;
             }
-            .button{
+
+            .button {
                 width: 70px;
                 height: 30px;
                 border-radius: 0%;
@@ -94,35 +108,66 @@ $color4: black;
             }
         }
     }
+
     &-menu {
         background-color: #bebaba;
+
         .navbar {
             position: relative;
             top: 10px;
         }
+
         #logo {
             width: 280px;
             height: 70px;
             position: relative;
             right: 90px;
         }
+
         #search {
             border-radius: 5%;
         }
+
         .searchbtn {
             position: relative;
             top: 15px;
+
             .btn {
                 background-color: $color2;
                 position: relative;
                 right: 5px;
             }
         }
+
+        #searchResult {
+            padding-left: 10px;
+        }
+
+        #searchResult>.row {
+            padding: 5px 0px 10px 0px;
+        }
+
+        .rowName>a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .imgSearch {
+            margin-left: 5px;
+            width: 30px;
+        }
+
+        .rowPrice {
+            color: #7e0b0b;
+            margin-left: 0px;
+        }
+
         .cartbtn {
             font-weight: 600;
             font-size: medium;
             position: relative;
             right: 10px;
+
             .cart {
                 text-decoration: none;
                 color: $color1;
@@ -131,11 +176,13 @@ $color4: black;
                 top: 10px;
             }
         }
+
         .nav-link {
             color: $color1;
             font-weight: bold;
         }
     }
+
     &-slide {
         .btnslide {
             width: 10px;
@@ -144,11 +191,14 @@ $color4: black;
         }
     }
 }
+
 /////////////////////////////////////
 .body {
-    background:linear-gradient( rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5)100%),url("./img/black_background_metal.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5)100%), url("./img/black_background_metal.jpg");
+
     .content {
         padding-top: 150px;
+
         .imgitem {
             width: 60px;
             height: 60px;
@@ -156,12 +206,14 @@ $color4: black;
             right: 10px;
             bottom: 20px;
         }
+
         h3 {
             color: $color1;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-weight: bold;
         }
     }
+
     .productlist {
         .tc-title {
             color: $color1;
@@ -169,11 +221,13 @@ $color4: black;
             text-transform: uppercase;
             font-weight: 700;
         }
+
         .filtering {
             position: relative;
             width: 100%;
             color: $color1;
             text-align: center;
+
             .wap-ss-img {
                 text-align: center;
                 // width: 100%;
@@ -183,12 +237,15 @@ $color4: black;
                 height: 250px;
                 margin: 0 auto;
             }
+
             .textleft {
                 text-align: center;
             }
-            .item{
+
+            .item {
                 position: relative;
-                .sale{
+
+                .sale {
                     position: absolute;
                     top: 0;
                     left: 10px;
@@ -198,20 +255,24 @@ $color4: black;
                     color: $color1;
                     font-weight: 600;
                 }
-                a{
-                    color: $color1;
+
+                a {
+                    color: $color5;
                     text-decoration: none;
                     margin-top: 20px;
                 }
-                .price{
+
+                .price {
                     margin: 10px;
                     margin-left: 60px;
-                    .price-pre{
+
+                    .price-pre {
                         text-decoration-line: line-through;
                         margin-right: 10px;
                     }
                 }
-                .btn{
+
+                .btn {
                     height: 35px;
                     border-radius: 0%;
                     color: $color1;
@@ -220,108 +281,197 @@ $color4: black;
                 }
             }
         }
-        .feedback{
-            .blog-area{
+
+        .feedback {
+            .blog-area {
                 padding: 100px;
-                .row{
+
+                .row {
                     color: $color1;
                 }
-                .col-7{
-                    p{
+
+                .col-7 {
+                    p {
                         padding-left: 20px;
                     }
                 }
-                hr{
+
+                hr {
                     width: 370px;
                 }
-                .imgfeedback{
-                    background-color: $color3;
-                    width: 360px;
+
+                .imgfeedback {
+                    background-color: $color6;
+                    width: 90%;
                     height: 360px;
+                }
+
+                .fa-heart {
+                    color: red;
+                }
+
+                .fa-comment {
+                    color: #00bcd4;
                 }
             }
         }
-        .news{
-            
+
+    }
+}
+
+/////////////////////////////////body cart////
+.body-cart {
+    .container-fluid{
+        padding: 0px 60px 0px 60px;
+    }
+
+    .btnquantity {
+        border: transparent;
+        background-color: $color2;
+        color: $color1;
+        width: 30px;
+        height: 30px;
+    }
+
+    table {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        margin-bottom: 7%;
+
+        .tr1 {
+            border-bottom: 2px solid $color2;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .divimg {
+            margin: 0 auto;
+            width: 40%;
+            img {
+                width: 100%;
+                object-fit: fill;
+            }
+        }
+        .inpquantity{
+            width: 26%;
+            text-align: center;
+        }
+        .trbtn{
+            position: relative;
+            top: 20px;
+        }
+    }
+
+    button {
+        background-color: $color2;
+        color: $color1;
+        width: 250px;
+        height: 40px;
+        border: transparent;
+        text-transform: uppercase;
+
+        #iconback {
+            width: 10px;
+            padding-right: 10px;
         }
     }
 }
+
 //////////////////////////////////////
-.footer{
-    background:linear-gradient( rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5)100%),url("./img/footer-background.jpg");
+.footer {
+    background: linear-gradient(rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5)100%), url("./img/footer-background.jpg");
     color: $color1;
     padding: 15px;
-    .logo{
+
+    .logo {
         width: 250px;
         height: 80px;
     }
-    .iconfaw{
+
+    .iconfaw {
         text-decoration: none;
         color: $color1;
         padding: 10px;
         font-size: xx-large;
     }
-    input{
+
+    input {
         width: 300px;
         height: 30px;
     }
-    #plane{
+
+    #plane {
         color: $color2;
         position: relative;
         right: 30px;
     }
-    tr td{
+
+    tr td {
         padding: 10px;
     }
-    #back-top{
+
+    #back-top {
         width: 30px;
         height: 30px;
         color: $color1;
     }
 }
+
 ///////////////////////////////////shop//
-.bodyshop{
-    nav{
+.bodyshop {
+    nav {
         max-width: 280px;
-        .title{
+
+        .title {
             font-weight: 700;
             border: 1px $color3 solid;
         }
     }
-    span{
+
+    span {
         text-transform: uppercase;
     }
-    .product-shop{
+
+    .product-shop {
         margin: auto;
         text-align: center;
-        .item{
-            img{
+
+        .item {
+            img {
                 width: 240px;
                 height: 240px;
             }
-            .name{
+
+            .name {
                 font-weight: 700;
             }
-            a{
+
+            a {
                 text-decoration: none;
                 color: black;
             }
-            .sale{
+
+            .sale {
                 background-color: $color2;
                 width: 45px;
                 height: 40px;
                 color: $color1;
                 font-weight: 600;
             }
-            .price{
+
+            .price {
                 margin: 10px;
                 margin-left: 60px;
-                .price-pre{
+
+                .price-pre {
                     text-decoration-line: line-through;
                     margin-right: 10px;
                 }
             }
-            .btn{
+
+            .btn {
                 height: 35px;
                 border-radius: 0%;
                 color: $color1;
@@ -331,29 +481,35 @@ $color4: black;
         }
     }
 }
+
 ///////////////////////////////detail product ////////////////
-.bodydetail{
+.bodydetail {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    .slide{
+
+    .slide {
         width: 100%;
     }
-    .imgdetail{
+
+    .imgdetail {
         width: 150px;
         height: 150px;
     }
-    .price{
-        .price-pre{
+
+    .price {
+        .price-pre {
             text-decoration-line: line-through;
             margin-right: 10px;
         }
     }
-    .quantity{
-        .inputq{
+
+    .quantity {
+        .inputq {
             width: 30px;
             text-align: center;
         }
     }
-    .buttonc{
+
+    .buttonc {
         border-radius: 0%;
         background-color: $color2;
         color: $color1;
@@ -364,10 +520,9 @@ $color4: black;
         left: 40px;
         bottom: 5px;
     }
-    .imgpay{
+
+    .imgpay {
         width: 150px;
         height: 50px;
     }
 }
-
-
