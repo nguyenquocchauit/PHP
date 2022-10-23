@@ -36,72 +36,32 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
 </head>
 
 <body>
-  <div class="header">
-    <div class="header-contact">
-      <div class="container">
-        <div class="row">
-          <div class="left col-6 row">
-            <div class="header-icon col-2">
-              <a href="#">
-                <i class="fa-brands fa-facebook-f icons"></i>
-              </a>
-              <a href="#">
-                <i class="fa-brands fa-instagram icons"></i>
-              </a>
-              <a href="#">
-                <i class="fa-brands fa-twitter icons"></i>
-              </a>
-            </div>
-            <div class="header-add col-10">
-              <p class="">
-                <i id="iconhouse" class="fa-sharp fa-solid fa-house"></i>
-                <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
-              </p>
-            </div>
-          </div>
-          <div class="center col-2">
-
-          </div>
-          <div class="right col-4 ">
-            <p class="">
-              <i id="iconphone" class="fa-solid fa-phone-volume"></i>
-              <strong>HOTLINE: </strong>038 655 5555 |
-              <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;
-              <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Signup</button>
-            </p>
-          </div>
+  <?php
+  // thêm file navbar menu
+  include "navbar.php";
+  ?>
+  <div class="header-slide">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btnslide" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="btnslide" aria-label="Slide 2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./img/banner-01.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="./img/banner-02.jpg" class="d-block w-100" alt="...">
         </div>
       </div>
-    </div>
-
-    <?php
-    // thêm file navbar menu
-    include "navbar.php";
-    ?>
-
-    <div class="header-slide">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btnslide" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="btnslide" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./img/banner-01.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="./img/banner-02.jpg" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
   <div class="body">
@@ -334,58 +294,11 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
       </div>
     </div>
   </div>
-
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 mt-5">
-          <img class="logo" src="./img/tcwlogo.png" alt="" srcset="">
-          <table>
-            <tr>
-              <td><i class="fa-solid fa-location-dot"></i></td>
-              <td>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa</td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-phone"></i> </td>
-              <td>038 655 5555 </td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-envelope"></i></td>
-              <td>tcwatch.nhatrang@gmail.com</td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-lg-6 col-sm-6 mt-5">
-          <h2>Đăng ký</h2>
-          <p>Đăng ký để nhận được được thông tin mới nhất từ chúng tôi.</p>
-          <input type="text" placeholder="Email ..."><i class="fa-solid fa-paper-plane" id="plane"></i>
-          <h2>Kết nối với chúng tôi</h2>
-          <div>
-            <a href="#" class="iconfaw">
-              <i class="fa-brands fa-facebook-f icons"></i>
-            </a>
-            <a href="#" class="iconfaw">
-              <i class="fa-brands fa-instagram icons"></i>
-            </a>
-            <a href="#" class="iconfaw">
-              <i class="fa-brands fa-twitter icons"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-11">
-          <i>Copyright ©2022 All rights reserved | This template is made with by #TeamTCWatch</i>
-        </div>
-        <div class=" col-1 back-top" style="display: block;">
-          <a title="Go to top" href="#">
-            <i class="fa fa-circle-chevron-up" id="back-top"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php
+  // thêm file footer
+  include "footer.php";
+  ?>
+  <!-- modal đăng ký và đăng nhập -->
   <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">

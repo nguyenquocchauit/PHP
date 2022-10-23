@@ -1,6 +1,7 @@
 <?php
 // kết nối cơ sở dữ liệu db_watch
 require 'connectDB.php';
+//_REQUEST biến siêu toàn cục PHP được sử dụng để thu thập dữ liệu sau khi gửi biểu mẫu HTML (từ file navbar ô tìm kiếm)
 $search = $_REQUEST["search"];
 $searchResult = "";
 if ($search !== "") {
