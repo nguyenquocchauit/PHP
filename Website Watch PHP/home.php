@@ -160,7 +160,6 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                   </div>
                 </div>
               <?php endwhile; ?>
-
             </div>
           </div>
         </div>
