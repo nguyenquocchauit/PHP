@@ -140,12 +140,11 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                   <div class="wap-items-ss brbox">
                     <div class="wap-ss-img">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
-                      <a href="shop.php?gender=<?php echo $rowAll['Gender_Name'] ?>&brand=<?php echo $rowAll['Brand_Name'] ?>">
-                        <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowAll['Image']);
-                                                                    echo $img1[0] ?>"></a>
+                      <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowAll['Image']);
+                                                                  echo $img1[0] ?>">
                     </div>
                     <div class="textleft">
-                      <div><?php echo $rowAll['Name'] ?></div>
+                      <div><a href="shop.php?gender=<?php echo $rowAll['Gender_Name'] ?>&brand=<?php echo $rowAll['Brand_Name'] ?>"><?php echo $rowAll['Name'] ?></div></a>
                       <div><b><?php echo $rowAll['Quantity'] ?> sản phẩm</b></div>
                     </div>
                   </div>
@@ -179,12 +178,11 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                   <div class="wap-items-ss brbox">
                     <div class="wap-ss-img">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
-                      <a href="shop.php?gender=<?php echo $rowDiscount['Gender_Name'] ?>&brand=<?php echo $rowDiscount['Brand_Name'] ?>">
-                        <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowDiscount['Image']);
-                                                                    echo $img1[0] ?>"></a>
+                      <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowDiscount['Image']);
+                                                                  echo $img1[0] ?>">
                     </div>
                     <div class="textleft">
-                      <div><a href="#"><?php echo $rowDiscount['Name'] ?></a></div>
+                      <div><a href="shop.php?gender=<?php echo $rowDiscount['Gender_Name'] ?>&brand=<?php echo $rowDiscount['Brand_Name'] ?>"><?php echo $rowDiscount['Name'] ?></a></div>
                       <div class="price d-flex">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
                         <p class="price-pre"><?php echo number_format($rowDiscount['Price']) ?></p>
@@ -230,12 +228,11 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                   <div class="wap-items-ss brbox">
                     <div class="wap-ss-img">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
-                      <a href="shop.php?gender=<?php echo $rowBestSeller['Gender_Name'] ?>&brand=<?php echo $rowBestSeller['Brand_Name'] ?>">
                       <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowBestSeller['Image']);
-                                                                  echo $img1[0] ?>"></a>
+                                                                  echo $img1[0] ?>">
                     </div>
                     <div class="textleft">
-                      <div><a href="#"><?php echo $rowBestSeller['Name'] ?></a></div>
+                      <div><a href="shop.php?gender=<?php echo $rowBestSeller['Gender_Name'] ?>&brand=<?php echo $rowBestSeller['Brand_Name'] ?>"><?php echo $rowBestSeller['Name'] ?></a></div>
                       <div class="price d-flex">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
                         <p class="price-pre"><?php echo number_format($rowBestSeller['Price']) ?></p>

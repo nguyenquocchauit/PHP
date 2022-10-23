@@ -134,8 +134,27 @@
   background-color: #dd3333;
   position: relative;
   right: 5px;
+
+}
+#searchResult{
+  margin: 10px;
+}
+#searchResult>.row{
+  padding: 5px 0px 10px 0px;
+}
+.rowName >a {
+  color: #000000;
+  text-decoration: none;
 }
 
+.imgSearch {
+  margin-left: 5px;
+  width: 30px;
+}
+.rowPrice{
+  color: #7e0b0b;
+  margin-left: 0px;
+}
 .header-menu .cartbtn {
   font-weight: 600;
   font-size: medium;
@@ -227,7 +246,7 @@
 }
 
 .body .productlist .filtering .item a {
-  color: white;
+  color: #ffdc9b;
   text-decoration: none;
   margin-top: 20px;
 }
