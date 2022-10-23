@@ -5,6 +5,7 @@ $color3: #555555;
 $color4: black;
 $color5 : #fdff8f;
 $color6 : #2faad51c;
+$color7 : #f7b100;
 
 .slick-prev,
 .slick-next {
@@ -85,6 +86,10 @@ $color6 : #2faad51c;
             }
 
             .header-add {
+                a{
+                    text-decoration: none;
+                    color: $color1;
+                }
                 #iconhouse {
                     color: $color2;
                 }
@@ -99,12 +104,17 @@ $color6 : #2faad51c;
             }
 
             .button {
+                transition-duration: 0.4s;
                 width: 70px;
                 height: 30px;
-                border-radius: 0%;
                 background-color: $color3;
                 border: $color3 1px solid;
                 color: $color1;
+                border-radius: 5px;
+            }
+
+            .button:hover {
+                background-color: #1a4214;
             }
         }
     }
@@ -321,7 +331,7 @@ $color6 : #2faad51c;
 
 /////////////////////////////////body cart////
 .body-cart {
-    .container-fluid{
+    .container-fluid {
         padding: 0px 60px 0px 60px;
     }
 
@@ -349,33 +359,65 @@ $color6 : #2faad51c;
         .divimg {
             margin: 0 auto;
             width: 40%;
+
             img {
                 width: 100%;
                 object-fit: fill;
             }
         }
-        .inpquantity{
+
+        p {
+            margin: 0 auto;
+        }
+
+        .inpquantity {
             width: 26%;
             text-align: center;
         }
-        .trbtn{
+
+        .fa-circle-xmark {
+            font-size: 140%;
+        }
+
+        .trbtn {
             position: relative;
             top: 20px;
+
+            button {
+                border-radius: 5px;
+                background-color: $color2;
+                color: $color1;
+                width: 250px;
+                height: 40px;
+                border: transparent;
+                text-transform: uppercase;
+            }
         }
     }
 
-    button {
+    .buttonBack {
+        background-color: $color7;
+        color: $color4;
+        width: 250px;
+        height: 40px;
+        border: transparent;
+        text-transform: uppercase;
+        border-radius: 1px;
+
+        #iconback {
+            width: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    .buttonUpdate {
+        border-radius: 1px;
         background-color: $color2;
         color: $color1;
         width: 250px;
         height: 40px;
         border: transparent;
         text-transform: uppercase;
-
-        #iconback {
-            width: 10px;
-            padding-right: 10px;
-        }
     }
 }
 
@@ -416,6 +458,13 @@ $color6 : #2faad51c;
         width: 30px;
         height: 30px;
         color: $color1;
+    }
+    .fa-phone{
+        color: $color2;
+    }
+    .fa-location-dot
+    {
+        color: #90f1fb;
     }
 }
 

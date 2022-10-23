@@ -1,6 +1,24 @@
 <?php
+// đăng xuất
+if (isset($_POST['logout'])) {
+    session_destroy();
+    session_unset();
+    header("Refresh:0");
+}
+$currentUser = "";
+// if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
+if (!(isset($_SESSION['CurrentUser'])) && !(empty($_SESSION['CurrentUser']))) {
+    $currentUser = "";
+} else {
+    // khi load trang lại tức đã có $_SESSION['CurrentUser'] tồn tại thì $currentUser = $_SESSION['CurrentUser']
+    if ((isset($_SESSION['CurrentUser'])))
+        $currentUser = $_SESSION['CurrentUser'];
+}
 // kết nối cơ sở dữ liệu db_watch
 require 'connectDB.php';
+// lấy tên người dùng hiện thông quan session[currenuser] chứa mã khách hàng
+$queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer ='$currentUser'";
+$resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
 $queryMen = "SELECT DISTINCT b.Name FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";
 $resultMen = mysqli_query($conn, $queryMen);
@@ -34,6 +52,16 @@ $resultWomen = mysqli_query($conn, $queryWomen);
         }
     </style>
     <script>
+        // bắt sự kiện đăng xuất
+        function logout() {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                document.location = 'home.php';
+            }
+            // gọi file logout.php 
+            xhr.open('GET', 'logout.php', true);
+            xhr.send();
+        }
         // bắt sự kiện thay đổi ký tự trong input search. Xử lý đưa dữ liệu ra bên ngoài từ từ khóa tìm kiếm
         function search(str) {
             if (str.length != 0) {
@@ -56,42 +84,63 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 
 <body>
     <div class="header sticky-top">
-        <div class="header-contact">
-            <div class="container">
-                <div class="row">
-                    <div class="left col-6 row">
-                        <div class="header-icon col-2">
-                            <a href="#">
-                                <i class="fa-brands fa-facebook-f icons"></i>
-                            </a>
-                            <a href="#">
-                                <i class="fa-brands fa-instagram icons"></i>
-                            </a>
-                            <a href="#">
-                                <i class="fa-brands fa-twitter icons"></i>
-                            </a>
+        <form action="" method="post">
+            <div class="header-contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="left col-6 row">
+                            <div class="header-icon col-2">
+                                <a href="#">
+                                    <i class="fa-brands fa-facebook-f icons"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa-brands fa-instagram icons"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa-brands fa-twitter icons"></i>
+                                </a>
+                            </div>
+                            <div class="header-add col-10">
+                                <a href="home.php">
+                                    <p class="">
+                                        <i id="iconhouse" class="fa-sharp fa-solid fa-house"></i>
+                                        <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
+                                    </p>
+                                </a>
+                            </div>
                         </div>
-                        <div class="header-add col-10">
+                        <div class="center col-2">
+
+                        </div>
+                        <div class="right col-4 ">
                             <p class="">
-                                <i id="iconhouse" class="fa-sharp fa-solid fa-house"></i>
-                                <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
+                                <i id="iconphone" class="fa-solid fa-phone-volume"></i>
+                                <strong>HOTLINE: </strong>038 655 5555 |
+                                <?php
+                                if (mysqli_num_rows($resultCurrenUser) != 0) :
+                                    $rowCurrenUser = mysqli_fetch_array($resultCurrenUser);
+                                    // chuyển đổ chuỗi thành mãng
+                                    $currentUser = explode(" ", $rowCurrenUser['currentUserName']);
+                                    // kiểm tra số lượng phần tử trong mảng
+                                    $sizeof = sizeof($currentUser);
+                                    // ex: Nguyễn Quốc Châu -> $sizeof = 3
+                                    // lấy tên (sizeof-1) và tên đệm (sizeof-2) gần nhất với tên.  
+                                    $currentUser = $currentUser[($sizeof - 2)] . " " . $currentUser[($sizeof - 1)];
+                                ?>
+                                    <i class="fa-solid fa-user"></i>
+                                    <strong><?php echo $currentUser;  ?></strong>
+                                    <button type="submit" name="logout" class="btn btn-dark"><i class="fa-solid fa-right-from-bracket"></i></button>
+                                    <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
+                                <?php else : ?>
+                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;
+                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Signup</button>
+                                <?php endif; ?>
                             </p>
                         </div>
                     </div>
-                    <div class="center col-2">
-
-                    </div>
-                    <div class="right col-4 ">
-                        <p class="">
-                            <i id="iconphone" class="fa-solid fa-phone-volume"></i>
-                            <strong>HOTLINE: </strong>038 655 5555 |
-                            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;
-                            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Signup</button>
-                        </p>
-                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="header-menu " id="header-menu">
             <div class="container">
                 <div class="row">
@@ -158,16 +207,39 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                             </div>
                         </div>
                         <div class="col-5 cartbtn">
-                            <a href="" class="cart">
+                            <a href="product_cart.php" class="cart">
                                 <span class="header-cart-title">GIỎ HÀNG<i class="fa-solid fa-bag-shopping mx-3"></i></span>
                             </a>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- modal đăng ký và đăng nhập -->
+    <form action="" method="POST" id="submitLogin">
+        <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Đăng nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" placeholder="Email" id="username" name="userName" class="input">
+                        <!-- thông báo lỗi tên tài khoản -->
+                        <p id="validationUserName" style="color: red;display:none"></p>
+                        <br />
+                        <input type="password" placeholder="Mật khẩu" id="password" name="passWord" class="input">
+                        <!-- thông báo lỗi mật khẩu -->
+                        <p id="validationPassWord" style="color: red;display:none"></p>
+                        <br />
+                        <button class="btn btn-sm btn-dark" type="submit" id="login" onclick="checkLogin()" name="login">Đăng nhập</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 
 </html>

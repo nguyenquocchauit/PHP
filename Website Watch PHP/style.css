@@ -66,6 +66,10 @@
   text-decoration: none;
   color: white;
 }
+.header-contact .left .header-add a {
+  text-decoration: none;
+  color: white;
+}
 .header-contact .left .header-add #iconhouse {
   color: #dd3333;
 }
@@ -76,12 +80,16 @@
   color: #dd3333;
 }
 .header-contact .right .button {
+  transition-duration: 0.4s;
   width: 70px;
   height: 30px;
-  border-radius: 0%;
   background-color: #555555;
   border: #555555 1px solid;
   color: white;
+  border-radius: 5px;
+}
+.header-contact .right .button:hover {
+  background-color: #1a4214;
 }
 .header-menu {
   background-color: #bebaba;
@@ -278,15 +286,22 @@
   -o-object-fit: fill;
      object-fit: fill;
 }
+.body-cart table p {
+  margin: 0 auto;
+}
 .body-cart table .inpquantity {
   width: 26%;
   text-align: center;
+}
+.body-cart table .fa-circle-xmark {
+  font-size: 140%;
 }
 .body-cart table .trbtn {
   position: relative;
   top: 20px;
 }
-.body-cart button {
+.body-cart table .trbtn button {
+  border-radius: 5px;
   background-color: #dd3333;
   color: white;
   width: 250px;
@@ -294,9 +309,27 @@
   border: transparent;
   text-transform: uppercase;
 }
-.body-cart button #iconback {
+.body-cart .buttonBack {
+  background-color: #f7b100;
+  color: black;
+  width: 250px;
+  height: 40px;
+  border: transparent;
+  text-transform: uppercase;
+  border-radius: 1px;
+}
+.body-cart .buttonBack #iconback {
   width: 10px;
   padding-right: 10px;
+}
+.body-cart .buttonUpdate {
+  border-radius: 1px;
+  background-color: #dd3333;
+  color: white;
+  width: 250px;
+  height: 40px;
+  border: transparent;
+  text-transform: uppercase;
 }
 
 .footer {
@@ -330,6 +363,12 @@
   width: 30px;
   height: 30px;
   color: white;
+}
+.footer .fa-phone {
+  color: #dd3333;
+}
+.footer .fa-location-dot {
+  color: #90f1fb;
 }
 
 .bodyshop nav {

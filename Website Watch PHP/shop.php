@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet"
-    href="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
@@ -91,8 +91,8 @@
         </div>
       </div>
     </div> -->
-    
-    <?php 
+
+    <?php
     // thêm file navbar menu
     include "navbar.php";
     ?>
@@ -103,34 +103,20 @@
       <nav id="sidebarMenu" class="collapse d-lg-block sidebar sticky-top collapse bg-light">
         <div class="position-sticky">
           <div class="list-group list-group-flush mx-3 mt-4">
-            <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple title"
-              aria-current="true"
-            >
-              <span >DANH MỤC SẢN PHẨM </span>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple title" aria-current="true">
+              <span>DANH MỤC SẢN PHẨM </span>
             </a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
-             <span>Aviator</span>
+              <span>Aviator</span>
             </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple active"
-              ><span>Baby-G</span></a
-            >
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-              ><span>Edifice</span></a
-            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple active"><span>Baby-G</span></a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><span>Edifice</span></a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
               <span>G-Shock</span>
             </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-              ><span>G-Steel</span></a
-            >
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-              ><span>gravity-master</span></a
-            >
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-              ><span>Mubmaster</span></a
-            >
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><span>G-Steel</span></a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><span>gravity-master</span></a>
+            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><span>Mubmaster</span></a>
           </div>
         </div>
       </nav>

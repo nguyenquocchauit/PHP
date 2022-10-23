@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +68,7 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr>
                                 <td style="width: 15%;">
@@ -87,7 +88,7 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr>
                                 <td style="width: 15%;">
@@ -107,7 +108,7 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr>
                                 <td style="width: 15%;">
@@ -127,7 +128,7 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr>
                                 <td style="width: 15%;">
@@ -147,7 +148,7 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr>
                                 <td style="width: 15%;">
@@ -167,15 +168,15 @@
                                 <td>
                                     <p>3.499.000 VNĐ</p>
                                 </td>
-                                <td><i class="fa-regular fa-circle-xmark"></i></td>
+                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
                             <tr class="trbtn " >
                                 <td></td>
                                 <td style="text-align: end;">
-                                    <button type="button" class=""><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button>
+                                    <button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button>
                                 </td>
                                 <td style="text-align: start;">
-                                    <button type="button" class="">Cập nhập giỏ hàng</button>
+                                    <button type="button" class="buttonUpdate">Cập nhập giỏ hàng</button>
                                 </td>
                             </tr>
                             

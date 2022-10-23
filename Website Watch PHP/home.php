@@ -1,4 +1,5 @@
 <?php
+session_start();
 // kết nối cơ sở dữ liệu db_watch
 require 'connectDB.php';
 // lấy toàn bộ sản phẩm
@@ -29,10 +30,64 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <link rel="stylesheet" href="./thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
   <script src="./thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
   <script src="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>TC WATCH</title>
+  <script>
+    // sử dụng công nghệ AJAX
+    // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php
+    $(document).ready(function() {
+      $("#submitLogin").submit(function() {
+
+        var _email = $("#username").val();
+        var _password = $("#password").val();
+        if (_email == "" || _email.length == 0) {
+          document.getElementById("validationPassWord").style.display = "none";
+          document.getElementById("validationUserName").innerHTML = "(*) Tài khoản trống";
+          document.getElementById("validationUserName").style.display = "block";
+        } else if (_password == "" || _password.length == 0) {
+          document.getElementById("validationUserName").style.display = "none";
+          document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu trống";
+          document.getElementById("validationPassWord").style.display = "block";
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "login.php",
+            data: {
+              email: _email,
+              password: _password
+            },
+            cache: false,
+            success: function(result) {
+              /* check array  */
+              var n = result.search("Unknown database");
+              if (n > 0) {
+                alert("Database không đúng!");
+              } else {
+                /* Convert json to array */
+                var data = JSON.parse(result);
+                if (data['message'] == 1) {
+                  alert("Bạn đăng nhập thành công!")
+                  window.location.href = data['success'];
+                } else if (data['message'] == 0) {
+                  document.getElementById("validationPassWord").innerHTML = "Email & Password không đúng";
+                  document.getElementById("validationPassWord").style.display = "block";
+                } else {
+                  document.getElementById("validationPassWord").innerHTML = "Không tồn tại email và password";
+                  document.getElementById("validationPassWord").style.display = "block";
+                }
+              }
+            },
+            error: function(request, status, error) {
+              alert(status);
+            }
+          });
+        }
+        return false;
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -297,23 +352,6 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   // thêm file footer
   include "footer.php";
   ?>
-  <!-- modal đăng ký và đăng nhập -->
-  <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel">Đăng nhập</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="text" placeholder="username" id="username" class="input">
-          <br />
-          <input type="password" placeholder="pass" id="pass" class="input"><br />
-          <button class="btn btn-sm btn-dark" type="button" id="button" onclick="checklogin()">LOGIN</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
