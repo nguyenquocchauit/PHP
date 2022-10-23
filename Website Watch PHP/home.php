@@ -34,60 +34,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>TC WATCH</title>
-  <script>
-    // sử dụng công nghệ AJAX
-    // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php
-    $(document).ready(function() {
-      $("#submitLogin").submit(function() {
-
-        var _email = $("#username").val();
-        var _password = $("#password").val();
-        if (_email == "" || _email.length == 0) {
-          document.getElementById("validationPassWord").style.display = "none";
-          document.getElementById("validationUserName").innerHTML = "(*) Tài khoản trống";
-          document.getElementById("validationUserName").style.display = "block";
-        } else if (_password == "" || _password.length == 0) {
-          document.getElementById("validationUserName").style.display = "none";
-          document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu trống";
-          document.getElementById("validationPassWord").style.display = "block";
-        } else {
-          $.ajax({
-            type: "POST",
-            url: "login.php",
-            data: {
-              email: _email,
-              password: _password
-            },
-            cache: false,
-            success: function(result) {
-              /* check array  */
-              var n = result.search("Unknown database");
-              if (n > 0) {
-                alert("Database không đúng!");
-              } else {
-                /* Convert json to array */
-                var data = JSON.parse(result);
-                if (data['message'] == 1) {
-                  alert("Bạn đăng nhập thành công!")
-                  window.location.href = data['success'];
-                } else if (data['message'] == 0) {
-                  document.getElementById("validationPassWord").innerHTML = "Email & Password không đúng";
-                  document.getElementById("validationPassWord").style.display = "block";
-                } else {
-                  document.getElementById("validationPassWord").innerHTML = "Không tồn tại email và password";
-                  document.getElementById("validationPassWord").style.display = "block";
-                }
-              }
-            },
-            error: function(request, status, error) {
-              alert(status);
-            }
-          });
-        }
-        return false;
-      });
-    });
-  </script>
+  
 </head>
 
 <body>
