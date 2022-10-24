@@ -453,4 +453,48 @@
 .bodydetail .imgpay {
   width: 150px;
   height: 50px;
+}
+
+.modal-content {
+  background-color: #d5d5d5;
+  box-shadow: 0 0 2px #000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.modal-content .modal-header h5 {
+  text-align: center;
+  color: #000;
+  font-size: 30px;
+}
+.modal-content .modal-body label {
+  padding: 3px 0;
+  display: block;
+  font-weight: bold;
+}
+.modal-content .modal-body input {
+  border: none;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.modal-content .modal-body .forgetPass {
+  display: flex;
+  justify-content: end;
+  text-align: right;
+}
+.modal-content .modal-body .forgetPass a {
+  padding: 10px 0px 0px 0px;
+  text-decoration: none;
+}
+.modal-content .modal-footer button {
+  width: 100%;
+  border: none;
+  background: #333;
+  color: #fff;
+  padding: 11px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */
