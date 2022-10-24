@@ -284,11 +284,18 @@ $color7 : #f7b100;
                 }
 
                 .btn {
-                    height: 35px;
-                    border-radius: 0%;
-                    color: $color1;
-                    background-color: $color3;
-                    border: #555555 1px solid;
+                    // height: 35px;
+                    // border-radius: 0%;
+                    // color: $color1;
+                    // background-color: $color3;
+                    // border: #555555 1px solid;
+                    border: 1px solid #52507e;
+                    padding: 4px 14px;
+                    background-color: #000;
+                    color: #f17502;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
             }
         }
@@ -598,12 +605,14 @@ $color7 : #f7b100;
             position: relative;
             bottom: 40px;
         }
+
         .btn-close-signup {
             left: 355%;
             justify-content: end;
             position: relative;
             bottom: 40px;
         }
+
         .btn-close-forget {
             left: 30%;
             justify-content: end;
@@ -649,7 +658,8 @@ $color7 : #f7b100;
                 text-decoration: none;
             }
         }
-        .error{
+
+        .error {
             box-shadow: 0px 3px #1bcf4840;
             border: 2px solid red;
         }

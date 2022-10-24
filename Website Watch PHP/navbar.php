@@ -1,5 +1,5 @@
 <?php
-// đăng xuất
+//đăng xuất
 if (isset($_POST['logout'])) {
     session_destroy();
     session_unset();
@@ -57,16 +57,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
         // css màu input nếu đăng nhập có xãy ra lỗi
         var boxShadowCSS = '0px 3px #1bcf4840';
         var borderCSS = '2px solid red';
-        // bắt sự kiện đăng xuất
-        function logout() {
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function() {
-                document.location = 'home.php';
-            }
-            // gọi file logout.php 
-            xhr.open('GET', 'logout.php', true);
-            xhr.send();
-        }
+
         // bắt sự kiện thay đổi ký tự trong input search. Xử lý đưa dữ liệu ra bên ngoài từ từ khóa tìm kiếm
         function search(str) {
             if (str.length != 0) {
@@ -143,7 +134,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         imageUrl: './img/cat.gif',
                                         imageWidth: 315,
                                         imageHeight: 230,
-                                        timer: 5000,
+                                        timer: 3000,
                                         timerProgressBar: true,
                                         didOpen: () => {
                                             Swal.showLoading()
@@ -338,7 +329,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         </div>
                         <div class="col-5 cartbtn">
                             <a href="product_cart.php" class="cart">
-                                <span class="header-cart-title">GIỎ HÀNG<i class="fa-solid fa-bag-shopping mx-3"></i></span>
+                                <span class="header-cart-title">GIỎ HÀNG<i class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i></span>
                             </a>
                         </div>
                     </div>

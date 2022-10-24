@@ -42,7 +42,9 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   // thêm file navbar menu
   include "navbar.php";
   ?>
+  
   <div class="header-slide">
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btnslide" aria-current="true" aria-label="Slide 1"></button>
@@ -65,7 +67,9 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+    
   </div>
+  
   <div class="body">
     <div class="content">
       <div class="container">
@@ -85,6 +89,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
         </div>
       </div>
     </div>
+    
     <div class="productlist">
       <div class="product mt-5">
         <h2 class="tc-title ">Danh mục sản phẩm</h2>
@@ -137,8 +142,8 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     echo "-" . $percent;
                     ?>
                   </div>
-                  <div class="wap-items-ss brbox">
-                    <div class="wap-ss-img">
+                  <div class="wap-items-ss brbox ">
+                    <div class="wap-ss-img itemimg">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
                       <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowDiscount['Image']);
                                                                   echo $img1[0] ?>">
@@ -157,7 +162,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div><button type="button" class="btn btn-light">Thêm vào giỏ</button></div>
+                      <div><button type="button" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
                     </div>
                   </div>
                 </div>
@@ -166,6 +171,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
           </div>
         </div>
       </div>
+      
       <div class="product-hot mt-5">
         <h2 class="tc-title">Sản phẩm nổi bật</h2>
         <div class="thanh">
@@ -206,7 +212,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div><button type="button" class="btn btn-light">Thêm vào giỏ</button></div>
+                      <div><button type="button" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
                     </div>
                   </div>
                 </div>

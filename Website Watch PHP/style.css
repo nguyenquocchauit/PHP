@@ -225,11 +225,13 @@
   margin-right: 10px;
 }
 .body .productlist .filtering .item .btn {
-  height: 35px;
-  border-radius: 0%;
-  color: white;
-  background-color: #555555;
-  border: #555555 1px solid;
+  border: 1px solid #52507e;
+  padding: 4px 14px;
+  background-color: #000;
+  color: #f17502;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
 }
 .body .productlist .feedback .blog-area {
   padding: 100px;
@@ -512,8 +514,11 @@
   text-align: right;
 }
 .modal-content .modal-body .forgetPass a {
-  padding: 10px 0px 0px 0px;
   text-decoration: none;
+}
+.modal-content .modal-body .error {
+  box-shadow: 0px 3px rgba(27, 207, 72, 0.2509803922);
+  border: 2px solid red;
 }
 .modal-content .modal-footer button {
   width: 100%;
