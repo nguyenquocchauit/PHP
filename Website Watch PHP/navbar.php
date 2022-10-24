@@ -20,9 +20,9 @@ require 'connectDB.php';
 $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer ='$currentUser'";
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
-$queryMen = "SELECT DISTINCT b.Name FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";
+$queryMen = "SELECT DISTINCT b.Name,b.ID_Brand FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";
 $resultMen = mysqli_query($conn, $queryMen);
-$queryWomen = "SELECT DISTINCT b.Name FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDWM'";
+$queryWomen = "SELECT DISTINCT b.Name,b.ID_Brand FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDWM'";
 $resultWomen = mysqli_query($conn, $queryWomen);
 ?>
 <!DOCTYPE html>
@@ -34,8 +34,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <!-- thư viện sweet aler  -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .dWSearchResult {
             border-radius: 10px;
@@ -53,6 +54,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
         }
     </style>
     <script>
+        // css màu input nếu đăng nhập có xãy ra lỗi
+        var boxShadowCSS = '0px 3px #1bcf4840';
+        var borderCSS = '2px solid red';
         // bắt sự kiện đăng xuất
         function logout() {
             var xhr = new XMLHttpRequest();
@@ -80,23 +84,38 @@ $resultWomen = mysqli_query($conn, $queryWomen);
             }
         };
         // sử dụng công nghệ AJAX
-        // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php
+        // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php 
         $(document).ready(function() {
             $("#submitLogin").submit(function() {
-
+                var usernameLogin = document.getElementById("usernameLogin");
+                var passwordLogin = document.getElementById("passwordLogin");
+                var validationUserName = document.getElementById("validationUserName");
+                var validationPassWord = document.getElementById("validationPassWord");
                 var _username = $("#usernameLogin").val();
                 var _password = $("#passwordLogin").val();
                 if (_username == "" || _username.length == 0) {
-                    document.getElementById("validationPassWord").style.display = "none";
-                    document.getElementById("validationUserName").innerHTML = "(*) Tài khoản trống";
-                    document.getElementById("validationUserName").style.display = "block";
+                    validationPassWord.style.display = "none";
+                    validationUserName.innerHTML = "(*) Tài khoản trống";
+                    usernameLogin.style.border = borderCSS;
+                    usernameLogin.style.boxShadow = boxShadowCSS;
+                    passwordLogin.style.border = null;
+                    passwordLogin.style.boxShadow = null;
+                    validationUserName.style.display = "block";
                 } else if (_password == "" || _password.length == 0) {
-                    document.getElementById("validationUserName").style.display = "none";
-                    document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu trống";
-                    document.getElementById("validationPassWord").style.display = "block";
+                    validationUserName.style.display = "none";
+                    validationPassWord.innerHTML = "(*) Mật khẩu trống";
+                    passwordLogin.style.border = borderCSS;
+                    passwordLogin.style.boxShadow = boxShadowCSS;
+                    usernameLogin.style.border = null;
+                    usernameLogin.style.boxShadow = null;
+                    validationPassWord.style.display = "block";
                 } else {
-                    document.getElementById("validationPassWord").style.display = "none";
-                    document.getElementById("validationUserName").style.display = "none";
+                    validationPassWord.style.display = "none";
+                    validationUserName.style.display = "none";
+                    usernameLogin.style.border = null;
+                    usernameLogin.style.boxShadow = null;
+                    passwordLogin.style.border = null;
+                    passwordLogin.style.boxShadow = null;
                     $.ajax({
                         type: "POST",
                         url: "login.php",
@@ -115,16 +134,52 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 var data = JSON.parse(result);
                                 console.log(data);
                                 if (data['message'] == 0) {
-                                    alert("Bạn đăng nhập thành công!")
-                                    window.location.href = data['success'];
+                                    // sử dụng thư viện sweetaler thông báo cho đẹp :v
+                                    let timerInterval
+                                    Swal.fire({
+                                        title: 'Đăng nhập thành công!',
+                                        html: 'Đang đăng nhập vào Website <strong></strong> giây.',
+                                        //icon: "success",
+                                        imageUrl: './img/cat.gif',
+                                        imageWidth: 315,
+                                        imageHeight: 230,
+                                        timer: 5000,
+                                        timerProgressBar: true,
+                                        didOpen: () => {
+                                            Swal.showLoading()
+                                            // thiết lập thời gian theo giây, ban đầu là millisecond
+                                            timerInterval = setInterval(() => {
+                                                Swal.getHtmlContainer().querySelector('strong')
+                                                    .textContent = (Swal.getTimerLeft() / 1000)
+                                                    .toFixed(0)
+                                            }, 100)
+                                        },
+                                        willClose: () => {
+                                            clearInterval(timerInterval)
+                                        }
+                                    }).then((result) => {
+                                        // hoàn thành xong chuyển tới trang home
+                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                            window.location.href = data['success'];
+                                        }
+                                    })
+
                                 } else if (data['message'] == 1) {
-                                    document.getElementById("validationPassWord").style.display = "none";
-                                    document.getElementById("validationUserName").innerHTML = "(*) Tài khoản không tồn tại";
-                                    document.getElementById("validationUserName").style.display = "block";
+                                    validationPassWord.style.display = "none";
+                                    validationUserName.innerHTML = "(*) Tài khoản không tồn tại";
+                                    validationUserName.style.display = "block";
+                                    usernameLogin.style.border = borderCSS;
+                                    usernameLogin.style.boxShadow = boxShadowCSS;
+                                    passwordLogin.style.border = null;
+                                    passwordLogin.style.boxShadow = null;
                                 } else if (data['message'] == -1) {
-                                    document.getElementById("validationUserName").style.display = "none";
-                                    document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu sai";
-                                    document.getElementById("validationPassWord").style.display = "block";
+                                    validationUserName.style.display = "none";
+                                    validationPassWord.innerHTML = "(*) Mật khẩu sai";
+                                    validationPassWord.style.display = "block";
+                                    passwordLogin.style.border = borderCSS;
+                                    passwordLogin.style.boxShadow = boxShadowCSS;
+                                    usernameLogin.style.border = null;
+                                    usernameLogin.style.boxShadow = null;
                                 }
 
                             }
@@ -137,19 +192,22 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 return false;
             });
 
-            function show_hidden_password_login() {
-                var check = true;
-                if (check) {
-                    document.getElementById("passwordLogin").setAttribute("type", "text");
-                    document.getElementById("icon").setAttribute("class", "fas fa-times");
-                    check = false;
-                } else {
-                    document.getElementById("passwordLogin").setAttribute("type", "password");
-                    document.getElementById("icon").setAttribute("class", "fas fa-eye");
-                    check = true;
-                }
-            }
         });
+        // ẩn hiện mật khẩu
+        var check = true;
+
+        function show_hidden_password_login() {
+            console.log(check);
+            if (check) {
+                document.getElementById("passwordLogin").setAttribute("type", "text");
+                document.getElementById("icon").setAttribute("class", "fas fa-times");
+                check = false;
+            } else {
+                document.getElementById("passwordLogin").setAttribute("type", "password");
+                document.getElementById("icon").setAttribute("class", "fas fa-eye");
+                check = true;
+            }
+        }
     </script>
 
 </head>
@@ -227,6 +285,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page" href="home.php">TRANG CHỦ</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">TIN TỨC</a>
+                                        </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 MEN
@@ -234,7 +295,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nam, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowMen = mysqli_fetch_array($resultMen)) : ?>
-                                                    <li><a class="dropdown-item" href="shop.php?gender=men&brand=<?php echo $rowMen[0] ?>"><?php echo $rowMen[0] ?></a></li>
+                                                    <li><a class="dropdown-item" href="shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
@@ -245,12 +306,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nữ, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowWomen = mysqli_fetch_array($resultWomen)) : ?>
-                                                    <li><a class="dropdown-item" href="shop.php?gender=women&brand=<?php echo $rowWomen[0] ?>"><?php echo $rowWomen[0] ?></a></li>
+                                                    <li><a class="dropdown-item" href="shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">TIN TỨC</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">LIÊN HỆ</a>

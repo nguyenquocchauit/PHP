@@ -23,9 +23,11 @@
             width: 350px;
             text-align: center;
         }
-        .ul>li{
+
+        .ul>li {
             border-radius: 5px;
         }
+
         .ul>.active {
             font-size: 25px;
             font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -54,6 +56,15 @@
     }
     echo '</ul>';
     ?>
+
+    <ul class="list-group ul">
+        <li class="list-group-item active" aria-current="true">Danh mục sữa bán chạy nhất</li>
+        <li class="list-group-item list-group-item-info">Gain Advance</li>
+        <li class="list-group-item list-group-item-info">Abbott Grow</li>
+        <li class="list-group-item list-group-item-info">Sữa bột nguyên kem Cô Gái Hà Lan</li>
+        <li class="list-group-item list-group-item-info">Sữa đặc Trường Sinh</li>
+        <li class="list-group-item list-group-item-info">Dielac Mamma</li>
+    </ul>
 </body>
 
 </html>

@@ -646,9 +646,12 @@ $color7 : #f7b100;
             text-align: right;
 
             a {
-                padding: 10px 0px 0px 0px;
                 text-decoration: none;
             }
+        }
+        .error{
+            box-shadow: 0px 3px #1bcf4840;
+            border: 2px solid red;
         }
 
     }
