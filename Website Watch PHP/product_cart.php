@@ -1,4 +1,27 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+if (!isset($_SESSION['cart']))
+    $_SESSION['cart'] = [];
+if (isset($_POST['add-to-cart'])) {
+    $image = $_POST['productImage'];
+    $quantity = $_POST['productQuantity'];
+    $name = $_POST['productName'];
+    $price = $_POST['productPrice'];
+    $ID = $_POST['productID'];
+    $product = [$ID, $name, $image, $price, $quantity];
+    $_SESSION['cart'][] = $product;
+}
+function Show_Cart()
+{
+    if(isset($_SESSION['cart']) && (is_array($_SESSION['cart'])))
+    {
+        for ($i=0; $i < sizeof($_SESSION['cart']) ; $i++) { 
+            
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -170,7 +193,7 @@
                                 </td>
                                 <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
                             </tr>
-                            <tr class="trbtn " >
+                            <tr class="trbtn ">
                                 <td></td>
                                 <td style="text-align: end;">
                                     <button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button>
@@ -179,7 +202,7 @@
                                     <button type="button" class="buttonUpdate">Cập nhập giỏ hàng</button>
                                 </td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>

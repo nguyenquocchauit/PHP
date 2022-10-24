@@ -162,14 +162,16 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div><button type="submit" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
-                      <input type="hidden" name="productID"></input>
-                      <input type="hidden" name="productQuantity"></input>
-                      <input type="hidden" name="productName"></input>
-                      <input type="hidden" name="productPrice"></input>
-                      <input type="hidden" name="productImage"></input>
-                      <input type="hidden" name="productGender"></input>
-                      <input type="hidden" name="productBrand"></input>
+                      <div>
+                        <form action="product_cart.php" method="post">
+                          <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                          <input type="hidden" name="productID" value="<?php echo $rowDiscount['ID_Product'] ?>"></input>
+                          <input type="hidden" name="productQuantity" value="1"></input>
+                          <input type="hidden" name="productName" value="<?php echo $rowDiscount['Name'] ?>"></input>
+                          <input type="hidden" name="productPrice" value="<?php echo $price ?>"></input>
+                          <input type="hidden" name="productImage" value="<?php echo $img1[0] ?>"></input>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
