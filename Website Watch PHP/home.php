@@ -299,29 +299,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   // thêm file footer
   include "footer.php";
   ?>
-  <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel">Đăng kí</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Tên đăng nhập</p>
-          <input type="text" placeholder="username" class="input"> <br />
-          <p>Mật khẩu</p>
-          <input type="password" placeholder="pass" class="input"><br />
-          <p>Nhập lại mật khẩu </p>
-          <input type="password" placeholder="checkpass" class="input"><br />
-          <p> Email</p>
-          <input type="text" placeholder="email" class="input"><br />
-          <p>Phone</p>
-          <input type="text" placeholder="phone" class="input"><br />
-          <button class="btn btn-sm btn-dark" type="submit" id="button">SIGN UP</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <script type="text/javascript" src="frontend/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -585,10 +585,31 @@ $color7 : #f7b100;
     padding: 20px;
     box-sizing: border-box;
 
-    .modal-header h5 {
-        text-align: center;
-        color: #000;
-        font-size: 30px;
+    .modal-header {
+        h5 {
+            text-align: center;
+            color: #000;
+            font-size: 30px;
+        }
+
+        .btn-close-login {
+            left: 82%;
+            justify-content: end;
+            position: relative;
+            bottom: 40px;
+        }
+        .btn-close-signup {
+            left: 355%;
+            justify-content: end;
+            position: relative;
+            bottom: 40px;
+        }
+        .btn-close-forget {
+            left: 30%;
+            justify-content: end;
+            position: relative;
+            bottom: 40px;
+        }
     }
 
     .modal-body {
@@ -605,11 +626,26 @@ $color7 : #f7b100;
             border-radius: 5px;
             box-sizing: border-box;
         }
-        .forgetPass{
+
+        .changePasword {
+            position: relative;
+            left: 45%;
+            bottom: 40px;
+
+        }
+
+        .changePasword_Singup {
+            position: relative;
+            left: 95%;
+            bottom: 40px;
+        }
+
+        .forgetPass {
             display: flex;
             justify-content: end;
             text-align: right;
-            a{
+
+            a {
                 padding: 10px 0px 0px 0px;
                 text-decoration: none;
             }
@@ -632,22 +668,27 @@ $color7 : #f7b100;
     }
 
 }
+
 ////////////////////////body contact ///////////////////
 .body-contact {
     // background:linear-gradient( rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5)100%),url("./img/black_background_metal.jpg");
     // color: $color1;
     padding: 100px;
-    h3{
+
+    h3 {
         text-align: center;
         font-weight: bold;
     }
+
     tr td {
         padding: 10px;
     }
+
     input {
         width: 300px;
         height: 40px;
     }
+
     button {
         background-color: $color2;
         color: $color1;
