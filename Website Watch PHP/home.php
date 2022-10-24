@@ -34,7 +34,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>TC WATCH</title>
-  
+
 </head>
 
 <body>
@@ -42,9 +42,9 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   // thêm file navbar menu
   include "navbar.php";
   ?>
-  
+
   <div class="header-slide">
-    
+
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btnslide" aria-current="true" aria-label="Slide 1"></button>
@@ -67,9 +67,9 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    
+
   </div>
-  
+
   <div class="body">
     <div class="content">
       <div class="container">
@@ -89,7 +89,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
         </div>
       </div>
     </div>
-    
+
     <div class="productlist">
       <div class="product mt-5">
         <h2 class="tc-title ">Danh mục sản phẩm</h2>
@@ -162,7 +162,14 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div><button type="button" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
+                      <div><button type="submit" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
+                      <input type="hidden" name="productID"></input>
+                      <input type="hidden" name="productQuantity"></input>
+                      <input type="hidden" name="productName"></input>
+                      <input type="hidden" name="productPrice"></input>
+                      <input type="hidden" name="productImage"></input>
+                      <input type="hidden" name="productGender"></input>
+                      <input type="hidden" name="productBrand"></input>
                     </div>
                   </div>
                 </div>
@@ -171,7 +178,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
           </div>
         </div>
       </div>
-      
+
       <div class="product-hot mt-5">
         <h2 class="tc-title">Sản phẩm nổi bật</h2>
         <div class="thanh">
