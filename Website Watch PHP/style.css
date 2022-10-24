@@ -497,4 +497,28 @@
   box-sizing: border-box;
   text-align: center;
   font-size: 20px;
+}
+
+.body-contact {
+  padding: 100px;
+}
+.body-contact h3 {
+  text-align: center;
+  font-weight: bold;
+}
+.body-contact tr td {
+  padding: 10px;
+}
+.body-contact input {
+  width: 300px;
+  height: 40px;
+}
+.body-contact button {
+  background-color: #dd3333;
+  color: white;
+  width: 250px;
+  height: 40px;
+  border: transparent;
+  text-transform: uppercase;
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */
