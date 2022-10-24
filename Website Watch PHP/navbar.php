@@ -84,9 +84,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
         $(document).ready(function() {
             $("#submitLogin").submit(function() {
 
-                var _email = $("#username").val();
+                var _username = $("#usernameLogin").val();
                 var _password = $("#passwordLogin").val();
-                if (_email == "" || _email.length == 0) {
+                if (_username == "" || _username.length == 0) {
                     document.getElementById("validationPassWord").style.display = "none";
                     document.getElementById("validationUserName").innerHTML = "(*) Tài khoản trống";
                     document.getElementById("validationUserName").style.display = "block";
@@ -95,11 +95,13 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                     document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu trống";
                     document.getElementById("validationPassWord").style.display = "block";
                 } else {
+                    document.getElementById("validationPassWord").style.display = "none";
+                    document.getElementById("validationUserName").style.display = "none";
                     $.ajax({
                         type: "POST",
                         url: "login.php",
                         data: {
-                            email: _email,
+                            username: _username,
                             password: _password
                         },
                         cache: false,
@@ -111,16 +113,20 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                             } else {
                                 /* Convert json to array */
                                 var data = JSON.parse(result);
-                                if (data['message'] == 1) {
+                                console.log(data);
+                                if (data['message'] == 0) {
                                     alert("Bạn đăng nhập thành công!")
                                     window.location.href = data['success'];
-                                } else if (data['message'] == 0) {
-                                    document.getElementById("validationPassWord").innerHTML = "Email & Password không đúng";
-                                    document.getElementById("validationPassWord").style.display = "block";
-                                } else {
-                                    document.getElementById("validationPassWord").innerHTML = "Không tồn tại email và password";
+                                } else if (data['message'] == 1) {
+                                    document.getElementById("validationPassWord").style.display = "none";
+                                    document.getElementById("validationUserName").innerHTML = "(*) Tài khoản không tồn tại";
+                                    document.getElementById("validationUserName").style.display = "block";
+                                } else if (data['message'] == -1) {
+                                    document.getElementById("validationUserName").style.display = "none";
+                                    document.getElementById("validationPassWord").innerHTML = "(*) Mật khẩu sai";
                                     document.getElementById("validationPassWord").style.display = "block";
                                 }
+
                             }
                         },
                         error: function(request, status, error) {
@@ -298,7 +304,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 <label class="form-label float-start">
                                     <h5>Tên đăng nhập</h5>
                                 </label>
-                                <input type="text" placeholder="Email hoặc tên đăng nhập" id="username" name="userName" class="input w-100 form-control">
+                                <input type="text" placeholder="Email hoặc tên đăng nhập" id="usernameLogin" name="userName" class="input w-100 form-control">
                                 <p id="validationUserName" style="color: red;display:block"></p>
                             </div>
                             <div>
