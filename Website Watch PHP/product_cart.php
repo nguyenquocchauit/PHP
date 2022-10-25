@@ -91,6 +91,8 @@ function Show_Cart()
             
             ';
             for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                $name = $_SESSION['cart'][$i][1];
+                $image = $_SESSION['cart'][$i][2];
                 $price = $_SESSION['cart'][$i][3];
                 $quanti = $_SESSION['cart'][$i][4];
                 $total = $price * $quanti;
@@ -101,17 +103,19 @@ function Show_Cart()
                         ' . ($i + 1) . '
                     </td>
                     <td style="width: 15%;">
-                        <div class="divimg"><img src="./img/image_products_home/' . ($_SESSION['cart'][$i][2]) . '" alt="" srcset=""></div>
+                        <div class="divimg"><img src="./img/image_products_home/' . ($image) . '" alt="" srcset=""></div>
                     </td>
-                    <td style="width: 26%;"><span>' . ($_SESSION['cart'][$i][1]) . '</span></td>
+                    <td style="width: 26%;"><span>' . ($name) . '</span></td>
                     <td>
                         <p>' . (number_format($price)) . ' VNĐ</p>
                     </td>
                     <td>
-                        <div class="quantity">
-                            <button class="btnquantity">-</button>
-                            <input type="number" class="inpquantity" name="" id="" value="' . ($_SESSION['cart'][$i][4]) . '">
-                            <button class="btnquantity">+</button>
+                        <div class="quantity numbers-row">
+                            <div class="row">
+                                <div class="col-4 d-flex justify-content-end desc"></div>
+                                <div class="col-4"><input type="number" class="inpquantity" name="" id="" value="' . ($quanti) . '"></div>
+                                <div class="col-4 d-flex justify-content-start asc"></div>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -179,10 +183,36 @@ function Show_Cart()
     <link rel="stylesheet" href="./thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
     <script src="./thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
     <script src="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>TC WATCH</title>
+    <script>
+        $(function() {
+            $(".numbers-row").find(".desc").append('<div class="desc_button">+</div>')
+            $(".numbers-row").find(".asc").append('<div class="asc_button">-</div>')
+            $(".button").on("click", function() {
+
+                var $button = $(this);
+                var oldValue = $button.parent().find("input").val();
+
+                if ($button.text() == "+") {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    // Don't allow decrementing below zero
+                    if (oldValue > 0) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 0;
+                    }
+                }
+
+                $button.parent().find("input").val(newVal);
+
+            });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -197,7 +227,7 @@ function Show_Cart()
                 <div class="row">
                     <div class="col cart">
                         <?php Show_Cart(); ?>
-                        <?php echo $message_cart?>
+                        <?php echo $message_cart ?>
                     </div>
                 </div>
             </div>

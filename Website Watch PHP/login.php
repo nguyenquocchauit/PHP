@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 session_unset();
 require "connectDB.php";
 $array_message = array();

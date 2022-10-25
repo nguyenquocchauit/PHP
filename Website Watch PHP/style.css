@@ -292,7 +292,7 @@
   margin: 0 auto;
 }
 .body-cart table .inpquantity {
-  width: 26%;
+  width: 100%;
   text-align: center;
 }
 .body-cart table .fa-circle-xmark {

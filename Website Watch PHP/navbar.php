@@ -84,6 +84,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 var validationPassWord = document.getElementById("validationPassWord");
                 var _username = $("#usernameLogin").val();
                 var _password = $("#passwordLogin").val();
+                console.log(_username,_password);
                 if (_username == "" || _username.length == 0) {
                     validationPassWord.style.display = "none";
                     validationUserName.innerHTML = "(*) Tài khoản trống";
