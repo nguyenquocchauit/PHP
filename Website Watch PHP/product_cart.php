@@ -112,9 +112,9 @@ function Show_Cart()
                     <td>
                         <div class="quantity numbers-row">
                             <div class="row">
-                                <div class="col-4 d-flex justify-content-end desc"></div>
-                                <div class="col-4"><input type="number" class="inpquantity" name="" id="" value="' . ($quanti) . '"></div>
-                                <div class="col-4 d-flex justify-content-start asc"></div>
+                                <div class="col-4 d-flex justify-content-end asc"></div>
+                                <div class="col-4"><input type="text" class="inpquantity" name="" id="" value="' . ($quanti) . '"></div>
+                                <div class="col-4 d-flex justify-content-start desc"></div>
                             </div>
                         </div>
                     </td>
@@ -189,14 +189,15 @@ function Show_Cart()
     <title>TC WATCH</title>
     <script>
         $(function() {
-            $(".numbers-row").find(".desc").append('<div class="desc_button">+</div>')
-            $(".numbers-row").find(".asc").append('<div class="asc_button">-</div>')
-            $(".button").on("click", function() {
-
+            $(".numbers-row").find(".desc").append('<div class="desc buttonn">+</div>')
+            $(".numbers-row").find(".asc").append('<div class="asc buttonn">-</div>')
+            $(".buttonn").on("click", function() {
+                
                 var $button = $(this);
                 var oldValue = $button.parent().find("input").val();
-
+                
                 if ($button.text() == "+") {
+                    console.log($button.text());
                     var newVal = parseFloat(oldValue) + 1;
                 } else {
                     // Don't allow decrementing below zero
