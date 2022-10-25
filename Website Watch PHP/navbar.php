@@ -123,6 +123,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                             } else {
                                 /* Convert json to array */
                                 var data = JSON.parse(result);
+                                // dùng console.log xem biến in ra ở trên trình duyệt ở mục console . debug cho dễ
                                 console.log(data);
                                 if (data['message'] == 0) {
                                     // sử dụng thư viện sweetaler thông báo cho đẹp :v
