@@ -261,9 +261,9 @@
   padding: 0px 60px 0px 60px;
 }
 .body-cart .btnquantity {
-  border: transparent;
-  background-color: #dd3333;
-  color: white;
+  border-radius: 15px;
+  background-color: rgba(58, 107, 250, 0.2784313725);
+  color: black;
   width: 30px;
   height: 30px;
 }

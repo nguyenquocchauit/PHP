@@ -112,9 +112,9 @@ function Show_Cart()
                     <td>
                         <div class="quantity numbers-row">
                             <div class="row">
-                                <div class="col-4 d-flex justify-content-end asc"></div>
-                                <div class="col-4"><input type="text" class="inpquantity" name="" id="" value="' . ($quanti) . '"></div>
-                                <div class="col-4 d-flex justify-content-start desc"></div>
+                                <div class="col-4 d-flex justify-content-end pt-1 asc"></div>
+                                <div class="col-4 inpqan"><input type="text" class="form-control inpquantity" name="" id="" value="' . ($quanti) . '"></div>
+                                <div class="col-4 d-flex justify-content-start pt-1 desc"></div>
                             </div>
                         </div>
                     </td>
@@ -189,15 +189,13 @@ function Show_Cart()
     <title>TC WATCH</title>
     <script>
         $(function() {
-            $(".numbers-row").find(".desc").append('<div class="desc buttonn">+</div>')
-            $(".numbers-row").find(".asc").append('<div class="asc buttonn">-</div>')
+            $(".numbers-row").find(".desc").append('<button class="btnquantity buttonn">+</button>')
+            $(".numbers-row").find(".asc").append('<button class="btnquantity buttonn">-</button>')
             $(".buttonn").on("click", function() {
-                
+
                 var $button = $(this);
-                var oldValue = $button.parent().find("input").val();
-                
+                var oldValue = $button.parent().parent().find(".inpqan").find(".inpquantity").val();
                 if ($button.text() == "+") {
-                    console.log($button.text());
                     var newVal = parseFloat(oldValue) + 1;
                 } else {
                     // Don't allow decrementing below zero
@@ -208,7 +206,7 @@ function Show_Cart()
                     }
                 }
 
-                $button.parent().find("input").val(newVal);
+                $button.parent().parent().find(".inpqan").find(".inpquantity").val(newVal);
 
             });
 
