@@ -333,6 +333,24 @@
   border: transparent;
   text-transform: uppercase;
 }
+.body-cart #mesag-cart {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 25px;
+  color: black;
+}
+.body-cart #back-to-shop {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0px 1px 10px 0px;
+}
+.body-cart #imgcart {
+  display: flex;
+  height: 300px;
+  width: 350px;
+  margin: 0 auto;
+}
 
 .footer {
   background: linear-gradient(rgba(0, 0, 0, 0.697) 100%, rgba(0, 0, 0, 0.5) 100%), url("./img/footer-background.jpg");
@@ -376,6 +394,11 @@
 .bodyshop nav {
   max-width: 280px;
 }
+.bodyshop nav .list-group-flush .active {
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+}
 .bodyshop nav .title {
   font-weight: 700;
   border: 1px #555555 solid;
@@ -387,12 +410,23 @@
   margin: auto;
   text-align: center;
 }
+.bodyshop .product-shop .item {
+  width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.bodyshop .product-shop .item .prd {
+  width: 25%;
+  height: 400px;
+}
 .bodyshop .product-shop .item img {
-  width: 240px;
-  height: 240px;
+  width: 180px;
+  height: 220px;
 }
 .bodyshop .product-shop .item .name {
   font-weight: 700;
+  height: 50px;
+  width: 90%;
 }
 .bodyshop .product-shop .item a {
   text-decoration: none;
@@ -407,7 +441,7 @@
 }
 .bodyshop .product-shop .item .price {
   margin: 10px;
-  margin-left: 60px;
+  margin-left: 40px;
 }
 .bodyshop .product-shop .item .price .price-pre {
   -webkit-text-decoration-line: line-through;
@@ -415,11 +449,34 @@
   margin-right: 10px;
 }
 .bodyshop .product-shop .item .btn {
+  border: 1px solid #52507e;
+  padding: 4px 14px;
+  color: #f17502;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pagination {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-2 a {
+  text-align: center;
+  margin-left: 3px;
+  padding: 0;
+  width: 35px;
   height: 35px;
-  border-radius: 0%;
+  line-height: 30px;
+  text-decoration: none;
+  color: black;
+  background: rgb(241, 238, 238);
+}
+.modal-2 a:hover {
   color: white;
-  background-color: #555555;
-  border: #555555 1px solid;
+  background-color: #dd3333;
 }
 
 .bodydetail {

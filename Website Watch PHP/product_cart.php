@@ -1,23 +1,166 @@
 <?php
+// khởi tạo session
 session_start();
-
+// nếu session[cart] không tồn tại thì khởi tạo
 if (!isset($_SESSION['cart']))
     $_SESSION['cart'] = [];
+
+// nếu get[delcart] tồn tại và =1 thì session[cart] bằng rỗng. Tức xóa hết sản phẩm trong giỏ hàng
+$message_cart = "";
+if (isset($_GET['delcart']) && $_GET['delcart'] == 1) {
+    unset($_SESSION['cart']);
+    $message_cart = "
+            <img id='imgcart' src='./img/cat.gif' alt=''>
+            <h4 id='mesag-cart'><p>Giỏ hàng hiện tại trống, quay lại trang shop đặt hàng</p></h4>
+            <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
+            ";
+}
+
+// nếu get[delid] tồn tại  session[cart] sẽ xóa sản phẩm thứ $i.
+//array_splice(mãng,vị trí,số phần tử)
+if (isset($_GET['delid']) && $_GET['delid'] >= 0)
+    array_splice($_SESSION['cart'], $_GET['delid'], 1);
+
+// kiểm tra nút bấm thêm giỏ hàng 
 if (isset($_POST['add-to-cart'])) {
     $image = $_POST['productImage'];
     $quantity = $_POST['productQuantity'];
     $name = $_POST['productName'];
     $price = $_POST['productPrice'];
     $ID = $_POST['productID'];
-    $product = [$ID, $name, $image, $price, $quantity];
-    $_SESSION['cart'][] = $product;
+
+    // kiểm tra sản phẩm có trong giỏ hàng hay chưa?
+    // $check kiểm tra có tìm được sản phẩm giỏ hàng hay không 
+    // $check = 0 : không tìm thấy sản phẩm trùng
+    // $check = 1 : Tìm thấy sản phẩm trùng
+
+    $check = 0;
+    for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+        if ($_SESSION['cart'][$i][0] == $ID) {
+            $check = 1;
+
+            // cập nhật số lượng
+            $quantityNew = $quantity + $_SESSION['cart'][$i][4];
+
+            // thêm lại vào giỏ hàng
+            $_SESSION['cart'][$i][4] = $quantityNew;
+            //thoát vòng lặp
+            break;
+        }
+    }
+    // $check = 0 không thấy sản phẩm trùng tiến hành thêm sản phẩm như bình thường
+    if ($check == 0) {
+        $product = [$ID, $name, $image, $price, $quantity];
+        $_SESSION['cart'][] = $product;
+    }
 }
 function Show_Cart()
 {
-    if(isset($_SESSION['cart']) && (is_array($_SESSION['cart'])))
-    {
-        for ($i=0; $i < sizeof($_SESSION['cart']) ; $i++) { 
+    if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
+        // nếu giỏ hàng $_SESSION['cart']) tồn tại thì in ra
+        if (sizeof($_SESSION['cart']) > 0) {
+            $sum = 0;
+
+            // in thẻ html table 
+            echo '
+            <table>
+                <tr class="tr1">
+                    <td>
+                        <p>STT</p>
+                    </td>
+                    <td>
+                        <p>Sản phẩm</p>
+                    </td>
+                    <td>
+                        <p>Tên sản phẩm</p>
+                    </td>
+                    <td>
+                        <p>Giá</p>
+                    </td>
+                    <td>
+                        <p>Số lượng</p>
+                    </td>
+                    <td>
+                        <p>Tổng</p>
+                    </td>
+                    <td>
+                        <p>Xóa</p>
+                    </td>
+                </tr>
+                <tbody>
             
+            ';
+            for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+                $price = $_SESSION['cart'][$i][3];
+                $quanti = $_SESSION['cart'][$i][4];
+                $total = $price * $quanti;
+                $sum += $total;
+                echo '
+                <tr>
+                    <td>
+                        ' . ($i + 1) . '
+                    </td>
+                    <td style="width: 15%;">
+                        <div class="divimg"><img src="./img/image_products_home/' . ($_SESSION['cart'][$i][2]) . '" alt="" srcset=""></div>
+                    </td>
+                    <td style="width: 26%;"><span>' . ($_SESSION['cart'][$i][1]) . '</span></td>
+                    <td>
+                        <p>' . (number_format($price)) . ' VNĐ</p>
+                    </td>
+                    <td>
+                        <div class="quantity">
+                            <button class="btnquantity">-</button>
+                            <input type="number" class="inpquantity" name="" id="" value="' . ($_SESSION['cart'][$i][4]) . '">
+                            <button class="btnquantity">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <p>' . (number_format($total)) . ' VNĐ</p>
+                    </td>
+                    <td><a href="product_cart.php?delid=' . ($i) . '"><i class="fa-regular fa-circle-xmark"></i></a></td>
+                 </tr>
+            ';
+            }
+            echo '
+                    <tr class="tr1">
+                        <td></td>
+                        <td colspan="1">
+                            <p>Tổng số lượng</p>
+                        </td>
+                        <td colspan="5" style="text-align: end;color: red;">
+                            <p>' . (number_format($sum)) . ' VNĐ</p>
+                        </td>
+                    </tr>
+                    <tr class="tr1">
+                        <td></td>
+                        <td colspan="1">
+                            <p>Giao hàng</p>
+                        </td>
+                        <td colspan="5" style="text-align: end;">
+                            <p>Giao hàng miễn phí</p>
+                        </td>
+                    </tr>
+                        <td></td>
+                            <td style="text-align: end;">
+                                <a href="javascript:window.history.back(-1);"><button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button></a>
+                            </td>
+                            <td style="text-align: center;">
+                                <button type="button" class="buttonUpdate"><i class="fa-solid fa-pen-to-square"></i> Cập nhập giỏ hàng</button>
+                            </td>
+                            <td style="text-align: start;">
+                                <a href="product_cart.php?delcart=1"><button type="button" class="buttonUpdate" ><i class="fa-solid fa-trash"></i> Xóa giỏ hàng</button></a>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        ';
+        } else {
+            echo "
+            <img id='imgcart' src='./img/cat.gif' alt=''>
+            <h4 id='mesag-cart'><p>Giỏ hàng hiện tại trống, quay lại trang shop đặt hàng</p></h4>
+            <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
+            
+            ";
         }
     }
 }
@@ -43,208 +186,27 @@ function Show_Cart()
 </head>
 
 <body>
-    <?php
-    // thêm file navbar menu
-    include "navbar.php";
-    ?>
-    <div class="body-cart mt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-9 cart">
-                    <table>
-                        <tr class="tr1">
-                            <td>
-                                <p>Sản phẩm</p>
-                            </td>
-                            <td>
-                                <p>Tên sản phẩm</p>
-                            </td>
-                            <td>
-                                <p>Giá</p>
-                            </td>
-                            <td>
-                                <p>Số lượng</p>
-                            </td>
-                            <td>
-                                <p>Tổng</p>
-                            </td>
-                            <td>
-                                <p>Xóa</p>
-                            </td>
-                        </tr>
-                        <tbody>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>BaBy-G</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>nguyễn quốc châu</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>nguyễn quốc châu</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>nguyễn quốc châu</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>nguyễn quốc châu</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 15%;">
-                                    <div class="divimg"><img src="./img/image_products_home/olym-pianus-899833g1b-1.png" alt="" srcset=""></div>
-                                </td>
-                                <td style="width: 26%;"><span>nguyễn quốc châu</span></td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td>
-                                    <div class="quantity">
-                                        <button class="btnquantity" onclick="tru()">-</button>
-                                        <input type="number" class="inpquantity" name="" id="" value="10">
-                                        <button class="btnquantity" onclick="cong()">+</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p>3.499.000 VNĐ</p>
-                                </td>
-                                <td><a href=""><i class="fa-regular fa-circle-xmark"></i></a></td>
-                            </tr>
-                            <tr class="trbtn ">
-                                <td></td>
-                                <td style="text-align: end;">
-                                    <button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button>
-                                </td>
-                                <td style="text-align: start;">
-                                    <button type="button" class="buttonUpdate">Cập nhập giỏ hàng</button>
-                                </td>
-                            </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-3 pay">
-                    <table>
-                        <tr class="tr1">
-                            <td colspan="2">
-                                <p>Tổng số lượng</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Tổng phụ</p>
-                            </td>
-                            <td>
-                                <p>3.499.000 vnđ</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>Giao hàng</p>
-                            </td>
-                            <td>
-                                <p>Giao hàng miễn phí</p>
-                                <p>Ước tính cho Việt Nam</p>
-                                <p>Đổi địa chỉ</p>
-                            </td>
-                        </tr>
-                        <tr class="trbtn">
-                            <td colspan="2">
-                                <button type="button" class="">Tiến hành thanh toán</button>
-                            </td>
-                        </tr>
-                    </table>
+    <div class="body-product-cart">
+        <?php
+        // thêm file navbar menu
+        include "navbar.php";
+        ?>
+        <div class="body-cart mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col cart">
+                        <?php Show_Cart(); ?>
+                        <?php echo $message_cart?>
+                    </div>
                 </div>
             </div>
         </div>
+        <?php
+        // thêm file footer
+        include "footer.php";
+        ?>
     </div>
-    <?php
-    // thêm file footer
-    include "footer.php";
-    ?>
 </body>
 
 </html>

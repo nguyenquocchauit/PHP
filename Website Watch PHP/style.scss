@@ -185,6 +185,7 @@ $color7 : #f7b100;
                 font-size: large;
                 position: relative;
                 top: 10px;
+
             }
         }
 
@@ -427,6 +428,27 @@ $color7 : #f7b100;
         border: transparent;
         text-transform: uppercase;
     }
+
+    #mesag-cart {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 25px;
+        color: black;
+    }
+
+    #back-to-shop {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        padding: 0px 1px 10px 0px;
+    }
+
+    #imgcart {
+        display: flex;
+        height: 300px;
+        width: 350px;
+        margin: 0 auto;
+    }
 }
 
 //////////////////////////////////////
@@ -482,6 +504,14 @@ $color7 : #f7b100;
     nav {
         max-width: 280px;
 
+        .list-group-flush {
+            .active {
+                background-color: black;
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+
         .title {
             font-weight: 700;
             border: 1px $color3 solid;
@@ -497,13 +527,24 @@ $color7 : #f7b100;
         text-align: center;
 
         .item {
+            width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+
+            .prd {
+                width: 25%;
+                height: 400px;
+            }
+
             img {
-                width: 240px;
-                height: 240px;
+                width: 180px;
+                height: 220px;
             }
 
             .name {
                 font-weight: 700;
+                height: 50px;
+                width: 90%;
             }
 
             a {
@@ -521,7 +562,7 @@ $color7 : #f7b100;
 
             .price {
                 margin: 10px;
-                margin-left: 60px;
+                margin-left: 40px;
 
                 .price-pre {
                     text-decoration-line: line-through;
@@ -530,15 +571,108 @@ $color7 : #f7b100;
             }
 
             .btn {
-                height: 35px;
-                border-radius: 0%;
-                color: $color1;
-                background-color: $color3;
-                border: #555555 1px solid;
+                // height: 35px;
+                // border-radius: 0%;
+                // color: $color1;
+                // background-color: $color3;
+                // border: #555555 1px solid;
+                border: 1px solid #52507e;
+                padding: 4px 14px;
+                color: #f17502;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
             }
         }
     }
 }
+
+.pagination {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-2 {
+    a {
+        text-align: center;
+        margin-left: 3px;
+        padding: 0;
+        width: 35px;
+        height: 35px;
+        line-height: 30px;
+        text-decoration: none;
+        color: $color4;
+        background: rgb(241, 238, 238);
+
+        &:hover {
+            color: $color1;
+            background-color: $color2;
+        }
+    }
+}
+
+// .bodyshop {
+//     nav {
+//         max-width: 280px;
+
+//         .title {
+//             font-weight: 700;
+//             border: 1px $color3 solid;
+//         }
+//     }
+
+//     span {
+//         text-transform: uppercase;
+//     }
+
+//     .product-shop {
+//         margin: auto;
+//         text-align: center;
+
+//         .item {
+//             img {
+//                 width: 240px;
+//                 height: 240px;
+//             }
+
+//             .name {
+//                 font-weight: 700;
+//             }
+
+//             a {
+//                 text-decoration: none;
+//                 color: black;
+//             }
+
+//             .sale {
+//                 background-color: $color2;
+//                 width: 45px;
+//                 height: 40px;
+//                 color: $color1;
+//                 font-weight: 600;
+//             }
+
+//             .price {
+//                 margin: 10px;
+//                 margin-left: 60px;
+
+//                 .price-pre {
+//                     text-decoration-line: line-through;
+//                     margin-right: 10px;
+//                 }
+//             }
+
+//             .btn {
+//                 height: 35px;
+//                 border-radius: 0%;
+//                 color: $color1;
+//                 background-color: $color3;
+//                 border: #555555 1px solid;
+//             }
+//         }
+//     }
+// }
 
 ///////////////////////////////detail product ////////////////
 .bodydetail {

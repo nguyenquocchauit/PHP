@@ -1,9 +1,7 @@
 <?php
-//đăng xuất
-if (isset($_POST['logout'])) {
-    session_destroy();
-    session_unset();
-    header("Refresh:0");
+// //đăng xuất. kiểm tra khi ấn nút đăng xuất chứa logout = 1 thì xóa $_SESSION['CurrentUser']
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    unset($_SESSION['CurrentUser']);
 }
 $currentUser = "";
 // if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
@@ -250,7 +248,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 ?>
                                     <i class="fa-solid fa-user"></i>
                                     <strong><?php echo $currentUser;  ?></strong>
-                                    <button type="submit" name="logout" class="btn btn-dark"><i class="fa-solid fa-right-from-bracket"></i></button>
+                                    <button type="button" name="logout" class="btn btn-dark"><a href="home.php?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
                                     <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
                                 <?php else : ?>
                                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;

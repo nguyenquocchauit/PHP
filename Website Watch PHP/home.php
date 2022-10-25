@@ -11,7 +11,7 @@ $queryDiscount = "SELECT products.ID_Product, brands.Name as 'Brand_Name' ,gende
 FROM products inner join brands on products.ID_Brand = brands.ID_Brand inner JOIN gender on products.ID_Gender= gender.ID_Gender WHERE products.Discount >0 ";
 $resultDiscount = mysqli_query($conn, $queryDiscount);
 // lấy sản phẩm được bán chạy nhất. Mặc định hiện tại 2 sản phẩm
-$queryBestSeller = "SELECT a.Name,a.Image,a.Price,a.Discount,b.number_of_oders,c.Name as 'Brand_Name' ,d.Name as 'Gender_Name' FROM products a inner join 
+$queryBestSeller = "SELECT a.ID_Product,a.Name,a.Image,a.Price,a.Discount,b.number_of_oders,c.Name as 'Brand_Name' ,d.Name as 'Gender_Name' FROM products a inner join 
 (SELECT a.ID_Product, sum(a.Quantity) as 'number_of_oders' FROM order_details a inner join products b on a.ID_Product=b.ID_Product GROUP BY a.ID_Product) b 
 on a.ID_Product = b.ID_Product inner join brands c on a.ID_Brand = c.ID_Brand inner join gender d on a.ID_Gender=d.ID_Gender GROUP BY b.number_of_oders DESC LIMIT 2";
 $resultBestSeller = mysqli_query($conn, $queryBestSeller);
@@ -69,7 +69,6 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
     </div>
 
   </div>
-
   <div class="body">
     <div class="content">
       <div class="container">
@@ -221,7 +220,16 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div><button type="button" class="btn btn-light add-to-cart">Thêm vào giỏ</button></div>
+                      <div>
+                        <form action="product_cart.php" method="post">
+                          <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                          <input type="hidden" name="productID" value="<?php echo $rowBestSeller['ID_Product'] ?>"></input>
+                          <input type="hidden" name="productQuantity" value="1"></input>
+                          <input type="hidden" name="productName" value="<?php echo $rowBestSeller['Name'] ?>"></input>
+                          <input type="hidden" name="productPrice" value="<?php echo $price ?>"></input>
+                          <input type="hidden" name="productImage" value="<?php echo $img1[0] ?>"></input>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
