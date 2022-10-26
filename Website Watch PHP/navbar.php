@@ -4,6 +4,7 @@ $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], 
 // //đăng xuất. kiểm tra khi ấn nút đăng xuất chứa logout = 1 thì xóa $_SESSION['CurrentUser']
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     unset($_SESSION['CurrentUser']);
+    
 }
 $currentUser = "";
 // if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
@@ -84,7 +85,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 var validationPassWord = document.getElementById("validationPassWord");
                 var _username = $("#usernameLogin").val();
                 var _password = $("#passwordLogin").val();
-                console.log(_username,_password);
+                console.log(_username, _password);
                 if (_username == "" || _username.length == 0) {
                     validationPassWord.style.display = "none";
                     validationUserName.innerHTML = "(*) Tài khoản trống";
@@ -276,13 +277,16 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link  <?php if($curPageName=="home.php") echo "active"; else echo "" ?>" aria-current="page" href="home.php">TRANG CHỦ</a>
+                                            <a class="nav-link  <?php if ($curPageName == "home.php") echo "active";
+                                                                else echo "" ?>" aria-current="page" href="home.php">TRANG CHỦ</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link <?php if($curPageName=="news.php") echo "active"; else echo "" ?>" href="#">TIN TỨC</a>
+                                            <a class="nav-link <?php if ($curPageName == "news.php") echo "active";
+                                                                else echo "" ?>" href="#">TIN TỨC</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle <?php if(isset($_GET['gender']) && $_GET['gender']=="IDM") echo "active"; else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle <?php if (isset($_GET['gender']) && $_GET['gender'] == "IDM") echo "active";
+                                                                                else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 MEN
                                             </a>
                                             <ul class="dropdown-menu">
@@ -293,7 +297,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle  <?php if(isset($_GET['gender']) && $_GET['gender']=="IDWM") echo "active"; else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle  <?php if (isset($_GET['gender']) && $_GET['gender'] == "IDWM") echo "active";
+                                                                                else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 WOMEN
                                             </a>
                                             <ul class="dropdown-menu">
@@ -304,7 +309,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link <?php if($curPageName=="contact.php") echo "active"; else echo "" ?>" href="contact.php">LIÊN HỆ</a>
+                                            <a class="nav-link <?php if ($curPageName == "contact.php") echo "active";
+                                                                else echo "" ?>" href="contact.php">LIÊN HỆ</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -332,7 +338,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         <div class="col-5 cartbtn">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="product_cart.php" class="nav-link <?php if($curPageName=="product_cart.php") echo "active"; else echo "" ?>">
+                                    <a href="product_cart.php" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
+                                                                                else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
                                         </span>

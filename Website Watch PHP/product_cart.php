@@ -14,12 +14,17 @@ if (isset($_GET['delcart']) && $_GET['delcart'] == 1) {
             <h4 id='mesag-cart'><p>Giỏ hàng hiện tại trống, quay lại trang shop đặt hàng</p></h4>
             <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
             ";
+    header("Location: product_cart.php");
+    exit();
 }
 
 // nếu get[delid] tồn tại  session[cart] sẽ xóa sản phẩm thứ $i.
 //array_splice(mãng,vị trí,số phần tử)
-if (isset($_GET['delid']) && $_GET['delid'] >= 0)
+if (isset($_GET['delid']) && $_GET['delid'] >= 0) {
     array_splice($_SESSION['cart'], $_GET['delid'], 1);
+    header("Location: product_cart.php");
+    exit();
+}
 
 // kiểm tra nút bấm thêm giỏ hàng 
 if (isset($_POST['add-to-cart'])) {
@@ -113,7 +118,10 @@ function Show_Cart()
                         <div class="quantity numbers-row">
                             <div class="row">
                                 <div class="col-4 d-flex justify-content-end pt-1 asc"></div>
-                                <div class="col-4 inpqan"><input type="text" class="form-control inpquantity" name="" id="" value="' . ($quanti) . '"></div>
+                                <div class="col-4 inpqan">
+                                    <input type="text" class="form-control inpquantity" name="" id="" value="' . ($quanti) . '">
+                                    <input type="hidden" name="" class="ID_Quantity" value="' . $i . '">
+                                </div>
                                 <div class="col-4 d-flex justify-content-start pt-1 desc"></div>
                             </div>
                         </div>
@@ -149,10 +157,10 @@ function Show_Cart()
                                 <a href="javascript:window.history.back(-1);"><button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button></a>
                             </td>
                             <td style="text-align: center;">
-                                <button type="button" class="buttonUpdate"><i class="fa-solid fa-pen-to-square"></i> Cập nhập giỏ hàng</button>
+                                <button type="submit" class="buttonUpdate"><i class="fa-solid fa-pen-to-square"></i> Cập nhập giỏ hàng</button>
                             </td>
                             <td style="text-align: start;">
-                                <a href="product_cart.php?delcart=1"><button type="button" class="buttonUpdate" ><i class="fa-solid fa-trash"></i> Xóa giỏ hàng</button></a>
+                                <a href="product_cart.php?delcart=1"><button type="button" class="buttonDelete" ><i class="fa-solid fa-trash"></i> Xóa giỏ hàng</button></a>
                             </td>
                     </tr>
                 </tbody>
@@ -189,12 +197,18 @@ function Show_Cart()
     <title>TC WATCH</title>
     <script>
         $(function() {
+            // thêm nút tăng giảm vào trước và sau input số lượng
             $(".numbers-row").find(".desc").append('<button class="btnquantity buttonn">+</button>')
             $(".numbers-row").find(".asc").append('<button class="btnquantity buttonn">-</button>')
+            // bắt sự kiện click vào nút
             $(".buttonn").on("click", function() {
 
                 var $button = $(this);
+                // lấy giá trị của thẻ input hiển thị
                 var oldValue = $button.parent().parent().find(".inpqan").find(".inpquantity").val();
+                // lấy vị trí. tức là id sản phẩm theo value của input
+                var ID_quantity = $button.parent().parent().find(".inpqan").find(".ID_Quantity").val();
+                // nếu là + thì cập nhật input thêm 1 và ngược lại với -
                 if ($button.text() == "+") {
                     var newVal = parseFloat(oldValue) + 1;
                 } else {
@@ -206,7 +220,26 @@ function Show_Cart()
                     }
                 }
 
-                $button.parent().parent().find(".inpqan").find(".inpquantity").val(newVal);
+                //console.log(oldValue);
+                // xử lý tăng giảm bằng file quantity_cart.php
+                $.ajax({
+                    type: 'POST',
+                    url: 'quantity_cart.php',
+                    data: {
+                        itemID: ID_quantity,
+                        quantity: newVal
+                    },
+                    success: function(data) {
+                        var datas = JSON.parse(data);
+                        console.log(datas);
+                        if (datas['message'] == 0) {
+                            window.location.href = datas['success'];
+                        }
+                    }
+                });
+
+                // thay đổi giá trị của input
+                // $button.parent().parent().find(".inpqan").find(".inpquantity").val(newVal);
 
             });
 

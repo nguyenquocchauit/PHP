@@ -326,6 +326,15 @@
 }
 .body-cart .buttonUpdate {
   border-radius: 1px;
+  background-color: #3e7420;
+  color: white;
+  width: 250px;
+  height: 40px;
+  border: transparent;
+  text-transform: uppercase;
+}
+.body-cart .buttonDelete {
+  border-radius: 1px;
   background-color: #dd3333;
   color: white;
   width: 250px;
