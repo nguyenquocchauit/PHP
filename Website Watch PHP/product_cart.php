@@ -157,10 +157,10 @@ function Show_Cart()
                                 <a href="javascript:window.history.back(-1);"><button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button></a>
                             </td>
                             <td style="text-align: center;">
-                                <button type="submit" class="buttonUpdate"><i class="fa-solid fa-pen-to-square"></i> Cập nhập giỏ hàng</button>
-                            </td>
-                            <td style="text-align: start;">
                                 <a href="product_cart.php?delcart=1"><button type="button" class="buttonDelete" ><i class="fa-solid fa-trash"></i> Xóa giỏ hàng</button></a>
+                            </td>
+                            <td colspan="4" style="text-align: end;">
+                                <form action="" method="post" ><button type="submit" class="buttonBuy"><i class="fa-solid fa-pen-to-square"></i> Đặt hàng</button></form>
                             </td>
                     </tr>
                 </tbody>
