@@ -1,6 +1,10 @@
 <?php
+// include 'config/connectDB.php';
 // lấy tên trang để active menu
-$curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);;
+$curPageName = $_SERVER["SCRIPT_NAME"];
+$curPageName = explode("/", $curPageName);
+$curPageName = $curPageName[(sizeof($curPageName) - 1)];
+// $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 // //đăng xuất. kiểm tra khi ấn nút đăng xuất chứa logout = 1 thì xóa $_SESSION['CurrentUser']
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     unset($_SESSION['CurrentUser']);
@@ -14,8 +18,6 @@ if (!(isset($_SESSION['CurrentUser'])) && !(empty($_SESSION['CurrentUser']))) {
     if ((isset($_SESSION['CurrentUser'])))
         $currentUser = $_SESSION['CurrentUser'];
 }
-// kết nối cơ sở dữ liệu db_watch
-require 'connectDB.php';
 // lấy tên người dùng hiện thông quan session[currenuser] chứa mã khách hàng
 $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer ='$currentUser'";
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
@@ -87,7 +89,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 }
             }
             // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
-            xmlhttp.open("GET", "quantity_shopping_cart.php");
+            xmlhttp.open("GET", "../../Website Watch PHP/product and cart/quantity_shopping_cart.php");
             xmlhttp.send();
         };
 
@@ -115,7 +117,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                     }
                 }
                 // gọi file search.php và truyền tham số get search
-                xmlhttp.open("GET", "search.php?search=" + str, true);
+                xmlhttp.open("GET", "../../Website Watch PHP/product and cart/search.php?search=" + str, true);
                 xmlhttp.send();
                 // hiển thị ô kết quả tìm kiếm khi bắt được sự kiện
                 document.getElementById("searchResult").classList.toggle("showSearchResult");
@@ -189,7 +191,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
                         $.ajax({
                             type: 'POST',
-                            url: 'product_cart.php',
+                            url: '../../Website Watch PHP/product and cart/product_cart.php',
                             data: {
                                 action: "additems",
                                 productID: _productID,
@@ -223,7 +225,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     }
                                 }
                                 // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
-                                xmlhttp.open("GET", "quantity_shopping_cart.php");
+                                xmlhttp.open("GET", "../../Website Watch PHP/product and cart/quantity_shopping_cart.php");
                                 xmlhttp.send();
 
                             }
@@ -231,9 +233,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         Swal.fire({
                             position: 'top-end',
                             //icon: 'success',
-                            imageUrl: './img/image_products_home/' + _productImage,
+                            imageUrl: '../../Website Watch PHP/img/image_products_home/' + _productImage,
                             imageWidth: 70,
-                            imageHeight: 80,
+                            imageHeight: 90,
                             title: 'Đã thêm sản phẩm ' + _productName.toLowerCase() + ' vào giỏ hàng!',
                             showConfirmButton: false,
                             timer: 1300
@@ -277,7 +279,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                     passwordLogin.style.boxShadow = null;
                     $.ajax({
                         type: "POST",
-                        url: "login.php",
+                        url: "../../Website Watch PHP/access/login.php",
                         data: {
                             username: _username,
                             password: _password
@@ -300,7 +302,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         title: 'Đăng nhập thành công!',
                                         html: 'Đang đăng nhập vào Website <strong></strong> giây.',
                                         //icon: "success",
-                                        imageUrl: './img/cat.gif',
+                                        imageUrl: '../../Website Watch PHP/img/cat.gif',
                                         imageWidth: 315,
                                         imageHeight: 230,
                                         timer: 3000,
@@ -320,7 +322,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     }).then((result) => {
                                         // hoàn thành xong chuyển tới trang home
                                         if (result.dismiss === Swal.DismissReason.timer) {
-                                            window.location.href = data['success'];
+                                            var file = data['success'];
+                                            window.location.href = "../../Website Watch PHP/" + file;
+
                                         }
                                     })
 
@@ -372,7 +376,6 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 </head>
 
 <body>
-
     <div class="header sticky-top" id="header">
         <form action="" method="post">
             <div class="header-contact">
@@ -391,7 +394,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 </a>
                             </div>
                             <div class="header-add col-10">
-                                <a href="home.php">
+                                <a href="../../Website Watch PHP/home.php">
                                     <p class="">
                                         <i id="iconhouse" class="fa-sharp fa-solid fa-house"></i>
                                         <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
@@ -420,12 +423,13 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 ?>
                                     <i class="fa-solid fa-user"></i>
                                     <strong><?php echo $currentUser;  ?></strong>
-                                    <button type="button" name="logout" class="btn btn-dark"><a href="home.php?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
+                                    <button type="button" name="logout" class="btn btn-dark"><a href="<?php echo $curPageName ?>?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
                                     <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
                                 <?php else : ?>
                                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;
                                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Signup</button>
                                 <?php endif; ?>
+
                             </p>
                         </div>
                     </div>
@@ -445,7 +449,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
                                             <a class="nav-link  <?php if ($curPageName == "home.php") echo "active";
-                                                                else echo "" ?>" aria-current="page" href="home.php">TRANG CHỦ</a>
+                                                                else echo "" ?>" aria-current="page" href="../../Website Watch PHP/home.php">TRANG CHỦ</a>
                                         </li>
                                         <li class="nav-item ">
                                             <a class="nav-link <?php if ($curPageName == "news.php") echo "active";
@@ -459,10 +463,11 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nam, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowMen = mysqli_fetch_array($resultMen)) : ?>
-                                                    <li><a class="dropdown-item" href="shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "contact.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle  <?php if (isset($_GET['gender']) && $_GET['gender'] == "IDWM") echo "active";
                                                                                 else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -471,13 +476,13 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nữ, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowWomen = mysqli_fetch_array($resultWomen)) : ?>
-                                                    <li><a class="dropdown-item" href="shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link <?php if ($curPageName == "contact.php") echo "active";
-                                                                else echo "" ?>" href="contact.php">LIÊN HỆ</a>
+                                                                else echo "" ?>" href="../../Website Watch PHP/contact/contact.php">LIÊN HỆ</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -485,7 +490,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         </nav>
                     </div>
                     <div class="logo col-2">
-                        <img id="logo" src="./img/tcwlogo.png" alt="" srcset="">
+                        <img id="logo" src="<?php if ($curPageName != "home.php") echo "." ?>./img/tcwlogo.png" alt="" srcset="">
                     </div>
                     <div class="col-5 row right searchbtn">
                         <div class="col-7">
@@ -505,8 +510,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         <div class="col-5 cartbtn">
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
-                                    <a href="product_cart.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
-                                                                                                        else echo "" ?>">
+                                    <a href="../../Website Watch PHP/product and cart/product_cart.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
+                                                                                                                                                else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
                                             <span style="position: absolute;top: 0%;color:#b31212">

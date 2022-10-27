@@ -1,7 +1,8 @@
 <?php
 //session_start();
 $array_message = array();
-include "connectDB.php";
+// kết nối cơ sở dữ liệu db_watch
+require '../config/connectDB.php';
 include "auto_idorder.php";
 
 /*

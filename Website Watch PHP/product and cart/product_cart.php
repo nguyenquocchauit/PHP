@@ -1,4 +1,6 @@
 <?php
+// kết nối cơ sở dữ liệu db_watch
+require '../config/connectDB.php';
 // khởi tạo session
 session_start();
 $array_message = array();
@@ -13,7 +15,7 @@ $message_cart = "";
 if (isset($_GET['delcart']) && $_GET['delcart'] == 1) {
     unset($_SESSION['cart']);
     $message_cart = "
-            <img id='imgcart' src='./img/cat.gif' alt=''>
+            <img id='imgcart' src='../img/cat.gif' alt=''>
             <h4 id='mesag-cart'><p>Giỏ hàng hiện tại trống, quay lại trang shop đặt hàng</p></h4>
             <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
             ";
@@ -124,7 +126,7 @@ function Show_Cart()
                         ' . ($i + 1) . '
                     </td>
                     <td style="width: 15%;">
-                        <div class="divimg"><img src="./img/image_products_home/' . ($image) . '" alt="" srcset=""></div>
+                        <div class="divimg"><img src="../../Website Watch PHP//img/image_products_home/' . ($image) . '" alt="" srcset=""></div>
                     </td>
                     <td style="width: 26%;"><span>' . ($name) . '</span></td>
                     <td>
@@ -189,7 +191,7 @@ function Show_Cart()
         ';
         } else {
             echo "
-            <img id='imgcart' src='./img/cat.gif' alt=''>
+            <img id='imgcart' src='../img/cat.gif' alt=''>
             <h4 id='mesag-cart'><p>Giỏ hàng hiện tại trống, quay lại trang shop đặt hàng</p></h4>
             <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
             
@@ -200,18 +202,17 @@ function Show_Cart()
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
-    <link rel="stylesheet" href="./thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
-    <script src="./thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
-    <script src="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
+    <link rel="stylesheet" href="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Website Watch PHP/css and javascript/style.css">
+    <script src="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
+    <script src="../thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
+    <script src="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -314,7 +315,7 @@ function Show_Cart()
                                     title: 'Đặt hàng thành công!',
                                     html: 'Quay lại trang chủ trong <strong></strong> giây tới.',
                                     //icon: "success",
-                                    imageUrl: './img/cat.gif',
+                                    imageUrl: '../img/cat.gif',
                                     imageWidth: 315,
                                     imageHeight: 230,
                                     timer: 1500,
@@ -334,7 +335,8 @@ function Show_Cart()
                                 }).then((result) => {
                                     // hoàn thành xong chuyển tới trang home
                                     if (result.dismiss === Swal.DismissReason.timer) {
-                                        window.location.href = data['success'];
+                                        var file = data['success'];
+                                        window.location.href = "../../Website Watch PHP/" + file;
                                     }
                                 })
 
@@ -352,7 +354,7 @@ function Show_Cart()
     <div class="body-product-cart">
         <?php
         // thêm file navbar menu
-        include "navbar.php";
+        include "../header_footer/header.php";
         ?>
         <div class="body-cart mt-5">
             <div class="container-fluid">
@@ -366,7 +368,7 @@ function Show_Cart()
         </div>
         <?php
         // thêm file footer
-        include "footer.php";
+        include "../header_footer/footer.php";
         ?>
     </div>
 </body>

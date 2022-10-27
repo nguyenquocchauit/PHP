@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "connectDB.php";
-
+// kết nối cơ sở dữ liệu db_watch
+require '../config/connectDB.php';
 // xử lý tăng mã tự động bản order
 $sql = "SELECT MAX(ID_Order) as ID_Order FROM `orders` WHERE 1";
 $results = mysqli_query($conn, $sql);

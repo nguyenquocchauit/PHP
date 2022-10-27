@@ -1,6 +1,6 @@
 <?php
 // kết nối cơ sở dữ liệu db_watch
-require 'connectDB.php';
+require '../config/connectDB.php';
 //_REQUEST biến siêu toàn cục PHP được sử dụng để thu thập dữ liệu sau khi gửi biểu mẫu HTML (từ file navbar ô tìm kiếm)
 $search = $_REQUEST["search"];
 $searchResult = "";
@@ -26,7 +26,7 @@ if ($search !== "") {
             <div class="row">
                 <div class="col-2"><img class="imgSearch" src="./img/image_products_home/' . ($img1[0]) . '" alt=""></div>
                 <div class="col-10">
-                    <div class="row rowName"><a href="shop.php?gender=' . ($row['ID_Gender']) . '&brand=' . ($row['ID_Brand']) . '">' . ($row['Name']) . '</a></div>
+                    <div class="row rowName"><a href="../../Website Watch PHP/product and cart/shop.php?gender=' . ($row['ID_Gender']) . '&brand=' . ($row['ID_Brand']) . '">' . ($row['Name']) . '</a></div>
                     <div class="row rowPrice">' . ($price) . '</div>
                 </div>
             </div>

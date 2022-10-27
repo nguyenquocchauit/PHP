@@ -1,7 +1,8 @@
 <?php
 session_unset();
 session_start();
-require "connectDB.php";
+// kết nối cơ sở dữ liệu db_watch
+require '../config/connectDB.php';
 $array_message = array();
 /*
      message : 1 //Tài khoản không tồn tại
@@ -52,7 +53,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             $row = mysqli_fetch_array($result);
             $_SESSION['CurrentUser'] = $row['ID_Customer'];
             $array_message['message'] = 0;
-            $array_message['success'] = 'home.php';
+            $array_message['success'] = "home.php";
         } else {
             // sai mật khẩu
             $array_message['message'] = -1;

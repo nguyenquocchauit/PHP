@@ -1,7 +1,7 @@
 <?php
 session_start();
 // kết nối cơ sở dữ liệu db_watch
-require 'connectDB.php';
+require 'config/connectDB.php';
 // lấy toàn bộ sản phẩm
 $queryAll = "SELECT products.ID_Product,brands.Name as 'Brand_Name' ,gender.Name as 'Gender_Name', products.Name, products.Image, products.Quantity, products.Price, products.Discount 
 FROM products inner join brands on products.ID_Brand = brands.ID_Brand inner JOIN gender on products.ID_Gender= gender.ID_Gender";
@@ -24,7 +24,8 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../Website Watch PHP/css and javascript/style.css">
+  <link rel="stylesheet" href="../Website Watch PHP/css and javascript/style.js">
   <script src="./thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="./thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
   <link rel="stylesheet" href="./thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
@@ -40,7 +41,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
 <body>
   <?php
   // thêm file navbar menu
-  include "navbar.php";
+  include "header_footer/header.php";
   ?>
 
   <div class="header-slide">
@@ -191,7 +192,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
               <!-- duyệt danh sách  tất cả sản phẩm theo danh sách sp bán chạy nhất top 2: giá được giảm, ảnh, tên, số lượng có sẵn -->
               <?php while ($rowBestSeller = mysqli_fetch_array($resultBestSeller)) : ?>
                 <div class="item">
-                  <div class="sale">
+                  <div class="sale" <?php if ($rowBestSeller['Discount'] == 0) echo 'style="opacity:0;"'; ?>>
                     <!-- đổi số thập phân sang dạng phần trăm -->
                     <?php $discount = $rowBestSeller['Discount'];
                     $percent = round((float)$discount * 100) . '%';
@@ -206,9 +207,13 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     </div>
                     <div class="textleft product-item-desc">
                       <div><a href="shop.php?gender=<?php echo $rowBestSeller['Gender_Name'] ?>&brand=<?php echo $rowBestSeller['Brand_Name'] ?>"><?php echo $rowBestSeller['Name'] ?></a></div>
-                      <div class="price d-flex">
-                        <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                        <p class="price-pre"><?php echo number_format($rowBestSeller['Price']) ?></p>
+                      <div class="price d-flex" <?php if ($rowBestSeller['Discount'] == 0) echo 'style="justify-content: center;margin: 0px;"'; ?>>
+                        <?php if ($rowBestSeller['Discount'] != 0) : ?>
+                          <p class="price-pre">
+                            <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
+                            <?php echo number_format($rowBestSeller['Price']) ?>
+                          </p>
+                        <?php endif; ?>
                         <p>
                           <!-- xử lý in giá bán sau khi áp dụng giảm giá -->
                           <?php
@@ -255,57 +260,47 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                   </div>
                   <div class="col-7 d-flex">
                     <p>27 tháng 8</p>
-                    <p><i class="fa-regular fa-heart"></i>15</p>
-                    <p><i class="fa-regular fa-comment"></i>4</p>
+                    <p><i class="fa-regular fa-heart"></i>99</p>
+                    <p><i class="fa-regular fa-comment"></i>2</p>
                   </div>
                   <hr>
-                  <h5>STOCKING YOUR RESTAURANT KITCHEN FINDING RELIABLE SELLERS</h5>
-                  <p>Saving money – is something we would all like to do.
-                    Whether you are struggling to manage day to day or earning a six figure salary,
-                    saving is something we all think about.</p>
+                  <p style="padding: 0px 50px 0px 5px;">Tôi thực sự an tâm và tin tưởng vào chất lượng dịch vụ của TCWatch. Lần đầu tiên thấy chiếc đồng hồ của mình được chăm...</p>
                 </div>
               </div>
               <div class="col-4">
                 <img src="./img/ga-1100-2bdr-01.png" alt="" class="imgfeedback">
                 <div class="row mt-4">
                   <div class="col-1">
-                    <img src="./img/xuser.webp" alt="">
+                    <img src="./img/feedbackdkl.png" alt="">
                   </div>
                   <div class="col-4">
-                    <p>Mark Wiens</p>
+                    <p>Dương Khắc Linh</p>
                   </div>
                   <div class="col-7 d-flex">
-                    <p>13th Dec</p>
-                    <p><i class="fa-regular fa-heart"></i>15</p>
-                    <p><i class="fa-regular fa-comment"></i>4</p>
+                    <p>01th Dec</p>
+                    <p><i class="fa-regular fa-heart"></i>55</p>
+                    <p><i class="fa-regular fa-comment"></i>14</p>
                   </div>
                   <hr>
-                  <h5>COOKING FOR SPECIAL OCCASIONS COOKWARE IN THE BRICK AND MORTR</h5>
-                  <p>Let’s talk about meat fondue recipes and what you need to know first.
-                    Meat fondue also known as oil fondue is a method of cooking all kinds of meats,
-                    poultry, and seafood in a pot of heated oil.</p>
+                  <p style="padding: 0px 50px 0px 5px;">Điều mà Linh ấn tượng nhất là chế độ bảo hành 5 năm theo tiêu chuẩn Thuỵ Sĩ cho cả lỗi người dùng. Điều này không phải... </p>
                 </div>
               </div>
               <div class="col-4">
                 <img src="./img/gst-b100d-1a9dr-01.png" alt="" class="imgfeedback">
                 <div class="row mt-4">
                   <div class="col-1">
-                    <img src="./img/xuser.webp" alt="">
+                    <img src="./img/feedbackxb.png" alt="">
                   </div>
                   <div class="col-4">
-                    <p>Mark Wiens</p>
+                    <p>Xuân Bắc</p>
                   </div>
                   <div class="col-7 d-flex">
-                    <p>13th Dec</p>
-                    <p><i class="fa-regular fa-heart"></i>15</p>
-                    <p><i class="fa-regular fa-comment"></i>4</p>
+                    <p>19th Dec</p>
+                    <p><i class="fa-regular fa-heart"></i>78</p>
+                    <p><i class="fa-regular fa-comment"></i>8</p>
                   </div>
                   <hr>
-                  <h5>WHEN YOUR MEAL BITES BACK TIPS FOR AVOIDING FOOD POISONING</h5>
-                  <p>While some people really seem to have a knack for barbequing
-                    – always grilling up a perfect meal – for the rest of us, it is something that must be learned,
-                    not something that just comes naturally.
-                    Believe it or not, there is technique involved.</p>
+                  <p style="padding: 0px 50px 0px 5px;">Tôi ủng hộ những người đặt lợi ích của khách hàng làm mục tiêu phấn đấu. Vì vậy, tôi đã ủng hộ và lựa chọn TCWatch...</p>
                 </div>
               </div>
             </div>
@@ -316,7 +311,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   </div>
   <?php
   // thêm file footer
-  include "footer.php";
+  include "header_footer/footer.php";
   ?>
 
 
@@ -324,7 +319,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script type="text/javascript" src="./style.js"></script>
+  <script type="text/javascript" src="../Website Watch PHP/css and javascript/style.js"></script>
 </body>
 
 </html>
