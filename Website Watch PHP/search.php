@@ -7,7 +7,7 @@ $searchResult = "";
 if ($search !== "") {
     // strtoupper vì tên trong database in hoa nên cần in hoa ký tự nhập vào từ ô tìm kiếm
     $search = strtoupper($search);
-    $query = "SELECT products.Name,products.Image,products.Price, products.Discount ,brands.Name as 'Brand_Name',gender.Name as 'Gender_Name' FROM products 
+    $query = "SELECT products.Name,products.Image,products.Price, products.Discount ,brands.ID_Brand as 'ID_Brand',gender.ID_Gender as 'ID_Gender' FROM products 
     INNER JOIN brands on products.ID_Brand = brands.ID_Brand INNER JOIN gender on products.ID_Gender = gender.ID_Gender WHERE products.Name like '$search%';";
     // cú pháp truy vấn
     $results = mysqli_query($conn, $query);
@@ -26,7 +26,7 @@ if ($search !== "") {
             <div class="row">
                 <div class="col-2"><img class="imgSearch" src="./img/image_products_home/' . ($img1[0]) . '" alt=""></div>
                 <div class="col-10">
-                    <div class="row rowName"><a href="shop.php?gender=' . ($row['Gender_Name']) . '&brand=' . ($row['Brand_Name']) . '">' . ($row['Name']) . '</a></div>
+                    <div class="row rowName"><a href="shop.php?gender=' . ($row['ID_Gender']) . '&brand=' . ($row['ID_Brand']) . '">' . ($row['Name']) . '</a></div>
                     <div class="row rowPrice">' . ($price) . '</div>
                 </div>
             </div>

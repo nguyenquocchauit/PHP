@@ -1,10 +1,12 @@
 <?php
 // khởi tạo session
 session_start();
-
+$array_message = array();
 // nếu session[cart] không tồn tại thì khởi tạo
 if (!isset($_SESSION['cart']))
     $_SESSION['cart'] = [];
+else
+    $array_message['quantity-cart'] = sizeof($_SESSION['cart']);
 
 // nếu get[delcart] tồn tại và =1 thì session[cart] bằng rỗng. Tức xóa hết sản phẩm trong giỏ hàng
 $message_cart = "";
@@ -28,7 +30,7 @@ if (isset($_GET['delid']) && $_GET['delid'] >= 0) {
 }
 
 // kiểm tra nút bấm thêm giỏ hàng 
-if (isset($_POST['add-to-cart'])) {
+if (isset($_POST['action']) && $_POST['action'] == "additems") {
     $image = $_POST['productImage'];
     $quantity = $_POST['productQuantity'];
     $name = $_POST['productName'];
@@ -64,8 +66,8 @@ function Show_Cart()
 {
     if (isset($_SESSION['cart']) && (is_array($_SESSION['cart']))) {
         // lấy thời gian hệ thống
-        $now = new DateTime();
-        $timeNow = $now->format('Y-m-d H:i:s');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $timeNow = date("Y-m-d H:i:s");
         // kiểm tra người dùng đã đăng nhập hay chưa, nếu chưa thì không được đặt hàng
         if (isset($_SESSION['CurrentUser'])) $CurrentUser =  $_SESSION['CurrentUser'];
         else $CurrentUser = "null";
@@ -107,9 +109,13 @@ function Show_Cart()
                 $image = $_SESSION['cart'][$i][2];
                 $price = $_SESSION['cart'][$i][3];
                 $quanti = $_SESSION['cart'][$i][4];
-                // kiểm tra không được đặt quá giới hạn là 5 sản phẩm
-                if ($quanti >= 5)
+
+                // kiểm tra không được đặt quá giới hạn là 5 sản phẩm và đặt lại số lượng giỏ hàng là 5 là tối đa
+                if ($quanti >= 5) {
                     $quanti = 5;
+                    $_SESSION['cart'][$i][4] = 5;
+                }
+
                 $total = $price * $quanti;
                 $sum += $total;
                 echo '
@@ -331,7 +337,7 @@ function Show_Cart()
                                         window.location.href = data['success'];
                                     }
                                 })
-                                
+
                             }
                         }
                     });

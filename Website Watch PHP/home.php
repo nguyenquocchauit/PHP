@@ -141,15 +141,15 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     echo "-" . $percent;
                     ?>
                   </div>
-                  <div class="wap-items-ss brbox ">
-                    <div class="wap-ss-img itemimg">
+                  <div class="wap-items-ss brbox product-item ">
+                    <div class="wap-ss-img product-item-img">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
                       <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowDiscount['Image']);
                                                                   echo $img1[0] ?>">
                     </div>
-                    <div class="textleft">
+                    <div class="textleft product-item-desc">
                       <div><a href="shop.php?gender=<?php echo $rowDiscount['Gender_Name'] ?>&brand=<?php echo $rowDiscount['Brand_Name'] ?>"><?php echo $rowDiscount['Name'] ?></a></div>
-                      <div class="price d-flex">
+                      <div class="price d-flex ">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
                         <p class="price-pre"><?php echo number_format($rowDiscount['Price']) ?></p>
                         <p>
@@ -161,15 +161,13 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div>
-                        <form action="product_cart.php" method="post">
-                          <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
-                          <input type="hidden" name="productID" value="<?php echo $rowDiscount['ID_Product'] ?>"></input>
-                          <input type="hidden" name="productQuantity" value="1"></input>
-                          <input type="hidden" name="productName" value="<?php echo $rowDiscount['Name'] ?>"></input>
-                          <input type="hidden" name="productPrice" value="<?php echo $price ?>"></input>
-                          <input type="hidden" name="productImage" value="<?php echo $img1[0] ?>"></input>
-                        </form>
+                      <div class="product-item-desc-button-submit">
+                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                        <input type="hidden" name="productID" class="productID" value="<?php echo $rowDiscount['ID_Product'] ?>"></input>
+                        <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
+                        <input type="hidden" name="productName" class="productName" value="<?php echo $rowDiscount['Name'] ?>"></input>
+                        <input type="hidden" name="productPrice" class="productPrice" value="<?php echo $price ?>"></input>
+                        <input type="hidden" name="productImage" class="productImage" value="<?php echo $img1[0] ?>"></input>
                       </div>
                     </div>
                   </div>
@@ -200,13 +198,13 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     echo "-" . $percent;
                     ?>
                   </div>
-                  <div class="wap-items-ss brbox">
-                    <div class="wap-ss-img">
+                  <div class="wap-items-ss brbox product-item">
+                    <div class="wap-ss-img product-item-img">
                       <!-- Image lưu trữ nhiều ảnh, tách dữ liệu lấy ảnh đầu tiên. Các ảnh được ngăn cách bởi dấu , -->
                       <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowBestSeller['Image']);
                                                                   echo $img1[0] ?>">
                     </div>
-                    <div class="textleft">
+                    <div class="textleft product-item-desc">
                       <div><a href="shop.php?gender=<?php echo $rowBestSeller['Gender_Name'] ?>&brand=<?php echo $rowBestSeller['Brand_Name'] ?>"><?php echo $rowBestSeller['Name'] ?></a></div>
                       <div class="price d-flex">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
@@ -220,15 +218,13 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                           ?>
                         </p>
                       </div>
-                      <div>
-                        <form action="product_cart.php" method="post">
-                          <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
-                          <input type="hidden" name="productID" value="<?php echo $rowBestSeller['ID_Product'] ?>"></input>
-                          <input type="hidden" name="productQuantity" value="1"></input>
-                          <input type="hidden" name="productName" value="<?php echo $rowBestSeller['Name'] ?>"></input>
-                          <input type="hidden" name="productPrice" value="<?php echo $price ?>"></input>
-                          <input type="hidden" name="productImage" value="<?php echo $img1[0] ?>"></input>
-                        </form>
+                      <div class="product-item-desc-button-submit">
+                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                        <input type="hidden" name="productID" class="productID" value="<?php echo $rowBestSeller['ID_Product'] ?>"></input>
+                        <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
+                        <input type="hidden" name="productName" class="productName" value="<?php echo $rowBestSeller['Name'] ?>"></input>
+                        <input type="hidden" name="productPrice" class="productPrice" value="<?php echo $price ?>"></input>
+                        <input type="hidden" name="productImage" class="productImage" value="<?php echo $img1[0] ?>"></input>
                       </div>
                     </div>
                   </div>

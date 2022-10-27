@@ -4,7 +4,6 @@ $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], 
 // //đăng xuất. kiểm tra khi ấn nút đăng xuất chứa logout = 1 thì xóa $_SESSION['CurrentUser']
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     unset($_SESSION['CurrentUser']);
-    
 }
 $currentUser = "";
 // if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
@@ -54,16 +53,63 @@ $resultWomen = mysqli_query($conn, $queryWomen);
             left: 0px;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         // css màu input nếu đăng nhập có xãy ra lỗi
         var boxShadowCSS = '0px 3px #1bcf4840';
         var borderCSS = '2px solid red';
+        // tải lại trang sẽ hiển thị lại số lượng sản phẩm trong giỏ hàng lưu tại session[cart]
+        window.onload = function() {
+            /*
+                Các đối tượng XMLHttpRequest (XHR) được sử dụng để tương tác với các máy chủ. 
+                Bạn có thể truy xuất dữ liệu từ một URL mà không cần phải làm mới toàn bộ trang. 
+                Điều này cho phép một trang Web chỉ cập nhật một phần của trang mà không làm gián đoạn những gì người dùng đang làm.
+            */
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                /*
+                    readyState ==1 : UNSENT
+                    readyState ==2 : OPENED
+                    readyState ==3 : LOADING
+                    readyState ==4 : DONE
+                */
+                /*
+                    UNSENT: 0
+                    OPENED: 0
+                    LOADING: 200
+                    DONE: 200
+                 */
+                /* 
+                    responseText trả về từ file được send
+                */
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("quantity-shopping-cart").innerHTML = this.responseText;
+                }
+            }
+            // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
+            xmlhttp.open("GET", "quantity_shopping_cart.php");
+            xmlhttp.send();
+        };
+
+        // sử dụng công nghệ AJAX
 
         // bắt sự kiện thay đổi ký tự trong input search. Xử lý đưa dữ liệu ra bên ngoài từ từ khóa tìm kiếm
         function search(str) {
             if (str.length != 0) {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
+                    /*
+                        readyState ==1 : UNSENT
+                        readyState ==2 : OPENED
+                        readyState ==3 : LOADING
+                        readyState ==4 : DONE
+                    */
+                    /*
+                        UNSENT: 0
+                        OPENED: 0
+                        LOADING: 200
+                        DONE: 200
+                     */
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("searchResult").innerHTML = this.responseText;
                     }
@@ -76,8 +122,128 @@ $resultWomen = mysqli_query($conn, $queryWomen);
             }
         };
         // sử dụng công nghệ AJAX
-        // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php 
         $(document).ready(function() {
+
+            // bắt sự kiện hiển thị dropdown lịch sử cart
+            // bắt sự kiện phần tử có id show_history_cart show lịch cart
+            var obj = document.getElementById('show_history_cart');
+            obj.addEventListener('mouseover', function() {
+                var x = document.getElementById("dropdown_cart");
+                x.classList.add("show");
+                // thiết lập thời gian show 2 giây
+                setTimeout(function() {
+                    x.classList.remove("show");
+                }, 2000);
+            });
+
+            // tìm phần tử con của dropdown_cart là các thẻ li tồn tại
+            var obj_hidden = document.getElementById('dropdown_cart').getElementsByClassName('dropdown_hidden')[0];
+            obj_hidden.addEventListener('mouseout', function() {
+                // di chuyển chuột ra ngoài li sẽ remove class show
+                document.getElementById('dropdown_cart').classList.remove("show");
+            });
+
+            // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
+            $('.add-to-cart').on('click', function() {
+                var cart = $('.shopping-cart');
+                var imgtodrag = $(this).parent('.product-item-desc-button-submit').parent('.product-item-desc').parent(".product-item").find(".product-item-img").find("img").eq(0);
+                // tìm đúng các value của phần tử theo vị trí nút button được click 
+                var _productID = $(this).parent('.product-item-desc-button-submit').find(".productID").val();
+                var _productName = $(this).parent('.product-item-desc-button-submit').find(".productName").val();
+                var _productImage = $(this).parent('.product-item-desc-button-submit').find(".productImage").val();
+                var _productQuantity = $(this).parent('.product-item-desc-button-submit').find(".productQuantity").val();
+                var _productPrice = $(this).parent('.product-item-desc-button-submit').find(".productPrice").val();
+
+                if (imgtodrag) {
+                    // tạo phần tử sao chép giống phần tử cha. Tức là copy ra 1 ảnh như vậy
+
+                    var imgclone = imgtodrag.clone()
+                        .offset({
+                            //offset lấy vị trí top & left của img gốc
+                            top: imgtodrag.offset().top,
+                            left: imgtodrag.offset().left
+                        })
+                        .css({
+                            // thiết lập css
+                            'opacity': '0.5',
+                            'position': 'absolute',
+                            'height': '250px',
+                            'width': '200px',
+                            'z-index': '100'
+                        })
+                        .appendTo($('body') /* thêm vào body hiển thị ra giao diện*/ )
+                        .animate({
+                            // animation cho img tới giỏ hàng
+                            top: cart.offset().top + 10,
+                            left: cart.offset().left + 10,
+                            width: 75,
+                            height: 75,
+                            position: "absolute",
+                        }, 1000);
+                    imgclone.animate({
+                        'width': 0,
+                        'height': 0
+
+                    }, function() {
+
+                        console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
+                        $.ajax({
+                            type: 'POST',
+                            url: 'product_cart.php',
+                            data: {
+                                action: "additems",
+                                productID: _productID,
+                                productName: _productName,
+                                productImage: _productImage,
+                                productQuantity: _productQuantity,
+                                productPrice: _productPrice,
+                            },
+                            success: function(data) {
+
+                                var xmlhttp = new XMLHttpRequest();
+                                xmlhttp.onreadystatechange = function() {
+                                    /*
+                                        readyState ==1 : UNSENT
+                                        readyState ==2 : OPENED
+                                        readyState ==3 : LOADING
+                                        readyState ==4 : DONE
+                                    */
+                                    /*
+                                        UNSENT: 0
+                                        OPENED: 0
+                                        LOADING: 200
+                                        DONE: 200
+                                     */
+                                    /* 
+                                        responseText trả về từ file được send
+                                    */
+                                    if (this.readyState == 4 && this.status == 200) {
+
+                                        document.getElementById("quantity-shopping-cart").innerHTML = this.responseText;
+                                    }
+                                }
+                                // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
+                                xmlhttp.open("GET", "quantity_shopping_cart.php");
+                                xmlhttp.send();
+
+                            }
+                        });
+                        Swal.fire({
+                            position: 'top-end',
+                            //icon: 'success',
+                            imageUrl: './img/image_products_home/' + _productImage,
+                            imageWidth: 70,
+                            imageHeight: 80,
+                            title: 'Đã thêm sản phẩm ' + _productName.toLowerCase() + ' vào giỏ hàng!',
+                            showConfirmButton: false,
+                            timer: 1300
+                        });
+                        $(this).detach()
+                    });
+                }
+            });
+            // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php 
+            // bắt sự kiện đăng nhập
             $("#submitLogin").submit(function() {
                 var usernameLogin = document.getElementById("usernameLogin");
                 var passwordLogin = document.getElementById("passwordLogin");
@@ -175,7 +341,6 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     usernameLogin.style.border = null;
                                     usernameLogin.style.boxShadow = null;
                                 }
-
                             }
                         },
                         error: function(request, status, error) {
@@ -207,7 +372,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 </head>
 
 <body>
-    <div class="header sticky-top">
+
+    <div class="header sticky-top" id="header">
         <form action="" method="post">
             <div class="header-contact">
                 <div class="container">
@@ -231,6 +397,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
                                     </p>
                                 </a>
+
                             </div>
                         </div>
                         <div class="center col-2">
@@ -280,7 +447,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <a class="nav-link  <?php if ($curPageName == "home.php") echo "active";
                                                                 else echo "" ?>" aria-current="page" href="home.php">TRANG CHỦ</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item ">
                                             <a class="nav-link <?php if ($curPageName == "news.php") echo "active";
                                                                 else echo "" ?>" href="#">TIN TỨC</a>
                                         </li>
@@ -337,13 +504,19 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         </div>
                         <div class="col-5 cartbtn">
                             <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a href="product_cart.php" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
-                                                                                else echo "" ?>">
+                                <li class="nav-item ">
+                                    <a href="product_cart.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
+                                                                                                        else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
+                                            <span style="position: absolute;top: 0%;color:#b31212">
+                                                <p id="quantity-shopping-cart"></p>
+                                            </span>
                                         </span>
                                     </a>
+                                    <ul class="dropdown-menu " id="dropdown_cart" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
+                                        <li class="dropdown_hidden"><a class="dropdown-item " href="#">Lịch sử đặt hàng</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                             <!-- <a href="product_cart.php" class="cart">
@@ -355,6 +528,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <!-- Modal-Login -->
     <form action="" method="POST" id="submitLogin">

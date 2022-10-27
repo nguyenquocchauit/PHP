@@ -37,7 +37,7 @@ $resultbrand = mysqli_query($conn, $brand);
 
 /// select product
 
-$product = "SELECT DISTINCT gender.ID_Gender, brands.ID_Brand , products.Name as 'Name_Product',brands.Name as 'Name_Brand',ID_Product  , Price , Image , Discount
+$product = "SELECT DISTINCT gender.ID_Gender, brands.ID_Brand , products.Name as 'Name_Product',brands.Name as 'Name_Brand',products.ID_Product as ID_Product , Price , Image , Discount
 FROM products JOIN brands ON products.ID_Brand = brands.ID_Brand
 JOIN gender ON products.ID_Gender = gender.ID_Gender
 WHERE 1 $idbrand  $idgender
@@ -112,7 +112,7 @@ $resultproduct = mysqli_query($conn, $product);
                             <span>DANH MỤC SẢN PHẨM </span>
                         </a>
                         <?php while ($rowBrand = mysqli_fetch_array($resultbrand)) :
-                            $active = "";   
+                            $active = "";
                             if ($brandlink == $rowBrand['ID_Brand'])
                                 $active = "active";
                         ?>
@@ -128,23 +128,29 @@ $resultproduct = mysqli_query($conn, $product);
             <div class="item d-flex">
                 <?php while ($rowProduct = mysqli_fetch_array($resultproduct)) :   ?>
                     <div class="prd mt-5">
-                        <div class="sale">
+                        <div class="sale" <?php if ($rowProduct['Discount'] == 0) echo 'style="opacity:0;"'; ?>>
                             <!-- đổi số thập phân sang dạng phần trăm -->
-                            <?php $discount = $rowProduct['Discount'];
+                            <?php
+                            $discount = $rowProduct['Discount'];
                             $percent = round((float)$discount * 100) . '%';
                             echo "-" . $percent;
                             ?>
                         </div>
-                        <div class="product">
-                            <div class="img">
+
+                        <div class="product product-item">
+                            <div class="img product-item-img">
                                 <img alt="" src="./img/image_products_home/<?php $img1 = explode(",", $rowProduct['Image']);
                                                                             echo $img1[0] ?>">
                             </div>
-                            <div class="textleft">
+                            <div class="textleft product-item-desc">
                                 <div class="name"><a href=""> <?php echo $rowProduct['Name_Product'] ?></a></div>
-                                <div class="price d-flex">
-                                    <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                                    <p class="price-pre"><?php echo number_format($rowProduct['Price']) ?></p>
+                                <div class="price d-flex" <?php if ($rowProduct['Discount'] == 0) echo 'style="justify-content: center;"'; ?>>
+                                    <?php if ($rowProduct['Discount'] != 0) : ?>
+                                        <p class="price-pre">
+                                            <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
+                                            <?php echo number_format($rowProduct['Price']) ?>
+                                        </p>
+                                    <?php endif; ?>
                                     <p>
                                         <!-- xử lý in giá bán sau khi áp dụng giảm giá -->
                                         <?php
@@ -154,15 +160,13 @@ $resultproduct = mysqli_query($conn, $product);
                                         ?>
                                     </p>
                                 </div>
-                                <div>
-                                    <form action="product_cart.php" method="post">
-                                        <button type="submit" class="btn btn-outline-dark add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
-                                        <input type="hidden" name="productID" value="<?php echo $rowProduct['ID_Product'] ?>"></input>
-                                        <input type="hidden" name="productQuantity" value="1"></input>
-                                        <input type="hidden" name="productName" value="<?php echo $rowProduct['Name_Product'] ?>"></input>
-                                        <input type="hidden" name="productPrice" value="<?php echo $price ?>"></input>
-                                        <input type="hidden" name="productImage" value="<?php echo $img1[0] ?>"></input>
-                                    </form>
+                                <div class="product-item-desc-button-submit">
+                                    <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                                    <input type="hidden" name="productID" class="productID" value="<?php echo $rowProduct['ID_Product'] ?>"></input>
+                                    <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
+                                    <input type="hidden" name="productName" class="productName" value="<?php echo $rowProduct['Name_Product'] ?>"></input>
+                                    <input type="hidden" name="productPrice" class="productPrice" value="<?php echo $price ?>"></input>
+                                    <input type="hidden" name="productImage" class="productImage" value="<?php echo $img1[0] ?>"></input>
                                 </div>
                             </div>
                         </div>
@@ -194,8 +198,8 @@ $resultproduct = mysqli_query($conn, $product);
             }
             // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
             if ($current_page < $total_page && $total_page > 1) {
-                echo '<a href="shop.php?gender=' . $genderlink . '&brand=' . $brandlink . '&page=' . ($current_page + 1) . '"> &raquo; </a>  ';
-                echo '<a href="shop.php?gender=' . $genderlink . '&brand=' . $brandlink . '&page=' . ($total_page) . '"> &gt; </a>  ';
+                echo '<a href="shop.php?gender=' . $genderlink . '&brand=' . $brandlink . '&page=' . ($current_page + 1) . '"> &gt; </a>  ';
+                echo '<a href="shop.php?gender=' . $genderlink . '&brand=' . $brandlink . '&page=' . ($total_page) . '"> &raquo; </a>  ';
             }
         }
         ?>
