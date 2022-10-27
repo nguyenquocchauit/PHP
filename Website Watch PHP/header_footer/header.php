@@ -155,7 +155,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 var _productImage = $(this).parent('.product-item-desc-button-submit').find(".productImage").val();
                 var _productQuantity = $(this).parent('.product-item-desc-button-submit').find(".productQuantity").val();
                 var _productPrice = $(this).parent('.product-item-desc-button-submit').find(".productPrice").val();
-
+                
                 if (imgtodrag) {
                     // tạo phần tử sao chép giống phần tử cha. Tức là copy ra 1 ảnh như vậy
 
@@ -187,7 +187,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         'height': 0
 
                     }, function() {
-
+                        
                         console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
                         $.ajax({
                             type: 'POST',
