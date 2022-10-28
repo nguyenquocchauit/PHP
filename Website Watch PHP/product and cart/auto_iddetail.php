@@ -7,7 +7,8 @@ $get = mysqli_fetch_array($results);
 // ví dụ Detail0000001
 $ID_Detail = null;
 // $detail = Detail
-$detail = substr($get['ID_Detail'], 0, -7);
+// $detail = substr($get['ID_Detail'], 0, -7);
+$detail = "Detail";
 // $number
 $number =  substr($get['ID_Detail'], -7);
 // chuyển chuỗi thành số

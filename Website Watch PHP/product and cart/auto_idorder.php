@@ -8,8 +8,9 @@ $results = mysqli_query($conn, $sql);
 $get = mysqli_fetch_array($results);
 // ví dụ Order0000001
 $ID_Order = null;
-// $order = Order
-$order = substr($get['ID_Order'], 0, -7);
+// // $order = Order
+// $order = substr($get['ID_Order'], 0, -7);
+$order ="Order";
 // $number
 $number =  substr($get['ID_Order'], -7);
 // chuyển chuỗi thành số
