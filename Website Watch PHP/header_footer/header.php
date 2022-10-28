@@ -541,7 +541,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu " id="dropdown_cart" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-                                        <li class="dropdown_hidden"><a class="dropdown-item " href="#">Lịch sử đặt hàng</a></li>
+                                        <li class="dropdown_hidden"><a class="dropdown-item " href="../../Website Watch PHP/product and cart/history_cart.php">Lịch sử đặt hàng</a></li>
                                     </ul>
                                 </li>
                             </ul>

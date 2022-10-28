@@ -177,7 +177,7 @@ function Show_Cart()
                     </tr>
                         <td></td>
                             <td style="text-align: end;">
-                                <a href="javascript:window.history.back(-1);"><button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button></a>
+                                <a href="shop.php"><button type="button" class="buttonBack"><i class="fa-solid fa-arrow-left" id="iconback"></i>Tiếp tục xem sản phẩm</button></a>
                             </td>
                             <td style="text-align: center;">
                                 <a href="product_cart.php?delcart=1"><button type="button" class="buttonDelete" ><i class="fa-solid fa-trash"></i> Xóa giỏ hàng</button></a>

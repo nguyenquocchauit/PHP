@@ -56,7 +56,7 @@ switch ($idbrand) {
         $brandlink = "g-shock";
         break;
 }
-// lấy toàn bộ sản phẩm
+// lấy sản phẩm
 $queryDetail = "SELECT * FROM `products` WHERE 1 and ID_Brand='$idbrand' AND ID_Gender='$idgender' AND ID_Product='$idproduct'";
 $resultDetail = mysqli_query($conn, $queryDetail);
 ?>
