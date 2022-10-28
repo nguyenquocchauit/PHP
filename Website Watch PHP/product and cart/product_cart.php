@@ -71,10 +71,13 @@ function Show_Cart()
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $timeNow = date("Y-m-d H:i:s");
         // kiểm tra người dùng đã đăng nhập hay chưa, nếu chưa thì không được đặt hàng
-        if (isset($_SESSION['CurrentUser'])) {
+        if (isset($_SESSION['CurrentUser']['ID'])&&isset($_SESSION['CurrentUser']['Role'])) {
             $CurrentUser =  $_SESSION['CurrentUser']['ID'];
             $IDUser = $_SESSION['CurrentUser']['Role'];
-        } else $CurrentUser = "null";
+        } else {
+            $CurrentUser = "null";
+            $IDUser = "null";
+        }
         // nếu giỏ hàng $_SESSION['cart']) tồn tại thì in ra
         if (sizeof($_SESSION['cart']) > 0) {
             $sum = 0;
@@ -300,8 +303,7 @@ function Show_Cart()
                             $('#login').modal('show');
                         }
                     })
-                }
-                if (IDUser == "Admin") {
+                } else if (IDUser == "Admin") {
                     Swal.fire({
                         icon: 'error',
                         title: 'Thông báo',

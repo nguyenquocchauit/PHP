@@ -52,7 +52,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         if (mysqli_num_rows($result) != 0) {
             $row = mysqli_fetch_array($result);
             $_SESSION['CurrentUser'] = array(
-                'ID' => $row['ID_Administration'],
+                'ID' => $row['ID_Customer'],
                 'Role' => $row['ID_Role'],
             );
             $array_message['message'] = 0;

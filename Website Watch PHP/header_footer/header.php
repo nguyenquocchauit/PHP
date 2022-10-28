@@ -1,4 +1,5 @@
 <?php
+
 // include 'config/connectDB.php';
 // lấy tên trang để active menu
 $curPageName = $_SERVER["SCRIPT_NAME"];
@@ -9,20 +10,21 @@ $curPageName = $curPageName[(sizeof($curPageName) - 1)];
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     unset($_SESSION['CurrentUser']);
 }
-
-// if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
-if ((isset($_SESSION['CurrentUser']))) {
-    //print_r("$");
-    $_SESSION['CurrentUser']['Role'] = [];
-    $_SESSION['CurrentUser']['ID'] = [];
+// if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu không tồn tại thì role và id = null và ngược lại gán cho $Role và $ID dùng truy vấn
+if ((isset($_SESSION['CurrentUser']['ID'])) && (isset($_SESSION['CurrentUser']['Role']))) {
+    $Role = $_SESSION['CurrentUser']['Role'];
+    $ID = $_SESSION['CurrentUser']['ID'];
+} else {
+    $Role = null;
+    $ID = null;
 }
 // lấy tên người dùng hiện thông quan session[currentuser] chứa id và role(user or admin)
 // kiểm tra session chứa role là admin hay user
 
-if ($_SESSION['CurrentUser']['Role'] == "Admin")
-    $queryCurrenUser = "SELECT CONCAT(administration.First_Name,' ',administration.Last_Name) AS currentUserName FROM administration WHERE ID_Administration='" . ($_SESSION['CurrentUser']['ID']) . "'";
+if ($Role == "Admin")
+    $queryCurrenUser = "SELECT CONCAT(administration.First_Name,' ',administration.Last_Name) AS currentUserName FROM administration WHERE ID_Administration='" . $ID . "'";
 else
-    $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer='" . ($_SESSION['CurrentUser']['ID']) . "'";
+    $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer='" . $ID . "'";
 // truy vấn tìm kiếm currentuser thông qua if in line 23
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
@@ -259,21 +261,35 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 var _password = $("#passwordLogin").val();
                 console.log(_username, _password);
                 if (_username == "" || _username.length == 0) {
-                    validationPassWord.style.display = "none";
-                    validationUserName.innerHTML = "(*) Tài khoản trống";
-                    usernameLogin.style.border = borderCSS;
-                    usernameLogin.style.boxShadow = boxShadowCSS;
-                    passwordLogin.style.border = null;
-                    passwordLogin.style.boxShadow = null;
-                    validationUserName.style.display = "block";
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thống báo!',
+                        text: 'Tài khoản không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                    // validationPassWord.style.display = "none";
+                    // validationUserName.innerHTML = "(*) Tài khoản trống";
+                    // usernameLogin.style.border = borderCSS;
+                    // usernameLogin.style.boxShadow = boxShadowCSS;
+                    // passwordLogin.style.border = null;
+                    // passwordLogin.style.boxShadow = null;
+                    // validationUserName.style.display = "block";
                 } else if (_password == "" || _password.length == 0) {
-                    validationUserName.style.display = "none";
-                    validationPassWord.innerHTML = "(*) Mật khẩu trống";
-                    passwordLogin.style.border = borderCSS;
-                    passwordLogin.style.boxShadow = boxShadowCSS;
-                    usernameLogin.style.border = null;
-                    usernameLogin.style.boxShadow = null;
-                    validationPassWord.style.display = "block";
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thống báo!',
+                        text: 'Mật khẩu không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                    // validationUserName.style.display = "none";
+                    // validationPassWord.innerHTML = "(*) Mật khẩu trống";
+                    // passwordLogin.style.border = borderCSS;
+                    // passwordLogin.style.boxShadow = boxShadowCSS;
+                    // usernameLogin.style.border = null;
+                    // usernameLogin.style.boxShadow = null;
+                    // validationPassWord.style.display = "block";
                 } else {
                     validationPassWord.style.display = "none";
                     validationUserName.style.display = "none";
@@ -333,21 +349,35 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     })
 
                                 } else if (data['message'] == 1) {
-                                    validationPassWord.style.display = "none";
-                                    validationUserName.innerHTML = "(*) Tài khoản không tồn tại";
-                                    validationUserName.style.display = "block";
-                                    usernameLogin.style.border = borderCSS;
-                                    usernameLogin.style.boxShadow = boxShadowCSS;
-                                    passwordLogin.style.border = null;
-                                    passwordLogin.style.boxShadow = null;
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thống báo!',
+                                        text: 'Tài khoản không tồn tại!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+                                    })
+                                    // validationPassWord.style.display = "none";
+                                    // validationUserName.innerHTML = "(*) Tài khoản không tồn tại";
+                                    // validationUserName.style.display = "block";
+                                    // usernameLogin.style.border = borderCSS;
+                                    // usernameLogin.style.boxShadow = boxShadowCSS;
+                                    // passwordLogin.style.border = null;
+                                    // passwordLogin.style.boxShadow = null;
                                 } else if (data['message'] == -1) {
-                                    validationUserName.style.display = "none";
-                                    validationPassWord.innerHTML = "(*) Mật khẩu sai";
-                                    validationPassWord.style.display = "block";
-                                    passwordLogin.style.border = borderCSS;
-                                    passwordLogin.style.boxShadow = boxShadowCSS;
-                                    usernameLogin.style.border = null;
-                                    usernameLogin.style.boxShadow = null;
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thống báo!',
+                                        text: 'Mật khẩu sai!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+                                    })
+                                    // validationUserName.style.display = "none";
+                                    // validationPassWord.innerHTML = "(*) Mật khẩu sai";
+                                    // validationPassWord.style.display = "block";
+                                    // passwordLogin.style.border = borderCSS;
+                                    // passwordLogin.style.boxShadow = boxShadowCSS;
+                                    // usernameLogin.style.border = null;
+                                    // usernameLogin.style.boxShadow = null;
                                 }
                             }
                         },

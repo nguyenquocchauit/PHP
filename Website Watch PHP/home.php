@@ -13,7 +13,7 @@ $resultDiscount = mysqli_query($conn, $queryDiscount);
 // lấy sản phẩm được bán chạy nhất. Mặc định hiện tại 2 sản phẩm
 $queryBestSeller = "SELECT a.ID_Product,a.Name,a.Image,a.Price,a.Discount,b.number_of_oders,c.Name as 'Brand_Name' ,d.Name as 'Gender_Name' FROM products a inner join 
 (SELECT a.ID_Product, sum(a.Quantity) as 'number_of_oders' FROM order_details a inner join products b on a.ID_Product=b.ID_Product GROUP BY a.ID_Product) b 
-on a.ID_Product = b.ID_Product inner join brands c on a.ID_Brand = c.ID_Brand inner join gender d on a.ID_Gender=d.ID_Gender GROUP BY b.number_of_oders DESC LIMIT 2";
+on a.ID_Product = b.ID_Product inner join brands c on a.ID_Brand = c.ID_Brand inner join gender d on a.ID_Gender=d.ID_Gender GROUP BY b.number_of_oders DESC LIMIT 4";
 $resultBestSeller = mysqli_query($conn, $queryBestSeller);
 ?>
 <!DOCTYPE html>
