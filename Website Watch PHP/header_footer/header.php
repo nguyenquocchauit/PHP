@@ -9,17 +9,21 @@ $curPageName = $curPageName[(sizeof($curPageName) - 1)];
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     unset($_SESSION['CurrentUser']);
 }
-$currentUser = "";
+
 // if đầu tiên kiểm tra $_SESSION['CurrentUser'] nếu rỗng và không  tồn tại thì $currentUser = ""
-if (!(isset($_SESSION['CurrentUser'])) && !(empty($_SESSION['CurrentUser']))) {
-    $currentUser = "";
-} else {
-    // khi load trang lại tức đã có $_SESSION['CurrentUser'] tồn tại thì $currentUser = $_SESSION['CurrentUser']
-    if ((isset($_SESSION['CurrentUser'])))
-        $currentUser = $_SESSION['CurrentUser'];
+if ((isset($_SESSION['CurrentUser']))) {
+    //print_r("$");
+    $_SESSION['CurrentUser']['Role'] = [];
+    $_SESSION['CurrentUser']['ID'] = [];
 }
-// lấy tên người dùng hiện thông quan session[currenuser] chứa mã khách hàng
-$queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer ='$currentUser'";
+// lấy tên người dùng hiện thông quan session[currentuser] chứa id và role(user or admin)
+// kiểm tra session chứa role là admin hay user
+
+if ($_SESSION['CurrentUser']['Role'] == "Admin")
+    $queryCurrenUser = "SELECT CONCAT(administration.First_Name,' ',administration.Last_Name) AS currentUserName FROM administration WHERE ID_Administration='" . ($_SESSION['CurrentUser']['ID']) . "'";
+else
+    $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer='" . ($_SESSION['CurrentUser']['ID']) . "'";
+// truy vấn tìm kiếm currentuser thông qua if in line 23
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
 $queryMen = "SELECT DISTINCT b.Name,b.ID_Brand FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";
@@ -155,7 +159,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 var _productImage = $(this).parent('.product-item-desc-button-submit').find(".productImage").val();
                 var _productQuantity = $(this).parent('.product-item-desc-button-submit').find(".productQuantity").val();
                 var _productPrice = $(this).parent('.product-item-desc-button-submit').find(".productPrice").val();
-                
+
                 if (imgtodrag) {
                     // tạo phần tử sao chép giống phần tử cha. Tức là copy ra 1 ảnh như vậy
 
@@ -187,7 +191,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         'height': 0
 
                     }, function() {
-                        
+
                         console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
                         $.ajax({
                             type: 'POST',

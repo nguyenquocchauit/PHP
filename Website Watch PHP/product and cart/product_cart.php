@@ -71,8 +71,10 @@ function Show_Cart()
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $timeNow = date("Y-m-d H:i:s");
         // kiểm tra người dùng đã đăng nhập hay chưa, nếu chưa thì không được đặt hàng
-        if (isset($_SESSION['CurrentUser'])) $CurrentUser =  $_SESSION['CurrentUser'];
-        else $CurrentUser = "null";
+        if (isset($_SESSION['CurrentUser'])) {
+            $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+            $IDUser = $_SESSION['CurrentUser']['Role'];
+        } else $CurrentUser = "null";
         // nếu giỏ hàng $_SESSION['cart']) tồn tại thì in ra
         if (sizeof($_SESSION['cart']) > 0) {
             $sum = 0;
@@ -181,6 +183,7 @@ function Show_Cart()
                                 <form action="" method="post" >
                                     <button type="button" class="buttonBuy" name="buttonBuy"><i class="fa-solid fa-pen-to-square"></i> Đặt hàng</button>
                                     <input type="hidden" class="CurrentUser" value="' . ($CurrentUser) . '">
+                                    <input type="hidden" class="IDUser" value="' . ($IDUser) . '">
                                     <input type="hidden" class="timeNow" value="' . ($timeNow) . '">
                                     <input type="hidden" class="sum" value="' . ($sum) . '">
                                 </form>
@@ -202,6 +205,7 @@ function Show_Cart()
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -280,6 +284,7 @@ function Show_Cart()
             $(".buttonBuy").on("click", function() {
                 var $button = $(this);
                 var CurrentUser = $button.parent().find(".CurrentUser").val();
+                var IDUser = $button.parent().find(".IDUser").val();
                 var sum = $button.parent().find(".sum").val();
                 var timeNow = $button.parent().find(".timeNow").val();
 
@@ -294,6 +299,13 @@ function Show_Cart()
                         if (result.isConfirmed) {
                             $('#login').modal('show');
                         }
+                    })
+                }
+                if (IDUser == "Admin") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo',
+                        text: 'Hiện tại bạn đang là quản trị viên nên không thể đặt hàng được!',
                     })
                 } else {
 
