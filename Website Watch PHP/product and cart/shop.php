@@ -94,7 +94,7 @@ $resultproduct = mysqli_query($conn, $product);
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-    <title>TC WATCH</title>
+    <title>TC WATCH - Sản phẩm</title>
 </head>
 
 <body>
@@ -149,7 +149,7 @@ $resultproduct = mysqli_query($conn, $product);
                                     <?php if ($rowProduct['Discount'] != 0) : ?>
                                         <p class="price-pre">
                                             <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                                            <?php echo number_format($rowProduct['Price']) ?>
+                                            <?php echo number_format($rowProduct['Price']) . " VNĐ" ?>
                                         </p>
                                     <?php endif; ?>
                                     <p>
@@ -161,9 +161,9 @@ $resultproduct = mysqli_query($conn, $product);
                                         ?>
                                     </p>
                                 </div>
-                                <div class="product-item-desc-button-submit">
+                                <div class="product-item-desc-button-submit button-submit">
                                     <a href="product_details.php?gender=<?php echo $genderlink ?>&brand=<?php echo $brandlink ?>&id=<?php echo $rowProduct['ID_Product'] ?>"><button type="submit" class="btn btn-light watch-detail" name="watch-detail"><i class="fa-solid fa-eye"></i> Chi tiết </a></button>
-                                    <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                                    <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
                                     <input type="hidden" name="productID" class="productID" value="<?php echo $rowProduct['ID_Product'] ?>"></input>
                                     <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
                                     <input type="hidden" name="productName" class="productName" value="<?php echo $rowProduct['Name_Product'] ?>"></input>

@@ -580,7 +580,7 @@ $color7 : #f7b100;
             }
 
             .price {
-                padding: 0px 35px 0px 35px;
+                padding: 0px 25px 0px 25px;
                 justify-content: space-between;
 
                 .price-pre {
@@ -590,22 +590,28 @@ $color7 : #f7b100;
                 }
             }
 
-            .btn {
-                border: 1px solid #52507e;
-                padding: 4px 14px;
-                color: #f17502;
-                text-transform: uppercase;
-                font-weight: bold;
-                cursor: pointer;
-            }
+            .button-submit {
+                padding: 5px;
 
-            .watch-detail {
-                border: 1px solid #52507e;
-                padding: 4px 14px;
-                color: #3a322b;
-                text-transform: uppercase;
-                font-weight: bold;
-                cursor: pointer;
+                .btn {
+                    margin-top: 4px;
+                    border: 1px solid #52507e;
+                    padding: 4px 14px;
+                    color: #f17502;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                .watch-detail {
+
+                    border: 1px solid #52507e;
+                    padding: 4px 14px;
+                    color: #3a322b;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -704,15 +710,15 @@ $color7 : #f7b100;
 
     .sale {
         margin-left: 6px;
-        padding: 2px 3px 0px 3px;
-        height: 24px;
+        padding: 7px 3px 0px 3px;
+        height: 30px;
         font-size: 12px;
-        background-color: #dd3333bd;
+        background-color: rgba(221, 51, 51, 0.7411764706);
         color: white;
         font-weight: 600;
     }
 
-    .add-to-cart {
+    .detail-add-to-cart {
         border: 1px solid #52507e;
         padding: 4px 14px;
         background-color: #000;

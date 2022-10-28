@@ -458,7 +458,7 @@
   padding-top: 7px;
 }
 .bodyshop .product-shop .item .price {
-  padding: 0px 35px 0px 35px;
+  padding: 0px 25px 0px 25px;
   justify-content: space-between;
 }
 .bodyshop .product-shop .item .price .price-pre {
@@ -468,7 +468,11 @@
           text-decoration-line: line-through;
   margin-right: 10px;
 }
-.bodyshop .product-shop .item .btn {
+.bodyshop .product-shop .item .button-submit {
+  padding: 5px;
+}
+.bodyshop .product-shop .item .button-submit .btn {
+  margin-top: 4px;
   border: 1px solid #52507e;
   padding: 4px 14px;
   color: #f17502;
@@ -476,7 +480,7 @@
   font-weight: bold;
   cursor: pointer;
 }
-.bodyshop .product-shop .item .watch-detail {
+.bodyshop .product-shop .item .button-submit .watch-detail {
   border: 1px solid #52507e;
   padding: 4px 14px;
   color: #3a322b;
@@ -512,14 +516,14 @@
 }
 .bodydetail .sale {
   margin-left: 6px;
-  padding: 2px 3px 0px 3px;
-  height: 24px;
+  padding: 7px 3px 0px 3px;
+  height: 30px;
   font-size: 12px;
   background-color: rgba(221, 51, 51, 0.7411764706);
   color: white;
   font-weight: 600;
 }
-.bodydetail .add-to-cart {
+.bodydetail .detail-add-to-cart {
   border: 1px solid #52507e;
   padding: 4px 14px;
   background-color: #000;

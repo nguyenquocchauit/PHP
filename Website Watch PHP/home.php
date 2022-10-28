@@ -20,6 +20,8 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
 <html lang="en">
 
 <head>
+  
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +36,8 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <title>TC WATCH</title>
+
+  <title>TC WATCH - Trang chủ</title>
 
 </head>
 
@@ -152,7 +155,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                       <div><a href="shop.php?gender=<?php echo $rowDiscount['Gender_Name'] ?>&brand=<?php echo $rowDiscount['Brand_Name'] ?>"><?php echo $rowDiscount['Name'] ?></a></div>
                       <div class="price d-flex ">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                        <p class="price-pre"><?php echo number_format($rowDiscount['Price']) ?></p>
+                        <p class="price-pre"><?php echo number_format($rowDiscount['Price']) . " VNĐ" ?></p>
                         <p>
                           <!-- xử lý in giá bán sau khi áp dụng giảm giá -->
                           <?php
@@ -163,7 +166,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                         </p>
                       </div>
                       <div class="product-item-desc-button-submit">
-                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
                         <input type="hidden" name="productID" class="productID" value="<?php echo $rowDiscount['ID_Product'] ?>"></input>
                         <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
                         <input type="hidden" name="productName" class="productName" value="<?php echo $rowDiscount['Name'] ?>"></input>
@@ -211,7 +214,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                         <?php if ($rowBestSeller['Discount'] != 0) : ?>
                           <p class="price-pre">
                             <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                            <?php echo number_format($rowBestSeller['Price']) ?>
+                            <?php echo number_format($rowBestSeller['Price']) . " VNĐ" ?>
                           </p>
                         <?php endif; ?>
                         <p>
@@ -224,7 +227,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                         </p>
                       </div>
                       <div class="product-item-desc-button-submit">
-                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                        <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
                         <input type="hidden" name="productID" class="productID" value="<?php echo $rowBestSeller['ID_Product'] ?>"></input>
                         <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
                         <input type="hidden" name="productName" class="productName" value="<?php echo $rowBestSeller['Name'] ?>"></input>

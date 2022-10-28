@@ -73,7 +73,7 @@ $resultDetail = mysqli_query($conn, $queryDetail);
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <title>TC WATCH</title>
+    <title>TC WATCH - Chi tiết sản phẩm</title>
 </head>
 
 <body>
@@ -106,8 +106,8 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                                                     $active = true;
                                                     while ($i <= 5) : ?>
                                                         <div class="carousel-item <?php echo ($active == true) ? "active" : "" ?>">
-                                                            <img src="../../Website Watch PHP/img/images/<?php echo $genderlink."/".$brandlink ?>/<?php $img1 = explode(",", $rowDetail['Image']);
-                                                                                                                                                echo $img1[$i] ?>" class="d-block w-100" alt="...">
+                                                            <img src="../../Website Watch PHP/img/images/<?php echo $genderlink . "/" . $brandlink ?>/<?php $img1 = explode(",", $rowDetail['Image']);
+                                                                                                                                                        echo $img1[$i] ?>" class="d-block w-100" alt="...">
                                                         </div>
                                                     <?php $i++;
                                                         $active = false;
@@ -130,14 +130,15 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                         </div>
                         <div class="col-6">
                             <h3><?php echo $rowDetail['Name'] ?></h3>
-                            <div class="price d-flex " <?php if ($rowDetail['Discount'] == 0) echo 'style="justify-content: center;margin: 0px;"'; ?>>
+                            <div class="price d-flex " style="font-size: 20px;" <?php if ($rowDetail['Discount'] == 0) echo 'style=" justify-content: start; margin: 0px; font-size: 20px;"'; ?>>
+
                                 <?php if ($rowDetail['Discount'] != 0) : ?>
                                     <p class="price-pre">
                                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
-                                        <?php echo number_format($rowDetail['Price']) ?>
+                                        <?php echo number_format($rowDetail['Price']) . " VNĐ" ?>
                                     </p>
                                 <?php endif; ?>
-                                <p>
+                                <p style="color: red;font-size: 20px;">
                                     <!-- xử lý in giá bán sau khi áp dụng giảm giá -->
                                     <?php
                                     $price = $rowDetail['Price'];
@@ -157,9 +158,22 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                             <div>
                                 <p><?php echo ($rowDetail['Description']) ?></p>
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex ">
                                 <div class="">
-                                    <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
+                                    <form action="product_cart.php" method="post">
+                                        <button type="submit" class="btn btn-light detail-add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Đặt mua</button>
+                                        <input type="hidden" name="action" class="action" value="additems"></input>
+                                        <input type="hidden" name="productID" class="productID" value="<?php echo $rowDetail['ID_Product'] ?>"></input>
+                                        <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
+                                        <input type="hidden" name="productName" class="productName" value="<?php echo $rowDetail['Name'] ?>"></input>
+                                        <input type="hidden" name="productPrice" class="productPrice" value="<?php
+                                                                                                                $price = $rowDetail['Price'];
+                                                                                                                $price = $price - ($price * $rowDetail['Discount']);
+                                                                                                                echo ($price);
+                                                                                                                ?>"></input>
+                                        <input type="hidden" name="productImage" class="productImage" value="<?php $img1 = explode(",", $rowDetail['Image']);
+                                                                                                                echo $img1[0] ?>"></input>
+                                    </form>
                                 </div>
                             </div>
                             <div class="mt-5">

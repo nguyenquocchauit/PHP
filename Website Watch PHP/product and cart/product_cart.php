@@ -225,7 +225,7 @@ function Show_Cart()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>TC WATCH</title>
+    <title>TC WATCH - Giỏ hàng</title>
 
     <script>
         $(function() {
@@ -373,6 +373,7 @@ function Show_Cart()
         <div class="body-cart mt-5">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="row pb-3"><strong class=" d-flex justify-content-center" style="font-size: 30px; font-family: 'Oswald', sans-serif;">GIỎ HÀNG CỦA BẠN</strong></div>
                     <div class="col cart">
                         <?php Show_Cart(); ?>
                         <?php echo $message_cart ?>

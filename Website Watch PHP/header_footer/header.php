@@ -37,6 +37,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 <html lang="en">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -533,9 +534,9 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     <a href="../../Website Watch PHP/product and cart/product_cart.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
                                                                                                                                                 else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
-                                            <i class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
-                                            <span style="position: absolute;top: 0%;color:#b31212">
-                                                <p id="quantity-shopping-cart"></p>
+                                            <i style="color: black;" class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
+                                            <span style="position: absolute;top: 0%;color:#b31212;">
+                                                <p  id="quantity-shopping-cart"></p>
                                             </span>
                                         </span>
                                     </a>
