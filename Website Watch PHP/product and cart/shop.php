@@ -93,7 +93,7 @@ $resultproduct = mysqli_query($conn, $product);
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    
+
     <title>TC WATCH</title>
 </head>
 
@@ -162,6 +162,7 @@ $resultproduct = mysqli_query($conn, $product);
                                     </p>
                                 </div>
                                 <div class="product-item-desc-button-submit">
+                                    <a href="product_details.php?gender=<?php echo $genderlink ?>&brand=<?php echo $brandlink ?>&id=<?php echo $rowProduct['ID_Product'] ?>"><button type="submit" class="btn btn-light watch-detail" name="watch-detail"><i class="fa-solid fa-eye"></i> Chi tiết </a></button>
                                     <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart">Thêm vào giỏ</button>
                                     <input type="hidden" name="productID" class="productID" value="<?php echo $rowProduct['ID_Product'] ?>"></input>
                                     <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>

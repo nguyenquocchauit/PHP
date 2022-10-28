@@ -220,6 +220,8 @@
   margin-left: 60px;
 }
 .body .productlist .filtering .item .price .price-pre {
+  -webkit-text-decoration-color: rgba(255, 0, 0, 0.831372549);
+          text-decoration-color: rgba(255, 0, 0, 0.831372549);
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
   margin-right: 10px;
@@ -399,6 +401,10 @@
 .footer .fa-location-dot {
   color: #90f1fb;
 }
+.footer .copy-right {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.631372549);
+}
 
 .bodyshop nav {
   max-width: 280px;
@@ -443,6 +449,7 @@
   color: black;
 }
 .bodyshop .product-shop .item .sale {
+  margin-left: 20px;
   background-color: #dd3333;
   width: 45px;
   height: 40px;
@@ -455,6 +462,8 @@
   justify-content: space-between;
 }
 .bodyshop .product-shop .item .price .price-pre {
+  -webkit-text-decoration-color: red;
+          text-decoration-color: red;
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
   margin-right: 10px;
@@ -463,6 +472,14 @@
   border: 1px solid #52507e;
   padding: 4px 14px;
   color: #f17502;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+.bodyshop .product-shop .item .watch-detail {
+  border: 1px solid #52507e;
+  padding: 4px 14px;
+  color: #3a322b;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
@@ -493,14 +510,41 @@
 .bodydetail {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.bodydetail .sale {
+  margin-left: 6px;
+  padding: 2px 3px 0px 3px;
+  height: 24px;
+  font-size: 12px;
+  background-color: rgba(221, 51, 51, 0.7411764706);
+  color: white;
+  font-weight: 600;
+}
+.bodydetail .add-to-cart {
+  border: 1px solid #52507e;
+  padding: 4px 14px;
+  background-color: #000;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
 .bodydetail .slide {
+  max-width: 570px !important;
   width: 100%;
+  min-width: 569px !important;
+}
+.bodydetail .slide .glyphicon {
+  font-size: 200px;
+  border-radius: 20px;
+  background-color: red;
 }
 .bodydetail .imgdetail {
   width: 150px;
   height: 150px;
 }
 .bodydetail .price .price-pre {
+  -webkit-text-decoration-color: red;
+          text-decoration-color: red;
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
   margin-right: 10px;

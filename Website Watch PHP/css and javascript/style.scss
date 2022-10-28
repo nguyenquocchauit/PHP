@@ -279,6 +279,7 @@ $color7 : #f7b100;
                     margin-left: 60px;
 
                     .price-pre {
+                        text-decoration-color: #ff0000d4;
                         text-decoration-line: line-through;
                         margin-right: 10px;
                     }
@@ -428,6 +429,7 @@ $color7 : #f7b100;
         border: transparent;
         text-transform: uppercase;
     }
+
     .buttonDelete {
         border-radius: 1px;
         background-color: $color2;
@@ -506,6 +508,11 @@ $color7 : #f7b100;
     .fa-location-dot {
         color: #90f1fb;
     }
+
+    .copy-right {
+        text-align: center;
+        color: #ffffffa1;
+    }
 }
 
 ///////////////////////////////////shop//
@@ -563,6 +570,7 @@ $color7 : #f7b100;
             }
 
             .sale {
+                margin-left: 20px;
                 background-color: $color2;
                 width: 45px;
                 height: 40px;
@@ -576,20 +584,25 @@ $color7 : #f7b100;
                 justify-content: space-between;
 
                 .price-pre {
+                    text-decoration-color: red;
                     text-decoration-line: line-through;
                     margin-right: 10px;
                 }
             }
 
             .btn {
-                // height: 35px;
-                // border-radius: 0%;
-                // color: $color1;
-                // background-color: $color3;
-                // border: #555555 1px solid;
                 border: 1px solid #52507e;
                 padding: 4px 14px;
                 color: #f17502;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .watch-detail {
+                border: 1px solid #52507e;
+                padding: 4px 14px;
+                color: #3a322b;
                 text-transform: uppercase;
                 font-weight: bold;
                 cursor: pointer;
@@ -689,8 +702,37 @@ $color7 : #f7b100;
 .bodydetail {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+    .sale {
+        margin-left: 6px;
+        padding: 2px 3px 0px 3px;
+        height: 24px;
+        font-size: 12px;
+        background-color: #dd3333bd;
+        color: white;
+        font-weight: 600;
+    }
+
+    .add-to-cart {
+        border: 1px solid #52507e;
+        padding: 4px 14px;
+        background-color: #000;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
     .slide {
+        max-width: 570px !important;
         width: 100%;
+        min-width: 569px !important;
+
+        .glyphicon {
+            font-size: 200px;
+            border-radius: 20px;
+            background-color: red;
+        }
+
     }
 
     .imgdetail {
@@ -700,6 +742,7 @@ $color7 : #f7b100;
 
     .price {
         .price-pre {
+            text-decoration-color: red;
             text-decoration-line: line-through;
             margin-right: 10px;
         }

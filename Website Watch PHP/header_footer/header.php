@@ -255,8 +255,6 @@ $resultWomen = mysqli_query($conn, $queryWomen);
             $("#submitLogin").submit(function() {
                 var usernameLogin = document.getElementById("usernameLogin");
                 var passwordLogin = document.getElementById("passwordLogin");
-                var validationUserName = document.getElementById("validationUserName");
-                var validationPassWord = document.getElementById("validationPassWord");
                 var _username = $("#usernameLogin").val();
                 var _password = $("#passwordLogin").val();
                 console.log(_username, _password);
@@ -268,13 +266,12 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         timer: 1500,
                         timerProgressBar: true,
                     })
-                    // validationPassWord.style.display = "none";
-                    // validationUserName.innerHTML = "(*) Tài khoản trống";
-                    // usernameLogin.style.border = borderCSS;
-                    // usernameLogin.style.boxShadow = boxShadowCSS;
-                    // passwordLogin.style.border = null;
-                    // passwordLogin.style.boxShadow = null;
-                    // validationUserName.style.display = "block";
+
+
+                    usernameLogin.style.border = borderCSS;
+                    usernameLogin.style.boxShadow = boxShadowCSS;
+                    passwordLogin.style.border = null;
+                    passwordLogin.style.boxShadow = null;
                 } else if (_password == "" || _password.length == 0) {
                     Swal.fire({
                         icon: 'error',
@@ -283,16 +280,11 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         timer: 1500,
                         timerProgressBar: true,
                     })
-                    // validationUserName.style.display = "none";
-                    // validationPassWord.innerHTML = "(*) Mật khẩu trống";
-                    // passwordLogin.style.border = borderCSS;
-                    // passwordLogin.style.boxShadow = boxShadowCSS;
-                    // usernameLogin.style.border = null;
-                    // usernameLogin.style.boxShadow = null;
-                    // validationPassWord.style.display = "block";
+                    passwordLogin.style.border = borderCSS;
+                    passwordLogin.style.boxShadow = boxShadowCSS;
+                    usernameLogin.style.border = null;
+                    usernameLogin.style.boxShadow = null;
                 } else {
-                    validationPassWord.style.display = "none";
-                    validationUserName.style.display = "none";
                     usernameLogin.style.border = null;
                     usernameLogin.style.boxShadow = null;
                     passwordLogin.style.border = null;
@@ -356,13 +348,10 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         timer: 1500,
                                         timerProgressBar: true,
                                     })
-                                    // validationPassWord.style.display = "none";
-                                    // validationUserName.innerHTML = "(*) Tài khoản không tồn tại";
-                                    // validationUserName.style.display = "block";
-                                    // usernameLogin.style.border = borderCSS;
-                                    // usernameLogin.style.boxShadow = boxShadowCSS;
-                                    // passwordLogin.style.border = null;
-                                    // passwordLogin.style.boxShadow = null;
+                                    usernameLogin.style.border = borderCSS;
+                                    usernameLogin.style.boxShadow = boxShadowCSS;
+                                    passwordLogin.style.border = null;
+                                    passwordLogin.style.boxShadow = null;
                                 } else if (data['message'] == -1) {
                                     Swal.fire({
                                         icon: 'error',
@@ -371,13 +360,10 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         timer: 1500,
                                         timerProgressBar: true,
                                     })
-                                    // validationUserName.style.display = "none";
-                                    // validationPassWord.innerHTML = "(*) Mật khẩu sai";
-                                    // validationPassWord.style.display = "block";
-                                    // passwordLogin.style.border = borderCSS;
-                                    // passwordLogin.style.boxShadow = boxShadowCSS;
-                                    // usernameLogin.style.border = null;
-                                    // usernameLogin.style.boxShadow = null;
+                                    passwordLogin.style.border = borderCSS;
+                                    passwordLogin.style.boxShadow = boxShadowCSS;
+                                    usernameLogin.style.border = null;
+                                    usernameLogin.style.boxShadow = null;
                                 }
                             }
                         },
