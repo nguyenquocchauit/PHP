@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xử lý thông tin </title>
+    <link rel="stylesheet" href="xulytt.css">
+</head>
+<body>
+    <form action="xulythongtin.php" method="post">
+        <fieldset>
+            <legend>Enter your information</legend>
+            <table>
+                <tr>
+                    <td><label for="name">Họ tên :</label></td>
+                    <td> <input type="text" id="name"  name="name" pattern="[a-z]{1,15} > </td>
+                </tr>
+                <tr>
+                    <td><label for="add">Địa Chỉ :</label></td>
+                    <td> <input type="text" id="add" name="add" value="" > </td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Số điện thoại :</label></td>
+                    <td> <input type="text" id="phone"  name="phone" pattern="0[0-9]{9}" > </td>
+                </tr>
+                <tr>
+                    <td>Giới tính :</td>
+                    <td> <input type="radio" id="gender1" name="radiobtn" value="Nam"checked/><label for="gender1">Nam</label><br>
+                         <input type="radio" id="gender2" name="radiobtn" value="Nữ" /><label for="gender2">Nữ</label><br> 
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="nationality">Quốc tịch</label></td>
+                    <td>
+                        <select id="nationality" name="nationality" >
+                        <option value="Việt Nam"  selected>
+                            Việt Nam
+                        </option>
+                        <option value="Lào">
+                            Lào
+                        </option>
+                        <option value="Campuchia">
+                            Campuchia
+                        </option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label for="">Các môn đã học </label></td>
+                    <td>
+                        <input type="checkbox" name="subject[]" value="PHP&MySQL" id="php"/><label for="php">PHP & MySQL</label>
+                        <input type="checkbox" name="subject[]" value="C#" id="cs"/><label for="cs">C#</label>
+                        <input type="checkbox" name="subject[]" value="XML" id="xml"/><label for="xml">XML</label>
+                        <input type="checkbox" name="subject[]" value="Python" id="python"/><label for="python">Python</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="note">Ghi Chú </label></td>
+                    <td><textarea id="note" name="note" rows="3" cols="40"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Gửi" name="gui" />
+                        <input type="reset" value="Hủy" name="huy" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+</html>
