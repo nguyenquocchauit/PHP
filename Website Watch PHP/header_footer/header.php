@@ -1,5 +1,6 @@
 <?php
 
+
 // include 'config/connectDB.php';
 // lấy tên trang để active menu
 $curPageName = $_SERVER["SCRIPT_NAME"];
@@ -37,7 +38,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +47,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <style>
         .dWSearchResult {
             border-radius: 10px;
@@ -252,6 +255,12 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 }
             });
             // bắt sự kiện đăng nhập (username và password) xử lý tại file login.php 
+            // loại khoảng trắng của ô input tên dăng nhập
+            $('#usernameLogin').on('keypress', function(e) {
+                if (e.which == 32) {
+                    return false;
+                }
+            });
             // bắt sự kiện đăng nhập
             $("#submitLogin").submit(function() {
                 var usernameLogin = document.getElementById("usernameLogin");
@@ -262,7 +271,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 if (_username == "" || _username.length == 0) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Thống báo!',
+                        title: 'Thông báo!',
                         text: 'Tài khoản không được để trống!',
                         timer: 1500,
                         timerProgressBar: true,
@@ -276,7 +285,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 } else if (_password == "" || _password.length == 0) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Thống báo!',
+                        title: 'Thông báo!',
                         text: 'Mật khẩu không được để trống!',
                         timer: 1500,
                         timerProgressBar: true,
@@ -344,7 +353,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 } else if (data['message'] == 1) {
                                     Swal.fire({
                                         icon: 'error',
-                                        title: 'Thống báo!',
+                                        title: 'Thông báo!',
                                         text: 'Tài khoản không tồn tại!',
                                         timer: 1500,
                                         timerProgressBar: true,
@@ -356,7 +365,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 } else if (data['message'] == -1) {
                                     Swal.fire({
                                         icon: 'error',
-                                        title: 'Thống báo!',
+                                        title: 'Thông báo!',
                                         text: 'Mật khẩu sai!',
                                         timer: 1500,
                                         timerProgressBar: true,
@@ -375,23 +384,269 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                 }
                 return false;
             });
+            // loại khoảng trắng của ô input tên dăng nhập
+            $('#username').on('keypress', function(e) {
+                if (e.which == 32) {
+                    return false;
+                }
+            });
+            const validateEmail = (email) => {
+                return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+            };
 
+            /////////////////////////////signup
+            $("#submitsignup").submit(function() {
+                var checkEmail = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
+                var _create_at = $("#create_at").val();
+                var _name = $("#name").val();
+                var _email = $("#email").val();
+                _email = _email.toLowerCase();
+                var _phone = $("#phone").val();
+                var _username = $("#username").val();
+                var _pass = $("#pass").val();
+                var _checkpass = $("#checkpass").val();
+                if (_name == "" || _name.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Họ tên không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_email == "" || _email.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Email không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+
+                } else if (_phone == "" || _phone.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Số điện thoại không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_username == "" || _username.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Tên đăng nhập không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_pass == "" || _pass.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Mật khẩu không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_checkpass == "" || _checkpass.length == 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Xác nhận mật khẩu không được để trống!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_checkpass != _pass) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Xác nhận mật khẩu sai, vui lòng kiểm tra lại!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (validateEmail(_email) == null) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Không đúng định dạng Email',
+                        html: 'Ví dụ: tcwatch@gmail.com',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    })
+                } else if (_pass.length < 6) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Mật khẩu tối thiểu 6 kí tự',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                } else if (_phone.length < 10 || _phone.length >10) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Số điện thoại phải là 10 số',
+                        html: 'Ví dụ: 0123456789',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    })
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "../access/signup.php",
+                        data: {
+                            create_at: _create_at,
+                            name: _name,
+                            email: _email,
+                            phone: _phone,
+                            username: _username,
+                            pass: _pass,
+                        },
+                        cache: false,
+                        success: function(result) {
+                            /* check array  */
+                            var n = result.search("Unknown database");
+                            if (n > 0) {
+                                alert("Database không đúng!");
+                            } else {
+                                /* Convert json to array */
+                                var data = JSON.parse(result);
+                                console.log(data);
+                                if (data['message'] == 0) {
+                                    // sử dụng thư viện sweetaler thông báo cho đẹp :v
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Đăng ký thành công!',
+                                        timer: 1000,
+                                        timerProgressBar: true,
+                                    }).then((result) => {
+                                        // hoàn thành xong chuyển tới trang home
+                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "../access/login.php",
+                                                data: {
+                                                    username: _username,
+                                                    password: _pass
+                                                },
+                                                cache: false,
+                                                success: function(result) {
+                                                    /* check array  */
+                                                    var n = result.search("Unknown database");
+                                                    if (n > 0) {
+                                                        alert("Database không đúng!");
+                                                    } else {
+                                                        /* Convert json to array */
+                                                        var data = JSON.parse(result);
+                                                        // dùng console.log xem biến in ra ở trên trình duyệt ở mục console . debug cho dễ
+                                                        console.log(data);
+                                                        if (data['message'] == 0) {
+                                                            // sử dụng thư viện sweetaler thông báo cho đẹp :v
+                                                            let timerInterval
+                                                            Swal.fire({
+                                                                title: 'Đăng nhập thành công!',
+                                                                html: 'Đang đăng nhập vào Website <strong></strong> giây.',
+                                                                //icon: "success",
+                                                                imageUrl: '../img/cat.gif',
+                                                                imageWidth: 315,
+                                                                imageHeight: 230,
+                                                                timer: 3000,
+                                                                timerProgressBar: true,
+                                                                didOpen: () => {
+                                                                    Swal.showLoading()
+                                                                    // thiết lập thời gian theo giây, ban đầu là millisecond
+                                                                    timerInterval = setInterval(() => {
+                                                                        Swal.getHtmlContainer().querySelector('strong')
+                                                                            .textContent = (Swal.getTimerLeft() / 1000)
+                                                                            .toFixed(0)
+                                                                    }, 100)
+                                                                },
+                                                                willClose: () => {
+                                                                    clearInterval(timerInterval)
+                                                                }
+                                                            }).then((result) => {
+                                                                // hoàn thành xong chuyển tới trang home
+                                                                if (result.dismiss === Swal.DismissReason.timer) {
+                                                                    var file = data['success'];
+                                                                    window.location.href = "../" + file;
+                                                                }
+                                                            })
+                                                        }
+                                                    }
+                                                },
+                                                error: function(request, status, error) {
+                                                    alert(status);
+                                                }
+                                            });
+                                        }
+                                    })
+                                } else if (data['email'] == 2) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thông báo!',
+                                        text: 'Email đã tồn tại!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+                                    })
+                                } else if (data['username'] == 1) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thông báo!',
+                                        text: 'Tên đăng nhập đã tồn tại!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+                                    })
+                                }
+                            }
+                        },
+                        error: function(request, status, error) {
+                            alert(status);
+                        }
+                    });
+                }
+                return false;
+            });
         });
         // ẩn hiện mật khẩu
-        var check = true;
+        var check_login = true;
+        var check_signup = true;
+        var confirm_check_signup = true;
 
         function show_hidden_password_login() {
-            console.log(check);
-            if (check) {
+            console.log(check_login);
+            if (check_login) {
                 document.getElementById("passwordLogin").setAttribute("type", "text");
                 document.getElementById("icon").setAttribute("class", "fas fa-times");
-                check = false;
+                check_login = false;
             } else {
                 document.getElementById("passwordLogin").setAttribute("type", "password");
                 document.getElementById("icon").setAttribute("class", "fas fa-eye");
-                check = true;
+                check_login = true;
             }
         }
+        function confirm_show_hidden_password() {
+            console.log(confirm_check_signup);
+            if (confirm_check_signup) {
+                document.getElementById("confirm_password_signup").setAttribute("type", "text");
+                document.getElementById("icon").setAttribute("class", "fas fa-times");
+                confirm_check_signup = false;
+            } else {
+                document.getElementById("confirm_password_signup").setAttribute("type", "password");
+                document.getElementById("icon").setAttribute("class", "fas fa-eye");
+                confirm_check_signup = true;
+            }
+        }
+        function show_hidden_password() {
+            console.log(check_signup);
+            if (check_signup) {
+                document.getElementById("password_signup").setAttribute("type", "text");
+                document.getElementById("icon").setAttribute("class", "fas fa-times");
+                check_signup = false;
+            } else {
+                document.getElementById("password_signup").setAttribute("type", "password");
+                document.getElementById("icon").setAttribute("class", "fas fa-eye");
+                check_signup = true;
+            }
+        }
+        
     </script>
 
 </head>
@@ -447,8 +702,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     <button type="button" name="logout" class="btn btn-dark"><a href="<?php echo $curPageName ?>?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
                                     <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
                                 <?php else : ?>
-                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Login</button> &nbsp;
-                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Signup</button>
+                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Đăng nhập</button> &nbsp;
+                                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</button>
                                 <?php endif; ?>
 
                             </p>
@@ -532,11 +787,11 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
                                     <a href="../product and cart/product_cart.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "product_cart.php") echo "active";
-                                                                                                                                                else echo "" ?>">
+                                                                                                                            else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i style="color: black;" class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
                                             <span style="position: absolute;top: 0%;color:#b31212;">
-                                                <p  id="quantity-shopping-cart"></p>
+                                                <p id="quantity-shopping-cart"></p>
                                             </span>
                                         </span>
                                     </a>
@@ -593,69 +848,80 @@ $resultWomen = mysqli_query($conn, $queryWomen);
         </div>
     </form>
     <!-- Modal-SignUp -->
-
-    <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header mx-auto">
-                    <h5 class="modal-title" id="staticBackdropLabel">Đăng Ký</h5>
-                    <button type="button" class="btn-close btn-close-signup" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="form">
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label">
-                                    <h5>Họ và Tên</h5>
-                                </label>
-                                <input class="w-100 form-control" type="text" placeholder="Họ và tên">
+    <form action="" method="POST" id="submitsignup">
+        <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header mx-auto">
+                        <h5 class="modal-title" id="staticBackdropLabel">Đăng Ký</h5>
+                        <button type="button" class="btn-close btn-close-signup" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label">
+                                        <h5>Họ và Tên</h5>
+                                    </label>
+                                    <input id="create_at" type="hidden" value="<?php // lấy thời gian hệ thống
+                                                                                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                                                                $timeNow = date("Y-m-d H:i:s");
+                                                                                echo $timeNow; ?>">
+                                    <input class="w-100 form-control" type="text" placeholder="Họ và tên" name="name" id="name" pattern="[A-Za-z]{}">
+                                    <p id="validationName" style="color: red;display:block"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">
+                                        <h5>Email</h5>
+                                    </label>
+                                    <input class="w-100 form-control" type="text" placeholder="Email" name="email" id="email">
+                                    <p id="validationEmail" style="color: red;display:block"></p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <label class="form-label">
-                                    <h5>Email</h5>
-                                </label>
-                                <input class="w-100 form-control" type="text" placeholder="Email">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label" style="padding-top: 10px;">
+                                        <h5>Số di động</h5>
+                                    </label>
+                                    <input class="w-100 form-control" type="text" placeholder="Số di động" name="phone" id="phone">
+                                    <p id="validationPhone" style="color: red;display:block"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" style="padding-top: 10px;">
+                                        <h5>Tên đăng nhập</h5>
+                                    </label>
+                                    <input class="w-100 form-control" type="text" placeholder="Tên đăng nhập" name="username" id="username">
+                                    <p id="validationUserName" style="color: red;display:block"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label" style="padding-top: 10px;">
-                                    <h5>Số di động</h5>
-                                </label>
-                                <input class="w-100 form-control" type="text" placeholder="Số di động">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="form-label" style="padding-top: 10px;">
+                                        <h5>Mật khẩu</h5>
+                                    </label>
+                                    <input class="w-100 form-control" type="password" id="password_signup" placeholder="Mật khẩu" name="pass" id="pass">
+                                    <span onclick="show_hidden_password()" class="changePasword_Singup"><i id="icon" class="fas fa-eye"></i></span>
+                                    <p id="validationPass" style="color: red;display:block"></p>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label" style="padding-top: 10px;">
+                                        <h5>Nhập lại mật khẩu</h5>
+                                    </label>
+                                    <input class="w-100 form-control" type="password" id="confirm_password_signup" placeholder="Nhập lại mật khẩu" name="checkpass" id="checkpass">
+                                    <span onclick="confirm_show_hidden_password()" class="changePasword_Singup"><i id="icon" class="fas fa-eye"></i></span>
+                                    <p id="validationCheckPass" style="color: red;display:none"></p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <label class="form-label" style="padding-top: 10px;">
-                                    <h5>Tên đăng nhập</h5>
-                                </label>
-                                <input class="w-100 form-control" type="text" placeholder="Tên đăng nhập">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label" style="padding-top: 10px;">
-                                    <h5>Mật khẩu</h5>
-                                </label>
-                                <input class="w-100 form-control" type="password" id="pass_signup" placeholder="Mật khẩu">
-                                <span onclick="show_hidden_password()" class="changePasword_Singup"><i id="icon" class="fas fa-eye"></i></span>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label" style="padding-top: 10px;">
-                                    <h5>Nhập lại mật khẩu</h5>
-                                </label>
-                                <input class="w-100 form-control" type="password" id="re_pass_signup" placeholder="Nhập lại mật khẩu">
-                                <span onclick="confirm_show_hidden_password()" class="changePasword_Singup"><i id="icon" class="fas fa-eye"></i></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button href="#" class="btn btn-primary btn-block mt-3 w-100">Đăng Ký</button>
-                    <p>Đã có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Nhập Ngay</a>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button href="#" class="btn btn-primary btn-block mt-3 w-100">Đăng Ký</button>
+                        <p>Đã có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Nhập Ngay</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- Modal-Forgotten-password -->
 

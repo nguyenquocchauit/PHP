@@ -106,7 +106,7 @@ $color7 : #f7b100;
 
             .button {
                 transition-duration: 0.4s;
-                width: 70px;
+                width: 90px;
                 height: 30px;
                 background-color: $color3;
                 border: $color3 1px solid;
@@ -275,7 +275,7 @@ $color7 : #f7b100;
                 }
 
                 .price {
-                    margin: 10px;
+                    //margin: 10px;
                     margin-left: 60px;
 
                     .price-pre {
@@ -904,5 +904,29 @@ $color7 : #f7b100;
         border: transparent;
         text-transform: uppercase;
         font-weight: bold;
+    }
+}
+
+//// history cart //
+.body-product-cart {
+    .message-history-cart {
+        padding: 20px 5px 10px 5px;
+        text-align: center;
+        #imgcart {
+            display: flex;
+            height: 300px;
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        .buttonBack {
+            background-color: $color7;
+            color: $color4;
+            width: 250px;
+            height: 40px;
+            border: transparent;
+            text-transform: uppercase;
+            border-radius: 1px;
+        }
     }
 }

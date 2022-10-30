@@ -43,7 +43,7 @@ $total = 0;
         // thêm file navbar menu
         include "../header_footer/header.php";
         ?>
-        <div class="body-cart mt-5">
+        <div class="body-cart mt-5" <?php if (mysqli_num_rows($resultHistoryOrder) == 0) echo 'style="display: none;"'; ?>>
             <div class="container-fluid">
                 <div class="row">
                     <div class="row pb-3"><strong class=" d-flex justify-content-center" style="font-size: 30px; font-family: 'Oswald', sans-serif;">LỊCH SỬ MUA HÀNG</strong></div>
@@ -83,7 +83,7 @@ $total = 0;
                                         </td>
                                         <td style="width: 8%;">
                                             <div class="divimg"><img src="..//img/image_products_home/<?php $img1 = explode(",", $row['Image']);
-                                                                                                                            echo $img1[0] ?>" alt="" srcset=""></div>
+                                                                                                        echo $img1[0] ?>" alt="" srcset=""></div>
                                         </td>
                                         <td style="width: 26%;"><span><?php echo $row['Name'] ?></span></td>
                                         <td>
@@ -115,6 +115,15 @@ $total = 0;
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="message-history-cart" <?php if (mysqli_num_rows($resultHistoryOrder) == 0) echo 'style="display: block;"';
+                                            else echo 'style="display: none;"'; ?>>
+            <div class="row pb-3"><strong class=" d-flex justify-content-center" style="font-size: 30px; font-family: 'Oswald', sans-serif;">LỊCH SỬ ĐẶT HÀNG CỦA BẠN</strong></div>
+            <img id='imgcart' src='../img/cat.gif' alt=''>
+            <h4 id='mesag-cart'>
+                <p>Lịch sử đặt hàng hiện tại trống, quay lại trang shop đặt hàng ngày nào!</p>
+            </h4>
+            <a href='shop.php' id='back-to-shop'><button type='button' class='buttonBack'><i class='fa-solid fa-arrow-left' id='iconback'></i>Tiếp tục xem sản phẩm</button></a>
         </div>
         <?php
         // thêm file footer

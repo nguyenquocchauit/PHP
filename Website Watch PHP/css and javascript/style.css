@@ -81,7 +81,7 @@
 }
 .header-contact .right .button {
   transition-duration: 0.4s;
-  width: 70px;
+  width: 90px;
   height: 30px;
   background-color: #555555;
   border: #555555 1px solid;
@@ -216,7 +216,6 @@
   margin-top: 20px;
 }
 .body .productlist .filtering .item .price {
-  margin: 10px;
   margin-left: 60px;
 }
 .body .productlist .filtering .item .price .price-pre {
@@ -670,4 +669,24 @@
   border: transparent;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.body-product-cart .message-history-cart {
+  padding: 20px 5px 10px 5px;
+  text-align: center;
+}
+.body-product-cart .message-history-cart #imgcart {
+  display: flex;
+  height: 300px;
+  width: 350px;
+  margin: 0 auto;
+}
+.body-product-cart .message-history-cart .buttonBack {
+  background-color: #f7b100;
+  color: black;
+  width: 250px;
+  height: 40px;
+  border: transparent;
+  text-transform: uppercase;
+  border-radius: 1px;
 }/*# sourceMappingURL=style.css.map */
