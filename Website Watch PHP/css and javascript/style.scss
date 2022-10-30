@@ -148,13 +148,14 @@ $color7 : #f7b100;
                 position: relative;
                 right: 5px;
             }
+
             .dWSearchResult {
                 border-radius: 10px;
                 background-color: #f1f1f1;
                 display: none;
                 position: absolute;
             }
-    
+
             .showSearchResult {
                 display: block;
                 position: absolute;
@@ -926,6 +927,7 @@ $color7 : #f7b100;
     .message-history-cart {
         padding: 20px 5px 10px 5px;
         text-align: center;
+
         #imgcart {
             display: flex;
             height: 300px;
@@ -942,5 +944,25 @@ $color7 : #f7b100;
             text-transform: uppercase;
             border-radius: 1px;
         }
+    }
+}
+
+//////////////body-detail-customer//////////////
+.body-detail-customer {
+    
+    .input-group-text {
+        width: 140px;
+        //background-color: #00000057;
+        color: #000000;
+        font-size: 17px;
+        font-family: 'Oswald', sans-serif;
+    }
+    .message-title{
+        display: flex;
+        margin: 15px 0px 0px 0px;
+    }
+    .message
+    {
+        color: red;
     }
 }
