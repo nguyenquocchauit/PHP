@@ -47,7 +47,7 @@
                         </div>
                         <div class="info">
                             <div class="Img pb-3">
-                                <img src="./images/nqc.jpg" alt="Picture" />
+                                <img src="./images/ptht.jpg" alt="Picture" />
                             </div>
                             <fieldset>
                                 <legend><b>PHAN THỊ HUYỀN TRÂM</b></legend>

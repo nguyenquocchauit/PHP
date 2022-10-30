@@ -17,7 +17,7 @@ $curPageName = $curPageName[(sizeof($curPageName) - 1)];
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link <?php if ($curPageName == "exercise.php") echo "active bg-info";
-                                        else echo ""; ?> " href="exercise.php">Bài tập cá nhân</a>
+                                        else echo ""; ?> " href="#">Bài tập cá nhân</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">Website Watch demo</a>
