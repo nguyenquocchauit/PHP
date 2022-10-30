@@ -2,7 +2,7 @@
 //session_start();
 $array_message = array();
 // kết nối cơ sở dữ liệu db_watch
-require '../config/connectDB.php';
+require '../../config/connectDB.php';
 include "auto_idorder.php";
 
 /*

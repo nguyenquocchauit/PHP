@@ -148,6 +148,20 @@ $color7 : #f7b100;
                 position: relative;
                 right: 5px;
             }
+            .dWSearchResult {
+                border-radius: 10px;
+                background-color: #f1f1f1;
+                display: none;
+                position: absolute;
+            }
+    
+            .showSearchResult {
+                display: block;
+                position: absolute;
+                width: 90%;
+                top: 40px;
+                left: 0px;
+            }
         }
 
         #searchResult {

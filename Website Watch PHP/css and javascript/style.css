@@ -116,6 +116,19 @@
   position: relative;
   right: 5px;
 }
+.header-menu .searchbtn .dWSearchResult {
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  display: none;
+  position: absolute;
+}
+.header-menu .searchbtn .showSearchResult {
+  display: block;
+  position: absolute;
+  width: 90%;
+  top: 40px;
+  left: 0px;
+}
 .header-menu #searchResult {
   padding-left: 10px;
 }

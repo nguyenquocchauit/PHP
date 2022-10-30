@@ -11,7 +11,7 @@ if (isset($_POST['itemID']) && $_POST['quantity']) {
     $_SESSION['cart'][$sessionItem][4] = $sessionItemQty;
     //$_SESSION['cart'][$sessionItem][3] = $sessionItemQty * $productSessionPrice;
     $array_message['message'] =  0;
-    $array_message['success'] = 'product_cart.php';
+    $array_message['success'] = 'Gio-Hang.php';
 }
 
 echo json_encode($array_message);

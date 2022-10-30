@@ -160,7 +160,7 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                             </div>
                             <div class="d-flex ">
                                 <div class="">
-                                    <form action="product_cart.php" method="post">
+                                    <form action="Gio-Hang.php" method="post">
                                         <button type="submit" class="btn btn-light detail-add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Đặt mua</button>
                                         <input type="hidden" name="action" class="action" value="additems"></input>
                                         <input type="hidden" name="productID" class="productID" value="<?php echo $rowDetail['ID_Product'] ?>"></input>

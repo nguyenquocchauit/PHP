@@ -163,7 +163,7 @@ $resultproduct = mysqli_query($conn, $product);
                                 </div>
                                 <div class="product-item-desc-button-submit button-submit">
                                     <!-- kiểm tra nếu genderlink và brandlink trong href xem chi tiết bằng null. thì truy vấn từ id_product lấy ra genderlink và brandlink -->
-                                    <a href="product_details.php?gender=<?php if($genderlink=='') echo $rowProduct['ID_Gender']; else echo $genderlink ?>&brand=<?php if($brandlink=='') echo $rowProduct['ID_Brand']; else echo $brandlink ?>&id=<?php echo $rowProduct['ID_Product'] ?>"><button type="submit" class="btn btn-light watch-detail" name="watch-detail"><i class="fa-solid fa-eye"></i> Chi tiết </a></button>
+                                    <a href="Chi_tiet-san-pham.php?gender=<?php if($genderlink=='') echo $rowProduct['ID_Gender']; else echo $genderlink ?>&brand=<?php if($brandlink=='') echo $rowProduct['ID_Brand']; else echo $brandlink ?>&id=<?php echo $rowProduct['ID_Product'] ?>"><button type="submit" class="btn btn-light watch-detail" name="watch-detail"><i class="fa-solid fa-eye"></i> Chi tiết </a></button>
                                     <button type="submit" class="btn btn-light add-to-cart" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
                                     <input type="hidden" name="productID" class="productID" value="<?php echo $rowProduct['ID_Product'] ?>"></input>
                                     <input type="hidden" name="productQuantity" class="productQuantity" value="1"></input>
