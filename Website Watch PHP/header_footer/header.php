@@ -111,7 +111,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     // lấy tên (sizeof-1) và tên đệm (sizeof-2) gần nhất với tên.  
                                     $currentUser = $currentUser[($sizeof - 2)] . " " . $currentUser[($sizeof - 1)];
                                 ?>
-                                    <a href="../infomation customer/Chi-tiet.php" style="color:white;font-size: 18px;"><i class="fa-solid fa-user"></i></a>
+                                    <a href="../customers/Chi-tiet.php" style="color:white;font-size: 18px;"><i class="fa-solid fa-user"></i></a>
                                     <strong><?php echo $currentUser;  ?></strong>
                                     <button type="button" name="logout" class="btn btn-dark"><a href="<?php echo $curPageName ?>?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
                                     <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
