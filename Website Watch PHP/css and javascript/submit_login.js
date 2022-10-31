@@ -9,6 +9,21 @@ $(document).ready(function () {
             return false;
         }
     });
+    // hiển thông thông báo sử dụng tính năng xem chi tiết tài khoản và lịch sử đặt hàng khi ở trang home 
+    var currentUserHDSD = document.getElementById("currentUserHDSD").value;
+    var currentUserHDSD_home = document.getElementById("currentUserHDSD-home").value;
+    console.log(currentUserHDSD);
+    if((currentUserHDSD !=null && currentUserHDSD.length !=0) && currentUserHDSD_home == "home.php"){
+        Swal.fire({
+            title: 'HDSD tính năng cơ bản',
+            confirmButtonText: 'Đã hiểu',
+            customClass: 'swal-wide',
+            imageUrl: '../img/hdsd.png',
+            imageWidth: 770,
+            imageHeight: 450,
+            imageAlt: 'Custom image',
+        })
+    }
     // bắt sự kiện đăng nhập
     $("#submitLogin").submit(function () {
         var usernameLogin = document.getElementById("usernameLogin");
@@ -94,7 +109,7 @@ $(document).ready(function () {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     var file = data['success'];
                                     window.location.href = "../" + file;
-
+                                    
                                 }
                             })
 

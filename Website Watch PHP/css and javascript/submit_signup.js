@@ -7,13 +7,36 @@ $(document).ready(function () {
             return false;
         }
     });
+    // loại khoảng trắng của ô input sdt
+    $('#phone').on('keypress', function (e) {
+        if (e.which == 32) {
+            return false;
+        }
+    });
+    $('#email').on('keypress', function (e) {
+        if (e.which == 32) {
+            return false;
+        }
+    });
+    // loại khoảng trắng của ô input password
+    $('#pass').on('keypress', function (e) {
+        if (e.which == 32) {
+            return false;
+        }
+    });
+    // loại khoảng trắng của ô input confirm password
+    $('#checkpass').on('keypress', function (e) {
+        if (e.which == 32) {
+            return false;
+        }
+    });
+
     const validateEmail = (email) => {
         return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     };
 
     /////////////////////////////signup
     $("#submitsignup").submit(function () {
-        var checkEmail = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
         var _create_at = $("#create_at").val();
         var _name = $("#name").val();
         var _email = $("#email").val();

@@ -17,8 +17,6 @@ include 'inlcudes_function/show_update_info.php';
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
     <script src="../thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
     <script src="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../css and javascript/detail_customer.js"></script>
     <!-- thư viện sweet aler  -->
@@ -92,7 +90,7 @@ include 'inlcudes_function/show_update_info.php';
                 <div class="col-4 p-2 password-inp-show">
                     <div class="input-group flex-nowrap password-inp-info">
                         <span class="input-group-text" id="addon-wrapping">Mật khẩu</span>
-                        <input type="text" class="form-control" value="" id="PassWord" name="PassWord">
+                        <input type="password" class="form-control" value="" id="PassWord" name="PassWord">
                     </div>
                 </div>
                 <div class="col-4"><strong class="message-title"><span class="message">(*)</span> Nhập lại mật khẩu hiện tại</strong></div>
@@ -102,7 +100,7 @@ include 'inlcudes_function/show_update_info.php';
                 <div class="col-4 p-2 changepassword-inp-show">
                     <div class="input-group flex-nowrap changepassword-inp-info">
                         <span class="input-group-text" id="inputGroup-sizing-default">Đổi mật khẩu</span>
-                        <input type="text" class="form-control" value="" id="ChangePassWord" name="ChangePassWord">
+                        <input type="password" class="form-control" value="" id="ChangePassWord" name="ChangePassWord">
                     </div>
                 </div>
                 <div class="col-4"><strong class="message-title"><span class="message">(*)</span> Nếu bạn muốn đổi mật khẩu vui lòng nhập vào ô đổi mật khẩu</strong></div>
@@ -114,7 +112,6 @@ include 'inlcudes_function/show_update_info.php';
                 </div>
                 <div class="col-4"></div>
             </div>
-
         </div>
         <?php
         // thêm file footer

@@ -26,11 +26,11 @@ include "inlcudes_function/product_cart.php";
 </head>
 
 <body>
+    <?php
+    // thêm file navbar menu
+    include "../header_footer/header.php";
+    ?>
     <div class="body-product-cart">
-        <?php
-        // thêm file navbar menu
-        include "../header_footer/header.php";
-        ?>
         <div class="body-cart mt-5">
             <div class="container-fluid">
                 <div class="row">
@@ -42,11 +42,11 @@ include "inlcudes_function/product_cart.php";
                 </div>
             </div>
         </div>
-        <?php
-        // thêm file footer
-        include "../header_footer/footer.php";
-        ?>
     </div>
+    <?php
+    // thêm file footer
+    include "../header_footer/footer.php";
+    ?>
     <script type="text/javascript" src="../css and javascript/up_down_button.js"></script>
     <script type="text/javascript" src="../css and javascript/buy_button.js"></script>
 </body>

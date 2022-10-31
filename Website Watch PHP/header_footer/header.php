@@ -97,6 +97,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
 
                         </div>
                         <div class="right col-4 ">
+                            <input type="hidden" id="currentUserHDSD" value="<?php echo $ID;  ?>">
+                            <input type="hidden" id="currentUserHDSD-home" value="<?php echo $curPageName ?>">
                             <p class="">
                                 <i id="iconphone" class="fa-solid fa-phone-volume"></i>
                                 <strong>HOTLINE: </strong>038 655 5555 |
@@ -113,15 +115,16 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 ?>
                                     <a href="../customers/Chi-tiet.php" style="color:white;font-size: 18px;"><i class="fa-solid fa-user"></i></a>
                                     <strong><?php echo $currentUser;  ?></strong>
+
                                     <button type="button" name="logout" class="btn btn-dark"><a href="<?php echo $curPageName ?>?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
                                     <!-- <i class="fa-solid fa-right-from-bracket" onclick="logout()"></i> -->
-                                    
+
                                 <?php else : ?>
                                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#login">Đăng nhập</button> &nbsp;
                                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#signup">Đăng ký</button>
                                 <?php endif; ?>
                             </p>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -201,7 +204,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
                                     <a href="../product and cart/Gio-Hang.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "Gio-Hang.php") echo "active";
-                                                                                                                            else echo "" ?>">
+                                                                                                                        else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i style="color: black;" class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
                                             <span style="position: absolute;top: 0%;color:#b31212;">
