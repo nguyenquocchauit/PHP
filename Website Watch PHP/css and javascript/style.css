@@ -787,6 +787,9 @@
   width: 150px;
   height: 150px;
 }
+.body-list-order-detail-customer table .status {
+  font-weight: bold;
+}
 .body-list-order-detail-customer table button {
   background-color: #dd3333;
   color: white;
