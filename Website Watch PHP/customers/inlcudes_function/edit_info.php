@@ -1,5 +1,5 @@
 <?php
-//require '../../config/connectDB.php';
+require '../../config/connectDB.php';
 $array_message = array();
 /*
     message = 0 : thành công
@@ -85,7 +85,7 @@ if (
         $sql = "UPDATE `customers` SET `First_Name`='$first_name',`Last_Name`='$last_name',`Phone`='$Phone'
         ,`Email`='$Email',`UserName`='$UserName',`Password`='$PassWord',`Address`='$Address'
         ,`Create_At`='$CreateAt',`ID_Role`='User' WHERE 1 and ID_Customer='$IDCustomer'";
-        $result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn, $sql);
         $array_message['message'] = 0;
     }
 }

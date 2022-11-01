@@ -9,6 +9,7 @@ include 'inlcudes_function/list_order.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css and javascript/style.css">
     <script src="../css and javascript/download_excel.js"></script>
@@ -17,18 +18,10 @@ include 'inlcudes_function/list_order.php';
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
     <script src="../thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
     <script src="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>TC Watch - Danh sách đặt hàng</title>
-    <!-- <script>
-        $(document).ready(function () {
-            $("#button-download-excel").on("click", function() {
-
-                alert("$");
-            })
-        });
-    </script> -->
 </head>
 
 <body>

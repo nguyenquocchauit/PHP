@@ -144,6 +144,7 @@ $(document).ready(function () {
                                     action = "changeUserName";
                                 else if (_Email != _OldEmail)
                                     action = "changeEmail";
+                                console.log(action);
                                 $.ajax({
                                     type: "POST",
                                     url: "inlcudes_function/edit_info.php",
