@@ -1,11 +1,11 @@
 <?php
 
-function Show_List_Orrder($conn)
+function Show_List_Order($conn)
 {
     $sql = "SELECT a.ID_Order as IDOrder ,a.ID_Customer,a.Create_At as Create_Order,b.Status,b.Description,a.Total FROM `orders` a inner JOIN transaction b on a.ID_Order = b.ID_Order WHERE 1";
     $result = mysqli_query($conn, $sql);
     echo '<h4 class=" mb-1 pt-1">Danh sách khách hàng oder</h4>
-    <table>
+    <table class="mb-5">
     <tr>
         <td colspan="6"></td>
         <td><button  type="button" class="btn btn-secondary button-download-excel" id="button-download-excel">Tải file Excel</button></td>
@@ -42,7 +42,7 @@ function Show_List_Orrder($conn)
         echo '
         <tr>
             <td>' . ($i) . '</td>
-            <td>' . ($row['IDOrder']) . '</td>
+            <td><a href="Chi-tiet-dat-hang-cua-khach-hang.php?id=' . ($row['IDOrder']) . '">' . ($row['IDOrder']) . '</a></td>
             <td>' . ($row['ID_Customer']) . '</td>
             <td>' . (date("d-m-Y", strtotime($row['Create_Order']))) . '</td>
             <td  class="status ' . ($addclass) . '">' . ($row['Status']) . '</td>

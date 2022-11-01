@@ -1,6 +1,5 @@
 <?php
 require '../../config/connectDB.php';
-$array_message = array();
 
 // Lọc dữ liệu excel 
 function filterData(&$str)
@@ -9,7 +8,7 @@ function filterData(&$str)
     $str = preg_replace("/\r?\n/", "\\n", $str);
     if (strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
-if (isset($_POST['Action']) && $_POST['Action'] == 'download-list-order') {
+if (isset($_GET['Action']) && $_GET['Action'] == 'download-list-order') {
     // Tên tệp Excel để tải xuống
     $fileName = "DS đặt hàng của KH_" . date('d-m-Y') . ".xls";
     // Tên cột
@@ -32,11 +31,14 @@ if (isset($_POST['Action']) && $_POST['Action'] == 'download-list-order') {
     } else {
         $excelData .= 'Không có dữ liệu' . "\n";
     }
+    
     // Tiêu đề để tải xuống
-    header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
-    header("Content-Disposition: attachment; filename=".($fileName)."");
-
-    // // Kết xuất dữ liệu excel
+    header("Content-Type: application/vnd.ms-excel", "charset=utf-8");
+    header("Content-Disposition: attachment; filename=\"$fileName\"");
+    header("Cache-Control: max-age=0");
+    mb_convert_encoding($excelData, 'UTF-8');
+    // Kết xuất dữ liệu excel
     echo $excelData;
+
+    exit;
 }
-echo json_encode($array_message);

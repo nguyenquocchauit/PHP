@@ -24,50 +24,56 @@ if (
     $UserName = $_POST['UserName'];
     $PassWord = $_POST['PassWord'];
     $ChangePassWord = $_POST['ChangePassWord'];
-    if ($Action == 'changeEmail') {
-        //kiểm tra xem email của user thực hiện thay đổi có trùng trong db không
-        /*
+
+    $array_message['message'] = null;
+    // kiểm tra xem đúng mật khẩu của user đó chưa
+    $sql = "SELECT * FROM `customers` WHERE Password='$PassWord'";
+    $result = mysqli_query($conn, $sql);
+    // nếu trả về == 0 tức là mật khẩu không chính xác với user đang thực hiện hành động action
+    if (mysqli_num_rows($result) == 0)
+        $array_message['password'] = 1;
+    else {
+        if ($Action == 'changeEmail') {
+            //kiểm tra xem email của user thực hiện thay đổi có trùng trong db không
+            /*
             true : là tồn tại
             false : không tồn tại
         */
-        if (checkEmail($Email, $conn))
-            $array_message['email'] = 1;
-        else
-            $array_message['message'] = -1;
-    } else if ($Action == 'changeUserName') {
-        //kiểm tra xem email của user thực hiện thay đổi có trùng trong db không
-        /*
-            true : là tồn tại
-            false : không tồn tại
-        */
-        if (checkUserName($UserName, $conn))
-            $array_message['username'] = 1;
-        else
-            $array_message['message'] = -1;
-    } else if ($Action == 'changeEmail_UserName') {
-        // kiểm tra email và username có trùng trong db không
-        /*
-            true : là tồn tại
-            false : không tồn tại
-        */
-        if (!(checkUserName($UserName, $conn)) && !(checkEmail($Email, $conn)))
-            $array_message['message'] = -1;
-        else {
-            if (checkUserName($UserName, $conn))
-                $array_message['username'] = 1;
             if (checkEmail($Email, $conn))
                 $array_message['email'] = 1;
+            else
+                $array_message['message'] = -1;
+        } else {
+            if ($Action == 'changeUserName') {
+                //kiểm tra xem email của user thực hiện thay đổi có trùng trong db không
+                /*
+            true : là tồn tại
+            false : không tồn tại
+        */
+                if (checkUserName($UserName, $conn))
+                    $array_message['username'] = 1;
+                else
+                    $array_message['message'] = -1;
+            } else {
+                if ($Action == 'changeEmail_UserName') {
+                    // kiểm tra email và username có trùng trong db không
+                    /*
+                    true : là tồn tại
+                    false : không tồn tại
+                */
+                    if (!(checkUserName($UserName, $conn)) && !(checkEmail($Email, $conn)))
+                        $array_message['message'] = -1;
+                    else {
+                        if (checkUserName($UserName, $conn))
+                            $array_message['username'] = 1;
+                        if (checkEmail($Email, $conn))
+                            $array_message['email'] = 1;
+                    }
+                }
+            }
         }
-    } else {
-        // kiểm tra xem đúng mật khẩu của user đó chưa
-        $sql = "SELECT * FROM `customers` WHERE Password='$PassWord'";
-        $result = mysqli_query($conn, $sql);
-        // nếu trả về == 0 tức là mật khẩu không chính xác với user đang thực hiện hành động action
-        if (mysqli_num_rows($result) == 0)
-            $array_message['password'] = 1;
-        else
-            $array_message['message'] = -1;
     }
+    if($Action == 'none') $array_message['message'] = -1;
     if ($array_message['message'] == -1) {
         if ($ChangePassWord != null)
             $PassWord = $ChangePassWord;
@@ -90,6 +96,7 @@ if (
     }
 }
 echo json_encode($array_message);
+
 function checkEmail($email, $conn)
 {
     /*

@@ -9,6 +9,7 @@ include 'inlcudes_function/list_order.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css and javascript/style.css">
@@ -18,7 +19,7 @@ include 'inlcudes_function/list_order.php';
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
     <script src="../thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
     <script src="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-   
+
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>TC Watch - Danh sách đặt hàng</title>
@@ -31,7 +32,7 @@ include 'inlcudes_function/list_order.php';
     ?>
     <div class="body-list-order-detail-customer">
         <div class="container-fluid pt-4">
-            <?php Show_List_Orrder($conn); ?>
+            <?php Show_List_Order($conn); ?>
         </div>
     </div>
     <?php
