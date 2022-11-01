@@ -1,5 +1,5 @@
 <?php
-require '../../config/connectDB.php';
+//require '../../config/connectDB.php';
 $array_message = array();
 /*
     message = 0 : thành công

@@ -17,8 +17,6 @@ include "inlcudes_function/product_cart.php";
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
     <script src="../thuvienweb/fontawesome-free-6.1.2-web/js/all.min.js"></script>
     <script src="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/js/all.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

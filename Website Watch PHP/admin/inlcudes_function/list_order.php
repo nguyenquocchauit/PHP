@@ -8,7 +8,7 @@ function Show_List_Orrder($conn)
     <table>
     <tr>
         <td colspan="6"></td>
-        <td><button type="button" class="btn btn-secondary">Tải file Excel</button></td>
+        <td><button  type="button" class="btn btn-secondary button-download-excel" id="button-download-excel">Tải file Excel</button></td>
     </tr>
     <tr class="tr1">
         <td>STT</td>
