@@ -106,7 +106,7 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                                                     $active = true;
                                                     while ($i <= 5) : ?>
                                                         <div class="carousel-item <?php echo ($active == true) ? "active" : "" ?>">
-                                                            <img src="../img/images/<?php echo $genderlink . "/" . $brandlink ?>/<?php $img1 = explode(",", $rowDetail['Image']);
+                                                            <img src="../img<?php if($i==0) echo "/images/".$genderlink . "/" . $brandlink;?>/<?php $img1 = explode(",", $rowDetail['Image']);
                                                                                                                                                         echo $img1[$i] ?>" class="d-block w-100" alt="...">
                                                         </div>
                                                     <?php $i++;
