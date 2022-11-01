@@ -171,6 +171,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                         <input type="hidden" name="productName" class="productName" value="<?php echo $rowDiscount['Name'] ?>"></input>
                         <input type="hidden" name="productPrice" class="productPrice" value="<?php echo $price ?>"></input>
                         <input type="hidden" name="productImage" class="productImage" value="<?php echo $img1[0] ?>"></input>
+                        <input type="hidden" name="actionFrom" class="actionFrom" value="home.php"></input>
                       </div>
                     </div>
                   </div>
