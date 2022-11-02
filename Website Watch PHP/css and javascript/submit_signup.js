@@ -19,13 +19,13 @@ $(document).ready(function () {
         }
     });
     // loại khoảng trắng của ô input password
-    $('#pass').on('keypress', function (e) {
+    $('#password_signup').on('keypress', function (e) {
         if (e.which == 32) {
             return false;
         }
     });
     // loại khoảng trắng của ô input confirm password
-    $('#checkpass').on('keypress', function (e) {
+    $('#confirm_password_signup').on('keypress', function (e) {
         if (e.which == 32) {
             return false;
         }
@@ -37,14 +37,15 @@ $(document).ready(function () {
 
     /////////////////////////////signup
     $("#submitsignup").submit(function () {
+       
         var _create_at = $("#create_at").val();
         var _name = $("#name").val();
         var _email = $("#email").val();
         _email = _email.toLowerCase();
         var _phone = $("#phone").val();
         var _username = $("#username").val();
-        var _pass = $("#pass").val();
-        var _checkpass = $("#checkpass").val();
+        var _pass = $("#password_signup").val();
+        var _checkpass = $("#confirm_password_signup").val();
         if (_name == "" || _name.length == 0) {
             Swal.fire({
                 icon: 'error',
@@ -129,7 +130,6 @@ $(document).ready(function () {
                 timerProgressBar: true,
             })
         } else {
-            alert("$");
             $.ajax({
                 type: "POST",
                 url: "../access/signup.php",
