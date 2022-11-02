@@ -27,7 +27,7 @@ if ($Role == "Admin")
 else
     $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer='" . $ID . "'";
 
-    // truy vấn tìm kiếm currentuser thông qua if in line 23
+// truy vấn tìm kiếm currentuser thông qua if in line 23
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
 $queryMen = "SELECT DISTINCT b.Name,b.ID_Brand FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";
@@ -153,24 +153,24 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle <?php if (isset($_GET['gender']) && $_GET['gender'] == "IDM") echo "active";
                                                                                 else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                MEN
+                                                NAM
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nam, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowMen = mysqli_fetch_array($resultMen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName =="Chi-tiet.php" or $curPageName=="Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle  <?php if (isset($_GET['gender']) && $_GET['gender'] == "IDWM") echo "active";
                                                                                 else echo "" ?>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                WOMEN
+                                                NỮ
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nữ, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowWomen = mysqli_fetch_array($resultWomen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName =="Chi-tiet.php" or $curPageName=="Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
