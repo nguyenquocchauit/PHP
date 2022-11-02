@@ -106,6 +106,7 @@ $resultDetail = mysqli_query($conn, $queryDetail);
                                                     $active = true;
                                                     while ($i <= 5) : ?>
                                                         <div class="carousel-item <?php echo ($active == true) ? "active" : "" ?>">
+                                                            <!-- lấy ảnh đầu tiên trong db đúng đường theo folder sản phẩm, còn lại 5 ảnh khác dùng chung ảnh cat.gif (vì dung lượng ảnh lớn nên cắt bớt) -->
                                                             <img src="../img<?php if($i==0) echo "/images/".$genderlink . "/" . $brandlink;?>/<?php $img1 = explode(",", $rowDetail['Image']);
                                                                                                                                                         echo $img1[$i] ?>" class="d-block w-100" alt="...">
                                                         </div>

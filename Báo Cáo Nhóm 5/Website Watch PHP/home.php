@@ -280,7 +280,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     <p>Dương Khắc Linh</p>
                   </div>
                   <div class="col-7 d-flex">
-                    <p>01th Dec</p>
+                    <p>01 tháng 12</p>
                     <p><i class="fa-regular fa-heart"></i>55</p>
                     <p><i class="fa-regular fa-comment"></i>14</p>
                   </div>
@@ -298,7 +298,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     <p>Xuân Bắc</p>
                   </div>
                   <div class="col-7 d-flex">
-                    <p>19th Dec</p>
+                    <p>19 tháng 5</p>
                     <p><i class="fa-regular fa-heart"></i>78</p>
                     <p><i class="fa-regular fa-comment"></i>8</p>
                   </div>

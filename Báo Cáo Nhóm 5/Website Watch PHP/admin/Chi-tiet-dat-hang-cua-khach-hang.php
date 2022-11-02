@@ -1,6 +1,15 @@
 <?php
 require '../config/connectDB.php';
 include 'inlcudes_function/list_order_detail.php';
+session_start();
+if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role'] != "Admin") {
+   header('Location: ../../home.php');
+   exit();
+} else if (!isset($_GET['idorder']) || !isset($_GET['idcus'])) {
+   header('Location: ../../home.php');
+   exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,12 +38,12 @@ include 'inlcudes_function/list_order_detail.php';
    // thêm file navbar menu
    include "../header_footer/header.php";
    ?>
-   <div class="body-list-order-customer">
+   <div class="body-list-order-detail-customer">
       <div class="container-fluid pt-4">
 
          <?php
-         if (isset($_GET['id']))
-            Show_List_Order_Detail($conn, $_GET['id']);
+         if (isset($_GET['idorder']) && isset($_GET['idcus']))
+            Show_List_Order_Detail($conn, $_GET['idorder'], $_GET['idcus']);
          ?>
 
       </div>

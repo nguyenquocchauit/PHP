@@ -42,7 +42,7 @@ function Show_List_Order($conn)
         echo '
         <tr>
             <td>' . ($i) . '</td>
-            <td><a href="Chi-tiet-dat-hang-cua-khach-hang.php?id=' . ($row['IDOrder']) . '">' . ($row['IDOrder']) . '</a></td>
+            <td><a class="a-href" href="Chi-tiet-dat-hang-cua-khach-hang.php?idorder=' . ($row['IDOrder']) . '&idcus=' . ($row['ID_Customer']) . '">' . ($row['IDOrder']) . '</a></td>
             <td>' . ($row['ID_Customer']) . '</td>
             <td>' . (date("d-m-Y", strtotime($row['Create_Order']))) . '</td>
             <td  class="status ' . ($addclass) . '">' . ($row['Status']) . '</td>

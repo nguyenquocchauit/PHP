@@ -53,7 +53,7 @@
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
-            $file =" './img/$Hinh'";
+            $file =" '../img/$Hinh'";
                     if (!(file_exists($file)))
                         $Hinh = 'loi.jpg';
             $TPDD = $row['TP_Dinh_Duong'];
@@ -64,7 +64,7 @@
                     <td colspan = '2'><h2>$Name - $Hang</h2></td>
                 </tr>
                 <tr>
-                    <td><img src='./img/$Hinh'></td>
+                    <td><img src='../img/$Hinh'></td>
                     <td>
                         <p>Thành phần dinh dưỡng</p>
                         <p>$TPDD</p>

@@ -54,7 +54,7 @@ if (isset($_POST['name']) && isset($_POST['email']) &&  isset($_POST['phone']) &
         // loại bỏ khoảng trắng cuối cùng trong chuỗi
         $first_name = trim($first_name);
         //thêm file lấy tự động mã khách hàng
-        include_once "../customers/auto_idcustomer.php";
+        include_once "../customers/inlcudes_function/auto_idcustomer.php";
 
         $sql = " INSERT INTO customers(`ID_Customer`, `First_Name`, `Last_Name`, `Phone`, `Email`, `UserName`, `Password`, `Address`, `Create_At`, `ID_Role`)
         VALUES ('$ID_Customer','$first_name','$last_name','$phone','$email','$username','$pass','Nha Trang','$create_at','User')";

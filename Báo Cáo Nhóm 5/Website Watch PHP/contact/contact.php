@@ -36,35 +36,37 @@ require '../config/connectDB.php';
         </div>
         <div class="col-6 content-contact">
           <div class="form-contact mt-5">
-            <h3>Liên hệ với chúng tôi</h3>
-            <table>
-              <tr>
-                <td> <input type="text" placeholder="Họ và tên"></td>
-                <td><input type="text" placeholder="Email"></td>
-              </tr>
-              <tr>
-                <td> <input type="text" placeholder="Số điện thoại"></td>
-                <td> <input type="text" placeholder="Địa chỉ"></td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <textarea rows="5" cols="82" placeholder="Lời nhắn ..."></textarea>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <div class="d-flex justify-content-center">
-                    <button type="button" class="">Gửi góp ý</button>
-                  </div>
-                </td>
-              </tr>
-            </table>
+            <form action="sendmail.php" method="post">
+              <h3>Liên hệ với chúng tôi</h3>
+              <table>
+                <tr>
+                  <td><input type="text" placeholder="Họ và tên" name="name"></td>
+                  <td><input type="text" placeholder="Email" name="email"></td>
+                </tr>
+                <tr>
+                  <td> <input type="text" placeholder="Số điện thoại" name="phone"></td>
+                  <td> <input type="text" placeholder="Địa chỉ" name="add"></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <textarea rows="5" cols="82" placeholder="Lời nhắn ..." name="content"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="d-flex justify-content-center">
+                      <button type="submit" name="send">Gửi góp ý</button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-<img src="../product and cart/shop.php" alt="">
+  <img src="../product and cart/shop.php" alt="">
   <?php
   // thêm file footer
   include "../header_footer/footer.php";

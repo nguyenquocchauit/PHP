@@ -14,9 +14,10 @@
             flex-wrap: wrap;
             margin: auto;
         }
+
         .main div {
             width: 19%;
-            border: 1px solid black ;
+            border: 1px solid black;
             text-align: center;
         }
 
@@ -24,8 +25,9 @@
             width: 100px;
             height: 100px;
         }
-        h1{
-            text-align: center; 
+
+        h1 {
+            text-align: center;
             border: 1px solid black;
             width: 960px;
             margin: auto;
@@ -48,24 +50,22 @@
     // 4.Xu ly du lieu tra ve
     echo "<h1>Thông tin sản phẩm</h1>";
     echo " <div class='main'>";
-   
-    if (mysqli_num_rows($result) != 0) 
-    {
-        while ($row = mysqli_fetch_array($result)) 
-        {
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
             $ID = $row['Ma_sua'];
             $Name = $row['Ten_sua'];
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
-            $file =" './img/$Hinh'";
-                    if (!(file_exists($file)))
-                        $Hinh = 'loi.jpg';
+            $file = "'../img/$Hinh'";
+            if (file_exists($file)==true)
+                $Hinh = 'loi.jpg';
             echo "
                 <div>
                     <a href='./listchitiet.php?id=$ID'>$Name</a>
                     <p>$TrongLuong - $DonGia</p>
-                    <p><img src='./img/$Hinh'></p>
+                    <p><img src='../img/$Hinh'></p>
                 </div>
             ";
         }
@@ -75,7 +75,6 @@
     mysqli_free_result($result);
     mysqli_close($conn);
     ?>
-
 </body>
 
 </html>
