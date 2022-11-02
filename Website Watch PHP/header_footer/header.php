@@ -26,7 +26,8 @@ if ($Role == "Admin")
     $queryCurrenUser = "SELECT CONCAT(administration.First_Name,' ',administration.Last_Name) AS currentUserName FROM administration WHERE ID_Administration='" . $ID . "'";
 else
     $queryCurrenUser = "SELECT CONCAT(customers.First_Name,' ',customers.Last_Name) AS currentUserName FROM customers WHERE ID_Customer='" . $ID . "'";
-// truy vấn tìm kiếm currentuser thông qua if in line 23
+
+    // truy vấn tìm kiếm currentuser thông qua if in line 23
 $resultCurrenUser = mysqli_query($conn, $queryCurrenUser);
 // lấy dữ liệu các hãng đồng hồ có trong danh mục sản phẩm theo giới tính nam và nữ
 $queryMen = "SELECT DISTINCT b.Name,b.ID_Brand FROM products a inner join brands b on a.ID_Brand = b.ID_Brand WHERE ID_Gender = 'IDM'";

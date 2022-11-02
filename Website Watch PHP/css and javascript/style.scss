@@ -972,8 +972,8 @@ $color7 : #f7b100;
     width: 850px !important;
 }
 
-////////////////////////body_oder
-.body-list-order-customer {
+////////////////////////body_oder_detail
+.body-list-order-detail-customer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
     h4 {
@@ -984,7 +984,8 @@ $color7 : #f7b100;
         width: 300px;
         height: 40px;
         margin: auto;
-        p{
+
+        p {
             padding-top: 10px;
             font-size: 20px;
         }
@@ -1009,7 +1010,7 @@ $color7 : #f7b100;
         }
 
         img {
-            width: 55px;
+            width: 47px;
             height: 55px;
         }
     }
@@ -1022,7 +1023,7 @@ $color7 : #f7b100;
 }
 
 ///////////////body-dskho
-.body-list-order-detail-customer {
+.body-list-order-customer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
     h4 {
@@ -1033,7 +1034,7 @@ $color7 : #f7b100;
         height: 40px;
         margin: auto;
         text-align: center;
-       
+
     }
 
     table {
@@ -1045,6 +1046,11 @@ $color7 : #f7b100;
         td {
             max-width: 16%;
             height: 70px;
+
+            a {
+
+                color: #220101;
+            }
         }
 
         .tr1 {

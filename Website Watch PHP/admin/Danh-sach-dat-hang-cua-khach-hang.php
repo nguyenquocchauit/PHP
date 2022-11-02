@@ -1,6 +1,11 @@
 <?php
 require '../config/connectDB.php';
 include 'inlcudes_function/list_order.php';
+session_start();
+if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role'] != "Admin") {
+    header('Location: ../../home.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +35,7 @@ include 'inlcudes_function/list_order.php';
     // thêm file navbar menu
     include "../header_footer/header.php";
     ?>
-    <div class="body-list-order-detail-customer">
+    <div class="body-list-order-customer">
         <div class="container-fluid pt-4">
             <?php Show_List_Order($conn); ?>
         </div>

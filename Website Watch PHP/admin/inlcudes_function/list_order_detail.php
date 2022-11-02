@@ -1,9 +1,13 @@
 <?php
 
-function Show_List_Order_Detail($conn,$ID)
+// if (!isset($_SESSION['CurrentUser']['ID']) && !isset($_SESSION['CurrentUser']['Role']) && $_SESSION['CurrentUser']['Role'] != 'Admin') {
+//     header('Location: ../../home.php');
+//     exit();
+// }
+function Show_List_Order_Detail($conn, $IDOrder, $IDCus)
 {
-    
-    $sql = "SELECT a.ID_Detail as IDDetail, a.ID_Product as IDProduct, c.Image,b.Create_At as CreateAt,a.Quantity,a.Price,a.Total FROM `order_details` a inner join orders b on a.ID_Order=b.ID_Order inner join products c on c.ID_Product = a.ID_Product WHERE 1 AND b.ID_Order='$ID'";
+
+    $sql = "SELECT a.ID_Detail as IDDetail, a.ID_Product as IDProduct, c.Image,b.Create_At as CreateAt,a.Quantity,a.Price,a.Total FROM `order_details` a inner join orders b on a.ID_Order=b.ID_Order inner join products c on c.ID_Product = a.ID_Product WHERE 1 AND b.ID_Order='$IDOrder'";
     $result = mysqli_query($conn, $sql);
     //////////////////
     //  TÌM TỔNG SỐ RECORDS
@@ -28,10 +32,15 @@ function Show_List_Order_Detail($conn,$ID)
 
     // Tìm Start
     $start = ($current_page - 1) * $limit;
-    $sql = "SELECT a.ID_Detail as IDDetail, a.ID_Product as IDProduct, c.Image,b.Create_At as CreateAt,a.Quantity,a.Price,a.Total FROM `order_details` a inner join orders b on a.ID_Order=b.ID_Order inner join products c on c.ID_Product = a.ID_Product WHERE 1 AND b.ID_Order='$ID' LIMIT $start, $limit";
+    $sql = "SELECT a.ID_Detail as IDDetail, a.ID_Product as IDProduct, c.Image,b.Create_At as CreateAt,a.Quantity,a.Price,a.Total FROM `order_details` a inner join orders b on a.ID_Order=b.ID_Order inner join products c on c.ID_Product = a.ID_Product WHERE 1 AND b.ID_Order='$IDOrder' LIMIT $start, $limit";
     $result = mysqli_query($conn, $sql);
+    $sqlName = "SELECT CONCAT(First_Name,' ',Last_Name) as name FROM `customers` WHERE 1 and ID_Customer='$IDCus'";
+    $resultName = mysqli_query($conn, $sqlName);
+    $rowName = mysqli_fetch_array($resultName);
+    $name = explode(" ", $rowName['name']);
+    $name = $name[(sizeof($name) - 2)] . " " . $name[(sizeof($name) - 1)];
     echo '
-    <h4 class="text-center mb-5">Chi tiết hóa đơn <p>Quốc Châu</p> </h4> 
+    <h4 class="text-center mb-5">Chi tiết hóa đơn <p>' . ($name) . '</p> </h4> 
     <div class=""mb-4></div>
           <table class="">
              <tr class="tr1">
@@ -98,8 +107,8 @@ function Show_List_Order_Detail($conn,$ID)
         // BƯỚC 7: HIỂN THỊ PHÂN TRANG
         // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
         if ($current_page > 1 && $total_page > 1) {
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id='.($ID).'&page=' . (1) . '"> &laquo; </a>  ';
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id='.($ID).'&page=' . ($current_page - 1) . '"> &lt; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . (1) . '"> &laquo; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($current_page - 1) . '"> &lt; </a>  ';
         }
         // Lặp khoảng giữa
         for ($i = 1; $i <= $total_page; $i++) {
@@ -108,13 +117,13 @@ function Show_List_Order_Detail($conn,$ID)
             if ($i == $current_page) {
                 echo '<a>' . $i . '</a>  ';
             } else {
-                echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id='.($ID).'&page=' . $i . '">' . $i . '</a>  ';
+                echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . $i . '">' . $i . '</a>  ';
             }
         }
         // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
         if ($current_page < $total_page && $total_page > 1) {
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id='.($ID).'&page=' . ($current_page + 1) . '"> &gt; </a>  ';
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id='.($ID).'&page=' . ($total_page) . '"> &raquo; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($current_page + 1) . '"> &gt; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($total_page) . '"> &raquo; </a>  ';
         }
     }
     echo '</div>';
