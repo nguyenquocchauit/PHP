@@ -16,7 +16,7 @@ Bước 3: Trên thanh địa chỉ Website Watch PHP
 
 rồi enter.
 
-Bước 4: Màn hình Command Line  xuất hiện. Sử dụng câu lệnh: code. 
+Bước 4: Màn hình Command Line  xuất hiện. Sử dụng câu lệnh: code . 
 
 ![image](https://user-images.githubusercontent.com/84402319/199402173-3ae98118-c76d-4ba0-ba80-89fa358785fa.png)
 
