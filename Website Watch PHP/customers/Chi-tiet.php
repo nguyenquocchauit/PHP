@@ -1,6 +1,22 @@
 <?php
 require '../config/connectDB.php';
+session_start();
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../home.php');
+    exit();
+}
+if($_SESSION['CurrentUser']['Role']=="Admin"){
+    header('Location: ../../home.php');
+    exit();
+}
 include 'inlcudes_function/show_update_info.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +57,7 @@ include 'inlcudes_function/show_update_info.php';
                         <span class="input-group-text" id="addon-wrapping">Họ và tên</span>
                         <input type="hidden" class="form-control" value="<?php echo $row['ID_Customer'] ?>" id="IDCustomer" name="IDCustomer">
                         <input type="hidden" class="form-control" value="<?php echo $row['Create_At'] ?>" id="CreateAt" name="CreateAt">
-                        <input type="text" class="form-control" value="<?php echo $row['First_Name'] ." ". $row['Last_Name'] ?>" id="FullName" name="FullName">
+                        <input type="text" class="form-control" value="<?php echo $row['First_Name'] . " " . $row['Last_Name'] ?>" id="FullName" name="FullName">
                     </div>
                 </div>
                 <div class="col-4"></div>
@@ -108,7 +124,7 @@ include 'inlcudes_function/show_update_info.php';
             <div class="row button-save">
                 <div class="col-4"></div>
                 <div class="col-4 p-2 pb-4 d-flex justify-content-center button-save-submit">
-                    <button type="button" class="btn btn-success" id="SaveInfo" ><i class="fa-solid fa-floppy-disk"></i> Lưu thông tin</button>
+                    <button type="button" class="btn btn-success" id="SaveInfo"><i class="fa-solid fa-floppy-disk"></i> Lưu thông tin</button>
                 </div>
                 <div class="col-4"></div>
             </div>
