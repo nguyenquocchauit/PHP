@@ -129,6 +129,7 @@ $(document).ready(function () {
                 timerProgressBar: true,
             })
         } else {
+            alert("$");
             $.ajax({
                 type: "POST",
                 url: "../access/signup.php",
