@@ -24,3 +24,5 @@ Bước 4: Màn hình Command Line  xuất hiện. Sử dụng câu lệnh: code
 để mở Visual Code tạo thư mục Website Watch PHP.
 
 Bước 5: Trải nghiệm website 
+
+Video HDSD cơ bản website : https://drive.google.com/file/d/1SlmD6N49Y7XgYt-K7KBmpWLxfFx-dapI/view?usp=sharing
