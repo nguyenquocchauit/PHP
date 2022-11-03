@@ -7,6 +7,7 @@ if (isset($_SESSION['CurrentUser']['Role']) == false || $_SESSION['CurrentUser']
 // kết nối cơ sở dữ liệu db_watch
 require '../config/connectDB.php';
 include 'inlcudes_function/list-products.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,8 @@ include 'inlcudes_function/list-products.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css and javascript/style.css">
-    <script src="../css and javascript/search_list_product.js"></script>
+    <script src="../css and javascript/choose_gender_brand.js"></script>
+    <script src="../css and javascript/update_delete_product.js"></script>
     <script src="../thuvienweb/bootstrap-5.2.0-beta1-dist/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css">
     <link rel="stylesheet" href="../thuvienweb/fontawesome-free-6.1.2-web/css/all.min.css">
@@ -39,16 +41,6 @@ include 'inlcudes_function/list-products.php';
         <div class="header mt-2">
             <h4>Danh sách sản phẩm</h4>
         </div>
-        <div class="row mt-3 search">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="input-group">
-                    <input type="search" id="para-search-product" class="form-control rounded" placeholder="Tìm kiếm sản phẩm (mã, tên, hãng, loại)" aria-label="Tìm kiếm sản phẩm" aria-describedby="search-addon" />
-                    <button type="button"  id="" class="btn btn-outline-primary search-product">Tìm kiếm</button>
-                </div>
-            </div>
-            <div class="col-4"></div>
-        </div>
         <div class="btn-group float-end mb-1" role="group" aria-label="Basic mixed styles example">
             <button type="button " class="btn btn-danger ">Hết sản phẩm</button>
             <button type="button " class="btn btn-success">Đang giảm giá</button>
@@ -65,19 +57,33 @@ include 'inlcudes_function/list-products.php';
                     <th scope="col" style="width: 5%;">Giảm giá</th>
                     <th scope="col">Ngày tạo</th>
                     <th scope="col">Ngày chỉnh sửa</th>
-                    <th scope="col">Hãng</th>
-                    <th scope="col">Loại</th>
-                    <th scope="col">Sửa</th>
-                    <th scope="col">Xóa</th>
+                    <th scope="col" style="width: 5%;">
+                        <select class="form-select form-select-lg form-select-brand" id="brand" aria-label=".form-select-lg example">
+                            <option value="brand" selected>Hãng </option></a>
+                            <?php if (mysqli_num_rows($resultBrand)) while ($rowBrand = mysqli_fetch_array($resultBrand)) : ?>
+                                <option value="<?php echo $rowBrand['ID_Brand'] ?>" <?php if ($rowBrand['ID_Brand'] == $idbrand) echo "selected"; ?>> <?php echo $rowBrand['Name'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </th>
+                    <th scope="col" style="width: 8%;">
+                        <select class="form-select form-select-lg form-select-gender" id="gender" aria-label=".form-select-lg example">
+                            <option value="type" selected>Loại</option>
+                            <?php if (mysqli_num_rows($resultGender)) while ($rowGender = mysqli_fetch_array($resultGender)) : ?>
+                                <option value="<?php echo $rowGender['ID_Gender'] ?>" <?php if ($rowGender['ID_Gender'] == $idgender) echo "selected"; ?>> <?php echo $rowGender['Name'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </th>
+                    <th scope="col" style="width: 2%;">Sửa</th>
+                    <th scope="col" style="width: 2%;">Xóa</th>
                 </tr>
             </thead>
             <tbody>
-                <?php echo $sql;
+                <?php
                 $i = 1;
                 if (mysqli_num_rows($result)) while ($row = mysqli_fetch_array($result)) : ?>
                     <tr>
                         <th scope="row"><?php echo $i ?></th>
-                        <td><a href=""><?php echo $row['ID_Product']; ?></a></td>
+                        <td><a href="Chi-tiet_san-pham.php?idpro=<?php echo $row['ID_Product']; ?>"><?php echo $row['ID_Product']; ?></a></td>
                         <td><?php echo $row['Name_Product']; ?></td>
                         <td><img class="img" src="../img/image_products_home/<?php $img1 = explode(",", $row['Image']);
                                                                                 echo $img1[0]; ?>" alt=""></td>
@@ -90,8 +96,11 @@ include 'inlcudes_function/list-products.php';
                         <td><?php echo date("d-m-Y", strtotime($row['Update_At'])); ?></td>
                         <td><?php echo $row['Name_Brand']; ?></td>
                         <td><?php echo $row['Name_Gender']; ?></td>
-                        <td><i class="fa-solid fa-pen-to-square"></i></td>
-                        <td><i class="fa-solid fa-trash"></i></td>
+                        <td><a href="Chi-tiet_san-pham.php?idpro=<?php echo $row['ID_Product']; ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td class="delete-submit">
+                            <a class="delete-product" href="#"><i class="fa-solid fa-trash"></i></a>
+                            <input type="hidden" class="inp_ID" name="" value="<?php echo $row['ID_Product']; ?>">
+                        </td>
                     </tr>
                 <?php $i++;
                 endwhile; ?>
@@ -103,8 +112,8 @@ include 'inlcudes_function/list-products.php';
                 // BƯỚC 7: HIỂN THỊ PHÂN TRANG
                 // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
                 if ($current_page > 1 && $total_page > 1) {
-                    echo '<a href="Danh-sach-san-pham.php?&page=' . (1) . '"> &laquo; </a>  ';
-                    echo '<a href="Danh-sach-san-pham.php?&page=' . ($current_page - 1) . '"> &lt; </a>  ';
+                    echo '<a href="Danh-sach-san-pham.php?brand=' . ($idbrand) . '&gender=' . ($idgender) . '&page=' . (1) . '"> &laquo; </a>  ';
+                    echo '<a href="Danh-sach-san-pham.php?brand=' . ($idbrand) . '&gender=' . ($idgender) . '&page=' . ($current_page - 1) . '"> &lt; </a>  ';
                 }
                 // Lặp khoảng giữa
                 for ($i = 1; $i <= $total_page; $i++) {
@@ -113,17 +122,20 @@ include 'inlcudes_function/list-products.php';
                     if ($i == $current_page) {
                         echo '<a>' . $i . '</a>  ';
                     } else {
-                        echo '<a href="Danh-sach-san-pham.php?&page=' . $i . '">' . $i . '</a>  ';
+                        echo '<a href="Danh-sach-san-pham.php?brand=' . ($idbrand) . '&gender=' . ($idgender) . '&page=' . $i . '">' . $i . '</a>  ';
                     }
                 }
                 // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
                 if ($current_page < $total_page && $total_page > 1) {
-                    echo '<a href="Danh-sach-san-pham.php?&page=' . ($current_page + 1) . '"> &gt; </a>  ';
-                    echo '<a href="Danh-sach-san-pham.php?&page=' . ($total_page) . '"> &raquo; </a>  ';
+                    echo '<a href="Danh-sach-san-pham.php?brand=' . ($idbrand) . '&gender=' . ($idgender) . '&page=' . ($current_page + 1) . '"> &gt; </a>  ';
+                    echo '<a href="Danh-sach-san-pham.php?brand=' . ($idbrand) . '&gender=' . ($idgender) . '&page=' . ($total_page) . '"> &raquo; </a>  ';
                 }
             }
             ?>
         </div>
+        <!-- lưu 2 giá trị của id brand và id gender dùng để truy vấn theo hãng hoặc giới tính -->
+        <input type="hidden" name="" id="inp-id-brand" value="<?php echo $idbrand ?>">
+        <input type="hidden" name="" id="inp-id-gender" value="<?php echo $idgender ?>">
     </div>
     <?php
     // thêm file footer
