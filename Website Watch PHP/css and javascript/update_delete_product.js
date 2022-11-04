@@ -4,29 +4,57 @@ $(document).ready(function () {
 
     // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
     $('.button-update').on('click', function () {
-        // const _image = [];
+
+        //var file = $('#imageButton').prop("files")[0];
+        // For Multiple Files:
+        var file = $('#imageButton').prop("files");
+        // Making the form object
+        var form = new FormData();
+        // Adding the image to the form
+        //form.append("image", file);
+        form.append("image[]", file) // for multiple files
+        // The AJAX call
+        $.ajax({
+            url: 'inlcudes_function/update_product.php',
+            type: "POST",
+            data: form,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                //var data = JSON.parse(result);
+                //console.log(data);
+                document.write(result);
+            }
+        });
+
+
+        // let _img = $("#Image");
+        // var _dataimage = new FormData();
         // var _getimage = document.getElementById("Image");
-        // if (_getimage.files.length == 6) {
-        //     for (var i = 0; i <= _getimage.files.length - 1; i++) {
+        // console.log(_getimage.files.length + " is length");
+        // for (var i = 0; i <= _getimage.files.length - 1; i++) {
 
-        //         _image[i] = _getimage.files.item(i).name;      // THE NAME OF THE FILE.
-        //     }
+        //     _dataimage.append("image: " + i, _img[0].files[i]);
         // }
-        // var img = _getimage.files;
-        // console.log(img.name);
-        let _img = $("#Image");
-        var _dataimage = new FormData();
-        var _getimage = document.getElementById("Image");
-
-        console.log(_getimage.files.length);
-        for (var i = 0; i < _img.files.length - 1; i++) {
-
-            _dataimage.append("image", _img[0].files[i]);
-        }
-        for (const value of _dataimage.values()) {
-            console.log(value);
-        }
-        // console.log(_img);
+        // for (const value of _dataimage.values()) {
+        //     console.log(value.name + " & " + value.size);
+        // }
+        // $.ajax({
+        //     type: 'POST',
+        //     url: 'inlcudes_function/update_product.php',
+        //     cache: false,
+        //     contentType: false,
+        //     processData: false,
+        //     mimeType: "multipart/form-data",
+        //     data: {
+        //         image: _dataimage,
+        //     },
+        //     type: 'post',
+        //     success: function (data) {
+        //         var data = JSON.parse(data);
+        //         console.log(data);
+        //     }
+        // });
     });
 
 
