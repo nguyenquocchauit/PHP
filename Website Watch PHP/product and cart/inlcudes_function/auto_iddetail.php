@@ -1,11 +1,11 @@
 <?php
-
+require '../../config/connectDB.php';
 // xử lý tăng mã tự động bản order
 $sql = "SELECT MAX(ID_Detail) as ID_Detail FROM `order_details` WHERE 1";
 $results = mysqli_query($conn, $sql);
 $get = mysqli_fetch_array($results);
 // ví dụ Detail0000001
-$ID_Detail = null;
+$ID_Detail = null;  
 // $detail = Detail
 // $detail = substr($get['ID_Detail'], 0, -7);
 $detail = "Detail";
@@ -41,3 +41,4 @@ switch ($number) {
         $ID_Detail = "null";
         break;
 }
+echo $ID_Detail;

@@ -907,7 +907,7 @@
 .body-detail-product #carouselExampleIndicators {
   margin-top: 13%;
   width: 500px;
-  margin-left: 10%;
+  margin-left: 0%;
 }
 .body-detail-product #carouselExampleIndicators .glyphicon {
   font-size: 200px;

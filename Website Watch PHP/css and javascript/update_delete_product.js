@@ -1,17 +1,40 @@
 $(document).ready(function () {
+
+
+
     // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
     $('.button-update').on('click', function () {
-        const _image = [];
-        var _getimage = document.getElementById("Image");
-        if (_getimage.files.length == 6) {
-            for (var i = 0; i <= _getimage.files.length - 1; i++) {
+        // const _image = [];
+        // var _getimage = document.getElementById("Image");
+        // if (_getimage.files.length == 6) {
+        //     for (var i = 0; i <= _getimage.files.length - 1; i++) {
 
-                _image[i] = _getimage.files.item(i).name;      // THE NAME OF THE FILE.
-            }
+        //         _image[i] = _getimage.files.item(i).name;      // THE NAME OF THE FILE.
+        //     }
+        // }
+        // var img = _getimage.files;
+        // console.log(img.name);
+        let _img = $("#Image");
+        var _dataimage = new FormData();
+        var _getimage = document.getElementById("Image");
+
+        console.log(_getimage.files.length);
+        for (var i = 0; i < _img.files.length - 1; i++) {
+
+            _dataimage.append("image", _img[0].files[i]);
         }
-        var img = _getimage.files;
-        console.log(img.name);
+        for (const value of _dataimage.values()) {
+            console.log(value);
+        }
+        // console.log(_img);
     });
+
+
+
+
+
+
+
     $('.delete-product').on('click', function () {
         var $click = $(this);
         var _ID_Product = $click.parent(".delete-submit").find(".inp_ID").val();

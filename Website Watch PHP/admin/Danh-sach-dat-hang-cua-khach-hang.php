@@ -2,7 +2,7 @@
 require '../config/connectDB.php';
 include 'inlcudes_function/list_order.php';
 session_start();
-if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role'] != "Admin") {
+if (isset($_SESSION['CurrentUser']['Role']) == false || $_SESSION['CurrentUser']['Role'] == "User") {
     header('Location: ../../home.php');
     exit();
 }

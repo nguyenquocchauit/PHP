@@ -1,5 +1,5 @@
 <?php
-session_unset();
+// session_unset();
 session_start();
 // kết nối cơ sở dữ liệu db_watch
 require '../config/connectDB.php';
@@ -51,6 +51,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $result = mysqli_query($conn, $sqlLogin);
         if (mysqli_num_rows($result) != 0) {
             $row = mysqli_fetch_array($result);
+            // khai báo session lưu chữ id customer và role , dùng phân quyền page và anything
             $_SESSION['CurrentUser'] = array(
                 'ID' => $row['ID_Customer'],
                 'Role' => $row['ID_Role'],

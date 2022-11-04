@@ -144,16 +144,12 @@ include 'inlcudes_function/show_product.php';
                     </div>
                 </div>
                 <div class="row p-2">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="input-group ">
-                        <label class="input-group-text" for="Image">Ảnh</label>
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <input type="file" class="form-control" id="Image" name="Image[]" multiple>
-                            <button type="submit" class="btn btn-warning button-back">d</button>
-                        </form>
-                        <?php 
-                        $_SESSION["test"] = $_FILES['Image']['tmp_name'];
-                        print_r($_SESSION["test"]) ?>
+                            <label class="input-group-text" for="Image">Ảnh</label>
+                            <input type="file" class="form-control" id="Image" name="Image" multiple>
                     </div>
+                    </form>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
