@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2022 at 06:26 PM
+-- Generation Time: Nov 05, 2022 at 12:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,6 +65,7 @@ INSERT INTO `brands` (`ID_Brand`, `Name`) VALUES
 ('Avia', 'Aviator'),
 ('Baby', 'Baby-G'),
 ('Bentley', 'Bentley'),
+('c', 'cd'),
 ('Citizen', 'Citizen'),
 ('Olym', 'Olym Pianus'),
 ('Shock', 'G-Shock');
@@ -102,7 +103,8 @@ INSERT INTO `customers` (`ID_Customer`, `First_Name`, `Last_Name`, `Phone`, `Ema
 ('MaKH00007', 'Phạm Nguyễn Bảo', 'Trân', '0926888888', 'phamnguyenbaotran.nt@gmail.com', 'baotran123', 'baotranxinhdep', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
 ('MaKH00008', 'Phan Quang', 'Khải', '0920045056', 'phanquankhai.nt@gmail.com', 'quangkhaidz', 'khaidzai', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
 ('MaKH00009', 'Nguyễn Thành', 'Lãnh', '0921123456', 'nguyenthanhlanh.nt@gmail.com', 'lanhlanh', 'thanhlanh123', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
-('MaKH00010', 'Trần Lê Nguyên', 'Hoàng', '0920023888', 'tranlenguyenhoang.nt@gmail.com', 'anhhoangdzai', 'nguyenhoang159', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User');
+('MaKH00010', 'Trần Lê Nguyên', 'Hoàng', '0920023888', 'tranlenguyenhoang.nt@gmail.com', 'anhhoangdzai', 'nguyenhoang159', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
+('MaKH00011', 'Nguyen Quoc', 'Chau', '0926383006', '723mailtrang11@gmail.com', 'chau12388', 'chau1234', 'Hà Nội', '2022-11-02 17:28:39', 'User');
 
 -- --------------------------------------------------------
 
@@ -166,7 +168,8 @@ INSERT INTO `orders` (`ID_Order`, `ID_Customer`, `Create_At`, `Total`) VALUES
 ('Order0000001', 'MaKH00001', '2022-10-22 23:22:23', '25278000'),
 ('Order0000002', 'MaKH00002', '2022-10-31 23:29:27', '78647600'),
 ('Order0000003', 'MaKH00009', '2022-10-31 23:30:05', '19697400'),
-('Order0000004', 'MaKH00003', '2022-10-31 23:31:05', '4350000');
+('Order0000004', 'MaKH00003', '2022-10-31 23:31:05', '4350000'),
+('Order0000005', 'MaKH00011', '2022-11-02 17:30:55', '45854400');
 
 -- --------------------------------------------------------
 
@@ -208,7 +211,11 @@ INSERT INTO `order_details` (`ID_Detail`, `ID_Order`, `ID_Product`, `Create_At`,
 ('Detail0000017', 'Order0000002', 'Product0010', '2022-11-02 00:19:12', 1, '7327800', '7327800'),
 ('Detail0000018', 'Order0000002', 'Product0009', '2022-11-02 00:19:12', 1, '4671000', '4671000'),
 ('Detail0000019', 'Order0000002', 'Product0006', '2022-11-02 00:19:12', 1, '2550000', '2550000'),
-('Detail0000020', 'Order0000002', 'Product0003', '2022-11-02 00:19:12', 1, '9250000', '9250000');
+('Detail0000020', 'Order0000002', 'Product0003', '2022-11-02 00:19:12', 1, '9250000', '9250000'),
+('Detail0000021', 'Order0000005', 'Product0010', '2022-11-02 17:30:55', 3, '7327800', '21983400'),
+('Detail0000022', 'Order0000005', 'Product0009', '2022-11-02 17:30:55', 1, '4671000', '4671000'),
+('Detail0000023', 'Order0000005', 'Product0006', '2022-11-02 17:30:55', 1, '2550000', '2550000'),
+('Detail0000024', 'Order0000005', 'Product0014', '2022-11-02 17:30:55', 1, '16650000', '16650000');
 
 -- --------------------------------------------------------
 
@@ -237,7 +244,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`ID_Product`, `Name`, `Description`, `Image`, `Quantity`, `Price`, `Discount`, `Create_At`, `Update_At`, `ID_Brand`, `ID_Gender`) VALUES
 ('Product0001', 'DOUGLAS DAY-DATE 41', 'Cách mạng hóa hoạt động du lịch, Douglas DC-3 vận chuyển hành khách với phong cách Hạng Nhất và trở thành công cụ trong Thời kỳ Vàng của ngành hàng không. Bằng cách pha trộn sự tinh tế của chuyến du lịch sang trọng với công nghệ tiên tiến và tay nghề thủ công, chiếc đồng hồ AVIATOR Douglas Day Date 41 vinh danh chiếc máy bay vĩ đại nhất thời đại.', 'douglas-day-date-41-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 1000, 18000000, 0, '2022-10-19 08:11:00', '2022-10-19 08:11:00', 'Avia', 'IDM'),
 ('Product0002', 'DOUGLAS MOONFLIGHT', 'Vào những năm 1930, các nhà thiết kế thời trang cao cấp đã mang đến sự quyến rũ cho đường băng và lên chiếc Douglas DC-3, chiếc máy bay đã thiết kế lại hành trình bằng cách mang đến sự sang trọng cho mỗi chuyến bay. Kết hợp các tính năng Art Deco cổ điển được đặt theo các giai đoạn của mặt trăng, AVIATOR MoonFlight cho phép bạn hạ cánh giữa các ngôi sao và tín đồ thời trang với phong cách cao cấp nhằm tôn vinh chiếc máy bay vĩ đại nhất của thời đại đó.', 'douglas-moonflight-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 500, 16500000, 0.1, '2022-10-21 08:52:55', '2022-10-21 08:52:55', 'Avia', 'IDWM'),
-('Product0003', 'AIRACOBRA P45 CHRONO 1', 'Tận dụng chiến lược tầm nhìn chim của mình trong suốt Thế chiến II, Airacobra là một máy bay chiến đấu ổn định mà Đồng minh có thể dựa vào để hỗ trợ quân đội trên mặt đất. Bằng cách kết hợp tinh thần đáng tin cậy của nó đã chứng tỏ là công cụ trong mọi nhiệm vụ, đồng hồ AVIATOR Airacobra P45 Chrono mang đến một vẻ ngoài giống như một công cụ xứng đáng được đề cập đến.', 'airacobra-p45-chrono-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 500, 18500000, 0.5, '2022-10-21 03:59:53', '2022-10-21 03:59:53', 'Avia', 'IDM'),
+('Product0003', 'AIRACOBRA P45 CHRONO 1', 'Tận dụng chiến lược tầm nhìn chim của mình trong suốt Thế chiến II, Airacobra là một máy bay chiến đấu ổn định mà Đồng minh có thể dựa vào để hỗ trợ quân đội trên mặt đất. Bằng cách kết hợp tinh thần đáng tin cậy của nó đã chứng tỏ là công cụ trong mọi nhiệm vụ, đồng hồ AVIATOR Airacobra P45 Chrono mang đến một vẻ ngoài giống như một công cụ xứng đáng được đề cập đến.', 'airacobra-p45-chrono-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 0, 18500000, 0.5, '2022-10-21 03:59:53', '2022-10-21 03:59:53', 'Avia', 'IDM'),
 ('Product0004', 'AIRACOBRA P45 CHRONO', 'Tận dụng chiến lược tầm nhìn chim của mình trong suốt Thế chiến II, Airacobra là một máy bay chiến đấu ổn định mà Đồng minh có thể dựa vào để hỗ trợ quân đội trên mặt đất. Bằng cách kết hợp tinh thần đáng tin cậy của nó đã chứng tỏ là công cụ trong mọi nhiệm vụ, đồng hồ AVIATOR Airacobra P45 Chrono mang đến một vẻ ngoài giống như một công cụ xứng đáng được đề cập đến.', 'airacobra-p45-chrono-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 400, 18000000, 0.1, '2022-10-21 04:02:51', '2022-10-21 04:02:51', 'Avia', 'IDWM'),
 ('Product0005', 'BABY G BGA-310-7A2', 'Thỏa sức ngao du ngoài trời với mẫu đồng hồ BGA-310 sành điệu và mạnh mẽ. Ngoài ra bạn cũng có thể chọn màu be sáng nếu yêu thích phong cách ngoài trời. Mặt đồng hồ tròn và rộng kết hợp dây đeo lớn và vạch chỉ giờ nổi làm tôn lên vẻ ngoài nghịch ngợm và giúp bạn dễ đọc. Dây đeo màu sáng giúp hiển thị giờ rõ ràng ngay cả trong bóng tối để bạn xem nhanh hơn. Chiếc đồng hồ có phần vấu nối dây đeo vừa vặn phù hợp với mọi chuyển động. Chiếc đồng hồ này còn cung cấp nhiều chức năng thực tiễn như cấu trúc chống va đập và khả năng chống nước ở độ sâu lên đến 100 mét. Nút bấm phía trước giúp bạn dễ mở đèn LED đôi chiếu sáng mặt đồng hồ và mở màn mình LCD khi đi cắm trại hoặc phiêu lưu.', 'baby-g-bga-310-7a2-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 900, 5000000, 0, '2022-10-21 04:13:42', '2022-10-21 04:13:42', 'Baby', 'IDM'),
 ('Product0006', 'BABY G BA-110XSM-2A', 'Từ BABY-G, dòng đồng hồ đơn giản dành cho giới nữ năng động, đã phát triển mẫu đồng hồ mới được hợp tác sản xuất cùng với thương hiệu Thủy thủ Mặt Trăng. Thương hiệu anime Thủy thủ Mặt Trăng và BABY-G nổi tiếng từ những năm 1990 và đã trở thành đối tác hoàn hảo của nhau. Chủ đề của mẫu đồng hồ mới này khả năng biến hình mang phong cách lãng mạn của Thủy thủ Mặt Trăng. Dựa trên mẫu đồng hồ BABY-G BA-110 nổi tiếng, chiếc đồng hồ mới này kết hợp nhiều yếu tố nguyên bản lung linh lấy cảm hứng từ phiên bản biến hình của Thủy thủ Mặt Trăng. Phần thân bán trong suốt màu xanh hải quân gợi lên hình ảnh bầu trời đêm, được trang trí bằng các ngôi sao, mặt trăng, trái tim và các hình ảnh Thủy thủ Mặt Trăng màu xanh lam, đỏ và vàng, tạo nên diện mạo vô cùng quyến rũ. Mặt đồng hồ được trang trí bằng những hình ảnh lấp lánh kết hợp dây đeo màu vàng hồng. Thiết kế đặc biệt này gợi lên hình ảnh Thủy thủ Mặt Trăng biến hình vô cùng cuốn hút và khó quên. Vòng dây đeo in hình Thủy thủ Mặt Trăng cũng được khắc trên nắp sau của đồng hồ. Thiết kế bao bì của mẫu đồng hồ này được lấy cảm hứng từ Thủy thủ Mặt Trăng. Mọi chi tiết liên quan đến mẫu đồng hồ này đều được thiết kế nhằm tôn vinh sự hợp tác đặc biệt giữa BABY-G và Thủy thủ Mặt Trăng, nữ anh hùng trong mơ của mọi cô gái.', 'baby-g-ba-110xsm-2a-1.png,cat.gif,cat.gif,cat.gif,cat.gif,cat.gif', 500, 5100000, 0.5, '2022-10-21 04:25:28', '2022-10-21 04:25:28', 'Baby', 'IDM'),
