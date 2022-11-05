@@ -19,6 +19,7 @@ function search(str) {
              */
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("searchResult").innerHTML = this.responseText;
+                
             }
         }
         // gọi file search.php và truyền tham số get search

@@ -1,6 +1,4 @@
 <?php
-require '../config/connectDB.php';
-include 'inlcudes_function/list_order_detail.php';
 session_start();
 if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role'] != "Admin") {
    header('Location: ../../home.php');
@@ -9,6 +7,8 @@ if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role
    header('Location: ../../home.php');
    exit();
 }
+require '../config/connectDB.php';
+include 'inlcudes_function/list_order_detail.php';
 
 ?>
 <!DOCTYPE html>

@@ -833,4 +833,123 @@
   text-align: center;
   position: relative;
   left: 200px;
+}
+
+.body-list-products .fa-pen-to-square {
+  color: blue;
+}
+.body-list-products .fa-trash {
+  color: red;
+}
+.body-list-products .header {
+  text-align: center;
+}
+.body-list-products .header h4 {
+  padding-top: 3px;
+  text-transform: uppercase;
+  border: 4px solid #dd3333;
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  margin: auto;
+}
+.body-list-products table {
+  text-align: center;
+}
+.body-list-products table a {
+  color: black;
+}
+.body-list-products table img {
+  width: 40px;
+  height: 50px;
+}
+.body-list-products table .form-select-brand {
+  translate: 10% 20%;
+  border: none;
+  background-color: #222529;
+  width: 145px;
+  height: 38px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+}
+.body-list-products table .form-select-gender {
+  translate: 10% 20%;
+  border: none;
+  background-color: #222529;
+  width: 110px;
+  height: 38px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+}
+.body-list-products .pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.body-detail-product .input-group-text {
+  width: 138px;
+  color: #000000;
+  font-size: 17px;
+  font-family: "Oswald", sans-serif;
+  background-color: rgba(190, 186, 186, 0.2784313725);
+}
+.body-detail-product #brand {
+  font-size: 17px;
+}
+.body-detail-product #gender {
+  font-size: 17px;
+}
+.body-detail-product #carouselExampleIndicators {
+  margin-top: 13%;
+  width: 500px;
+  margin-left: 0%;
+}
+.body-detail-product #carouselExampleIndicators .glyphicon {
+  font-size: 200px;
+  border-radius: 20px;
+  background-color: red;
+}
+
+.listbrand table {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 70%;
+  margin: auto;
+}
+.listbrand td {
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 8px;
+}
+.listbrand .td1 {
+  text-align: right;
+  padding: 8px;
+}
+.listbrand tr {
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+  padding: 8px;
+}
+.listbrand .tr1 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.listbrand .tr0 {
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 3px solid #dd3333;
+  color: #dd3333;
+}
+.listbrand a {
+  text-decoration: none;
+  color: white;
+}
+.listbrand button {
+  background-color: #dd3333;
+  border-radius: 5px;
+  border: transparent;
 }/*# sourceMappingURL=style.css.map */
