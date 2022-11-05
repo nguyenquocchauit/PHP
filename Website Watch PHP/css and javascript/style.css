@@ -913,4 +913,43 @@
   font-size: 200px;
   border-radius: 20px;
   background-color: red;
+}
+
+.listbrand table {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 70%;
+  margin: auto;
+}
+.listbrand td {
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 8px;
+}
+.listbrand .td1 {
+  text-align: right;
+  padding: 8px;
+}
+.listbrand tr {
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+  padding: 8px;
+}
+.listbrand .tr1 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.listbrand .tr0 {
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 3px solid #dd3333;
+  color: #dd3333;
+}
+.listbrand a {
+  text-decoration: none;
+  color: white;
+}
+.listbrand button {
+  background-color: #dd3333;
+  border-radius: 5px;
+  border: transparent;
 }/*# sourceMappingURL=style.css.map */
