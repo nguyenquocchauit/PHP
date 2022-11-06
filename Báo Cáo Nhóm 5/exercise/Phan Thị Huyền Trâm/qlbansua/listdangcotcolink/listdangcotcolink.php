@@ -58,8 +58,8 @@
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
-            $file = "'../img/$Hinh'";
-            if (file_exists($file)==true)
+            $file = "../img/$Hinh";
+            if (!(file_exists($file)))
                 $Hinh = 'loi.jpg';
             echo "
                 <div>

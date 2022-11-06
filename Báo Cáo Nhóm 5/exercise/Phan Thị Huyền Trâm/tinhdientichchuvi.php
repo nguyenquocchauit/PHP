@@ -1,25 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Tính chu vi và diện tích</title>
     <style>
-        form{
+        form {
             width: 700px;
         }
+
         fieldset {
             background-color: lightpink;
         }
+
         legend {
-           background-color: lightcoral;
+            background-color: lightcoral;
             color: white;
             padding: 5px 10px;
         }
+
         input {
             margin: 5px;
         }
     </style>
 </head>
+
 <body>
     <?php
     abstract class Hinh
@@ -75,11 +80,11 @@
     {
         public function tinh_CV()
         {
-            return $this->dodai *3;
+            return $this->dodai * 3;
         }
         public function tinh_DT()
         {
-            return pow($this->dodai, 2)*sqrt(3)/4;
+            return pow($this->dodai, 2) * sqrt(3) / 4;
         }
     }
 
@@ -87,11 +92,11 @@
     {
         public function tinh_CV()
         {
-            return (($this->dodai) +($this->dodai*2))*2  ;
+            return (($this->dodai) + ($this->dodai * 2)) * 2;
         }
         public function tinh_DT()
         {
-            return ($this->dodai)*($this->dodai*2)  ;
+            return ($this->dodai) * ($this->dodai * 2);
         }
     }
 
@@ -134,7 +139,7 @@
                 <tr>
                     <td>Chọn hình</td>
                     <td><input type="radio" name="hinh" value="hv" <?php if (isset($_POST['hinh']) && ($_POST['hinh']) == "hv") echo 'checked="checked"' ?> />Hình vuông
-                    <input type="radio" name="hinh" value="htgd" <?php if (isset($_POST['hinh']) && ($_POST['hinh']) == "htgd") echo 'checked="checked"' ?> />Hình tam giác đều
+                        <input type="radio" name="hinh" value="htgd" <?php if (isset($_POST['hinh']) && ($_POST['hinh']) == "htgd") echo 'checked="checked"' ?> />Hình tam giác đều
                         <input type="radio" name="hinh" value="ht" <?php if (isset($_POST['hinh']) && ($_POST['hinh']) == "ht") echo 'checked="checked"' ?> />Hình tròn
                         <input type="radio" name="hinh" value="hcn" <?php if (isset($_POST['hinh']) && ($_POST['hinh']) == "hcn") echo 'checked="checked"' ?> />Hình chữ nhật
                     </td>
@@ -158,4 +163,5 @@
         </fieldset>
     </form>
 </body>
+
 </html>

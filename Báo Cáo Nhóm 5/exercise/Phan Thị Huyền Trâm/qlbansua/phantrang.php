@@ -129,7 +129,6 @@
         if ($current_page > 1 && $total_page > 1) {
             echo '<a href="phantrang.php?page=' . (1) . '"> &laquo; </a>  ';
             echo '<a href="phantrang.php?page=' . ($current_page - 1) . '"> &lt; </a>  ';
-           
         }
 
         // Lặp khoảng giữa

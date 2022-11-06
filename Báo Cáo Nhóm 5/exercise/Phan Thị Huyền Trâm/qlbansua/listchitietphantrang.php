@@ -7,44 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      table {
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                border-collapse: collapse;
-                width:1000px;
-                margin: auto;
-            }
+        table {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            border-collapse: collapse;
+            width: 1000px;
+            margin: auto;
+        }
 
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            h2{
-                text-align: center;
-                text-transform: uppercase;
-            }
-            img{
-                width: 100px;
-                height: 100px;
-            }
-            #title{
-                background-color: lightpink;
-            }
-            .pagination {
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #title {
+            background-color: lightpink;
+        }
+
+        .pagination {
             text-align: center;
             margin-top: 50px;
-            }
+        }
 
-            .pagination a {
-                color: black;
-                padding: 8px 16px;
-                text-decoration: none;
-                border: 1px solid #ddd;
-            }
+        .pagination a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
+
 <body>
-<?php
+    <?php
     // 1. Ket noi CSDL
     $conn = mysqli_connect('localhost', 'root', '', 'qlbansua')
         or die('Không thể kết nối tới database' . mysqli_connect_error());
@@ -85,20 +90,18 @@
     <div>
         <?php
         // BƯỚC 6: HIỂN THỊ DANH SÁCH TIN TỨC
-        if (mysqli_num_rows($result) != 0) 
-        {
-            while ($row = mysqli_fetch_array($result)) 
-            {
+        if (mysqli_num_rows($result) != 0) {
+            while ($row = mysqli_fetch_array($result)) {
                 $Name = $row['Ten_sua'];
                 $Hang = $row['Ten_hang_sua'];
                 $TrongLuong = $row['Trong_luong'];
                 $DonGia = $row['Don_gia'];
                 $Hinh = $row['Hinh'];
-                    $file =" './img/$Hinh'";
-                    if (!(file_exists($file)))
-                        $Hinh = 'loi.jpg';
+                $file = "img/$Hinh";
+                if (!(file_exists($file)))
+                    $Hinh = 'loi.jpg';
                 $TPDD = $row['TP_Dinh_Duong'];
-                $Loiich = $row ['Loi_ich'];
+                $Loiich = $row['Loi_ich'];
 
                 echo "
                 <table>
@@ -106,10 +109,10 @@
                         <td colspan = '2' id= 'title'><h2>$Name - $Hang</h2></td>
                     </tr>
                     <tr>
-                        <td><img src='./img/$Hinh'></td>
+                        <td><img src='img/$Hinh'></td>
                         <td>
                             <p>Thành phần dinh dưỡng</p>
-                            <p>$TPDD</p>
+                            <p>$TPDD </p>
                             <p>Lợi ich:</p>
                             <p>$Loiich</p>
                             <p>Trọng lượng : $TrongLuong gram  - Đơn giá : $DonGia VNĐ</p>
@@ -129,7 +132,6 @@
         if ($current_page > 1 && $total_page > 1) {
             echo '<a href="listchitietphantrang.php?page=' . (1) . '"> &laquo; </a>  ';
             echo '<a href="listchitietphantrang.php?page=' . ($current_page - 1) . '"> &lt; </a>  ';
-           
         }
 
         // Lặp khoảng giữa
@@ -150,4 +152,5 @@
         ?>
     </div>
 </body>
+
 </html>

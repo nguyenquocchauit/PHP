@@ -7,26 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-      table {
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                border-collapse: collapse;
-                width:700px;
-                margin: auto;
-            }
+        table {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            border-collapse: collapse;
+            width: 700px;
+            margin: auto;
+        }
 
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            h2{
-                text-align: center;
-                text-transform: uppercase;
-            }
-            img{
-                width: 100px;
-                height: 100px;
-            }
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 
@@ -40,24 +42,22 @@
     $sql = "SELECT Ma_sua,  Ten_sua, Ten_hang_sua , Ten_loai, Trong_luong, Don_gia ,Hinh,TP_Dinh_Duong,Loi_ich
             FROM sua JOIN loai_sua ON sua.Ma_loai_sua = loai_sua.Ma_loai_sua 
             JOIN hang_sua ON sua.Ma_hang_sua = hang_sua.Ma_hang_sua
-            WHERE Ma_sua = '$ms' ";      
+            WHERE Ma_sua = '$ms' ";
     $result = mysqli_query($conn, $sql);
     // 4.Xu ly du lieu tra ve
-   
-    if (mysqli_num_rows($result) != 0) 
-    {
-        while ($row = mysqli_fetch_array($result)) 
-        {
+
+    if (mysqli_num_rows($result) != 0) {
+        while ($row = mysqli_fetch_array($result)) {
             $Name = $row['Ten_sua'];
             $Hang = $row['Ten_hang_sua'];
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
-            $file =" '../img/$Hinh'";
-                    if (!(file_exists($file)))
-                        $Hinh = 'loi.jpg';
+            $file = "../img/$Hinh";
+            if (!(file_exists($file)))
+                $Hinh = 'loi.jpg';
             $TPDD = $row['TP_Dinh_Duong'];
-            $Loiich = $row ['Loi_ich'];
+            $Loiich = $row['Loi_ich'];
             echo "
             <table>
                 <tr>

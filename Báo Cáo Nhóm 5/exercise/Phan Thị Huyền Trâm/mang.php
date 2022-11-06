@@ -81,9 +81,8 @@
 		$ketqua .= "\n Vị trí của các số có giá trị bằng 0 :";
 		$daySo = "";
 		for ($i = 0; $i < count($arr); $i++) {
-			if ($arr[$i] == 0) 
-			{
-				$daySo .= "$i"." ";
+			if ($arr[$i] == 0) {
+				$daySo .= "$i" . " ";
 			}
 		}
 		$ketqua .= $daySo;

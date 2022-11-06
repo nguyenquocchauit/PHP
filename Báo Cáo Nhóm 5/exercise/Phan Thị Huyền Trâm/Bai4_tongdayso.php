@@ -26,7 +26,7 @@
     $tong = "";
     if (isset($_POST['tinh'])) {
       $str = $_POST['mang'];
-      fwrite($fp,$str);
+      fwrite($fp, $str);
       $arr = explode(",", $str);
       $tong = tongdayso($arr);
     }

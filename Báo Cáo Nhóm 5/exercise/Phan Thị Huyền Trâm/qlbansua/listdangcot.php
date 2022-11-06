@@ -94,11 +94,14 @@
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
+            $file = "img/$Hinh";
+            if (!(file_exists($file)))
+                $Hinh = 'loi.jpg';
             echo "
                 <div>
                     <p>$Name</p>
                     <p>$TrongLuong - $DonGia</p>
-                    <p><img src='./img/$Hinh' onError='this.src='./img/loi.jpg'' '></p>
+                    <p><img src='img/$Hinh' onError='this.src='./img/loi.jpg'' '></p>
                 </div>
             ";
         }

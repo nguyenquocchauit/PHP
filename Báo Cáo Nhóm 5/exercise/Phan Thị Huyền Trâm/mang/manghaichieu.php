@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Mảng 2 chiều</title>
     <style>
-        input{
+        input {
             width: 150px;
         }
     </style>
@@ -97,4 +97,5 @@
         </div>
     </form>
 </body>
+
 </html>

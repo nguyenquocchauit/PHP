@@ -10,7 +10,7 @@
         table {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             border-collapse: collapse;
-            width:500px;
+            width: 500px;
             margin: auto;
         }
 
@@ -37,7 +37,8 @@
             text-align: center;
             text-transform: uppercase;
         }
-        img{
+
+        img {
             width: 100px;
             height: 100px;
         }
@@ -67,18 +68,18 @@
             $TrongLuong = $row['Trong_luong'];
             $DonGia = $row['Don_gia'];
             $Hinh = $row['Hinh'];
-            $file =" './img/$Hinh'";
-                    if (!(file_exists($file)))
-                        $Hinh = 'loi.jpg';
+            $file = "img/$Hinh";
+            if (!(file_exists($file)))
+                $Hinh = 'loi.jpg';
             echo "<tr>";
-                echo "<td>";
-                    echo "<img src='./img/$Hinh'>";
-                echo "</td>";
-                echo "<td>";
-                    echo "<p>$Name</p>";
-                    echo "<p> Nhà sản xuất : $HangSua</p> ";
-                    echo "<p>  $LoaiSua - $TrongLuong - $DonGia </p>";
-                echo "</td>";
+            echo "<td>";
+            echo "<img src='img/$Hinh'>";
+            echo "</td>";
+            echo "<td>";
+            echo "<p>$Name</p>";
+            echo "<p> Nhà sản xuất : $HangSua</p> ";
+            echo "<p>  $LoaiSua - $TrongLuong - $DonGia </p>";
+            echo "</td>";
             echo "</tr>";
         }
     }
