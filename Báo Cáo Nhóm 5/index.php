@@ -7,6 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="includes/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <!-- thư viện sweet aler  -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
+            $('#website-demo').on('click', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Thông báo!',
+                    text: 'Hiện tại chưa xử lý xong đường dẫn website, vào github phần README.md để xem hướng dẫn chạy localhost website demo',
+                    confirmButtonText: 'Chuyển tới Github',
+                }).then((result) => {
+                // click vào đăng nhập thì show modal đăng nhập
+                if (result.isConfirmed) {
+                    window.location.href = "https://github.com/nguyenquocchauit/PHP";
+                }
+            })
+            });
+        })
+    </script>
     <title>Báo cáo nhóm 5 - Thông tin nhóm</title>
 </head>
 

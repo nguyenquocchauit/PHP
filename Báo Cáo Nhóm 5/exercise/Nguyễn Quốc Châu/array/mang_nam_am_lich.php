@@ -89,7 +89,7 @@
                 $chi = $nam % 12;
                 $nam_al = $mang_can[$can] . " " . $mang_chi[$chi];
                 $hinh = $mang_hinh[$chi];
-                $hinh_anh = "<img src='../../images/Con_giap/$hinh' alt=''>";
+                $hinh_anh = "<img src='../images/Con_giap/$hinh' alt=''>";
             }
         }
     }
@@ -115,7 +115,7 @@
                     <input type="text" class="form-control" name="duonglich" value="<?php echo $duonglich ?>" id="" pattern="[0-9]{}">
                 </div>
                 <div class="col-4 pt-1">
-                    <button type="submit" name="Exec"><img src="../../images/Con_giap/next.png" alt="submit" srcset=""></i></button>
+                    <button type="submit" name="Exec"><img src="../images/Con_giap/next.png" alt="submit" srcset=""></i></button>
                 </div>
                 <div class="col-4">
                     <input type="text" class="form-control input" name="nam_al" value="<?php echo $nam_al ?>" id="">
