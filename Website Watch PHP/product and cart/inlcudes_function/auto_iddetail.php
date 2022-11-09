@@ -41,4 +41,3 @@ switch ($number) {
         $ID_Detail = "null";
         break;
 }
-echo $ID_Detail;
