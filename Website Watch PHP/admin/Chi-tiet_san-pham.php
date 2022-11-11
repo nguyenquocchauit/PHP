@@ -153,7 +153,7 @@ include 'inlcudes_function/show_product.php';
                     <div class="input-group ">
                         <label class="input-group-text" for="Image">Ảnh</label>
                         <!-- <input type="file" class="form-control" id="Image" name="Image" multiple> -->
-                        <input type="file" name="image[]" accept="image/*" id="imageButton" multiple/>
+                        <input type="file" name="image" accept="image/*" id="imageButton" multiple />
                     </div>
                 </div>
                 <div class="row p-2">

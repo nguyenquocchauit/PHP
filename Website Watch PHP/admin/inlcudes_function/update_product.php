@@ -8,16 +8,18 @@
 
 
 $len = count($_FILES['image']);
-for($i = 0; $i < $len; $i++){
-    $src = $_FILES['image']['tmp_name'][$i];
-    $filename = $_FILES['image']['name'][$i];
-    $output_dir = "images/".$filename;
-    echo $filename;
-    // if(move_uploaded_file($src, $output_dir )){
-    //     echo "Success! Image uploaded! File: ".$filename;
-    // }else{
-    //     echo "Error! Image upload failed! File: ".$filename;
-    // };
-    // echo "\n<br>";
-}
+//echo $_FILES['image']['tmp_name'][0];
+echo $len;
+// for($i = 0; $i < $len; $i++){
+//     $src = $_FILES['image']['tmp_name'][$i];
+//     $filename = $_FILES['image']['name'][$i];
+//     $output_dir = "images/".$filename;
+//     echo $filename;
+//     // if(move_uploaded_file($src, $output_dir )){
+//     //     echo "Success! Image uploaded! File: ".$filename;
+//     // }else{
+//     //     echo "Error! Image upload failed! File: ".$filename;
+//     // };
+//     // echo "\n<br>";
+// }
 //echo json_encode($array_message);
