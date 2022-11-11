@@ -7,9 +7,11 @@
 // $array_message['file'] = $file_name . " " . $file_size . " " . $file_tmp . " " . $file_type;
 
 
-$len = count($_FILES['image']);
+//$len = count($_FILES['image']);
 //echo $_FILES['image']['tmp_name'][0];
-echo $len;
+// echo $_POST['action'];
+// print_r($_FILES['image']['name']);
+$array_message['message'] = $_POST['action'];
 // for($i = 0; $i < $len; $i++){
 //     $src = $_FILES['image']['tmp_name'][$i];
 //     $filename = $_FILES['image']['name'][$i];
@@ -22,4 +24,4 @@ echo $len;
 //     // };
 //     // echo "\n<br>";
 // }
-//echo json_encode($array_message);
+echo json_encode($array_message);

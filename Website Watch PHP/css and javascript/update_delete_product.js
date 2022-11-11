@@ -10,7 +10,7 @@ $(document).ready(function () {
         // Making the form object
         var form = new FormData();
         // Adding the image to the form
-        form.append("image", file[0]);
+        //form.append("image", file[0]);
         for (var i = 0; i <= file.length - 1; i++) {
 
             form.append("image", file[i]);
@@ -23,13 +23,17 @@ $(document).ready(function () {
         $.ajax({
             url: 'inlcudes_function/update_product.php',
             type: "POST",
-            data: form,
-            contentType: false,
-            processData: false,
+            data: {
+                action : "upload-image",
+                //image : form,
+
+            },
+            // contentType: false,
+            // processData: false,
             success: function (result) {
-                //var data = JSON.parse(result);
-                //console.log(data);
-                document.write(result);
+                var data = JSON.parse(result);
+                console.log(data);
+                //document.write(result);
             }
         });
 
