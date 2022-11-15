@@ -13,7 +13,7 @@ $(document).ready(function () {
         //form.append("image", file[0]);
         for (var i = 0; i <= file.length - 1; i++) {
 
-            form.append("image", file[i]);
+            form.append("files[]", file[i]);
         }
         for (const value of form.values()) {
             console.log(value.name + " & " + value.size);
@@ -23,13 +23,9 @@ $(document).ready(function () {
         $.ajax({
             url: 'inlcudes_function/update_product.php',
             type: "POST",
-            data: {
-                action : "upload-image",
-                //image : form,
-
-            },
-            // contentType: false,
-            // processData: false,
+            data: form,
+            contentType: false,
+            processData: false,
             success: function (result) {
                 var data = JSON.parse(result);
                 console.log(data);
