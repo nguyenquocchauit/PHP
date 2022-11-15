@@ -52,7 +52,7 @@ $result = mysqli_query($conn, $brand);
                     echo "
                     <tr>
                         <td><p>Mã nhãn hàng :</p></td>
-                        <td><input type='text' name='idbrand' value='$idbrand' disabled class='form-control' id='idbrand' required></td>
+                        <td><input type='text' name='idbrand' value='$idbrand' readonly class='form-control' id='idbrand' required></td>
                         <td><p>Tên nhãn hàng :</p></td>
                         <td><input type='text' name='namebrand' value='$namebrand' class='form-control' id='namebrand' required></td>
                     </tr>";

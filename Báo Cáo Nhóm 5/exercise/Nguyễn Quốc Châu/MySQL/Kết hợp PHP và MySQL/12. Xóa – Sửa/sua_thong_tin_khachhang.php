@@ -75,7 +75,7 @@
     // 1. Ket noi CSDL
     require '../../connectDB.php';
     // thêm file class khách hàng
-    include "../../4. Xây dựng các lớp xử lý/4. Xây dựng lớp xử lý khách hàng_xl_khach_hang/xl_khach_hang.php";
+    //include "../../4. Xây dựng các lớp xử lý/4. Xây dựng lớp xử lý khách hàng_xl_khach_hang/xl_khach_hang.php";
     // get milkcode data from url
     $id = $_GET['CustomerID'];
     // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
