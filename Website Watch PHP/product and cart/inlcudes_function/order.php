@@ -49,29 +49,29 @@ if (isset($_POST['ID_Customer']) && isset($_POST['Create_At']) && isset($_POST['
                     $Quantity = $_SESSION['cart'][$i][4];
                     $Price = $_SESSION['cart'][$i][3];
 
-                    // tính gi  á tổng của sp
+                    // tính giá tổng của sp
                     $Total_Product = $Price * $Quantity;
 
                     // truy vấn thêm vào db
                     $sql = "INSERT INTO `order_details`(`ID_Detail`, `ID_Order`, `ID_Product`, `Create_At`, `Quantity`, `Price`, `Total`) 
             VALUES ('$ID_Detail','$ID_Order','$ID_Product','$Create_At','$Quantity','$Price','$Total_Product')";
                     $result = mysqli_query($conn, $sql);
-
                     // xử lý thấy message để xử lý ajax bên file product_cart 
                     $array_message['message'] = 0;
                     $array_message['success'] = 'home.php';
                 }
+
                 // thêm xong xóa giỏ hàng session[cart]
                 unset($_SESSION['cart']);
             }
         }
-        // nếu khách hàng chưa đặt đơn hàng trước đó. Khởi tạo order mới chứa mã khách hàng
+        // // nếu khách hàng chưa đặt đơn hàng trước đó. Khởi tạo order mới chứa mã khách hàng
         else {
             // truy vấn thêm vào db order
             // gọi file auto_idorder.php lấy mã id tăng tự động. sử dụng 1 lần
             include_once "auto_iddetail.php";
             $sql = "INSERT INTO `orders`(`ID_Order`, `ID_Customer`, `Create_At`, `Total`) 
-        VALUES ('$ID_Order','$ID_Customer','$Create_At','$Total_Order')";
+            VALUES ('$ID_Order','$ID_Customer','$Create_At','$Total_Order')";
             $result = mysqli_query($conn, $sql);
 
             // thêm khách hàng thành công vào bảng order thì tiếp tục thêm order_detail
@@ -91,13 +91,13 @@ if (isset($_POST['ID_Customer']) && isset($_POST['Create_At']) && isset($_POST['
 
                     // truy vấn thêm vào db
                     $sql = "INSERT INTO `order_details`(`ID_Detail`, `ID_Order`, `ID_Product`, `Create_At`, `Quantity`, `Price`, `Total`) 
-            VALUES ('$ID_Detail','$ID_Order','$ID_Product','$Create_At','$Quantity','$Price','$Total_Product')";
+                    VALUES ('$ID_Detail','$ID_Order','$ID_Product','$Create_At','$Quantity','$Price','$Total_Product')";
                     $result = mysqli_query($conn, $sql);
-
                     // xử lý thấy message để xử lý ajax bên file product_cart 
                     $array_message['message'] = 0;
                     $array_message['success'] = 'home.php';
                 }
+
                 // thêm xong xóa giỏ hàng session[cart]
                 unset($_SESSION['cart']);
             }
