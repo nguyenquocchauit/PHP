@@ -1,13 +1,10 @@
 <?php
 // kết nối cơ sở dữ liệu db_watch
 require '../config/connectDB.php';
-if (isset($_GET['idpro']) && $_GET['idpro'] == null) {
-    header('Location: Danh-sach-san-pham.php');
-    exit();
-} else {
-    $idpro = $_GET['idpro'];
-}
-include 'inlcudes_function/show_product.php';
+include 'inlcudes_function/show_brand_gender.php';
+include 'inlcudes_function/auto_idproduct.php';
+
+
 
 ?>
 <!DOCTYPE html>
@@ -32,6 +29,31 @@ include 'inlcudes_function/show_product.php';
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>TC WATCH - Chi tiết sản phẩm</title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
+            $(".image-product").change(function() {
+                var _input = $(this).val();
+                var _image = $(this).parent('.add-image-product').find(".file-image").find("image");
+                console.log(_input);
+                console.log(_image);
+                var reader = new FileReader();
+
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#image-product-1').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -82,13 +104,13 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Mã sản phẩm</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['ID_Product'] ?>" id="IDProduct" name="IDProduct" readonly>
+                        <input type="text" class="form-control" value="<?php echo $ID_Product ?>" id="IDProduct" name="IDProduct" readonly>
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Tên sản phẩm</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Name'] ?>" id="Name" name="Name">
+                        <input type="text" class="form-control" value="" id="Name" name="Name">
                     </div>
                 </div>
                 <div class="row p-2">
@@ -96,7 +118,7 @@ include 'inlcudes_function/show_product.php';
                         <span class="input-group-text" id="addon-wrapping">Hãng</span>
                         <select class="form-select form-select-lg form-select-brand" id="brand" aria-label=".form-select-lg example">
                             <?php if (mysqli_num_rows($resultBrand)) while ($rowBrand = mysqli_fetch_array($resultBrand)) : ?>
-                                <option value="<?php echo $rowBrand['ID_Brand'] ?>" <?php if ($rowBrand['ID_Brand'] == $rowProduct['ID_Brand']) echo "selected" ?>> <?php echo $rowBrand['Name'] ?></option>
+                                <option value="<?php echo $rowBrand['ID_Brand'] ?>"> <?php echo $rowBrand['Name'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>
@@ -106,7 +128,7 @@ include 'inlcudes_function/show_product.php';
                         <span class="input-group-text" id="addon-wrapping">Loại</span>
                         <select class="form-select form-select-lg form-select-gender" id="gender" aria-label=".form-select-lg example">
                             <?php if (mysqli_num_rows($resultGender)) while ($rowGender = mysqli_fetch_array($resultGender)) : ?>
-                                <option value="<?php echo $rowGender['ID_Gender'] ?>" <?php if ($rowGender['ID_Gender'] == $rowProduct['ID_Gender']) echo "selected" ?>> <?php echo $rowGender['Name'] ?></option>
+                                <option value="<?php echo $rowGender['ID_Gender'] ?>"> <?php echo $rowGender['Name'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>
@@ -114,39 +136,25 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Số lượng kho</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Quantity'] ?>" id="" name="">
+                        <input type="text" class="form-control" value="" id="" name="">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giá niêm yết</span>
-                        <input type="text" class="form-control" value="<?php echo number_format($rowProduct['Price']) . " VNĐ"; ?>" id="" name="">
+                        <input type="text" class="form-control" value="" id="" name="">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giảm giá</span>
-                        <input type="text" class="form-control" value="<?php $discount = $rowProduct['Discount'];
-                                                                        $percent = round((float)$discount * 100) . '%';
-                                                                        echo $percent  ?>" id="" name="">
-                    </div>
-                </div>
-                <div class="row p-2">
-                    <div class="input-group flex-nowrap ">
-                        <span class="input-group-text" id="addon-wrapping">Ngày tạo</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Create_At'] ?>" id="" name="" readonly>
-                    </div>
-                </div>
-                <div class="row p-2">
-                    <div class="input-group flex-nowrap ">
-                        <span class="input-group-text" id="addon-wrapping">Ngày chỉnh sửa</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Update_At'] ?>" id="" name="" readonly>
+                        <input type="text" class="form-control" value="" id="" name="">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group ">
                         <label class="input-group-text" for="Image">Ảnh</label>
-                        <button type="button" class="btn btn-secondary button-back" style="width: 77%;"><i class="fa-solid fa-image"></i> Chỉnh sửa ảnh</button>
+                        <button type="button" class="btn btn-secondary button-back" style="width: 77%;" data-bs-target="#myModal_Add-Product" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-image"></i> Thêm ảnh</button>
                         <!-- <input type="file" class="form-control" id="Image" name="Image" multiple> -->
                         <!-- <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="image[]" accept="image/*" id="imageButton" multiple />
@@ -156,13 +164,12 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Mô tả</span>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"><?php echo $rowProduct['Description'] ?></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="row p-2">
-                    <div class="col-4 d-flex justify-content-end"><button type="button" class="btn btn-warning button-back"><i class="fa-solid fa-arrow-left"></i> Quay lại</button></div>
-                    <div class="col-4 d-flex justify-content-center"><button type="button" class="btn btn-success button-update"><i class="fa-solid fa-floppy-disk"></i> Cập nhật</button></div>
-                    <div class="col-4 d-flex justify-content-start"><button type="button" class="btn btn-danger button-delete"><i class="fa-solid fa-trash"></i> Xóa</button></div>
+                    <div class="col-6 d-flex justify-content-end"><button type="button" class="btn btn-warning button-back"><i class="fa-solid fa-arrow-left"></i> Quay lại</button></div>
+                    <div class="col-6 d-flex justify-content-center"><button type="button" class="btn btn-success button-update"><i class="fa-solid fa-floppy-disk"></i>Thêm</button></div>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -172,6 +179,60 @@ include 'inlcudes_function/show_product.php';
     // thêm file footer
     include "../header_footer/footer.php";
     ?>
+    <!-- Modal Add image for product -->
+    <div class="modal fade" id="myModal_Add-Product" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header mx-auto">
+                    <h5 class="modal-title" id="staticBackdropLabel">Thêm ảnh cho sản phẩm</h5>
+                    <button type="button" class="btn-close btn-close-add-product" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-1" class="file-image">
+                            <img id="image-product-1" src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-1" style="display:none;">
+                    </div>
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-2" class="file-image">
+                            <img src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-2" style="display:none;">
+                    </div>
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-3" class="file-image">
+                            <img src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-3" style="display:none;">
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-4" class="file-image">
+                            <img src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-4" style="display:none;">
+                    </div>
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-5" class="file-image">
+                            <img src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-5" style="display:none;">
+                    </div>
+                    <div class="col-4 d-flex justify-content-center add-image-product">
+                        <label for="file-input-product-6" class="file-image">
+                            <img src="../img/default-image.jpg" alt="" srcset="" style="width:150px">
+                        </label>
+                        <input class="image-product" type="file" id="file-input-product-6" style="display:none;">
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-12 d-flex justify-content-center"><button type="button" class="btn btn-success button-add-image"><i class="fa-solid fa-floppy-disk"></i> Thêm</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -602,6 +602,12 @@
   position: relative;
   bottom: 40px;
 }
+.modal-content .modal-header .btn-close-add-product {
+  left: 59%;
+  justify-content: end;
+  position: relative;
+  bottom: 40px;
+}
 .modal-content .modal-header .btn-close-signup {
   left: 355%;
   justify-content: end;

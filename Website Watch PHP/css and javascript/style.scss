@@ -814,7 +814,12 @@ $color7 : #f7b100;
             position: relative;
             bottom: 40px;
         }
-
+        .btn-close-add-product{
+            left: 59%;
+            justify-content: end;
+            position: relative;
+            bottom: 40px;
+        }
         .btn-close-signup {
             left: 355%;
             justify-content: end;
@@ -1209,11 +1214,14 @@ $color7 : #f7b100;
             background-color: red;
         }
     }
+
+
 }
+
 
 //// brand : create new , edit, delete, list
 .listbrand {
-    
+
     table {
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         width: 70%;
