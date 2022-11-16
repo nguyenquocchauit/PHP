@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <?php 
-    if($_GET['id'])
+    <?php
+    if ($_GET['id'])
         $id = $_GET['id'];
 
     ?>
@@ -22,7 +22,8 @@
         <?php include "includes/header.php"; ?>
         <div class="body-exercise">
             <!-- nguyễn quốc châu -->
-            <div class="row p-2" <?php if($id=="nqc") echo 'style="display: flex ;"'; else echo 'style="display: none ;"';  ?>>
+            <div class="row p-2" <?php if ($id == "nqc") echo 'style="display: flex ;"';
+                                    else echo 'style="display: none ;"';  ?>>
                 <div class="col-3 ">
                     <strong>Bài tập form</strong>
                     <ul class="list-group">
@@ -146,7 +147,8 @@
                 </div>
             </div>
             <!-- phan thị huyền trâm -->
-            <div class="row p-2" <?php if($id=="ptht") echo 'style="display: flex ;"'; else echo 'style="display: none ;"';  ?>>
+            <div class="row p-2" <?php if ($id == "ptht") echo 'style="display: flex ;"';
+                                    else echo 'style="display: none ;"';  ?>>
                 <div class="col-3 ">
                     <strong>Bài tập form</strong>
                     <ul class="list-group">
@@ -154,6 +156,10 @@
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/form/tinhtiendien.php">Tính tiền điện</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/form/pheptinh.php">Thực hiện phép tính trên 2 số</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/form/nhapthongtin.html">Nhận và xử lý thông tin người dùng</a></li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
@@ -173,7 +179,10 @@
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/bai6sapxep/sapxepmang.php">Sắp xếp mảng</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/demptghepmang.php">Đếm phần tử, ghép mảng và sắp xếp</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/mang/manghaichieu.php">Tạo và hiển thị ma trận số nguyên</a></li>
-
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
 
                     </ul>
                 </div>
@@ -184,6 +193,10 @@
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/qlthongtinnv.php">Quản lý thông tin nhân viên</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/tinhdientichchuvi.php">Tính diện và chu vi hinh</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/phansohdt.php">Phép tính trên phân số</a></li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
+                        <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
                         <li class="list-group-item">&ensp;</li>
@@ -203,6 +216,10 @@
                         <li class="list-group-item "><a href="exercise/Phan Thị Huyền Trâm/qlbansua/listdangcot.php">List dạng cột</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/qlbansua/listdangcotcolink/listdangcotcolink.php">List dạng cột có link</a></li>
                         <li class="list-group-item"><a href="exercise/Phan Thị Huyền Trâm/qlbansua/listchitietphantrang.php">List chi tiết có phân trang</a></li>
+                        <li class="list-group-item "><a href="exercise/Phan Thị Huyền Trâm/qlbansua/timkiemdongian.php">Tìm kiếm đơn giản</a></li>
+                        <li class="list-group-item "><a href="exercise/Phan Thị Huyền Trâm/qlbansua/timkiemnangcao.php">Tìm kiếm nâng cao</a></li>
+                        <li class="list-group-item "><a href="exercise/Phan Thị Huyền Trâm/qlbansua/themsua.php">Thêm sửa</a></li>
+                        <li class="list-group-item "><a href="exercise/Phan Thị Huyền Trâm/qlbansua/xoa_sua_khachhang/ds_kh.php">Xóa sửa khách hàng</a></li>
                     </ul>
                 </div>
             </div>

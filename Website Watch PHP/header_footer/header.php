@@ -258,7 +258,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                     </div>
                     <div class="modal-footer">
                         <button href="#" class="btn btn-primary btn-block mt-3 w-100">Đăng Nhập</button>
-                        <p>Chưa có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Ký Ngay</a>
+                        <p>Chưa có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Ký Ngay</a></p>
+                        <button type="button" class="btn btn-block mt-3 w-100" style="background: gray;" onclick="location.href='../access/admin.php';">Đăng nhập quản trị viên</button>
                     </div>
                 </div>
             </div>

@@ -50,13 +50,20 @@
         <form action="" method="get">
             <table>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <h3>Tìm kiếm thông tin sữa</h3>
                     </td>
                 </tr>
                 <tr>
+                    <td>Loại sữa</td>
+                    <td><input type="text" name="kind"></td>
+                    <td>Hãng sữa</td>
+                    <td><input type="text" name="brand"></td>
+                </tr>
+                <tr>
                     <td>Tên sữa:</td>
-                    <td><input type="text" name="search"></td>
+                    <td><input type="text" name="name"></td>
+                    <td></td>
                     <td><button type="submit" name="searchbtn">Tìm kiếm</button></td>
                 </tr>
             </table>
@@ -64,12 +71,21 @@
     </div>
     <?php
     if (isset($_REQUEST['searchbtn'])) {
-        $search = ($_GET['search']);
-        if (empty($search)) {
+
+        $kind = ($_GET['kind']);
+        $brand = ($_GET['brand']);
+        $name = ($_GET['name']);
+
+        if (empty($kind) || (empty($brand) || (empty($name)))) {
             echo "Yeu cau nhap du lieu vao o trong";
         } else {
             // Dùng câu lênh like trong sql và sứ dụng toán tử % của php để tìm kiếm dữ liệu chính xác hơn.
-            $sql = "select * from sua where Ten_sua like '%$search%'";
+            $sql = "select  `Ten_sua`, `Ten_hang_sua`, `Ten_loai`, `Trong_luong`, `Don_gia`, `TP_Dinh_Duong`, `Loi_ich`, `Hinh`
+             from sua 
+             join hang_sua on sua.Ma_hang_sua = hang_sua.Ma_hang_sua 
+             join loai_sua on sua.Ma_loai_sua = loai_sua.Ma_loai_sua 
+             where Ten_loai like '%$kind%' AND Ten_hang_sua like '%$brand%' AND Ten_sua like '%$name%';
+                    ";
 
             // 1. Ket noi CSDL
             $conn = mysqli_connect('localhost', 'root', '', 'qlbansua')
@@ -87,11 +103,9 @@
                     $Name = $row['Ten_sua'];
                     $TrongLuong = $row['Trong_luong'];
                     $DonGia = $row['Don_gia'];
+                    $Hang = $row['Ten_hang_sua'];
                     $Hinh = $row['Hinh'];
                     $file = " './img/$Hinh'";
-                    if ((file_exists($file))) {
-                        $Hinh = 'loi.jpg';
-                    }
                     $TPDD = $row['TP_Dinh_Duong'];
                     $Loiich = $row['Loi_ich'];
 
@@ -99,7 +113,7 @@
                 <table>
                     
                     <tr>
-                        <td colspan = '2' id= 'title'><h2>$Name</h2></td>
+                        <td colspan = '2' id= 'title'><h2>$Name - $Hang</h2></td>
                     </tr>
                     <tr>
                         <td> <img src='./img/$Hinh'></td>

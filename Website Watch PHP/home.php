@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // kết nối cơ sở dữ liệu db_watch
 require 'config/connectDB.php';
 // lấy toàn bộ sản phẩm
