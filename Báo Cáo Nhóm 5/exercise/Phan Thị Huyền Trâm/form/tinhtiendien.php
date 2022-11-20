@@ -11,7 +11,6 @@
 
     <title>Tinhtiendien</title>
     <style type="text/css">
-        body {}
 
         table {
             background: #ffd94d;

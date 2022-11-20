@@ -11,8 +11,6 @@
 
     <title>tinh dien tich HCN</title>
     <style type="text/css">
-        body {}
-
         table {
             background: #ffd94d;
             border: 0 solid yellow;
