@@ -132,7 +132,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 type: "POST",
-                url: "../access/signup.php",
+                url: "../../Website Watch PHP/access/signup.php",
                 data: {
                     create_at: _create_at,
                     name: _name,
@@ -163,7 +163,7 @@ $(document).ready(function () {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     $.ajax({
                                         type: "POST",
-                                        url: "../access/login.php",
+                                        url: "../../Website Watch PHP/access/login.php",
                                         data: {
                                             username: _username,
                                             password: _pass
@@ -186,7 +186,7 @@ $(document).ready(function () {
                                                         title: 'Đăng nhập thành công!',
                                                         html: 'Đang đăng nhập vào Website <strong></strong> giây.',
                                                         //icon: "success",
-                                                        imageUrl: '../img/cat.gif',
+                                                        imageUrl: '../../Website Watch PHP/img/cat.gif',
                                                         imageWidth: 315,
                                                         imageHeight: 230,
                                                         timer: 3000,
@@ -207,7 +207,7 @@ $(document).ready(function () {
                                                         // hoàn thành xong chuyển tới trang home
                                                         if (result.dismiss === Swal.DismissReason.timer) {
                                                             var file = data['success'];
-                                                            window.location.href = "../" + file;
+                                                            window.location.href = "../../Website Watch PHP/" + file;
                                                         }
                                                     })
                                                 }
