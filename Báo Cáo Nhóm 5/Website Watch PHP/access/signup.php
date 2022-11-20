@@ -57,7 +57,7 @@ if (isset($_POST['name']) && isset($_POST['email']) &&  isset($_POST['phone']) &
         include_once "../customers/inlcudes_function/auto_idcustomer.php";
 
         $sql = " INSERT INTO customers(`ID_Customer`, `First_Name`, `Last_Name`, `Phone`, `Email`, `UserName`, `Password`, `Address`, `Create_At`, `ID_Role`)
-        VALUES ('$ID_Customer','$first_name','$last_name','$phone','$email','$username','$pass','Nha Trang','$create_at','User')";
+        VALUES ('$ID_Customer','$first_name','$last_name','$phone','$email','$username','$pass','','$create_at','User')";
         $result = mysqli_query($conn, $sql);
         $array_message['message'] = 0;
         $array_message['success'] = 'home.php';

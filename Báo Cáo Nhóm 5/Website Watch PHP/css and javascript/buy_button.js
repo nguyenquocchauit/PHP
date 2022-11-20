@@ -79,7 +79,7 @@ $(function () {
                         }).then((result) => {
                             // click vào đăng nhập thì show modal đăng nhập
                             if (result.isConfirmed) {
-                                window.location.href = "../../customers/Chi-tiet.php";
+                                window.location.href = "../../Website Watch PHP/customers/Chi-tiet.php";
                             }
                         })
                     }
