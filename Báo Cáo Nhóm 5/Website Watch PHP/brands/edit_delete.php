@@ -1,6 +1,19 @@
 <?php
 require '../config/connectDB.php';
-
+session_start();
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+if($_SESSION['CurrentUser']['Role']=="User"){
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
 $id = $_GET['id'];
 $brand = "SELECT ID_Brand , Name  FROM brands WHERE ID_Brand = '$id' ";
 $result = mysqli_query($conn, $brand);
@@ -52,7 +65,7 @@ $result = mysqli_query($conn, $brand);
                     echo "
                     <tr>
                         <td><p>Mã nhãn hàng :</p></td>
-                        <td><input type='text' name='idbrand' value='$idbrand' disabled class='form-control' id='idbrand' required></td>
+                        <td><input type='text' name='idbrand' value='$idbrand' readonly class='form-control' id='idbrand' required></td>
                         <td><p>Tên nhãn hàng :</p></td>
                         <td><input type='text' name='namebrand' value='$namebrand' class='form-control' id='namebrand' required></td>
                     </tr>";

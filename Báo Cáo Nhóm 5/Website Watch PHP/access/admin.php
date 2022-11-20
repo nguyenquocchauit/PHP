@@ -77,12 +77,11 @@
     </style>
     <script>
         $(document).ready(function() {
-            
+
             /* LOGIN FORM */
             $("#login").submit(function() {
                 var _username = $("input[type='text']").val();
                 var _password = $("input[type='password']").val();
-                console.log(_username, _password);
                 if (_username == "" || _username.length == 0) {
                     Swal.fire({
                         icon: 'error',
@@ -120,7 +119,7 @@
                             } else {
                                 /* Convert json to array */
                                 var data = JSON.parse(result);
-                                console.log(data);
+
                                 if (data['message'] == 0)
                                     Swal.fire({
                                         icon: 'success',
@@ -133,6 +132,24 @@
                                         // hoàn thành xong chuyển tới trang home
                                         var file = data['success'];
                                         window.location.href = "../" + file;
+                                    })
+                                else if (data['message'] == 1)
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thống báo!',
+                                        text: 'Tài khoản không tồn tại!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+
+                                    })
+                                else if (data['message'] == -1)
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thống báo!',
+                                        text: 'Mật khẩu sai!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+
                                     })
                             }
                         },

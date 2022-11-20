@@ -1,10 +1,10 @@
 <?php
 session_start();
 if ($_SESSION['CurrentUser']['Role'] == "User" && $_SESSION['CurrentUser']['Role'] != "Admin") {
-   header('Location: ../../home.php');
+   header('Location: ../../Website Watch PHP/home.php');
    exit();
 } else if (!isset($_GET['idorder']) || !isset($_GET['idcus'])) {
-   header('Location: ../../home.php');
+   header('Location: ../../Website Watch PHP/home.php');
    exit();
 }
 require '../config/connectDB.php';

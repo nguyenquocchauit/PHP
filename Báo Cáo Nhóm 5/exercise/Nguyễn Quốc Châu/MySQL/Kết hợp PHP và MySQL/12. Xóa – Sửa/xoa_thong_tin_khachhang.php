@@ -1,3 +1,7 @@
+<?php if (isset($_GET['CustomerID']) == false && $_GET['CustomerID'] == null) {
+    header('Location: thong_tin_khach_hang.php');
+    exit();
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +15,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../../../includes/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
     <title>Quản lý bán sữa</title>
     <style>
-        * {
-            font-size: 20px;
-        }
-
         #a_goback {
             color: white;
             text-decoration: none;
@@ -70,97 +76,99 @@
     </style>
 </head>
 
-<body>
-    <?php
-    // 1. Ket noi CSDL
-    require '../../connectDB.php';
-    // get milkcode data from url
-    $id = $_GET['CustomerID'];
-    // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
-    $query = "SELECT * FROM khach_hang WHERE Ma_khach_hang='$id'";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($result);
-    if (!($row > 0)) {
-        header('Location: thong_tin_khach_hang.php');
-    }
-    // 4.Xu ly du lieu tra ve
-    $customerID = $row['Ma_khach_hang'];
-    $customerName = $row['Ten_khach_hang'];
-    $gender = $row['Phai'];
-    $address = $row['Dia_chi'];
-    $phoneNumber = $row['Dien_thoai'];
-    $email = $row['Email'];
-    if ($gender == 1) {
-        $addCheckedFemale = 'checked';
-        $addCheckedMale = null;
-    } else
+<body class="body">
+    <div class="container-fluid w-100 h-100">
+        <?php include "../../../../../includes/header.php"; ?>
+        <?php
+        // 1. Ket noi CSDL
+        require '../../connectDB.php';
+        // get milkcode data from url
+        $id = $_GET['CustomerID'];
+        // 2. Chuan bi cau truy van & 3. Thuc thi cau truy van
+        $query = "SELECT * FROM khach_hang WHERE Ma_khach_hang='$id'";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        if (!($row > 0)) {
+            header('Location: thong_tin_khach_hang.php');
+        }
+        // 4.Xu ly du lieu tra ve
+        $customerID = $row['Ma_khach_hang'];
+        $customerName = $row['Ten_khach_hang'];
+        $gender = $row['Phai'];
+        $address = $row['Dia_chi'];
+        $phoneNumber = $row['Dien_thoai'];
+        $email = $row['Email'];
+        if ($gender == 1) {
+            $addCheckedFemale = 'checked';
+            $addCheckedMale = null;
+        } else
         if ($gender == 0) {
-        $addCheckedMale = 'checked';
-        $addCheckedFemale = null;
-    }
-    $getName = $customerName;
-    ?>
-    <form action="" method="post">
-        <div id="div_parent">
-            <h2 id="title_h2">THÔNG TIN KHÁCH HÀNG</h2>
-            <div id="div_form"></div>
-            <div class="mb-3 row">
-                <label for="inputCustomerID" class="col-sm-2 col-form-label label ">Mã khách hàng</label>
-                <div class="col-sm-10 inp">
-                    <input type="text" name="customerID" value="<?php echo $customerID ?>" class="form-control" id="inputCustomerID" disabled>
+            $addCheckedMale = 'checked';
+            $addCheckedFemale = null;
+        }
+        $getName = $customerName;
+        ?>
+        <form action="" method="post">
+            <div id="div_parent">
+                <h2 id="title_h2">THÔNG TIN KHÁCH HÀNG</h2>
+                <div id="div_form"></div>
+                <div class="mb-3 row">
+                    <label for="inputCustomerID" class="col-sm-2 col-form-label label ">Mã khách hàng</label>
+                    <div class="col-sm-10 inp">
+                        <input type="text" name="customerID" value="<?php echo $customerID ?>" class="form-control" id="inputCustomerID" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputCustomerName" class="col-sm-2 col-form-label label ">Tên khách hàng</label>
+                    <div class="col-sm-10 inp">
+                        <input type="text" name="customerName" value="<?php echo $customerName ?>" class="form-control" id="inputCustomerName" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputGender" class="col-sm-2 col-form-label label ">Giới tính</label>
+                    <div class="col-sm-1 inp_radio">
+                        <input class="form-check-input" type="radio" name="gender" id="inputGenderMale" value="0" disabled <?php echo $addCheckedMale ?>>
+                    </div>
+                    <div class="col-sm-1 inp">
+                        <label class="form-check-label" for="inputGenderMale">Nam</label>
+                    </div>
+                    <div class="col-sm-1 inp_radio ">
+                        <input class="form-check-input" type="radio" name="gender" id="inputGenderFemale" value="1" disabled <?php echo $addCheckedFemale ?>>
+                    </div>
+                    <div class="col-sm-1 inp">
+                        <label class="form-check-label" for="inputGenderFemale">Nữ</label>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label label ">Địa chỉ</label>
+                    <div class="col-sm-10 inp">
+                        <input type="text" name="address" value="<?php echo $address ?>" class="form-control" id="inputAddress" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputPhoneNumber" class="col-sm-2 col-form-label label ">Số điện thoại</label>
+                    <div class="col-sm-10 inp">
+                        <input type="text" name="phoneNumber" value="<?php echo $phoneNumber ?>" class="form-control" id="inputPhoneNumber" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label label ">Số điện thoại</label>
+                    <div class="col-sm-10 inp">
+                        <input type="text" name="email" value="<?php echo $email ?>" class="form-control" id="inputEmail" disabled>
+                    </div>
+                </div>
+                <div class="mb-3 row pb-3">
+                    <div class="col-6 d-flex justify-content-end">
+                        <a id="a_goback" class="btn btn-secondary" href='javascript:window.history.back(-1);'><i class="fa-solid fa-left-long"></i> Quay lại</a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-start  ">
+                        <button type="submit" name="delete" class="btn btn-danger">Xóa <i class='fa-solid fa-trash-can'></i></button>
+                    </div>
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="inputCustomerName" class="col-sm-2 col-form-label label ">Tên khách hàng</label>
-                <div class="col-sm-10 inp">
-                    <input type="text" name="customerName" value="<?php echo $customerName ?>" class="form-control" id="inputCustomerName" disabled>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputGender" class="col-sm-2 col-form-label label ">Giới tính</label>
-                <div class="col-sm-1 inp_radio">
-                    <input class="form-check-input" type="radio" name="gender" id="inputGenderMale" value="0" disabled <?php echo $addCheckedMale ?>>
-                </div>
-                <div class="col-sm-1 inp">
-                    <label class="form-check-label" for="inputGenderMale">Nam</label>
-                </div>
-                <div class="col-sm-1 inp_radio ">
-                    <input class="form-check-input" type="radio" name="gender" id="inputGenderFemale" value="1" disabled <?php echo $addCheckedFemale ?>>
-                </div>
-                <div class="col-sm-1 inp">
-                    <label class="form-check-label" for="inputGenderFemale">Nữ</label>
-                </div>
-                <div class="col-sm-6">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputAddress" class="col-sm-2 col-form-label label ">Địa chỉ</label>
-                <div class="col-sm-10 inp">
-                    <input type="text" name="address" value="<?php echo $address ?>" class="form-control" id="inputAddress" disabled>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPhoneNumber" class="col-sm-2 col-form-label label ">Số điện thoại</label>
-                <div class="col-sm-10 inp">
-                    <input type="text" name="phoneNumber" value="<?php echo $phoneNumber ?>" class="form-control" id="inputPhoneNumber" disabled>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputEmail" class="col-sm-2 col-form-label label ">Số điện thoại</label>
-                <div class="col-sm-10 inp">
-                    <input type="text" name="email" value="<?php echo $email ?>" class="form-control" id="inputEmail" disabled>
-                </div>
-            </div>
-            <div class="mb-3 row pb-3">
-                <div class="col-6 d-flex justify-content-end">
-                    <a id="a_goback" class="btn btn-secondary" href='javascript:window.history.back(-1);'><i class="fa-solid fa-left-long"></i> Quay lại</a>
-                </div>
-                <div class="col-6 d-flex justify-content-start  ">
-                    <button type="submit" name="delete" class="btn btn-danger">Xóa <i class='fa-solid fa-trash-can'></i></button>
-                </div>
-            </div>
-        </div>
-        </div>
+    </div>
     </form>
     <?php
     if (isset($_POST['delete'])) {
@@ -191,6 +199,8 @@
     mysqli_close($conn);
 
     ?>
+    <?php include "../../../../../includes/footer.php"; ?>
+    </div>
 </body>
 
 </html>

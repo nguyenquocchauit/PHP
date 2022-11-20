@@ -43,10 +43,10 @@ $(document).ready(function () {
 
             }, function () {
                 if (_actionFrom == "home.php")
-                    url = 'product and cart/inlcudes_function/product_cart.php';
+                    url = '../../Website Watch PHP/product and cart/inlcudes_function/product_cart.php';
                 else
                     url = 'inlcudes_function/product_cart.php';
-                console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
+                //console.log(_productID, _productName, _productImage, _productQuantity, _productPrice);
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -80,14 +80,14 @@ $(document).ready(function () {
                             }
                         }
                         // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
-                        xmlhttp.open("GET", "../product and cart/inlcudes_function/quantity_shopping_cart.php");
+                        xmlhttp.open("GET", "../../Website Watch PHP/product and cart/inlcudes_function/quantity_shopping_cart.php");
                         xmlhttp.send();
                     }
                 });
                 Swal.fire({
                     position: 'top-end',
                     //icon: 'success',
-                    imageUrl: '../img/image_products_home/' + _productImage,
+                    imageUrl: '../../Website Watch PHP/img/image_products_home/' + _productImage,
                     imageWidth: 70,
                     imageHeight: 90,
                     title: 'Đã thêm sản phẩm ' + _productName.toLowerCase() + ' vào giỏ hàng!',

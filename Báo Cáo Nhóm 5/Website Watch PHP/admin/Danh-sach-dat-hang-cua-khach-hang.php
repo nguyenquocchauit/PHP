@@ -1,11 +1,21 @@
 <?php
-require '../config/connectDB.php';
-include 'inlcudes_function/list_order.php';
 session_start();
-if (isset($_SESSION['CurrentUser']['Role']) == false || $_SESSION['CurrentUser']['Role'] == "User") {
-    header('Location: ../../home.php');
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
+if($_SESSION['CurrentUser']['Role']=="User"){
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+require '../config/connectDB.php';
+include 'inlcudes_function/list_order.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

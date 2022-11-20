@@ -1,7 +1,16 @@
 <?php
 session_start();
-if (isset($_SESSION['CurrentUser']['Role']) == false || $_SESSION['CurrentUser']['Role'] == "User") {
-    header('Location: ../../home.php');
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+if ($_SESSION['CurrentUser']['Role'] == "User") {
+    header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
 // kết nối cơ sở dữ liệu db_watch
@@ -41,9 +50,14 @@ include 'inlcudes_function/list-products.php';
         <div class="header mt-2">
             <h4>Danh sách sản phẩm</h4>
         </div>
-        <div class="btn-group float-end mb-1" role="group" aria-label="Basic mixed styles example">
-            <button type="button " class="btn btn-danger ">Hết sản phẩm</button>
-            <button type="button " class="btn btn-success">Đang giảm giá</button>
+        <div class="row">
+            <div class="col-10">
+                <a href="Them-san-pham.php"><button type="button" class="btn btn-danger "><i class="fa-solid fa-plus"></i> Thêm sản phẩm</button></a>
+            </div>
+            <div class="col-2 btn-group float-end mb-1" role="group" aria-label="Basic mixed styles example">
+                <button type="button " class="btn btn-danger ">Hết sản phẩm</button>
+                <button type="button " class="btn btn-success">Đang giảm giá</button>
+            </div>
         </div>
         <table class="table mt-3">
             <thead class="table-dark">

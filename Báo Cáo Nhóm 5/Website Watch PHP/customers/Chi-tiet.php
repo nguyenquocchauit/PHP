@@ -7,11 +7,11 @@ if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Rol
 } else {
     $CurrentUser = "null";
     $IDUser = "null";
-    header('Location: ../../home.php');
+    header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
 if($_SESSION['CurrentUser']['Role']=="Admin"){
-    header('Location: ../../home.php');
+    header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
 include 'inlcudes_function/show_update_info.php';

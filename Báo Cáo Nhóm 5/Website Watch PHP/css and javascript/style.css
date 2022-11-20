@@ -602,6 +602,12 @@
   position: relative;
   bottom: 40px;
 }
+.modal-content .modal-header .btn-close-add-product {
+  left: 59%;
+  justify-content: end;
+  position: relative;
+  bottom: 40px;
+}
 .modal-content .modal-header .btn-close-signup {
   left: 355%;
   justify-content: end;
@@ -952,4 +958,24 @@
   background-color: #dd3333;
   border-radius: 5px;
   border: transparent;
+}
+
+.offcanvas {
+  background-color: #000000;
+  color: white;
+}
+.offcanvas h4 {
+  margin: 0 auto;
+}
+.offcanvas .btn-close {
+  background-color: white;
+}
+.offcanvas .offcanvas-body {
+  font-size: 18px;
+}
+.offcanvas .offcanvas-body .nav-item {
+  padding: 10px;
+}
+.offcanvas .offcanvas-body ul > li > a {
+  color: white;
 }/*# sourceMappingURL=style.css.map */

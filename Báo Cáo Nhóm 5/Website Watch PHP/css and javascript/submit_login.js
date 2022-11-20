@@ -18,7 +18,7 @@ $(document).ready(function () {
             title: 'HDSD tính năng cơ bản',
             confirmButtonText: 'Đã hiểu',
             customClass: 'swal-wide',
-            imageUrl: '../img/hdsd.png',
+            imageUrl: '../../Website Watch PHP/img/hdsd.png',
             imageWidth: 770,
             imageHeight: 450,
             imageAlt: 'Custom image',
@@ -64,7 +64,7 @@ $(document).ready(function () {
             passwordLogin.style.boxShadow = null;
             $.ajax({
                 type: "POST",
-                url: "../access/login.php",
+                url: "../../Website Watch PHP/access/login.php",
                 data: {
                     username: _username,
                     password: _password
@@ -87,7 +87,7 @@ $(document).ready(function () {
                                 title: 'Đăng nhập thành công!',
                                 html: 'Đang đăng nhập vào Website <strong></strong> giây.',
                                 //icon: "success",
-                                imageUrl: '../img/cat.gif',
+                                imageUrl: '../../Website Watch PHP/img/cat.gif',
                                 imageWidth: 315,
                                 imageHeight: 230,
                                 timer: 3000,
@@ -108,7 +108,7 @@ $(document).ready(function () {
                                 // hoàn thành xong chuyển tới trang home
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     var file = data['success'];
-                                    window.location.href = "../" + file;
+                                    window.location.href = "../../Website Watch PHP/" + file;
                                     
                                 }
                             })

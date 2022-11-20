@@ -815,6 +815,13 @@ $color7 : #f7b100;
             bottom: 40px;
         }
 
+        .btn-close-add-product {
+            left: 59%;
+            justify-content: end;
+            position: relative;
+            bottom: 40px;
+        }
+
         .btn-close-signup {
             left: 355%;
             justify-content: end;
@@ -1209,7 +1216,10 @@ $color7 : #f7b100;
             background-color: red;
         }
     }
+
+
 }
+
 
 //// brand : create new , edit, delete, list
 .listbrand {
@@ -1258,5 +1268,31 @@ $color7 : #f7b100;
         background-color: $color2;
         border-radius: 5px;
         border: transparent;
+    }
+}
+
+//// menu admin
+.offcanvas {
+    background-color: #000000;
+    color: white;
+
+    h4 {
+        margin: 0 auto;
+    }
+
+    .btn-close {
+        background-color: white;
+    }
+
+    .offcanvas-body {
+        font-size: 18px;
+
+        .nav-item {
+            padding: 10px;
+        }
+
+        ul>li>a {
+            color: white;
+        }
     }
 }

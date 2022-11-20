@@ -13,28 +13,11 @@
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
-            $('#website-demo').on('click', function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Thông báo!',
-                    text: 'Hiện tại chưa xử lý xong đường dẫn website, vào github phần README.md để xem hướng dẫn chạy localhost website demo',
-                    confirmButtonText: 'Chuyển tới Github',
-                }).then((result) => {
-                // click vào đăng nhập thì show modal đăng nhập
-                if (result.isConfirmed) {
-                    window.location.href = "https://github.com/nguyenquocchauit/PHP";
-                }
-            })
-            });
-        })
-    </script>
+    
     <title>Báo cáo nhóm 5 - Thông tin nhóm</title>
 </head>
 
-<body>
+<body class="body">
     <div class="container-fluid w-100 h-100">
         <?php include "includes/header.php"; ?>
         <div class="card-body">

@@ -5,19 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../includes/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
     <title>Tìm kiếm trong mảng</title>
     <style>
-        body {
-            font-size: 20px;
-        }
-
         td {
             padding: 3px;
-        }
-
-        form {
-            padding: 200px 570px;
-            display: inline-block;
         }
 
         b {
@@ -80,73 +78,77 @@
     </style>
 </head>
 
-<body>
-    <?php
-    if (isset($_POST['inp']))
-        $inp = $_POST['inp'];
-    else
-        $inp = '';
-    if (isset($_POST['findX']))
-        $findX = $_POST['findX'];
-    else
-        $findX = '';
-    if (isset($_POST['mang']))
-        $mang = $_POST['mang'];
-    else
-        $mang = '';
-    if (isset($_POST['ketqua']))
-        $ketqua = $_POST['ketqua'];
-    else
-        $ketqua = '';
-    $arr = array();
-    if (isset($_POST['Exec'])) {
-        if (is_numeric($findX)) {
-            $arr = explode(",",$inp);
-            $mang = $inp;
-            $ketqua .="Tìm thấy số $findX tại vị trí thứ ".Find_X($arr,$findX)." của mảng";
-        }
-    }
-    function Find_X($array, $x)
-    {
-        $vitri = null;
-        for ($i = 0; $i < count($array); $i++) {
-            if ($x == $array[$i]) {
-                $vitri = $i + 1;
+<body class="body">
+    <div class="container-fluid w-100 h-100">
+        <?php include "../../../includes/header.php"; ?>
+        <?php
+        if (isset($_POST['inp']))
+            $inp = $_POST['inp'];
+        else
+            $inp = '';
+        if (isset($_POST['findX']))
+            $findX = $_POST['findX'];
+        else
+            $findX = '';
+        if (isset($_POST['mang']))
+            $mang = $_POST['mang'];
+        else
+            $mang = '';
+        if (isset($_POST['ketqua']))
+            $ketqua = $_POST['ketqua'];
+        else
+            $ketqua = '';
+        $arr = array();
+        if (isset($_POST['Exec'])) {
+            if (is_numeric($findX)) {
+                $arr = explode(",", $inp);
+                $mang = $inp;
+                $ketqua .= "Tìm thấy số $findX tại vị trí thứ " . Find_X($arr, $findX) . " của mảng";
             }
         }
-        return $vitri;
-    }
-    ?>
-    <form action="" method="post">
-        <table>
-            <tr>
-                <td id="title" colspan="2" align="center">TÌM KIẾM</td>
-            </tr>
-            <tr class="bgtr">
-                <td>Nhập mảng: </td>
-                <td><input class="inp_1" type="text" value="<?php echo $inp ?>" name="inp" required></td>
-            </tr>
-            <tr>
-                <td>Nhập số cần tìm: </td>
-                <td><input class="inp_2" type="text" value="<?php echo $findX ?>" name="findX" pattern="[0-9]{}" required></td>
-            </tr>
-            <tr class="bgtr">
-                <td></td>
-                <td><button name="Exec" type="submit" class="btn-exec">Tìm kiếm</button></td>
-            </tr>
-            <tr>
-                <td>Mảng: </td>
-                <td><input class="inp_3" type="text" value="<?php echo $mang ?>" name="mang" disabled></td>
-            </tr>
-            <tr>
-                <td>Kết quả tìm kiếm: </td>
-                <td><input class="inp_5" type="text" value="<?php echo $ketqua ?>" name="ketqua" disabled></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">(Các phần tử trong mảng sẽ cách nhau bằng dấu ",")</td>
-            </tr>
-        </table>
-    </form>
+        function Find_X($array, $x)
+        {
+            $vitri = null;
+            for ($i = 0; $i < count($array); $i++) {
+                if ($x == $array[$i]) {
+                    $vitri = $i + 1;
+                }
+            }
+            return $vitri;
+        }
+        ?>
+        <form action="" method="post">
+            <table>
+                <tr>
+                    <td id="title" colspan="2" align="center">TÌM KIẾM</td>
+                </tr>
+                <tr class="bgtr">
+                    <td>Nhập mảng: </td>
+                    <td><input class="inp_1" type="text" value="<?php echo $inp ?>" name="inp" required></td>
+                </tr>
+                <tr>
+                    <td>Nhập số cần tìm: </td>
+                    <td><input class="inp_2" type="text" value="<?php echo $findX ?>" name="findX" pattern="[0-9]{}" required></td>
+                </tr>
+                <tr class="bgtr">
+                    <td></td>
+                    <td><button name="Exec" type="submit" class="btn-exec">Tìm kiếm</button></td>
+                </tr>
+                <tr>
+                    <td>Mảng: </td>
+                    <td><input class="inp_3" type="text" value="<?php echo $mang ?>" name="mang" disabled></td>
+                </tr>
+                <tr>
+                    <td>Kết quả tìm kiếm: </td>
+                    <td><input class="inp_5" type="text" value="<?php echo $ketqua ?>" name="ketqua" disabled></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">(Các phần tử trong mảng sẽ cách nhau bằng dấu ",")</td>
+                </tr>
+            </table>
+        </form>
+        <?php include "../../../includes/footer.php"; ?>
+    </div>
 </body>
 
 </html>

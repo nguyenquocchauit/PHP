@@ -24,9 +24,9 @@ if ($search !== "") {
             // hiển thị html ra bên ngoài
             $searchResult .= '
             <div class="row">
-                <div class="col-2"><img class="imgSearch" src="../img/image_products_home/' . ($img1[0]) . '" alt=""></div>
+                <div class="col-2"><img class="imgSearch" src="../../Website Watch PHP/img/image_products_home/' . ($img1[0]) . '" alt=""></div>
                 <div class="col-10">
-                    <div class="row rowName"><a href="../product and cart/Chi_tiet-san-pham.php?gender=' . ($row['ID_Gender']) . '&brand=' . ($row['ID_Brand']) . '&id=' . ($row['ID_Product']) . '">' . ($row['Name']) . '</a></div>
+                    <div class="row rowName"><a href="../../Website Watch PHP/product and cart/Chi_tiet-san-pham.php?gender=' . ($row['ID_Gender']) . '&brand=' . ($row['ID_Brand']) . '&id=' . ($row['ID_Product']) . '">' . ($row['Name']) . '</a></div>
                     <div class="row rowPrice">' . ($price) . '</div>
                 </div>
             </div>

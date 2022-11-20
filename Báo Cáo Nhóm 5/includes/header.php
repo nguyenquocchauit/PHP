@@ -20,7 +20,7 @@ $curPageName = $curPageName[(sizeof($curPageName) - 1)];
                                         else echo ""; ?> " href="#">Bài tập cá nhân</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#" id="website-demo">Website Watch demo</a>
+                    <a class="nav-link " href="../Website Watch PHP/home.php" id="website-demo">Website Watch demo</a>
                 </li>
             </ul>
         </div>

@@ -1,38 +1,19 @@
 <?php
 require '../config/connectDB.php';
-
-// if (isset($_POST['insert'])) 
-// {
-//     if(isset($_POST['idbrand']))
-//     {
-//         $idbrand = $_POST['idbrand'];
-
-//         $sql = "SELECT * FROM brands WHERE ID_Brand='$idbrand'";
-//         $result = mysqli_query($conn, $sql);
-//         if (mysqli_num_rows($result) == 0) {
-//             if(isset($_POST['namebrand']))
-//             {
-//                 $namebrand = $_POST['namebrand'];
-//                 $sql = "SELECT * FROM brands WHERE Name ='$namebrand'";
-//                 $result = mysqli_query($conn, $sql);
-//                 if (mysqli_num_rows($result) == 0) {
-//                     $addbrand = "INSERT INTO brands(ID_Brand, Name) VALUES ('$idbrand','$namebrand')";
-//                     $resultaddbrand = mysqli_query($conn, $addbrand);
-//                     echo"<script>
-//                             alert('Thêm thành công');
-//                         </script>";
-//                 }
-//                 else 
-//                     echo"<script>
-//                             alert('Trùng tên nhãn hàng');
-//                         </script>";
-//             }
-//         }  else 
-//             echo"<script>
-//                     alert('Trùng mã nhãn hàng');
-//                 </script>";
-//     }
-// }
+session_start();
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+if($_SESSION['CurrentUser']['Role']=="User"){
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
 
 
 ?>

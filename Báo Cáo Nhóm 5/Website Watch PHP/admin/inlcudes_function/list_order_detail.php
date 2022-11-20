@@ -102,13 +102,16 @@ function Show_List_Order_Detail($conn, $IDOrder, $IDCus)
         $i++;
     }
     echo '</table>';
+    echo "<a href='Danh-sach-dat-hang-cua-khach-hang.php'><button type='button' style='background: #fda300;
+    border-radius: 10%;'><i class='fa-solid fa-arrow-left' id='iconback'></i> Quay lại</button></a>";
     echo '<div class="pagination modal-2 mb-4">';
+    
     if ($total_page > 1) {
         // BƯỚC 7: HIỂN THỊ PHÂN TRANG
         // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
         if ($current_page > 1 && $total_page > 1) {
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . (1) . '"> &laquo; </a>  ';
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($current_page - 1) . '"> &lt; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&idorder=' . ($IDOrder) . '&idcus=' . ($IDCus) . '&page=' . (1) . '"> &laquo; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&idorder=' . ($IDOrder) . '&idcus=' . ($IDCus) . '&page=' . ($current_page - 1) . '"> &lt; </a>  ';
         }
         // Lặp khoảng giữa
         for ($i = 1; $i <= $total_page; $i++) {
@@ -117,13 +120,13 @@ function Show_List_Order_Detail($conn, $IDOrder, $IDCus)
             if ($i == $current_page) {
                 echo '<a>' . $i . '</a>  ';
             } else {
-                echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . $i . '">' . $i . '</a>  ';
+                echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&idorder=' . ($IDOrder) . '&idcus=' . ($IDCus) . '&page=' . $i . '">' . $i . '</a>  ';
             }
         }
         // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
         if ($current_page < $total_page && $total_page > 1) {
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($current_page + 1) . '"> &gt; </a>  ';
-            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&id=' . ($IDOrder) . '&page=' . ($total_page) . '"> &raquo; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&idorder=' . ($IDOrder) . '&idcus=' . ($IDCus) . '&page=' . ($current_page + 1) . '"> &gt; </a>  ';
+            echo '<a href="Chi-tiet-dat-hang-cua-khach-hang.php?&idorder=' . ($IDOrder) . '&idcus=' . ($IDCus) . '&page=' . ($total_page) . '"> &raquo; </a>  ';
         }
     }
     echo '</div>';

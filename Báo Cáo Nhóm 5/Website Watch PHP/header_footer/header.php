@@ -45,33 +45,62 @@ $resultWomen = mysqli_query($conn, $queryWomen);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- include file ẩn hiện password -->
-    <script type="text/javascript" src="../css and javascript/hidden_show_password.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/hidden_show_password.js"></script>
     <!-- include file tìm kiếm sản phẩm trên thành tìm kiếm -->
-    <script type="text/javascript" src="../css and javascript/search_product.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/search_product.js"></script>
     <!-- include file khởi động hoặc load lại trang sẽ hiển thị số lượng sản phẩm hiện có trong giỏ hàng -->
-    <script type="text/javascript" src="../css and javascript/quantity_cart_onload_body.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/quantity_cart_onload_body.js"></script>
     <!-- include file hiển thị danh mục xem lịch sử đặt hàng -->
-    <script type="text/javascript" src="../css and javascript/dropdown_history_cart.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/dropdown_history_cart.js"></script>
     <!-- include file xử lý thêm sản phẩm vào giỏ hàng -->
-    <script type="text/javascript" src="../css and javascript/add_to_cart.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/add_to_cart.js"></script>
     <!-- include file xử lý đăng nhập -->
-    <script type="text/javascript" src="../css and javascript/submit_login.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/submit_login.js"></script>
     <!-- inlcude file xử lý đăng ký thông tin khách hàng -->
-    <script type="text/javascript" src="../css and javascript/submit_signup.js"></script>
+    <script type="text/javascript" src="../../Website Watch PHP/css and javascript/submit_signup.js"></script>
 
 </head>
 
 <body>
+    <div class="offcanvas offcanvas-start w-5" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+        <div class="offcanvas-header">
+            <h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Quản lý hệ thống</h4>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-0">
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                
+                <li class="nav-item">
+                    <a href="../../Website Watch PHP/admin/Danh-sach-san-pham.php" class="nav-link text-truncate">
+                        <span class="ms-1 d-none d-sm-inline">Danh sách sản phẩm</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../Website Watch PHP/brands/listbrand.php" class="nav-link text-truncate">
+                        <span class="ms-1 d-none d-sm-inline">Danh sách hãng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../../Website Watch PHP/admin/Danh-sach-dat-hang-cua-khach-hang.php" class="nav-link text-truncate">
+                        <span class="ms-1 d-none d-sm-inline">Danh sách mua hàng</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="header sticky-top" id="header">
         <form action="" method="post">
             <div class="header-contact">
                 <div class="container">
                     <div class="row">
+
                         <div class="left col-6 row">
                             <div class="header-icon col-2">
                                 <a href="#">
@@ -85,7 +114,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 </a>
                             </div>
                             <div class="header-add col-10">
-                                <a href="../home.php">
+                                <a href="../../Website Watch PHP/home.php">
                                     <p class="">
                                         <i id="iconhouse" class="fa-sharp fa-solid fa-house"></i>
                                         <strong>SHOP: </strong>2 Nguyễn Đình Chiểu, Nha Trang, Khánh Hòa
@@ -114,7 +143,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                     // lấy tên (sizeof-1) và tên đệm (sizeof-2) gần nhất với tên.  
                                     $currentUser = $currentUser[($sizeof - 2)] . " " . $currentUser[($sizeof - 1)];
                                 ?>
-                                    <a href="../customers/Chi-tiet.php" style="color:white;font-size: 18px;"><i class="fa-solid fa-user"></i></a>
+                                    <a href="../../Website Watch PHP/customers/Chi-tiet.php" style="color:white;font-size: 18px;"><i class="fa-solid fa-user"></i></a>
                                     <strong><?php echo $currentUser;  ?></strong>
 
                                     <button type="button" name="logout" class="btn btn-dark"><a href="<?php echo $curPageName ?>?logout=1" style="color:#f1f1f1"><i class="fa-solid fa-right-from-bracket"></i></a></button>
@@ -140,11 +169,18 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
+                                <?php
+                                if ($Role == 'Admin') :
+                                ?>
+                                    <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" style="margin-bottom: 5px;">
+                                        <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"><i style="font-size: 25px;" class="fa-solid fa-screwdriver-wrench"></i></i>
+                                    </button>
+                                <?php endif; ?>
                                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
                                             <a class="nav-link  <?php if ($curPageName == "home.php") echo "active";
-                                                                else echo "" ?>" aria-current="page" href="../home.php">TRANG CHỦ</a>
+                                                                else echo "" ?>" aria-current="page" href="../../Website Watch PHP/home.php">TRANG CHỦ</a>
                                         </li>
                                         <li class="nav-item ">
                                             <a class="nav-link <?php if ($curPageName == "news.php") echo "active";
@@ -158,7 +194,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nam, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowMen = mysqli_fetch_array($resultMen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
@@ -170,14 +206,15 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nữ, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowWomen = mysqli_fetch_array($resultWomen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link <?php if ($curPageName == "contact.php") echo "active";
-                                                                else echo "" ?>" href="../contact/contact.php">LIÊN HỆ</a>
+                                                                else echo "" ?>" href="../../Website Watch PHP/contact/contact.php">LIÊN HỆ</a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -204,8 +241,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                         <div class="col-5 cartbtn">
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
-                                    <a href="../product and cart/Gio-Hang.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "Gio-Hang.php") echo "active";
-                                                                                                                        else echo "" ?>">
+                                    <a href="../../Website Watch PHP/product and cart/Gio-Hang.php" id="show_history_cart" class="nav-link <?php if ($curPageName == "Gio-Hang.php") echo "active";
+                                                                                                                                            else echo "" ?>">
                                         <span class="header-cart-title">GIỎ HÀNG
                                             <i style="color: black;" class="fa-solid fa-cart-shopping mx-2 shopping-cart"></i>
                                             <span style="position: absolute;top: 0%;color:#b31212;">
@@ -214,7 +251,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu " id="dropdown_cart" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
-                                        <li class="dropdown_hidden"><a class="dropdown-item " href="../product and cart/Lich-su-dat-hang.php">Lịch sử đặt hàng</a></li>
+                                        <li class="dropdown_hidden"><a class="dropdown-item " href="../../Website Watch PHP/product and cart/Lich-su-dat-hang.php">Lịch sử đặt hàng</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -258,7 +295,8 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                     </div>
                     <div class="modal-footer">
                         <button href="#" class="btn btn-primary btn-block mt-3 w-100">Đăng Nhập</button>
-                        <p>Chưa có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Ký Ngay</a>
+                        <p>Chưa có tài khoản? <a href="#" style="text-decoration: none;" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">Đăng Ký Ngay</a></p>
+                        <button type="button" class="btn btn-block mt-3 w-100" style="background: gray;" onclick="location.href='../../Website Watch PHP/access/admin.php';">Đăng nhập quản trị viên</button>
                     </div>
                 </div>
             </div>

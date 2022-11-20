@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // kết nối cơ sở dữ liệu db_watch
 require 'config/connectDB.php';
 // lấy toàn bộ sản phẩm
@@ -114,7 +115,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                     </div>
                     <div class="textleft">
                       <div><a href="shop.php?gender=<?php echo $rowAll['Gender_Name'] ?>&brand=<?php echo $rowAll['Brand_Name'] ?>"><?php echo $rowAll['Name'] ?></div></a>
-                      <div><b><?php echo $rowAll['Quantity'] ?> sản phẩm</b></div>
+                      <div><b><?php if($rowAll['Quantity']==0) echo "Hết hàng"; else echo $rowAll['Quantity']." sản phẩm" ?></b></div>
                     </div>
                   </div>
                 </div>
@@ -233,6 +234,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                         <input type="hidden" name="productName" class="productName" value="<?php echo $rowBestSeller['Name'] ?>"></input>
                         <input type="hidden" name="productPrice" class="productPrice" value="<?php echo $price ?>"></input>
                         <input type="hidden" name="productImage" class="productImage" value="<?php echo $img1[0] ?>"></input>
+                        <input type="hidden" name="actionFrom" class="actionFrom" value="home.php"></input>
                       </div>
                     </div>
                   </div>

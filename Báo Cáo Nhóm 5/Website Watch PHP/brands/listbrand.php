@@ -1,6 +1,19 @@
 <?php
 require '../config/connectDB.php';
-
+session_start();
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+if($_SESSION['CurrentUser']['Role']=="User"){
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
 
 $brand = "SELECT ID_Brand , Name  FROM brands ";
 $resultbrand = mysqli_query($conn, $brand);

@@ -2,6 +2,7 @@
 
 // bắt sự kiện thay đổi ký tự trong input search. Xử lý đưa dữ liệu ra bên ngoài từ từ khóa tìm kiếm
 function search(str) {
+
     if (str.length != 0) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -23,7 +24,7 @@ function search(str) {
             }
         }
         // gọi file search.php và truyền tham số get search
-        xmlhttp.open("GET", "../product and cart/inlcudes_function/search.php?search=" + str, true);
+        xmlhttp.open("GET", "../../Website Watch PHP/product and cart/inlcudes_function/search.php?search=" + str, true);
         xmlhttp.send();
         // hiển thị ô kết quả tìm kiếm khi bắt được sự kiện
         document.getElementById("searchResult").classList.toggle("showSearchResult");

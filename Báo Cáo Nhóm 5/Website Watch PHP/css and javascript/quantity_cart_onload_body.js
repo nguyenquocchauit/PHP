@@ -27,7 +27,7 @@ $(document).ready(function () {
             }
         }
         // gọi file quantity_shopping_cart.php xử lý tổng sản phẩm trong giỏ hàng
-        xmlhttp.open("GET", "../product and cart/inlcudes_function/quantity_shopping_cart.php");
+        xmlhttp.open("GET", "../../Website Watch PHP/product and cart/inlcudes_function/quantity_shopping_cart.php");
         xmlhttp.send();
     };
 });

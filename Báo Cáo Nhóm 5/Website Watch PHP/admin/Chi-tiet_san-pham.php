@@ -1,12 +1,27 @@
 <?php
-// kết nối cơ sở dữ liệu db_watch
-require '../config/connectDB.php';
-if (isset($_GET['idpro']) && $_GET['idpro'] == null) {
+session_start();
+if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Role'])) {
+    $CurrentUser =  $_SESSION['CurrentUser']['ID'];
+    $IDUser = $_SESSION['CurrentUser']['Role'];
+} else {
+    $CurrentUser = "null";
+    $IDUser = "null";
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+if ($_SESSION['CurrentUser']['Role'] == "User") {
+    header('Location: ../../Website Watch PHP/home.php');
+    exit();
+}
+
+if (isset($_GET['idpro'])==false && $_GET['idpro'] == null) {
     header('Location: Danh-sach-san-pham.php');
     exit();
 } else {
     $idpro = $_GET['idpro'];
 }
+// kết nối cơ sở dữ liệu db_watch
+require '../config/connectDB.php';
 include 'inlcudes_function/show_product.php';
 
 ?>
@@ -82,7 +97,7 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Mã sản phẩm</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['ID_Product'] ?>" id="IDProduct" name="IDProduct" disabled>
+                        <input type="text" class="form-control" value="<?php echo $rowProduct['ID_Product'] ?>" id="IDProduct" name="IDProduct" readonly>
                     </div>
                 </div>
                 <div class="row p-2">
@@ -134,26 +149,23 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Ngày tạo</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Create_At'] ?>" id="" name="">
+                        <input type="text" class="form-control" value="<?php echo $rowProduct['Create_At'] ?>" id="" name="" readonly>
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Ngày chỉnh sửa</span>
-                        <input type="text" class="form-control" value="<?php echo $rowProduct['Update_At'] ?>" id="" name="">
+                        <input type="text" class="form-control" value="<?php echo $rowProduct['Update_At'] ?>" id="" name="" readonly>
                     </div>
                 </div>
                 <div class="row p-2">
-                    <!-- <form action="" method="post" enctype="multipart/form-data">
-                        <div class="input-group ">
-                            <label class="input-group-text" for="Image">Ảnh</label>
-                            <input type="file" class="form-control" id="Image" name="Image" multiple>
-                        </div>
-                    </form> -->
                     <div class="input-group ">
                         <label class="input-group-text" for="Image">Ảnh</label>
+                        <button type="button" class="btn btn-secondary button-back" style="width: 77%;"><i class="fa-solid fa-image"></i> Chỉnh sửa ảnh</button>
                         <!-- <input type="file" class="form-control" id="Image" name="Image" multiple> -->
-                        <input type="file" name="image[]" accept="image/*" id="imageButton" multiple/>
+                        <!-- <form action="" method="post" enctype="multipart/form-data">
+                            <input type="file" name="image[]" accept="image/*" id="imageButton" multiple />
+                        </form> -->
                     </div>
                 </div>
                 <div class="row p-2">
