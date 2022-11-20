@@ -12,7 +12,7 @@
     <title>Báo cáo nhóm 5 - Bài tập cá nhân</title>
 </head>
 
-<body>
+<body class="body">
     <?php
     if ($_GET['id'])
         $id = $_GET['id'];

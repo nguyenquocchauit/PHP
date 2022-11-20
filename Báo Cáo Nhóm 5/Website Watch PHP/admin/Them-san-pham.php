@@ -9,7 +9,7 @@ if (isset($_SESSION['CurrentUser']['ID']) && isset($_SESSION['CurrentUser']['Rol
     header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
-if($_SESSION['CurrentUser']['Role']=="User"){
+if ($_SESSION['CurrentUser']['Role'] == "User") {
     header('Location: ../../Website Watch PHP/home.php');
     exit();
 }
@@ -40,8 +40,13 @@ include 'inlcudes_function/auto_idproduct.php';
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- thư viện sweet aler  -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
     <title>TC WATCH - Thêm sản phẩm</title>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -53,6 +58,90 @@ include 'inlcudes_function/auto_idproduct.php';
                 [],
                 [],
             ];
+            // bắt sự kiện thêm sản phẩm
+            $('.button-add-product').on('click', function() {
+                var _name = $("#Name").val();
+                var _brand = $("#Brand").val();
+                var _gender = $("#Gender").val();
+                var _quantity = $("#Quantiy").val();
+                var _price = $("#Price").val();
+                var _discout = $("#Discount").val();
+                var _description = $("#Description").val();
+                if (check_empty(_name))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập tên sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_quantity))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập số lượng sản phẩm có trong kho!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_price))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập giá sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_discout))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập giảm giá sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_description))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập mô tả sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else {
+                    for (var i = 0; i <= input_image.length - 1; i++) {
+                        if (input_image[i].length == 0) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Thông báo!',
+                                text: 'Vui lòng thêm ảnh sản phẩm!',
+                                timer: 1500,
+                                timerProgressBar: true,
+                            })
+                        }
+                        break;
+                    }
+                    if (isNaN(_quantity))
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thông báo!',
+                            text: 'Vui lòng nhập số lượng sản phẩm là số!',
+                            timer: 1500,
+                            timerProgressBar: true,
+                        })
+                    else {
+                        var form = new FormData();
+                        for (var i = 0; i <= input_image.length - 1; i++) {
+                            // var file = input_image[i].prop("files");
+                            // form.append("files[]", file);
+                            console.log(input_image[i]);
+                        }
+                        for (const value of form.values()) {
+                            console.log(value.name + " & " + value.size);
+                        }
+                    }
+                }
+
+            });
             // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
             $(".image-product").change(function() {
                 var _input = $(this).val();
@@ -67,25 +156,25 @@ include 'inlcudes_function/auto_idproduct.php';
                 // thêm data từ input(this) vào variable input_image để xử lý 
                 switch ($(this).attr('id')) {
                     case 'file-input-product-1':
-                        add_replace_input(0, _input);
+                        add_replace_input(0, this);
                         break;
                     case 'file-input-product-2':
-                        add_replace_input(1, _input);
+                        add_replace_input(1, this);
                         break;
                     case 'file-input-product-3':
-                        add_replace_input(2, _input);
+                        add_replace_input(2, this);
                         break;
                     case 'file-input-product-4':
-                        add_replace_input(3, _input);
+                        add_replace_input(3, this);
                         break;
                     case 'file-input-product-5':
-                        add_replace_input(4, _input);
+                        add_replace_input(4, this);
                         break;
                     case 'file-input-product-6':
-                        add_replace_input(5, _input);
+                        add_replace_input(5, this);
                         break;
                 }
-                console.log(input_image);
+
             });
             $('.button-add-image').on('click', function() {
                 var _input_1 = $('#file-input-product-1').val();
@@ -232,7 +321,7 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Hãng</span>
-                        <select class="form-select form-select-lg form-select-brand" id="brand" aria-label=".form-select-lg example">
+                        <select class="form-select form-select-lg form-select-brand" id="Brand" aria-label=".form-select-lg example">
                             <?php if (mysqli_num_rows($resultBrand)) while ($rowBrand = mysqli_fetch_array($resultBrand)) : ?>
                                 <option value="<?php echo $rowBrand['ID_Brand'] ?>"> <?php echo $rowBrand['Name'] ?></option>
                             <?php endwhile; ?>
@@ -242,7 +331,7 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Loại</span>
-                        <select class="form-select form-select-lg form-select-gender" id="gender" aria-label=".form-select-lg example">
+                        <select class="form-select form-select-lg form-select-gender" id="Gender" aria-label=".form-select-lg example">
                             <?php if (mysqli_num_rows($resultGender)) while ($rowGender = mysqli_fetch_array($resultGender)) : ?>
                                 <option value="<?php echo $rowGender['ID_Gender'] ?>"> <?php echo $rowGender['Name'] ?></option>
                             <?php endwhile; ?>
@@ -252,25 +341,25 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Số lượng kho</span>
-                        <input type="text" class="form-control" value="" id="" name="">
+                        <input type="text" class="form-control" value="" id="Quantiy" name="Quantity">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giá niêm yết</span>
-                        <input type="text" class="form-control" value="" id="" name="">
+                        <input type="text" class="form-control" value="" id="Price" name="Price">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giảm giá</span>
-                        <input type="text" class="form-control" value="" id="" name="">
+                        <input type="text" class="form-control" value="" id="Discount" name="Discount">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group ">
                         <label class="input-group-text" for="Image">Ảnh</label>
-                        <button type="button" class="btn btn-secondary button-back" style="width: 77%;" data-bs-target="#myModal_Add-Product" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-image"></i> Thêm ảnh</button>
+                        <button type="button" class="btn btn-secondary button-back" style="width: 79%;" data-bs-target="#myModal_Add-Product" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-image"></i> Thêm ảnh</button>
                         <!-- <input type="file" class="form-control" id="Image" name="Image" multiple> -->
                         <!-- <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="image[]" accept="image/*" id="imageButton" multiple />
@@ -280,12 +369,12 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Mô tả</span>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="Description" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="col-6 d-flex justify-content-end"><button type="button" class="btn btn-warning button-back"><i class="fa-solid fa-arrow-left"></i> Quay lại</button></div>
-                    <div class="col-6 d-flex justify-content-center"><button type="button" class="btn btn-success button-update"><i class="fa-solid fa-floppy-disk"></i>Thêm</button></div>
+                    <div class="col-6 d-flex justify-content-center"><button type="button" class="btn btn-success button-add-product"><i class="fa-solid fa-floppy-disk"></i>Thêm</button></div>
                 </div>
             </div>
             <div class="col-1"></div>
