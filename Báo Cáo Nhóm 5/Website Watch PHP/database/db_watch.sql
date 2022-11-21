@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 12:12 PM
+-- Generation Time: Nov 21, 2022 at 05:17 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,7 +65,7 @@ INSERT INTO `brands` (`ID_Brand`, `Name`) VALUES
 ('Avia', 'Aviator'),
 ('Baby', 'Baby-G'),
 ('Bentley', 'Bentley'),
-('c', 'cd'),
+('c', 'cdfl'),
 ('Citizen', 'Citizen'),
 ('Olym', 'Olym Pianus'),
 ('Shock', 'G-Shock');
@@ -95,7 +95,7 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`ID_Customer`, `First_Name`, `Last_Name`, `Phone`, `Email`, `UserName`, `Password`, `Address`, `Create_At`, `ID_Role`) VALUES
 ('MaKH00001', 'Nguyễn Trần Hoàn', 'Kim', '0386818888', 'nguyentranhoankim.nt@gmail.com', 'bekimcute', 'kimbeiu', 'Phước Đồng, Nha Trang, Khánh Hòa', '2022-10-19 08:20:00', 'User'),
-('MaKH00002', 'Nguyễn Khánh', 'Nam', '0926555565', 'nguyenkhanhnam.hn@gmail.com', 'nam123', 'knam123', 'Nha Trang', '2022-10-19 08:25:00', 'User'),
+('MaKH00002', 'Nguyễn Khánh', 'Nam', '0926555565', 'nguyenkhanhnam.hn@gmail.com', 'nam1234', 'knam123', 'Nha Trang', '2022-10-19 08:25:00', 'User'),
 ('MaKH00003', 'Nguyễn Yến', 'Nhi', '0926300000', 'nguyenyennhi.dn@gmail.com', 'benhi', 'nynhi123', 'Đà Nẵng', '2022-10-19 08:25:00', 'User'),
 ('MaKH00004', 'Phạm Hồ Thu', 'Oanh', '0926123456', 'phamhothuoanh.nt@gmail.com', 'phtoanh123', 'thuoanh123', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
 ('MaKH00005', 'Nguyễn Yến', 'Vy', '0926356789', 'nguyenyenvy.nt@gmail.com', 'yenvy1', 'yenvynhatrang', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
@@ -104,7 +104,8 @@ INSERT INTO `customers` (`ID_Customer`, `First_Name`, `Last_Name`, `Phone`, `Ema
 ('MaKH00008', 'Phan Quang', 'Khải', '0920045056', 'phanquankhai.nt@gmail.com', 'quangkhaidz', 'khaidzai', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
 ('MaKH00009', 'Nguyễn Thành', 'Lãnh', '0921123456', 'nguyenthanhlanh.nt@gmail.com', 'lanhlanh', 'thanhlanh123', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
 ('MaKH00010', 'Trần Lê Nguyên', 'Hoàng', '0920023888', 'tranlenguyenhoang.nt@gmail.com', 'anhhoangdzai', 'nguyenhoang159', 'Nha Trang, Khánh Hòa', '2022-10-19 08:25:00', 'User'),
-('MaKH00011', 'Nguyen Quoc', 'Chau', '0926383006', '723mailtrang11@gmail.com', 'chau12388', 'chau1234', 'Hà Nội', '2022-11-02 17:28:39', 'User');
+('MaKH00011', 'Nguyen Quoc', 'Chau', '0926383006', '723mailtrang11@gmail.com', 'chau12388', 'chau1234', 'Hà Nội', '2022-11-02 17:28:39', 'User'),
+('MaKH00012', 'Nguyen Quoc', 'Chau', '0926383006', '723mailtrang@gmail.com', 'chau123', 'chau123', 'Nha Trang', '2022-11-20 20:47:49', 'User');
 
 -- --------------------------------------------------------
 
@@ -165,11 +166,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`ID_Order`, `ID_Customer`, `Create_At`, `Total`) VALUES
-('Order0000001', 'MaKH00001', '2022-10-22 23:22:23', '25278000'),
-('Order0000002', 'MaKH00002', '2022-10-31 23:29:27', '78647600'),
-('Order0000003', 'MaKH00009', '2022-10-31 23:30:05', '19697400'),
-('Order0000004', 'MaKH00003', '2022-10-31 23:31:05', '4350000'),
-('Order0000005', 'MaKH00011', '2022-11-02 17:30:55', '45854400');
+('Order0000001', 'MaKH00002', '2022-11-20 16:20:04', '57579000'),
+('Order0000002', 'MaKH00001', '2022-11-20 17:08:35', '7221000'),
+('Order0000003', 'MaKH00009', '2022-11-20 17:08:53', '10602120'),
+('Order0000004', 'MaKH00003', '2022-11-20 17:09:29', '2550000'),
+('Order0000005', 'MaKH00012', '2022-11-20 20:50:20', '9250000');
 
 -- --------------------------------------------------------
 
@@ -192,30 +193,21 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`ID_Detail`, `ID_Order`, `ID_Product`, `Create_At`, `Quantity`, `Price`, `Total`) VALUES
-('Detail0000001', 'Order0000001', 'Product0018', '2022-10-30 22:29:50', 1, '4816500', '4816500'),
-('Detail0000002', 'Order0000001', 'Product0017', '2022-10-30 22:29:50', 1, '8661500', '8661500'),
-('Detail0000003', 'Order0000001', 'Product0006', '2022-10-30 22:36:47', 1, '2550000', '2550000'),
-('Detail0000004', 'Order0000001', 'Product0003', '2022-10-30 22:56:34', 1, '9250000', '9250000'),
-('Detail0000005', 'Order0000002', 'Product0004', '2022-10-31 23:29:27', 1, '16200000', '16200000'),
-('Detail0000006', 'Order0000002', 'Product0002', '2022-10-31 23:29:27', 1, '14850000', '14850000'),
-('Detail0000007', 'Order0000002', 'Product0010', '2022-10-31 23:29:27', 1, '7327800', '7327800'),
-('Detail0000008', 'Order0000002', 'Product0009', '2022-10-31 23:29:27', 1, '4671000', '4671000'),
-('Detail0000009', 'Order0000002', 'Product0006', '2022-10-31 23:29:27', 1, '2550000', '2550000'),
-('Detail0000010', 'Order0000002', 'Product0003', '2022-10-31 23:29:27', 1, '9250000', '9250000'),
-('Detail0000011', 'Order0000003', 'Product0022', '2022-10-31 23:30:05', 1, '3956000', '3956000'),
-('Detail0000012', 'Order0000003', 'Product0021', '2022-10-31 23:30:05', 1, '4743900', '4743900'),
-('Detail0000013', 'Order0000003', 'Product0020', '2022-10-31 23:30:05', 1, '7410000', '7410000'),
-('Detail0000014', 'Order0000003', 'Product0019', '2022-10-31 23:30:05', 1, '3587500', '3587500'),
-('Detail0000015', 'Order0000004', 'Product0008', '2022-10-31 23:31:05', 1, '1890000', '1890000'),
-('Detail0000016', 'Order0000004', 'Product0007', '2022-10-31 23:31:05', 1, '2460000', '2460000'),
-('Detail0000017', 'Order0000002', 'Product0010', '2022-11-02 00:19:12', 1, '7327800', '7327800'),
-('Detail0000018', 'Order0000002', 'Product0009', '2022-11-02 00:19:12', 1, '4671000', '4671000'),
-('Detail0000019', 'Order0000002', 'Product0006', '2022-11-02 00:19:12', 1, '2550000', '2550000'),
-('Detail0000020', 'Order0000002', 'Product0003', '2022-11-02 00:19:12', 1, '9250000', '9250000'),
-('Detail0000021', 'Order0000005', 'Product0010', '2022-11-02 17:30:55', 3, '7327800', '21983400'),
-('Detail0000022', 'Order0000005', 'Product0009', '2022-11-02 17:30:55', 1, '4671000', '4671000'),
-('Detail0000023', 'Order0000005', 'Product0006', '2022-11-02 17:30:55', 1, '2550000', '2550000'),
-('Detail0000024', 'Order0000005', 'Product0014', '2022-11-02 17:30:55', 1, '16650000', '16650000');
+('Detail0000001', 'Order0000001', 'Product0009', '2022-11-20 16:20:04', 1, '4671000', '4671000'),
+('Detail0000002', 'Order0000001', 'Product0006', '2022-11-20 16:20:04', 1, '2550000', '2550000'),
+('Detail0000003', 'Order0000001', 'Product0003', '2022-11-20 16:20:04', 1, '9250000', '9250000'),
+('Detail0000004', 'Order0000001', 'Product0018', '2022-11-20 16:20:04', 1, '4816500', '4816500'),
+('Detail0000005', 'Order0000001', 'Product0017', '2022-11-20 16:20:04', 1, '8661500', '8661500'),
+('Detail0000006', 'Order0000001', 'Product0014', '2022-11-20 16:20:04', 1, '16650000', '16650000'),
+('Detail0000007', 'Order0000001', 'Product0013', '2022-11-20 16:20:04', 1, '4500000', '4500000'),
+('Detail0000008', 'Order0000001', 'Product0015', '2022-11-20 16:32:48', 1, '1980000', '1980000'),
+('Detail0000009', 'Order0000002', 'Product0009', '2022-11-20 17:08:35', 1, '4671000', '4671000'),
+('Detail0000010', 'Order0000002', 'Product0006', '2022-11-20 17:08:35', 1, '2550000', '2550000'),
+('Detail0000011', 'Order0000003', 'Product0036', '2022-11-20 17:08:53', 1, '3860220', '3860220'),
+('Detail0000012', 'Order0000003', 'Product0035', '2022-11-20 17:08:53', 1, '6741900', '6741900'),
+('Detail0000013', 'Order0000001', 'Product0013', '2022-11-20 17:09:11', 1, '4500000', '4500000'),
+('Detail0000014', 'Order0000004', 'Product0006', '2022-11-20 17:09:29', 1, '2550000', '2550000'),
+('Detail0000015', 'Order0000005', 'Product0003', '2022-11-20 20:50:20', 1, '9250000', '9250000');
 
 -- --------------------------------------------------------
 
@@ -322,10 +314,10 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`transaction`, `ID_Order`, `Create_At`, `Status`, `Update_At`, `Description`, `ID_Method`) VALUES
-('Transac00001', 'Order0000001', '2022-10-31 17:35:41', 'Chưa thanh toán', '2022-10-31 17:35:41', 'Giao hàng COD', 'Cod'),
-('Transac00002', 'Order0000002', '2022-10-31 17:37:29', 'Đã thanh toán', '2022-10-31 17:37:29', NULL, 'Card'),
-('Transac00003', 'Order0000003', '2022-10-31 17:38:12', 'Đã thanh toán', '2022-10-31 17:38:12', NULL, 'Ebp'),
-('Transac00004', 'Order0000004', '2022-10-31 17:38:12', 'Đã thanh toán', '2022-10-31 17:38:12', NULL, 'Momo');
+('Transac00001', 'Order0000001', '2022-11-20 11:10:03', 'Đã thanh toán', '2022-11-20 11:10:03', 'Đã thanh toán', 'Momo'),
+('Transac00002', 'Order0000002', '2022-11-20 11:10:03', 'Đã thanh toán', '2022-11-20 11:10:03', 'Đã thanh toán', 'Card'),
+('Transac00003', 'Order0000003', '2022-11-20 11:10:36', 'Đã thanh toán', '2022-11-20 11:10:36', 'Đã thanh toán', 'Zalo'),
+('Transac00004', 'Order0000004', '2022-11-20 11:10:36', 'Chưa thanh toán', '2022-11-20 11:10:36', 'Ship COD', 'Cod');
 
 --
 -- Indexes for dumped tables
