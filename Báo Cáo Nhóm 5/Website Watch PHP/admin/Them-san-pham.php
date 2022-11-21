@@ -65,7 +65,7 @@ include 'inlcudes_function/auto_idproduct.php';
                 var _gender = $("#Gender").val();
                 var _quantity = $("#Quantiy").val();
                 var _price = $("#Price").val();
-                var _discout = $("#Discount").val();
+                var _discount = $("#Discount").val();
                 var _description = $("#Description").val();
                 var _idproduct = $("#IDProduct").val();
                 if (check_empty(_name))
@@ -92,7 +92,7 @@ include 'inlcudes_function/auto_idproduct.php';
                         timer: 1500,
                         timerProgressBar: true,
                     })
-                else if (check_empty(_discout))
+                else if (check_empty(_discount))
                     Swal.fire({
                         icon: 'error',
                         title: 'Thông báo!',
@@ -129,6 +129,22 @@ include 'inlcudes_function/auto_idproduct.php';
                             timer: 1500,
                             timerProgressBar: true,
                         })
+                    else if (isNaN(_price) || _price <= 0)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thông báo!',
+                            text: 'Vui lòng nhập giá sản phẩm là số và lớn 0!',
+                            timer: 1500,
+                            timerProgressBar: true,
+                        })
+                    else if (isNaN(_discount) || _discount < 0 || _discount > 100)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thông báo!',
+                            text: 'Vui lòng nhập giảm giá sản phẩm là số (>0 và <100)!',
+                            timer: 1500,
+                            timerProgressBar: true,
+                        })
                     else {
                         var form = new FormData();
                         for (var i = 0; i <= input_image.length - 1; i++) {
@@ -140,7 +156,7 @@ include 'inlcudes_function/auto_idproduct.php';
                         form.append("gender", _gender);
                         form.append("price", _price);
                         form.append("quantity", _quantity);
-                        form.append("discount", _discout);
+                        form.append("discount", (_discount / 100));
                         form.append("description", _description);
                         // The AJAX call
                         $.ajax({
@@ -151,8 +167,15 @@ include 'inlcudes_function/auto_idproduct.php';
                             processData: false,
                             success: function(result) {
                                 var data = JSON.parse(result);
-                                console.log(data);
-                                //document.write(result);
+                                if (data['message'] == 0) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thông báo!',
+                                        text: 'Thêm sản phẩm thành công!',
+                                        timer: 1500,
+                                        timerProgressBar: true,
+                                    })
+                                }
                             }
                         });
                     }
@@ -342,7 +365,7 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giảm giá</span>
-                        <input type="text" class="form-control" value="" id="Discount" name="Discount" placeholder="50%">
+                        <input type="text" class="form-control" value="" id="Discount" name="Discount" placeholder="50 tức là 50%">
                     </div>
                 </div>
                 <div class="row p-2">
@@ -362,7 +385,7 @@ include 'inlcudes_function/auto_idproduct.php';
                     </div>
                 </div>
                 <div class="row p-2">
-                    <div class="col-6 d-flex justify-content-end"><button type="button" class="btn btn-warning button-back"><i class="fa-solid fa-arrow-left"></i> Quay lại</button></div>
+                    <div class="col-6 d-flex justify-content-end"><a href="Danh-sach-san-pham.php"><button type="button" class="btn btn-warning button-back"><i class="fa-solid fa-arrow-left"></i> Quay lại</button></a></div>
                     <div class="col-6 d-flex justify-content-center"><button type="button" class="btn btn-success button-add-product"><i class="fa-solid fa-floppy-disk"></i>Thêm</button></div>
                 </div>
             </div>

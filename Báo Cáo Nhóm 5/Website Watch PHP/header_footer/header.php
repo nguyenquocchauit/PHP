@@ -194,7 +194,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nam, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowMen = mysqli_fetch_array($resultMen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php" or $curPageName == "Danh-sach-dat-hang-cua-khach-hang.php" or $curPageName == "listbrand.php" or $curPageName == "edit_delete.php" or $curPageName == "addbrand.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Danh-sach-san-pham.php" or $curPageName == "Chi-tiet_san-pham.php" or $curPageName == "Them-san-pham.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDM&brand=<?php echo $rowMen['ID_Brand'] ?>"><?php echo $rowMen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
@@ -206,7 +206,7 @@ $resultWomen = mysqli_query($conn, $queryWomen);
                                             <ul class="dropdown-menu">
                                                 <!-- duyệt các hãng thuộc giới tính nữ, thẻ a có đường dẫn tới file shop chứa brand, giới tính tương tứng -->
                                                 <?php while ($rowWomen = mysqli_fetch_array($resultWomen)) : ?>
-                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
+                                                    <li><a class="dropdown-item" href="<?php if ($curPageName == "home.php" or $curPageName == "contact.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php" or $curPageName == "Danh-sach-dat-hang-cua-khach-hang.php"  or $curPageName == "listbrand.php" or $curPageName == "edit_delete.php" or $curPageName == "addbrand.php" or $curPageName == "Chi-tiet.php" or $curPageName == "Danh-sach-san-pham.php" or $curPageName == "Chi-tiet_san-pham.php" or $curPageName == "Them-san-pham.php" or $curPageName == "Chi-tiet-dat-hang-cua-khach-hang.php") echo "../../Website Watch PHP/product and cart/" ?>shop.php?gender=IDWM&brand=<?php echo $rowWomen['ID_Brand'] ?>"><?php echo $rowWomen['Name'] ?></a></li>
                                                 <?php endwhile; ?>
                                             </ul>
                                         </li>
