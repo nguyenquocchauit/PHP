@@ -15,8 +15,8 @@
         $mail->Debugoutput = "html"; 
         $mail->Host ='smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'tcwatchfeedback.customer@gmail.com';
-        $mail->Password = 'wblcffxkzqcomfcl';
+        $mail->Username = 'ckhachhangtcwatch@gmail.com';
+        $mail->Password = 'bgsdwdholgtyvixz';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465 ;
 
@@ -46,4 +46,3 @@
             echo "Có lỗi khi gửi mail: " . $mail->ErrorInfo;
         }
     }
-?>

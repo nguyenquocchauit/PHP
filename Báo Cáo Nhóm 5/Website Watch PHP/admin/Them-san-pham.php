@@ -67,89 +67,97 @@ include 'inlcudes_function/auto_idproduct.php';
                 var _price = $("#Price").val();
                 var _discout = $("#Discount").val();
                 var _description = $("#Description").val();
-                // if (check_empty(_name))
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Thông báo!',
-                //         text: 'Vui lòng nhập tên sản phẩm!',
-                //         timer: 1500,
-                //         timerProgressBar: true,
-                //     })
-                // else if (check_empty(_quantity))
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Thông báo!',
-                //         text: 'Vui lòng nhập số lượng sản phẩm có trong kho!',
-                //         timer: 1500,
-                //         timerProgressBar: true,
-                //     })
-                // else if (check_empty(_price))
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Thông báo!',
-                //         text: 'Vui lòng nhập giá sản phẩm!',
-                //         timer: 1500,
-                //         timerProgressBar: true,
-                //     })
-                // else if (check_empty(_discout))
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Thông báo!',
-                //         text: 'Vui lòng nhập giảm giá sản phẩm!',
-                //         timer: 1500,
-                //         timerProgressBar: true,
-                //     })
-                // else if (check_empty(_description))
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Thông báo!',
-                //         text: 'Vui lòng nhập mô tả sản phẩm!',
-                //         timer: 1500,
-                //         timerProgressBar: true,
-                //     })
-                // else {
-                //     for (var i = 0; i <= input_image.length - 1; i++) {
-                //         if (input_image[i].length == 0) {
-                //             Swal.fire({
-                //                 icon: 'error',
-                //                 title: 'Thông báo!',
-                //                 text: 'Vui lòng thêm ảnh sản phẩm!',
-                //                 timer: 1500,
-                //                 timerProgressBar: true,
-                //             })
-                //         }
-                //         break;
-                //     }
-                //     if (isNaN(_quantity))
-                //         Swal.fire({
-                //             icon: 'error',
-                //             title: 'Thông báo!',
-                //             text: 'Vui lòng nhập số lượng sản phẩm là số!',
-                //             timer: 1500,
-                //             timerProgressBar: true,
-                //         })
-                //     else {
-                //         var form = new FormData();
-                //         for (var i = 0; i <= input_image.length - 1; i++) {
-                //             // var file = input_image[i].prop("files");
-                //             form.append("files[]",input_image[i].files);
-                //             //console.log(input_image[i].files);
-                //         }
-                //         for (const value of form.values()) {
-                //             console.log(value.name + " & " + value.size);
-                //         }
-                //     }
-                // }
-                var form = new FormData();
-                for (var i = 0; i <= input_image.length - 1; i++) {
-                    // var file = input_image[i].prop("files");
-                    form.append("files[]", input_image[i][0].files[0]);
-                    //console.log(input_image[i].files);
+                var _idproduct = $("#IDProduct").val();
+                if (check_empty(_name))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập tên sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_quantity))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập số lượng sản phẩm có trong kho!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_price))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập giá sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_discout))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập giảm giá sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else if (check_empty(_description))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thông báo!',
+                        text: 'Vui lòng nhập mô tả sản phẩm!',
+                        timer: 1500,
+                        timerProgressBar: true,
+                    })
+                else {
+                    for (var i = 0; i <= input_image.length - 1; i++) {
+                        if (input_image[i].length == 0) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Thông báo!',
+                                text: 'Vui lòng thêm ảnh sản phẩm!',
+                                timer: 1500,
+                                timerProgressBar: true,
+                            })
+                        }
+                        break;
+                    }
+                    if (isNaN(_quantity))
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thông báo!',
+                            text: 'Vui lòng nhập số lượng sản phẩm là số!',
+                            timer: 1500,
+                            timerProgressBar: true,
+                        })
+                    else {
+                        var form = new FormData();
+                        for (var i = 0; i <= input_image.length - 1; i++) {
+                            form.append("files[]", input_image[i][0].files[0]);
+                        }
+                        form.append("idproduct", _idproduct);
+                        form.append("name", _name);
+                        form.append("brand", _brand);
+                        form.append("gender", _gender);
+                        form.append("price", _price);
+                        form.append("quantity", _quantity);
+                        form.append("discount", _discout);
+                        form.append("description", _description);
+                        // The AJAX call
+                        $.ajax({
+                            url: 'inlcudes_function/create_new_product.php',
+                            type: "POST",
+                            data: form,
+                            contentType: false,
+                            processData: false,
+                            success: function(result) {
+                                var data = JSON.parse(result);
+                                console.log(data);
+                                //document.write(result);
+                            }
+                        });
+                    }
                 }
-                //console.log(form);
-                for (const value of form.values()) {
-                    console.log(value.name + " & " + value.size);
-                }
+
 
             });
             // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
@@ -251,6 +259,9 @@ include 'inlcudes_function/auto_idproduct.php';
                         timer: 1500,
                         timerProgressBar: true,
                     })
+                else {
+                    $(".btn-close-add-product").click();
+                }
             });
 
             // function thêm input vào array input_image, nếu đã tồn tại trước đó thì thay thế
@@ -281,40 +292,8 @@ include 'inlcudes_function/auto_idproduct.php';
             <div class="row pt-1 pb-3"><strong class=" d-flex justify-content-center" style="font-size: 30px; font-family: 'Oswald', sans-serif;">THÊM SẢN PHẨM</strong></div>
         </div>
         <div class="row detail-product">
-            <div class="col-2"></div>
-            <div class="col-4">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active btnslide" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="btnslide" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="btnslide" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="btnslide" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" class="btnslide" aria-label="Slide 5"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" class="btnslide" aria-label="Slide 6"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <?php $i = 0;
-                        $active = true;
-                        while ($i <= 5) : ?>
-                            <div class="carousel-item <?php echo ($active == true) ? "active" : "" ?>">
-                                <!-- lấy ảnh đầu tiên trong db đúng đường theo folder sản phẩm, còn lại 5 ảnh khác dùng chung ảnh cat.gif (vì dung lượng ảnh lớn nên cắt bớt) -->
-                                <img src="../img<?php if ($i == 0) echo "/images/" . $genderlink . "/" . $brandlink; ?>/<?php $img1 = explode(",", $rowProduct['Image']);
-                                                                                                                        echo $img1[$i] ?>" class="d-block w-100" alt="...">
-                            </div>
-                        <?php $i++;
-                            $active = false;
-                        endwhile; ?>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="glyphicon carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="glyphicon  carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
+            <div class="col-4"></div>
+
             <div class="col-4 p-2 ">
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
@@ -325,7 +304,7 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Tên sản phẩm</span>
-                        <input type="text" class="form-control" value="" id="Name" name="Name">
+                        <input type="text" class="form-control" value="" id="Name" name="Name" placeholder="Sản phẩm 1">
                     </div>
                 </div>
                 <div class="row p-2">
@@ -351,19 +330,19 @@ include 'inlcudes_function/auto_idproduct.php';
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Số lượng kho</span>
-                        <input type="text" class="form-control" value="" id="Quantiy" name="Quantity">
+                        <input type="text" class="form-control" value="" id="Quantiy" name="Quantity" placeholder="100">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giá niêm yết</span>
-                        <input type="text" class="form-control" value="" id="Price" name="Price">
+                        <input type="text" class="form-control" value="" id="Price" name="Price" placeholder="10000000">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="input-group flex-nowrap ">
                         <span class="input-group-text" id="addon-wrapping">Giảm giá</span>
-                        <input type="text" class="form-control" value="" id="Discount" name="Discount">
+                        <input type="text" class="form-control" value="" id="Discount" name="Discount" placeholder="50%">
                     </div>
                 </div>
                 <div class="row p-2">
@@ -387,7 +366,7 @@ include 'inlcudes_function/auto_idproduct.php';
                     <div class="col-6 d-flex justify-content-center"><button type="button" class="btn btn-success button-add-product"><i class="fa-solid fa-floppy-disk"></i>Thêm</button></div>
                 </div>
             </div>
-            <div class="col-1"></div>
+            <div class="col-4"></div>
         </div>
     </div>
     <?php

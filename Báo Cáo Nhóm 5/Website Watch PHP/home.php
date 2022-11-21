@@ -4,15 +4,15 @@ session_start();
 // kết nối cơ sở dữ liệu db_watch
 require 'config/connectDB.php';
 // lấy toàn bộ sản phẩm
-$queryAll = "SELECT products.ID_Product,brands.Name as 'Brand_Name' ,gender.Name as 'Gender_Name', products.Name, products.Image, products.Quantity, products.Price, products.Discount 
+$queryAll = "SELECT products.ID_Product,products.ID_Gender as 'ID_Gender' ,products.ID_Brand as 'ID_Brand', products.Name, products.Image, products.Quantity, products.Price, products.Discount 
 FROM products inner join brands on products.ID_Brand = brands.ID_Brand inner JOIN gender on products.ID_Gender= gender.ID_Gender";
 $resultAll = mysqli_query($conn, $queryAll);
 // lấy sản phẩm được giảm (discount>0)
-$queryDiscount = "SELECT products.ID_Product, brands.Name as 'Brand_Name' ,gender.Name as 'Gender_Name', products.Name, products.Image, products.Price, products.Discount 
+$queryDiscount = "SELECT products.ID_Product, products.ID_Gender as 'ID_Gender' ,products.ID_Brand as 'ID_Brand', products.Name, products.Image, products.Price, products.Discount 
 FROM products inner join brands on products.ID_Brand = brands.ID_Brand inner JOIN gender on products.ID_Gender= gender.ID_Gender WHERE products.Discount >0 ";
 $resultDiscount = mysqli_query($conn, $queryDiscount);
 // lấy sản phẩm được bán chạy nhất. Mặc định hiện tại 2 sản phẩm
-$queryBestSeller = "SELECT a.ID_Product,a.Name,a.Image,a.Price,a.Discount,b.number_of_oders,c.Name as 'Brand_Name' ,d.Name as 'Gender_Name' FROM products a inner join 
+$queryBestSeller = "SELECT a.ID_Product,a.Name,a.Image,a.Price,a.Discount,b.number_of_oders,a.ID_Brand as 'ID_Brand' ,a.ID_Gender as 'ID_Gender' FROM products a inner join 
 (SELECT a.ID_Product, sum(a.Quantity) as 'number_of_oders' FROM order_details a inner join products b on a.ID_Product=b.ID_Product GROUP BY a.ID_Product) b 
 on a.ID_Product = b.ID_Product inner join brands c on a.ID_Brand = c.ID_Brand inner join gender d on a.ID_Gender=d.ID_Gender GROUP BY b.number_of_oders DESC LIMIT 4";
 $resultBestSeller = mysqli_query($conn, $queryBestSeller);
@@ -114,7 +114,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                                                                   echo $img1[0] ?>">
                     </div>
                     <div class="textleft">
-                      <div><a href="shop.php?gender=<?php echo $rowAll['Gender_Name'] ?>&brand=<?php echo $rowAll['Brand_Name'] ?>"><?php echo $rowAll['Name'] ?></div></a>
+                      <div><a href="product and cart/shop.php?gender=<?php echo $rowAll['ID_Gender'] ?>&brand=<?php echo $rowAll['ID_Brand'] ?>"><?php echo $rowAll['Name'] ?></div></a>
                       <div><b><?php if($rowAll['Quantity']==0) echo "Hết hàng"; else echo $rowAll['Quantity']." sản phẩm" ?></b></div>
                     </div>
                   </div>
@@ -152,7 +152,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                                                                   echo $img1[0] ?>">
                     </div>
                     <div class="textleft product-item-desc">
-                      <div><a href="shop.php?gender=<?php echo $rowDiscount['Gender_Name'] ?>&brand=<?php echo $rowDiscount['Brand_Name'] ?>"><?php echo $rowDiscount['Name'] ?></a></div>
+                      <div><a href="product and cart/shop.php?gender=<?php echo $rowDiscount['ID_Gender'] ?>&brand=<?php echo $rowDiscount['ID_Brand'] ?>"><?php echo $rowDiscount['Name'] ?></a></div>
                       <div class="price d-flex ">
                         <!-- number_format dùng định dạng số theo kiểu đơn vị tiền tệ -->
                         <p class="price-pre"><?php echo number_format($rowDiscount['Price']) . " VNĐ" ?></p>
@@ -210,7 +210,7 @@ $resultBestSeller = mysqli_query($conn, $queryBestSeller);
                                                                   echo $img1[0] ?>">
                     </div>
                     <div class="textleft product-item-desc">
-                      <div><a href="shop.php?gender=<?php echo $rowBestSeller['Gender_Name'] ?>&brand=<?php echo $rowBestSeller['Brand_Name'] ?>"><?php echo $rowBestSeller['Name'] ?></a></div>
+                      <div><a href="product and cart/shop.php?gender=<?php echo $rowBestSeller['ID_Gender'] ?>&brand=<?php echo $rowBestSeller['ID_Brand'] ?>"><?php echo $rowBestSeller['Name'] ?></a></div>
                       <div class="price d-flex" <?php if ($rowBestSeller['Discount'] == 0) echo 'style="justify-content: center;margin: 0px;"'; ?>>
                         <?php if ($rowBestSeller['Discount'] != 0) : ?>
                           <p class="price-pre">
