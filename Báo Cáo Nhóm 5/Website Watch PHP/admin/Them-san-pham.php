@@ -143,13 +143,13 @@ include 'inlcudes_function/auto_idproduct.php';
                 var form = new FormData();
                 for (var i = 0; i <= input_image.length - 1; i++) {
                     // var file = input_image[i].prop("files");
-                    form.append("files[]", input_image[i][0].files);
+                    form.append("files[]", input_image[i][0].files[0]);
                     //console.log(input_image[i].files);
                 }
-                console.log(form);
-                // for (const value of form.values()) {
-                //     console.log(value.name + " & " + value.size);
-                // }
+                //console.log(form);
+                for (const value of form.values()) {
+                    console.log(value.name + " & " + value.size);
+                }
 
             });
             // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng
