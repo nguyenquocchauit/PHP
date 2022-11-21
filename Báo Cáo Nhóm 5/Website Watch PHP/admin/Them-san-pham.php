@@ -67,79 +67,89 @@ include 'inlcudes_function/auto_idproduct.php';
                 var _price = $("#Price").val();
                 var _discout = $("#Discount").val();
                 var _description = $("#Description").val();
-                if (check_empty(_name))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thông báo!',
-                        text: 'Vui lòng nhập tên sản phẩm!',
-                        timer: 1500,
-                        timerProgressBar: true,
-                    })
-                else if (check_empty(_quantity))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thông báo!',
-                        text: 'Vui lòng nhập số lượng sản phẩm có trong kho!',
-                        timer: 1500,
-                        timerProgressBar: true,
-                    })
-                else if (check_empty(_price))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thông báo!',
-                        text: 'Vui lòng nhập giá sản phẩm!',
-                        timer: 1500,
-                        timerProgressBar: true,
-                    })
-                else if (check_empty(_discout))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thông báo!',
-                        text: 'Vui lòng nhập giảm giá sản phẩm!',
-                        timer: 1500,
-                        timerProgressBar: true,
-                    })
-                else if (check_empty(_description))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Thông báo!',
-                        text: 'Vui lòng nhập mô tả sản phẩm!',
-                        timer: 1500,
-                        timerProgressBar: true,
-                    })
-                else {
-                    for (var i = 0; i <= input_image.length - 1; i++) {
-                        if (input_image[i].length == 0) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Thông báo!',
-                                text: 'Vui lòng thêm ảnh sản phẩm!',
-                                timer: 1500,
-                                timerProgressBar: true,
-                            })
-                        }
-                        break;
-                    }
-                    if (isNaN(_quantity))
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Thông báo!',
-                            text: 'Vui lòng nhập số lượng sản phẩm là số!',
-                            timer: 1500,
-                            timerProgressBar: true,
-                        })
-                    else {
-                        var form = new FormData();
-                        for (var i = 0; i <= input_image.length - 1; i++) {
-                            // var file = input_image[i].prop("files");
-                            // form.append("files[]", file);
-                            console.log(input_image[i]);
-                        }
-                        for (const value of form.values()) {
-                            console.log(value.name + " & " + value.size);
-                        }
-                    }
+                // if (check_empty(_name))
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Thông báo!',
+                //         text: 'Vui lòng nhập tên sản phẩm!',
+                //         timer: 1500,
+                //         timerProgressBar: true,
+                //     })
+                // else if (check_empty(_quantity))
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Thông báo!',
+                //         text: 'Vui lòng nhập số lượng sản phẩm có trong kho!',
+                //         timer: 1500,
+                //         timerProgressBar: true,
+                //     })
+                // else if (check_empty(_price))
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Thông báo!',
+                //         text: 'Vui lòng nhập giá sản phẩm!',
+                //         timer: 1500,
+                //         timerProgressBar: true,
+                //     })
+                // else if (check_empty(_discout))
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Thông báo!',
+                //         text: 'Vui lòng nhập giảm giá sản phẩm!',
+                //         timer: 1500,
+                //         timerProgressBar: true,
+                //     })
+                // else if (check_empty(_description))
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Thông báo!',
+                //         text: 'Vui lòng nhập mô tả sản phẩm!',
+                //         timer: 1500,
+                //         timerProgressBar: true,
+                //     })
+                // else {
+                //     for (var i = 0; i <= input_image.length - 1; i++) {
+                //         if (input_image[i].length == 0) {
+                //             Swal.fire({
+                //                 icon: 'error',
+                //                 title: 'Thông báo!',
+                //                 text: 'Vui lòng thêm ảnh sản phẩm!',
+                //                 timer: 1500,
+                //                 timerProgressBar: true,
+                //             })
+                //         }
+                //         break;
+                //     }
+                //     if (isNaN(_quantity))
+                //         Swal.fire({
+                //             icon: 'error',
+                //             title: 'Thông báo!',
+                //             text: 'Vui lòng nhập số lượng sản phẩm là số!',
+                //             timer: 1500,
+                //             timerProgressBar: true,
+                //         })
+                //     else {
+                //         var form = new FormData();
+                //         for (var i = 0; i <= input_image.length - 1; i++) {
+                //             // var file = input_image[i].prop("files");
+                //             form.append("files[]",input_image[i].files);
+                //             //console.log(input_image[i].files);
+                //         }
+                //         for (const value of form.values()) {
+                //             console.log(value.name + " & " + value.size);
+                //         }
+                //     }
+                // }
+                var form = new FormData();
+                for (var i = 0; i <= input_image.length - 1; i++) {
+                    // var file = input_image[i].prop("files");
+                    form.append("files[]", input_image[i][0].files);
+                    //console.log(input_image[i].files);
                 }
+                console.log(form);
+                // for (const value of form.values()) {
+                //     console.log(value.name + " & " + value.size);
+                // }
 
             });
             // Bắt sự kiện click thêm giỏ hàng thêm hiệu ứng animation tới icon giỏ hàng

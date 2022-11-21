@@ -18,20 +18,20 @@ $(document).ready(function () {
         for (const value of form.values()) {
             console.log(value.name + " & " + value.size);
         }
-        console.log(file.length);
+        console.log(file);
         // The AJAX call
-        $.ajax({
-            url: 'inlcudes_function/update_product.php',
-            type: "POST",
-            data: form,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                var data = JSON.parse(result);
-                console.log(data);
-                //document.write(result);
-            }
-        });
+        // $.ajax({
+        //     url: 'inlcudes_function/update_product.php',
+        //     type: "POST",
+        //     data: form,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function (result) {
+        //         var data = JSON.parse(result);
+        //         console.log(data);
+        //         //document.write(result);
+        //     }
+        // });
 
 
     });

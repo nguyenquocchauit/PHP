@@ -161,11 +161,11 @@ include 'inlcudes_function/show_product.php';
                 <div class="row p-2">
                     <div class="input-group ">
                         <label class="input-group-text" for="Image">Ảnh</label>
-                        <button type="button" class="btn btn-secondary button-back" style="width: 77%;"><i class="fa-solid fa-image"></i> Chỉnh sửa ảnh</button>
+                        <!-- <button type="button" class="btn btn-secondary button-back" style="width: 77%;"><i class="fa-solid fa-image"></i> Chỉnh sửa ảnh</button> -->
                         <!-- <input type="file" class="form-control" id="Image" name="Image" multiple> -->
-                        <!-- <form action="" method="post" enctype="multipart/form-data">
+                        <form action="" method="post" enctype="multipart/form-data">
                             <input type="file" name="image[]" accept="image/*" id="imageButton" multiple />
-                        </form> -->
+                        </form>
                     </div>
                 </div>
                 <div class="row p-2">
