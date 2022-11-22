@@ -1,5 +1,5 @@
 <?php
-include "../../config/connectDB.php";
+require "../../config/connectDB.php";
 $array_message = [];
 if (
     isset($_POST['idproduct']) && isset($_POST['name']) && isset($_POST['brand'])
